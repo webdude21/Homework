@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Zoo
 {
@@ -23,7 +25,7 @@ namespace Zoo
             this.Sex = sex;
         }
 
-        public static double AvarageAge(Animal[] animals)
+        public static double AvarageAge(IEnumerable<Animal> animals)
         {
             return animals.Average(animal => animal.Age);
         }
