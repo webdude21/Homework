@@ -1,0 +1,7 @@
+5
+....
+using System;    namespace Stars
+{class Program{
+static    string[] separators 
+= new string[] { " " };}
+}
