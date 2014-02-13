@@ -7,7 +7,6 @@ namespace Zoo
 {
     /// <summary>
     /// This is a general abstract class Animal. It can be inherited, but not instantiated. 
-    /// The fields are protected instead of private, so they can be inherited.
     /// </summary>
     public abstract class Animal
     {
