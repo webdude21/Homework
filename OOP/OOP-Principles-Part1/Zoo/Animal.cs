@@ -11,9 +11,9 @@ namespace Zoo
     /// </summary>
     public abstract class Animal
     {
-        protected int age;
-        protected Sex sex;
-        protected string name;
+        private int age;
+        private Sex sex;
+        private string name;
 
         protected Animal(string name, int age, Sex sex)
         {
@@ -56,7 +56,7 @@ namespace Zoo
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            protected set { name = value; }
         }
 
         public override string ToString()

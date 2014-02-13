@@ -3,7 +3,6 @@ namespace Banking
 {
     public abstract class Account
     {
-
         public Account(decimal balance, decimal interestRate, Custumer custumer)
         {
             this.Balance = balance;

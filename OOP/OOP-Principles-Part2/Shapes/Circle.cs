@@ -7,7 +7,7 @@ namespace Shapes
         public Circle(double radius) : base(radius, radius) { }
         public override double CalculateSurface()
         {
-            return this.height * this.width * Math.PI;
+            return this.Height * this.Width * Math.PI;
         }
     }
 }

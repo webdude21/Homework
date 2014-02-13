@@ -46,7 +46,8 @@ namespace Banking
             //this prints information about all of the accounts in the bank
             Console.WriteLine(obb);
             // this prints the avarage interest for all of the accounts in the collection of accounts
-            Console.WriteLine("The average interest for {0} months is {1}", monthsOfInterest, obb.AvarageInterestRate(monthsOfInterest));            
+            Console.WriteLine("The average interest for {0} months is {1}",
+                monthsOfInterest, obb.AvarageInterestRate(monthsOfInterest));
         }
     }
 }

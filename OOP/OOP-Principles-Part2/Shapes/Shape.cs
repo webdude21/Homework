@@ -2,14 +2,28 @@
 {
     public abstract class Shape
     {
-        protected double width;
-        protected double height;
+        private double width;
+        private double height;
 
         protected Shape(double width, double height)
         {
             this.width = width;
             this.height = height;
         }
+
+        public double Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
+        
+        public double Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
+
         public abstract double CalculateSurface();
 
         public override string ToString()

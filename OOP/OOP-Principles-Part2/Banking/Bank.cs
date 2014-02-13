@@ -8,6 +8,11 @@ namespace Banking
         public string Name { get; private set; }
         private List<Account> bankAccounts = new List<Account>();
 
+        public List<Account> BankAccounts
+        {
+            get { return new List<Account>(this.bankAccounts); }
+        }
+
         public Bank(string name)
         {
             this.Name = name;

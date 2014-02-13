@@ -6,7 +6,7 @@
 
         public override double CalculateSurface()
         {
-            return this.height * this.width / 2;
+            return this.Height * this.Width / 2;
         }
     }
 }
