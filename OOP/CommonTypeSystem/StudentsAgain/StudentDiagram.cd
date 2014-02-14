@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StudentsAgain.Student">
+    <Position X="1.25" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEAAACgAAIAEgAAAAAAAAAACAMIAAAAAAAAAAAg=</HashCode>
+      <FileName>Student.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="StudentsAgain.Specialty">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAAAA=</HashCode>
+      <FileName>Specialties.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StudentsAgain.University">
+    <Position X="6.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAAAAAAABAA=</HashCode>
+      <FileName>University.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StudentsAgain.Faculty">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAAAAAA=</HashCode>
+      <FileName>Faculty.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
