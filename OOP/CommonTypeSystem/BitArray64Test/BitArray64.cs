@@ -108,14 +108,34 @@ namespace BitArray64Test
                 {
                     if (UseBigEndian)
                     {
-                        return ((int)(this.Number >> (length - index - 1)) & 1);
-
+                        index = length - index - 1;
                     }
-                    else
-                    {
-                        return ((int)(this.Number >> index) & 1);
-                    }
+                    return ((int)(this.Number >> index) & 1);
+                }
+            }
+            set
+            {
+                if (index >= length || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else if (value != 0 && value != 1)
+                {
+                    throw new ArgumentOutOfRangeException("The number should be either 1 or 0");
+                }
 
+                if (UseBigEndian)
+                {
+                    index = length - index - 1;
+                }
+
+                if (value == 1)
+                {
+                    this.Number = this.Number | ((ulong)1 << index);
+                }
+                else if (value == 0)
+                {
+                    this.Number = this.Number & (~((ulong)1 << index));
                 }
             }
         }

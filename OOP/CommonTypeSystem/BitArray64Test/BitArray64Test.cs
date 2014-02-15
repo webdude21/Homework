@@ -12,9 +12,15 @@ namespace BitArray64Test
         {
             BitArray64 bits = new BitArray64(4611703610613764096, true);
             BitArray64 bits2 = new BitArray64(4611703610613764096, false);
+            BitArray64 testBits = new BitArray64(111);
             Console.WriteLine(bits);
             Console.WriteLine(bits2);
-            Console.WriteLine(bits.Equals(bits2));            
+            Console.WriteLine(bits.Equals(bits2));
+            Console.WriteLine(testBits);
+            testBits[0] = 1;
+            Console.WriteLine(testBits);
+            testBits[2] = 0;
+            Console.WriteLine(testBits);
         }
     }
 }
