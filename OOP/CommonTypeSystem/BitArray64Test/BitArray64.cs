@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System;
 
 namespace BitArray64Test
 {
@@ -11,11 +11,11 @@ namespace BitArray64Test
         private const int length = 64;
 
         public bool UseBigEndian { get; set; }
-        public ulong Number { get; set; }
+        public ulong DecimalNumber { get; set; }
 
-        public BitArray64(ulong number = 0, bool useBigEndian = false)
+        public BitArray64(ulong decimalNumber = 0, bool useBigEndian = false)
         {
-            this.Number = number;
+            this.DecimalNumber = decimalNumber;
             this.UseBigEndian = useBigEndian;
         }
 
@@ -30,14 +30,14 @@ namespace BitArray64Test
             {
                 for (int index = 0; index < length; index++)
                 {
-                    yield return ((int)(this.Number >> index) & 1);
+                    yield return ((int)(this.DecimalNumber >> index) & 1);
                 }
             }
             else
             {
                 for (int index = length - 1; index >= 0; index--)
                 {
-                    yield return ((int)(this.Number >> index) & 1);
+                    yield return ((int)(this.DecimalNumber >> index) & 1);
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace BitArray64Test
         public override bool Equals(object obj)
         {
             BitArray64 otherNumber = obj as BitArray64;
-            if (this.Number == otherNumber.Number)
+            if (this.DecimalNumber == otherNumber.DecimalNumber)
             {
                 return true;
             }
@@ -77,23 +77,17 @@ namespace BitArray64Test
         }
         public override int GetHashCode()
         {
-            return 1245 ^ this.Number.GetHashCode();
+            return 1245 ^ this.DecimalNumber.GetHashCode();
         }
 
         public static BitArray64 operator -(BitArray64 bitArr1, BitArray64 bitArr2)
         {
-            checked
-            {
-                return new BitArray64(bitArr1.Number - bitArr2.Number);
-            }
+            return new BitArray64(bitArr1.DecimalNumber - bitArr2.DecimalNumber);
         }
 
         public static BitArray64 operator +(BitArray64 bitArr1, BitArray64 bitArr2)
         {
-            checked
-            {
-                return new BitArray64(bitArr1.Number + bitArr2.Number);
-            }
+            return new BitArray64(bitArr1.DecimalNumber + bitArr2.DecimalNumber);
         }
 
         public int this[int index]
@@ -110,7 +104,7 @@ namespace BitArray64Test
                     {
                         index = length - index - 1;
                     }
-                    return ((int)(this.Number >> index) & 1);
+                    return ((int)(this.DecimalNumber >> index) & 1);
                 }
             }
             set
@@ -131,11 +125,11 @@ namespace BitArray64Test
 
                 if (value == 1)
                 {
-                    this.Number = this.Number | ((ulong)1 << index);
+                    this.DecimalNumber = this.DecimalNumber | ((ulong)1 << index);
                 }
                 else if (value == 0)
                 {
-                    this.Number = this.Number & (~((ulong)1 << index));
+                    this.DecimalNumber = this.DecimalNumber & (~((ulong)1 << index));
                 }
             }
         }
