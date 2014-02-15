@@ -33,12 +33,13 @@ namespace StudentsAgain
         public override string ToString()
         {
             StringBuilder outputString = new StringBuilder();
-            var properties = this.GetType().GetProperties();
-            for (int property = 0; property < properties.Length; property++)
+            PropertyInfo[] properties = this.GetType().GetProperties();
+
+            foreach (PropertyInfo property in properties)
             {
-                outputString.Append(properties[property].Name);
+                outputString.Append(property.Name);
                 outputString.Append(": ");
-                outputString.Append(properties[property].GetValue(this).ToString());
+                outputString.Append(property.GetValue(this).ToString());
                 outputString.Append(System.Environment.NewLine);
             }
             return outputString.ToString().TrimEnd();
