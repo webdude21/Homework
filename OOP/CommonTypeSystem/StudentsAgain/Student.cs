@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 
 namespace StudentsAgain
@@ -44,31 +45,27 @@ namespace StudentsAgain
         }
         public override int GetHashCode()
         {
-            // Get the hashcodes of each and every propertie value and mash them together
-            var properties = this.GetType().GetProperties();
+            // Get the hashcodes of each and every property value and mash them together
+            PropertyInfo[] properties = this.GetType().GetProperties();
             int hashCode = 12412; // some initial value to XOR with the other hashes
 
-            checked
+            foreach (PropertyInfo property in properties)
             {
-                for (int property = 0; property < properties.Length; property++)
-                {
-                    hashCode = hashCode ^ properties[property].GetValue(this).GetHashCode();
-                }
+                hashCode = hashCode ^ property.GetValue(this).GetHashCode();
             }
-
             return hashCode;
         }
         public override bool Equals(object obj)
         {
+            // If all of the properties of both object are equal than the objects are equal
+            PropertyInfo[] thisProperties = this.GetType().GetProperties();
+            PropertyInfo[] inputProperties = obj.GetType().GetProperties();
+
             // Check if the type is correct
-            if (!(obj is Student))
+            if (!(obj is Student) || thisProperties.Length != inputProperties.Length)
             {
                 return false;
             }
-
-            // If all of the properties of both object are equal than the objects are equal
-            var thisProperties = this.GetType().GetProperties();
-            var inputProperties = obj.GetType().GetProperties();
 
             for (int property = 0; property < thisProperties.Length; property++)
             {
