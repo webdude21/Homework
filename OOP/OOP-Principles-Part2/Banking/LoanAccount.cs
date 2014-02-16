@@ -2,7 +2,7 @@
 
 namespace Banking
 {
-    public class Loan : Account, IWithdraw, IDeposit
+    public class Loan : Account, IDeposit   
     {
         public Loan(decimal balance, decimal interestRate, Custumer custumer) : base(balance, interestRate, custumer) { }
     
@@ -23,23 +23,6 @@ namespace Banking
             }
 
             return 0;
-        }
-        public void DrawMoney(decimal amount)
-        {
-            if (amount < 0)
-            {
-                throw new ArgumentOutOfRangeException("You cannot withdraw negative amount of money.");
-            }
-
-            if (this.Balance > amount)
-            {
-                this.Balance -= amount;
-            }
-
-            else
-            {
-                throw new InvalidOperationException("The amount your're trying to withdraw is more than what's in the account.");
-            }
         }
 
         public void DepositMoney(decimal amount)
