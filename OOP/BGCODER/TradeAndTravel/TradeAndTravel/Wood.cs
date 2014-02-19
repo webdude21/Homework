@@ -16,7 +16,7 @@ namespace TradeAndTravel
             switch (interaction)
             {
                 case "drop":
-                    this.Value = this.Value > 0 ? this.Value-- : this.Value = this.Value;
+                    this.Value = this.Value > 0 ? this.Value = this.Value - 1 : this.Value = 0;
                     break;
                 default:
                     base.UpdateWithInteraction(interaction);
