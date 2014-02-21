@@ -4,23 +4,18 @@ namespace WarMachines.Machines
 {
     public class Tank : Machine, ITank
     {
-        bool defenceMode;
-
         public Tank(string name, double attackPoints, double defencePoints)
             : base(name, 100d, attackPoints, defencePoints) 
         {
             this.ToggleDefenseMode();
         }
 
-        public bool DefenseMode
-        {
-            get { return this.defenceMode; }
-        }
+        public bool DefenseMode { get; private set; }
 
         public void ToggleDefenseMode()
         {
-            this.defenceMode = !defenceMode;
-            if (defenceMode)
+            this.DefenseMode = !DefenseMode;
+            if (DefenseMode)
             {
                 this.DefensePoints += 30;
                 this.AttackPoints -= 40;

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Collections.Generic;
 
 namespace TradeAndTravel
 {
@@ -23,16 +22,13 @@ namespace TradeAndTravel
 
         protected override Person CreatePerson(string personTypeString, string personNameString, Location personLocation)
         {
-            Person person = null;
             switch (personTypeString)
             {
                 case "merchant":
-                    person = new Merchant(personNameString, personLocation);
-                    break;
+                    return new Merchant(personNameString, personLocation);
                 default:
                     return base.CreatePerson(personTypeString, personNameString, personLocation);
             }
-            return person;
         }
 
         private void HandleCraftInteraction(string itemNameString, string itemTypeString, Person actor)
@@ -50,7 +46,7 @@ namespace TradeAndTravel
 
         private void HandleGatherInteraction(string itemNameString, Person actor)
         {
-            IGatheringLocation gatherLoc = actor.Location as IGatheringLocation;
+            var gatherLoc = actor.Location as IGatheringLocation;
             if (gatherLoc != null && actor.ListInventory().Any(item => item.ItemType == gatherLoc.RequiredItem))
             {
                 this.AddToPerson(actor, gatherLoc.ProduceItem(itemNameString));
@@ -78,7 +74,7 @@ namespace TradeAndTravel
 
         protected override Location CreateLocation(string locationTypeString, string locationName)
         {
-            Location location = null;
+            Location location;
             switch (locationTypeString)
             {
                 case "mine":

@@ -7,14 +7,13 @@ namespace ParticleSystem
 {
     public class ParticleUpdater : IParticleOperator
     {
-        public void OperateOn(Particle p)
+        public virtual IEnumerable<Particle> OperateOn(Particle p)
         {
-            throw new NotImplementedException();
+            return p.Update();
         }
 
-        public void TickEnded()
+        public virtual void TickEnded()
         {
-            throw new NotImplementedException();
         }
     }
 }

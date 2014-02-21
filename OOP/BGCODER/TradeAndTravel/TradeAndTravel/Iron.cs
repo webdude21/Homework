@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace TradeAndTravel
 {
     public class Iron : Item
@@ -7,7 +6,7 @@ namespace TradeAndTravel
         const int GeneralIronValue = 3;
 
         public Iron(string name, Location location = null)
-            : base(name, Iron.GeneralIronValue, ItemType.Iron, location)
+            : base(name, GeneralIronValue, ItemType.Iron, location)
         {
         }
     }

@@ -8,7 +8,7 @@ namespace WarMachines.Machines
     
     public class Pilot : Unit, IPilot
     {
-        private HashSet<IMachine> machines = new HashSet<IMachine>();
+        private readonly HashSet<IMachine> machines = new HashSet<IMachine>();
 
         public Pilot(string name) : base(name) { }
         public void AddMachine(IMachine machine)
@@ -18,7 +18,7 @@ namespace WarMachines.Machines
 
         public string Report()
         {
-            StringBuilder pilotReport = new StringBuilder();
+            var pilotReport = new StringBuilder();
 
             if (this.machines.Count == 1)
             {

@@ -11,9 +11,9 @@ namespace WarMachines.Machines
         private double healthPoints;
         private double attackPoints;
         private double defensePoints;
-        private IList<string> targets = new List<string>();
+        private readonly IList<string> targets = new List<string>();
 
-        public Machine(string name, double healthPoints, double attackPoints, double defensePoints)
+         protected Machine(string name, double healthPoints, double attackPoints, double defensePoints)
             : base(name) 
         {
             this.healthPoints = healthPoints;
@@ -25,7 +25,7 @@ namespace WarMachines.Machines
         {
             if (obj == null)
             {
-                throw new ArgumentNullException("This property cannot be null!");
+                throw new NullReferenceException("This property cannot be null!");
             }
             return false;
         }
@@ -88,29 +88,29 @@ namespace WarMachines.Machines
 
         public void Attack(string target)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override string ToString()
         {
-            StringBuilder machineString = new StringBuilder();
+            var machineString = new StringBuilder();
 
-            string targets = null;
+            string targetString = null;
             if (this.targets.Count != 0)
             {
-                targets = string.Join(", ", this.targets);
+                targetString = string.Join(", ", this.targets);
             }
             
             machineString.Append(" *Type: " + GetType().Name);
-            machineString.Append(System.Environment.NewLine);
+            machineString.Append(Environment.NewLine);
             machineString.Append(" *Health: " + this.healthPoints);
-            machineString.Append(System.Environment.NewLine);
+            machineString.Append(Environment.NewLine);
             machineString.Append(" *Attack: " + this.attackPoints);
-            machineString.Append(System.Environment.NewLine);
+            machineString.Append(Environment.NewLine);
             machineString.Append(" *Defense: " + this.defensePoints);
-            machineString.Append(System.Environment.NewLine);
-            machineString.Append(" *Targets: " + (targets ?? "None"));
-            machineString.Append(System.Environment.NewLine);
+            machineString.Append(Environment.NewLine);
+            machineString.Append(" *Targets: " + (targetString ?? "None"));
+            machineString.Append(Environment.NewLine);
             return machineString.ToString();
         }
     }

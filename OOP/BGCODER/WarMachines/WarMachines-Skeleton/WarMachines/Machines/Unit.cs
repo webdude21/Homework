@@ -2,11 +2,11 @@
 {
     public abstract class Unit
     {
-        string name;
+        private string name;
 
-        public Unit(string name)
+        protected Unit(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
         public string Name
         {
@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return this.name;
+            return this.Name;
         }
     }
 }

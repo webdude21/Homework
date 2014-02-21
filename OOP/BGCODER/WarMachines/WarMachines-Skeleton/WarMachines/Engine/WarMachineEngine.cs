@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-
-    using WarMachines.Interfaces;
+    using Interfaces;
 
     public sealed class WarMachineEngine : IWarMachineEngine
     {
@@ -191,7 +190,7 @@
             var fighter = this.factory.ManufactureFighter(name, attackPoints, defensePoints, stealthMode);
             this.machines.Add(name, fighter);
 
-            return string.Format(FighterManufactured, name, attackPoints, defensePoints, stealthMode == true ? "ON" : "OFF");
+            return string.Format(FighterManufactured, name, attackPoints, defensePoints, stealthMode ? "ON" : "OFF");
         }
 
         private string EngageMachine(string selectedPilotName, string selectedMachineName)

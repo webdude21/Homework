@@ -4,11 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E33B48A2-0340-4BD2-B1D5-D3A9FAAA2EE1}</ProjectGuid>
+    <ProjectGuid>{353445C0-D206-4C03-AC09-86D82EFF9C3C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParticleSystem</RootNamespace>
-    <AssemblyName>ParticleSystem</AssemblyName>
+    <RootNamespace>SoftwareAcademy</RootNamespace>
+    <AssemblyName>SoftwareAcademy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,33 +33,18 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvancedParticleOperator.cs" />
-    <Compile Include="ConsoleRenderer.cs" />
-    <Compile Include="DyingParticle.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="IMovingParticle.cs" />
-    <Compile Include="IParticle.cs" />
-    <Compile Include="IParticleOperator.cs" />
-    <Compile Include="IRenderable.cs" />
-    <Compile Include="IRenderer.cs" />
-    <Compile Include="MatrixCoords.cs" />
-    <Compile Include="Particle.cs" />
-    <Compile Include="ParticleAttractor.cs" />
-    <Compile Include="ParticleEmitter.cs" />
-    <Compile Include="ParticleUpdater.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AcademyObject.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="LocalCourse.cs" />
+    <Compile Include="OffsiteCourse.cs" />
+    <Compile Include="SoftwareAcademy.cs" />
+    <Compile Include="Teacher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="ParticleSystemDiagram.cd" />
+    <None Include="AcademyDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

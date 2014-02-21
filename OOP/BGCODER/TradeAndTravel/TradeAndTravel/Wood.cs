@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace TradeAndTravel
 {
     public class Wood : Item
@@ -7,7 +6,7 @@ namespace TradeAndTravel
         const int GeneralWoodValue = 2;
 
         public Wood(string name, Location location = null)
-            : base(name, Wood.GeneralWoodValue, ItemType.Wood, location)
+            : base(name, GeneralWoodValue, ItemType.Wood, location)
         {
         }
 
