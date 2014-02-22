@@ -14,7 +14,7 @@ namespace ParticleSystem
 
         private IRenderer renderer;
 
-        private int waitMs;
+        private int waitMsPerTick;
 
         public Engine(IRenderer renderer, IParticleOperator particleOperator, List<Particle> particles = null, int waitMs = 1000)
         {
@@ -30,7 +30,7 @@ namespace ParticleSystem
                 this.particles = new List<Particle>();
             }
 
-            this.waitMs = waitMs;
+            this.waitMsPerTick = waitMs;
         }
 
         public void AddParticle(Particle p)
@@ -41,30 +41,32 @@ namespace ParticleSystem
         public void Run()
         {
             while (true)
-            {   //Tick //Frame
+            {
+                renderer.RenderAll();
+
+                renderer.ClearQueue();
+
                 var producedParticles = new List<Particle>();
 
                 foreach (var particle in this.particles)
                 {
-                    var currentProduced = particleOperator.OperateOn(particle);
-                    producedParticles.AddRange(currentProduced);
+                    producedParticles.AddRange(
+                        particleOperator.OperateOn(particle)
+                        );
                 }
 
                 particleOperator.TickEnded();
-
-                this.particles.AddRange(producedParticles);
-
-                this.particles.RemoveAll((p) => !p.Exists);
 
                 foreach (var particle in this.particles)
                 {
                     renderer.EnqueueForRendering(particle);
                 }
 
-                renderer.RenderAll();
-                renderer.ClearQueue();
+                this.particles.RemoveAll((p) => !p.Exists);
 
-                Thread.Sleep(this.waitMs);
+                this.particles.AddRange(producedParticles);
+
+                Thread.Sleep(this.waitMsPerTick);
             }
         }
     }

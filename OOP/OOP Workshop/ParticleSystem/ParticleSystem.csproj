@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedParticleOperator.cs" />
+    <Compile Include="ChaoticParticle.cs" />
+    <Compile Include="ChickenParticle.cs" />
     <Compile Include="ConsoleRenderer.cs" />
     <Compile Include="DyingParticle.cs" />
     <Compile Include="Engine.cs" />
@@ -51,12 +53,15 @@
     <Compile Include="IRenderable.cs" />
     <Compile Include="IRenderer.cs" />
     <Compile Include="MatrixCoords.cs" />
+    <Compile Include="MoreAdvancedParticleSystem.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="ParticleAttractor.cs" />
     <Compile Include="ParticleEmitter.cs" />
+    <Compile Include="ParticleRepeller.cs" />
     <Compile Include="ParticleUpdater.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ParticleSystemMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VariousLifetimeParticleEmitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

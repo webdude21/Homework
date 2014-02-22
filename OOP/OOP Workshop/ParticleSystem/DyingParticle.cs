@@ -7,33 +7,30 @@ namespace ParticleSystem
 {
     public class DyingParticle : Particle
     {
-        private uint lifespan;
+        int lifetime = 0;
 
-        public DyingParticle(MatrixCoords position, MatrixCoords speed, uint lifespan = uint.MaxValue) :
+        public DyingParticle(MatrixCoords position, MatrixCoords speed, int lifetime) :
             base(position, speed)
         {
-            this.lifespan = lifespan;
-        }
+            if (lifetime < 0)
+            {
+                throw new ArgumentException("lifetime must be greater than or equal to zero");
+            }
 
-        public override char[,] GetImage()
-        {
-            return new char[,] { { (char)3 } };
+            this.lifetime = lifetime;
         }
 
         public override bool Exists
         {
             get
             {
-                return this.lifespan > 0;
+                return this.lifetime > 0;
             }
         }
 
         public override IEnumerable<Particle> Update()
         {
-            if (this.Exists)
-            {
-                this.lifespan--;
-            }
+            lifetime--;
 
             return base.Update();
         }

@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ParticleSystem
 {
     public class Particle : IRenderable, IAcceleratable
     {
-        public Particle(MatrixCoords position, MatrixCoords speed)
+        public Particle(MatrixCoords position,  MatrixCoords speed)
         {
             this.Position = position;
             this.Speed = speed;
         }
 
-        public MatrixCoords Position { get; private set; }
+        public MatrixCoords Position { get; protected set; }
 
         public virtual IEnumerable<Particle> Update()
         {
-            Move();
-
+            this.Move();
             return new List<Particle>();
         }
 
@@ -34,15 +30,16 @@ namespace ParticleSystem
 
         public virtual char[,] GetImage()
         {
-            return new char[,] { { '$' } };
+            return new char[,] { { '*' } };
         }
+
 
         public virtual bool Exists
         {
             get { return true; }
         }
 
-        public MatrixCoords Speed { get; private set; }
+        public MatrixCoords Speed { get; protected set; }
 
         public void Accelerate(MatrixCoords acceleration)
         {
