@@ -8,7 +8,7 @@ namespace TradeAndTravel
         {
             switch (commandWords[1])
             {
-                case "gather":
+                case "gather":  
                     HandleGatherInteraction(commandWords[2], actor);
                     break;
                 case "craft":
@@ -46,7 +46,7 @@ namespace TradeAndTravel
 
         private void HandleGatherInteraction(string itemNameString, Person actor)
         {
-            var gatherLoc = actor.Location as IGatheringLocation;
+            var gatherLoc = actor.Location as IGatheringLocation;   
             if (gatherLoc != null && actor.ListInventory().Any(item => item.ItemType == gatherLoc.RequiredItem))
             {
                 this.AddToPerson(actor, gatherLoc.ProduceItem(itemNameString));
