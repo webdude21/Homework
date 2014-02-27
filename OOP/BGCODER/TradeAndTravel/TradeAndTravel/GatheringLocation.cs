@@ -14,17 +14,7 @@ namespace TradeAndTravel
 
         public ItemType RequiredItem { get; protected set; }
 
-        public Item ProduceItem(string name)
-        {
-            if (this.GatheredType == ItemType.Iron)
-            {
-                return new Iron(name);
-            }
-            if (this.GatheredType == ItemType.Wood)
-            {
-                return new Wood(name);
-            }
-            return null;
-        }
+        public abstract Item ProduceItem(string name);
+
     }
 }
