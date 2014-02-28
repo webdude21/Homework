@@ -3,14 +3,14 @@
   <Class Name="AcademyRPG.Engine" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAEAIARAAAAACAAgCFAAgAABYgAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAIARAAAAACAAgCFAAgAABIgAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AcademyRPG.WorldObject">
     <Position X="8.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAA0AAAABAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAAAAAA0AAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>WorldObject.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -21,7 +21,7 @@
   <Class Name="AcademyRPG.MovingObject">
     <Position X="7.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>MovingObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,10 +64,49 @@
     </TypeIdentifier>
     <Lollipop Position="0.248" />
   </Class>
+  <Class Name="AcademyRPG.House" Collapsed="true">
+    <Position X="13" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AcademyRPG.Knight">
+    <Position X="7" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAIAIAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Knight.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AcademyRPG.Giant">
+    <Position X="4.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAAAACAAQAAAAA=</HashCode>
+      <FileName>Giant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AcademyRPG.Rock">
+    <Position X="13.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>Rock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AcademyRPG.Ninja">
+    <Position X="2" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAAAACAAQAAAAA=</HashCode>
+      <FileName>Ninja.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Struct Name="AcademyRPG.Point">
     <Position X="11.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAYiA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAEAAAAAAAAAAAAAIAAAAAAAAAAYiA=</HashCode>
       <FileName>Point.cs</FileName>
     </TypeIdentifier>
   </Struct>

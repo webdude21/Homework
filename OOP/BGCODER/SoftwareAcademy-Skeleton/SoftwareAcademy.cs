@@ -1,4 +1,6 @@
-﻿using Microsoft.CSharp;
+﻿using System.IO;
+using System.Security.Principal;
+using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
 using System.Reflection;
@@ -58,7 +60,7 @@ namespace SoftwareAcademy
 
     public class SoftwareAcademyCommandExecutor
     {
-        static void Main()
+        public static void Main()
         {
             string csharpCode = ReadInputCSharpCode();
             CompileAndRun(csharpCode);
