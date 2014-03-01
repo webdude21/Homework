@@ -26,7 +26,6 @@ namespace AcademyRPG
 
             return -1;
         }
-
         public bool TryGather(IResource resource)
         {
             if (resource.Type == ResourceType.Lumber)

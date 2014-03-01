@@ -5,8 +5,8 @@ using WarMachines.Interfaces;
 
 namespace WarMachines.Machines
 {
-    
-    public class Pilot : Unit, IPilot
+
+    public class Pilot : Unit, IPilot, IMachine
     {
         private readonly HashSet<IMachine> machines = new HashSet<IMachine>();
 
@@ -22,13 +22,11 @@ namespace WarMachines.Machines
 
             if (this.machines.Count == 1)
             {
-                pilotReport.Append(" - 1 machine");
-                pilotReport.Append(System.Environment.NewLine);
+                pilotReport.AppendLine(" - 1 machine");
             }
             else if (this.machines.Count > 1)
             {
-                pilotReport.Append(" - " + this.machines.Count + " machines");
-                pilotReport.Append(System.Environment.NewLine);
+                pilotReport.AppendLine(" - " + this.machines.Count + " machines");
             }
             else
             {
@@ -38,8 +36,7 @@ namespace WarMachines.Machines
             foreach (var machine in machines.OrderBy(machine => machine.HealthPoints).ThenBy(machine => machine.Name))
             {
                 pilotReport.Append("- ");
-                pilotReport.Append(machine.Name);
-                pilotReport.Append(System.Environment.NewLine);
+                pilotReport.AppendLine(machine.Name);
                 pilotReport.Append(machine.ToString());
             }
 

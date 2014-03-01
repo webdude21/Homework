@@ -72,9 +72,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AcademyRPG.Knight">
-    <Position X="7" Y="14.75" Width="1.5" />
+    <Position X="11" Y="13.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAIAIAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAQAAAAAIAIAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Knight.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -96,7 +96,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="AcademyRPG.Ninja">
-    <Position X="2" Y="12" Width="1.5" />
+    <Position X="1.75" Y="13" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAAAACAAQAAAAA=</HashCode>
       <FileName>Ninja.cs</FileName>

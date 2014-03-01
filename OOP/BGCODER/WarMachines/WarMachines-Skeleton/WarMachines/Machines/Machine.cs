@@ -88,7 +88,8 @@ namespace WarMachines.Machines
 
         public void Attack(string target)
         {
-            throw new NotImplementedException();
+            CheckIfNull(target);
+            this.targets.Add(target);
         }
 
         public override string ToString()
