@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
+using HTMLRenderer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SoftwareAcademy;
 
-namespace SoftwareAcademyTest
+namespace HTMLRenderer_Tests
 {
     [TestClass]
-    public class SoftwareAcademyCommandExecutorTest
+    public class HTMLRendererUnitTests
     {
         [TestMethod]
         public void ZeroTestMainMethod()
@@ -16,7 +16,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(@"..\..\test.000.001.in.txt"));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(@"..\..\result0.txt").ReadToEnd(),
@@ -32,7 +32,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -47,7 +47,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -62,7 +62,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -77,7 +77,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -92,7 +92,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -107,7 +107,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -122,7 +122,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -137,7 +137,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -152,7 +152,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.00{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),
@@ -167,7 +167,7 @@ namespace SoftwareAcademyTest
             {
                 Console.SetIn(new StreamReader(string.Format(@"..\..\test.0{0}.in.txt", testNumber)));
                 Console.SetOut(streamWriter);
-                SoftwareAcademyCommandExecutor.Main();
+                HTMLRendererCommandExecutor.Main();
             }
 
             Assert.AreEqual(new StreamReader(string.Format(@"..\..\result{0}.txt", testNumber)).ReadToEnd(),

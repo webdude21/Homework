@@ -1,36 +1,36 @@
-﻿namespace AcademyRPG
+﻿using System.Collections.Generic;
+
+namespace AcademyRPG
 {
-    public class Knight : Guard, IFighter
+    public class Knight : Character, IFighter
     {
         private const int AtackAndDefencePoints = 100;
         public Knight(string name, Point position, int owner) : base(name, position, owner)
         {
+            this.HitPoints = 100;
         }
 
-        int IFighter.AttackPoints
+        public int AttackPoints
         {
             get { return AtackAndDefencePoints; }
         }
 
-        int IFighter.DefensePoints
+        public int DefensePoints
         {
             get { return AtackAndDefencePoints; }
         }
 
-        public new int AttackPoints
+        public int GetTargetIndex(List<WorldObject> availableTargets)
         {
-            get
+            for (int i = 0; i < availableTargets.Count; i++)
             {
-                return AtackAndDefencePoints;
+                if (availableTargets[i].Owner != this.Owner && availableTargets[i].Owner != 0)
+                {
+                    return i;
+                }
             }
-        }
 
-        public new int DefensePoints
-        {
-            get
-            {
-                return AtackAndDefencePoints;
-            }
+            return -1;
         }
     }
 }
