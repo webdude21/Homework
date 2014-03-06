@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TradeAndTravel
+﻿namespace TradeAndTravel
 {
     public abstract class GatheringLocation : Location, IGatheringLocation
     {

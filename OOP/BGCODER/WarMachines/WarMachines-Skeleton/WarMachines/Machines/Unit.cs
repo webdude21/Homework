@@ -2,17 +2,12 @@
 {
     public abstract class Unit
     {
-        private string name;
-
         protected Unit(string name)
         {
             this.Name = name;
         }
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+
+        public string Name { get; set; }
 
         public override string ToString()
         {

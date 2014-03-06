@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-
-    using WarMachines.Interfaces;
+    using Interfaces;
 
     public class Command : ICommand
     {

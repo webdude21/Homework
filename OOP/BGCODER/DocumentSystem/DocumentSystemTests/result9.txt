@@ -1,0 +1,2 @@
+Document added: example.txt
+TextDocument[charset=System.String Charset;content=System.String Content;name=System.String Name]

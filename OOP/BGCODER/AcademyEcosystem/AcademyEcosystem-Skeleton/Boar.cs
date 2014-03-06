@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AcademyEcosystem
+﻿namespace AcademyEcosystem
 {
     public class Boar : Animal, IHerbivore, ICarnivore
     {

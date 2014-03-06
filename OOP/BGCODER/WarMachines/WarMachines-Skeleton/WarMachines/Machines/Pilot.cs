@@ -6,7 +6,7 @@ using WarMachines.Interfaces;
 namespace WarMachines.Machines
 {
 
-    public class Pilot : Unit, IPilot, IMachine
+    public class Pilot : Unit, IPilot
     {
         private readonly HashSet<IMachine> machines = new HashSet<IMachine>();
 
