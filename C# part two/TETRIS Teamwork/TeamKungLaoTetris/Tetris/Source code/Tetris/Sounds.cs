@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using System.Windows;
 using System.Media;
 using System.Windows.Forms;
 using System.Security;
@@ -11,13 +10,14 @@ namespace Tetris
     static class Sounds
     {
         public enum SoundEffects { Move, Rotate, ClearLine, Drop, LevelUp, GameOver }
-        static int[,] musicSheet;
-        const string path = @"..\..\sound\";
-        public static Thread musicThread;
-        static bool musicOn = true;
-        static bool sfxOn = true;
-        static bool musicAvalible = true;
-        public static bool SfxON
+        private static int[,] musicSheet;
+        private const string Path = @"..\..\sound\";
+        private static Thread musicThread;
+        private static bool musicOn = true;
+        private static bool sfxOn = true;
+        private static bool musicAvalible = true;
+
+        public static bool SfxOn
         {
             get
             {
@@ -57,93 +57,100 @@ namespace Tetris
                 }
             }
         }
-        static Sounds() // A static constructor to load the game music when the method class is first used
+        static Sounds()
         {
             try
             {
-                StreamReader musicFile = new StreamReader(path + "music.mus");
-                musicThread = new Thread(new ThreadStart(PlayMusic));
+                var musicFile = new StreamReader(Path + "music.mus");
+                musicThread = new Thread(PlayMusic);
                 LoadMusicFromFile(musicFile);
+
                 if (musicOn)
                 {
                     StartMusic();
                 }
             }
+
             catch (TypeInitializationException)
             {
-                MessageBox.Show("The music file is corrupted (is not in the correct format)! The music will be disabled!", "The music is corrupted?!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show("The music file is corrupted (is not in the correct format)! The music will be disabled!",
+                    "The music is corrupted?!");
+                musicAvalible = false;
             }
             catch (ArgumentNullException)
             {
-                MessageBox.Show("The music file path is empty? The music will be disabled!", "The music file path is empty?!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show("The music file path is empty? The music will be disabled!",
+                    "The music file path is empty?!");
+                musicAvalible = false;
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("The music file path is empty? The music will be disabled!", "The music file path is empty?!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show("The music file path is empty? The music will be disabled!",
+                    "The music file path is empty?!");
+                musicAvalible = false;
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show(string.Format("The file {0} was not found! The music will be disabled!", (path + "music.mus")), "File not found!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show(string.Format("The file {0} was not found! The music will be disabled!",
+                    (Path + "music.mus")), "File not found!");
+                musicAvalible = false;
             }
             catch (FileLoadException)
             {
-                MessageBox.Show(string.Format("The file {0} cannot be loaded! The music will be disabled!", (path + "music.mus")), "File cannot be loaded!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show(string.Format("The file {0} cannot be loaded! The music will be disabled!",
+                    (Path + "music.mus")), "File cannot be loaded!");
+                musicAvalible = false;
             }
             catch (IOException)
             {
-                MessageBox.Show(string.Format(@"Input Output error occured while trying to open {0} ! The music will
-be disabled!", (path + "music.mus")), "Input Output error!");
-                Sounds.musicAvalible = false;
+                MessageBox.Show(string.Format(@"Input Output error occured while trying to open {0}! The music will be disabled!",
+                    (Path + "music.mus")), "Input Output error!");
+                musicAvalible = false;
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The music will
-be disabled!", (path + "music.mus")), "You don't have permission to access this file");
-                Sounds.musicAvalible = false;
+                MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The music will be disabled!",
+                    (Path + "music.mus")), "You don't have permission to access this file");
+                musicAvalible = false;
             }
             catch (SecurityException)
             {
-                MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The music will
-be disabled!", (path + "music.mus")), "You don't have permission to access this file");
-                Sounds.musicAvalible = false;
+                MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The music will be disabled!",
+                    (Path + "music.mus")), "You don't have permission to access this file");
+                musicAvalible = false;
             }
 
         }
-        public static void SFX(SoundEffects sfx)
+        public static void Sfx(SoundEffects sfx)
         {
             if (sfxOn)
             {
                 switch (sfx)
                 {
                     case SoundEffects.Move:
-                        PlaySoundFromFile(path + "move.wav");
+                        PlaySoundFromFile(Path + "move.wav");
                         break;
                     case SoundEffects.Rotate:
-                        PlaySoundFromFile(path + "rotate.wav");
+                        PlaySoundFromFile(Path + "rotate.wav");
                         break;
                     case SoundEffects.LevelUp:
-                        PlaySoundFromFile(path + "levelup.wav");
+                        PlaySoundFromFile(Path + "levelup.wav");
                         break;
                     case SoundEffects.ClearLine:
-                        PlaySoundFromFile(path + "clearline.wav");
+                        PlaySoundFromFile(Path + "clearline.wav");
                         break;
                     case SoundEffects.Drop:
-                        PlaySoundFromFile(path + "drop.wav");
+                        PlaySoundFromFile(Path + "drop.wav");
                         break;
                     case SoundEffects.GameOver:
-                        PlaySoundFromFile(path + "gameover.wav");
+                        PlaySoundFromFile(Path + "gameover.wav");
                         break;
                 }
             }
         }
-        internal static void PlaySoundFromFile(string filePath)
+        private static void PlaySoundFromFile(string filePath)
         {
-            using (SoundPlayer player = new SoundPlayer(filePath))
+            using (var player = new SoundPlayer(filePath))
             {
                 try
                 {
@@ -153,72 +160,79 @@ be disabled!", (path + "music.mus")), "You don't have permission to access this 
                 catch (TypeInitializationException)
                 {
                     MessageBox.Show("The sound file is corrupted (is not in the correct format)! Sound will be disabled!", "Sound file is corrupted?!");
-                    Sounds.musicAvalible = false;
+                    musicAvalible = false;
                 }
                 catch (ArgumentNullException)
                 {
                     MessageBox.Show("The sound file path is empty? The sound will be disabled!", "The sound file path is empty?!");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (ArgumentException)
                 {
                     MessageBox.Show("The sound file path is empty? The sound will be disabled!", "The sound file path is empty?!");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (FileNotFoundException)
                 {
                     MessageBox.Show(string.Format("The file {0} was not found! Sound will be disabled!", filePath), "File not found!");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (FileLoadException)
                 {
                     MessageBox.Show(string.Format("The file {0} cannot be loaded! The sound will be disabled!", filePath), "File cannot be loaded!");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (IOException)
                 {
                     MessageBox.Show(string.Format(@"Input Output error occured while trying to open {0} ! The sound will
 be disabled!", filePath), "Input Output error!");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (UnauthorizedAccessException)
                 {
                     MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The sound will
 be disabled!", filePath), "You don't have permission to access this file");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
                 catch (SecurityException)
                 {
                     MessageBox.Show(string.Format(@"You don't have permission to access {0} ! The sound will
 be disabled!", filePath), "You don't have permission to access this file");
-                    Sounds.SfxON = false;
+                    SfxOn = false;
                 }
             }
         }
-        internal static void StopMusic()
+        private static void StopMusic()
         {
             musicThread.Abort();
-            musicThread = new Thread(new ThreadStart(PlayMusic));
+            musicThread = new Thread((PlayMusic));
         }
-        internal static void StartMusic()
+        private static void StartMusic()
         {
             musicThread.Start();
         }
-        internal static void LoadMusicFromFile(StreamReader loadMusic)
+        private static void LoadMusicFromFile(TextReader loadMusic)
         {
             try
             {
-                int lines = int.Parse(loadMusic.ReadLine());
-                musicSheet = new int[lines, 2];
-                for (int i = 0; i < lines; i++)
+                if (loadMusic != null)
                 {
-                    string[] musicLine = loadMusic.ReadLine().Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    musicSheet[i, 0] = int.Parse(musicLine[0]);
-                    musicSheet[i, 1] = int.Parse(musicLine[1]);
+                    var lines = int.Parse(loadMusic.ReadLine());
+                    musicSheet = new int[lines, 2];
+                    for (int i = 0; i < lines; i++)
+                    {
+                        var readLine = loadMusic.ReadLine();
+                        if (readLine != null)
+                        {
+                            string[] musicLine = readLine.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                            musicSheet[i, 0] = int.Parse(musicLine[0]);
+                            musicSheet[i, 1] = int.Parse(musicLine[1]);
+                        }
+                    }
                 }
             }
             catch (IndexOutOfRangeException)
-            {  
+            {
                 throw new FileLoadException();
             }
             catch (ArgumentException)
@@ -227,7 +241,7 @@ be disabled!", filePath), "You don't have permission to access this file");
                 throw new FileLoadException();
             }
         }
-        internal static void PlayMusic()
+        private static void PlayMusic()
         {
             while (true)
             {

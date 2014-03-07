@@ -67,7 +67,7 @@ namespace Tetris
                 brickPlayer[playerNumber].Clear();
                 brickPlayer[playerNumber].blockPositionX--;
                 brickPlayer[playerNumber].Print();
-                Sounds.SFX(Sounds.SoundEffects.Move);
+                Sounds.Sfx(Sounds.SoundEffects.Move);
             }
         }
         static void Right(int playerNumber)
@@ -85,7 +85,7 @@ namespace Tetris
                 brickPlayer[playerNumber].Clear();
                 brickPlayer[playerNumber].blockPositionX++;
                 brickPlayer[playerNumber].Print();
-                Sounds.SFX(Sounds.SoundEffects.Move);
+                Sounds.Sfx(Sounds.SoundEffects.Move);
             }
         }
         static void Down(int playerNumber)
@@ -113,7 +113,7 @@ namespace Tetris
             {
                 brickPlayer[playerNumber].blockPositionY--;
                 brickPlayer[playerNumber].Clear();
-                Sounds.SFX(Sounds.SoundEffects.Move);
+                Sounds.Sfx(Sounds.SoundEffects.Move);
                 brickPlayer[playerNumber].blockPositionY++;
                 brickPlayer[playerNumber].Print();
             }
@@ -129,7 +129,7 @@ namespace Tetris
                     {
                         score += level * 2; // Bonus score
                         brickPlayer[playerNumber].blockPositionY++;
-                        if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock) == true)
+                        if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock))
                         {
                             brickPlayer[playerNumber].blockPositionY--;
                             bigBlock = bigBlock + brickPlayer[playerNumber];
@@ -138,19 +138,17 @@ namespace Tetris
                             brickPlayer[playerNumber].Print();
                             CheckForCompleteLines();
                             nextBrick = GenerateRandomBlock(playerPos[0]);
-                            Sounds.SFX(Sounds.SoundEffects.Drop);
+                            Sounds.Sfx(Sounds.SoundEffects.Drop);
                             PrintNextBrick();
                             bigBlock.SetColor(15);
                             bigBlock.Print();
                             return;
                         }
-                        else
-                        {
-                            brickPlayer[playerNumber].blockPositionY--;
-                            brickPlayer[playerNumber].Clear();
-                            brickPlayer[playerNumber].blockPositionY++;
-                            brickPlayer[playerNumber].Print();
-                        }
+
+                        brickPlayer[playerNumber].blockPositionY--;
+                        brickPlayer[playerNumber].Clear();
+                        brickPlayer[playerNumber].blockPositionY++;
+                        brickPlayer[playerNumber].Print();
                     }
                 }
                 else if (brickPlayer[playerNumber].blockPositionX > brickPlayer[Math.Abs(playerNumber - 1)].blockPositionX + brickPlayer[Math.Abs(playerNumber - 1)].blockCols - 1 || brickPlayer[playerNumber].blockPositionX + brickPlayer[playerNumber].blockCols - 1 < brickPlayer[Math.Abs(playerNumber - 1)].blockPositionX)
@@ -158,7 +156,7 @@ namespace Tetris
                     {
                         score += level * 2; // Bonus score
                         brickPlayer[playerNumber].blockPositionY++;
-                        if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock) == true)
+                        if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock))
                         {
                             brickPlayer[playerNumber].blockPositionY--;
                             bigBlock = bigBlock + brickPlayer[playerNumber];
@@ -167,19 +165,17 @@ namespace Tetris
                             brickPlayer[playerNumber].Print();
                             CheckForCompleteLines();
                             nextBrick = GenerateRandomBlock(playerPos[0]);
-                            Sounds.SFX(Sounds.SoundEffects.Drop);
+                            Sounds.Sfx(Sounds.SoundEffects.Drop);
                             PrintNextBrick();
                             bigBlock.SetColor(15);
                             bigBlock.Print();
                             return;
                         }
-                        else
-                        {
-                            brickPlayer[playerNumber].blockPositionY--;
-                            brickPlayer[playerNumber].Clear();
-                            brickPlayer[playerNumber].blockPositionY++;
-                            brickPlayer[playerNumber].Print();
-                        }
+
+                        brickPlayer[playerNumber].blockPositionY--;
+                        brickPlayer[playerNumber].Clear();
+                        brickPlayer[playerNumber].blockPositionY++;
+                        brickPlayer[playerNumber].Print();
                     }
             }
             else
@@ -188,7 +184,7 @@ namespace Tetris
                 {
                     score += level * 2; // Bonus score
                     brickPlayer[playerNumber].blockPositionY++;
-                    if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock) == true)
+                    if (Block.OverlapBlocks(brickPlayer[playerNumber], bigBlock))
                     {
                         brickPlayer[playerNumber].blockPositionY--;
                         bigBlock = bigBlock + brickPlayer[playerNumber];
@@ -197,133 +193,145 @@ namespace Tetris
                         brickPlayer[playerNumber].Print();
                         CheckForCompleteLines();
                         nextBrick = GenerateRandomBlock(playerPos[0]);
-                        Sounds.SFX(Sounds.SoundEffects.Drop);
+                        Sounds.Sfx(Sounds.SoundEffects.Drop);
                         PrintNextBrick();
                         bigBlock.SetColor(15);
                         bigBlock.Print();
                         return;
                     }
-                    else
-                    {
-                        brickPlayer[playerNumber].blockPositionY--;
-                        brickPlayer[playerNumber].Clear();
-                        brickPlayer[playerNumber].blockPositionY++;
-                        brickPlayer[playerNumber].Print();
-                    }
+
+                    brickPlayer[playerNumber].blockPositionY--;
+                    brickPlayer[playerNumber].Clear();
+                    brickPlayer[playerNumber].blockPositionY++;
+                    brickPlayer[playerNumber].Print();
                 }
             }
         }
+
         static Block Rotate(Block inp)
         {
             if (inp.blockCols != inp.blockRows) // If it's The O-Tetrimino there's no sence in rotating it
             {
                 inp.Clear();
-                Block newBlock = inp.Rotate();
+                var newBlock = inp.Rotate();
 
                 if (Block.OverlapBlocks(newBlock, bigBlock))
                 {
                     inp.Print();
                     return inp;
                 }
-                else
-                {
-                    newBlock.Print();
-                    Sounds.SFX(Sounds.SoundEffects.Rotate);
-                    return newBlock;
-                }
+
+                newBlock.Print();
+                Sounds.Sfx(Sounds.SoundEffects.Rotate);
+                return newBlock;
             }
             return inp;
         }
+
         static void Gameover(Block inp)
         {
-            if (Block.OverlapBlocks(inp, bigBlock) == true)
+            if (Block.OverlapBlocks(inp, bigBlock))
             {
                 if (bigBlock.blockRows == Console.WindowHeight)
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
-                    Sounds.SFX(Sounds.SoundEffects.GameOver);
+                    Sounds.Sfx(Sounds.SoundEffects.GameOver);
                     PrintOnPosition(12, 12, "Game Over!");
                     Thread.Sleep(2000);
                     Main();
                 }
             }
         }
+
         static void KeyboardReading()
         {
             while (Console.KeyAvailable)
             {
                 Console.SetCursorPosition(34, 0);
-                Console.ForegroundColor = (ConsoleColor)0;
-                Console.BackgroundColor = (ConsoleColor)0;
+                Console.ForegroundColor = 0;
+                Console.BackgroundColor = 0;
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.Escape:
-                        Console.BackgroundColor = (ConsoleColor)0;
+                        Console.BackgroundColor = 0;
                         Console.ForegroundColor = (ConsoleColor)15;
                         Environment.Exit(0);
                         break;
+
                     case ConsoleKey.LeftArrow:
                         if (numberOfPlayers == 1) Left(0);
                         if (numberOfPlayers == 2) Left(1);
                         break;
+
                     case ConsoleKey.A:
                         if (numberOfPlayers == 2) Left(0);
                         break;
+
                     case ConsoleKey.RightArrow:
                         if (numberOfPlayers == 1) Right(0);
                         if (numberOfPlayers == 2) Right(1);
                         break;
+
                     case ConsoleKey.D:
                         if (numberOfPlayers == 2) Right(0);
                         break;
+
                     case ConsoleKey.F:
-                        Sounds.SfxON = !Sounds.SfxON;
+                        Sounds.SfxOn = !Sounds.SfxOn;
                         break;
+
                     case ConsoleKey.N:
-                        Sounds.SfxON = false;
+                        Sounds.SfxOn = false;
                         Sounds.MusicOn = false;
                         break;
+
                     case ConsoleKey.DownArrow:
                         if (numberOfPlayers == 1) Down(0);
                         if (numberOfPlayers == 2) Down(1);
                         score += level * 2;  // Bonus score
                         break;
+
                     case ConsoleKey.S:
                         if (numberOfPlayers == 2) Down(0);
                         score += level * 2; // Bonus score
                         break;
+
                     case ConsoleKey.Spacebar:
                         if (numberOfPlayers == 1) Drop(0);
                         if (numberOfPlayers == 2) Drop(1);
                         break;
+
                     case ConsoleKey.Tab:
                         if (numberOfPlayers == 2) Drop(0);
                         break;
+
                     case ConsoleKey.R:
                         ResetTetris();
                         break;
+
                     case ConsoleKey.P:
                         Console.ReadKey();
                         break;
+
                     case ConsoleKey.UpArrow:
                         if (numberOfPlayers == 1) brickPlayer[0] = Rotate(brickPlayer[0]);
                         if (numberOfPlayers == 2) brickPlayer[1] = Rotate(brickPlayer[1]);
                         break;
+
                     case ConsoleKey.W:
                         if (numberOfPlayers == 2) brickPlayer[0] = Rotate(brickPlayer[0]);
                         break;
+
                     case ConsoleKey.M:
                         Sounds.MusicOn = !Sounds.MusicOn;
-                        break;
-                    default:
                         break;
                 }
             }
         }
-        static bool Delay(int level)
+        static bool Delay(int currnetLevel)
         {
             int millisecondNow = DateTime.Now.Millisecond;
-            int delay = (21 - level) * 26;
+            int delay = (21 - currnetLevel) * 26;
 
             if (millisecondNow > millisecond)
             {
@@ -333,43 +341,48 @@ namespace Tetris
                     return false;
                 }
             }
-            else
-                if (millisecondNow - millisecond + 1000 > delay)
-                {
-                    millisecond = millisecondNow;
-                    return false;
-                }
+
+            else if (millisecondNow - millisecond + 1000 > delay)
+            {
+                millisecond = millisecondNow;
+                return false;
+            }
+
             return true;
         }
+
         public static Block GenerateRandomBlock(int player)
         {
             string[] randomColor = { "Gray", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow",
         "DarkBlue","DarkGreen","DarkMagenta","DarkCyan","DarkRed","DarkYellow"}; // Colors allowed to be used
-            Random randomGen = new Random(); // new random instance
-            int pos = player;
-            int color = (int)Enum.Parse(typeof(ConsoleColor), randomColor[randomGen.Next(0, 13)]); // pick random color from the array
-            int pieceType = randomGen.Next(0, 7); // generate random piece
+            var randomGen = new Random(); // new random instance
+            var pos = player;
+
+            var color = (int)Enum.Parse(typeof(ConsoleColor), randomColor[randomGen.Next(0, 13)]); // pick random color from the array
+            var pieceType = randomGen.Next(0, 7); // generate random piece
             // Theese are the official Tetris block types
+
             switch (pieceType)
             {
                 case 0:
-                    return new Block(pos, 0, new int[,] { { color, color }, { color, color } }); // The O-Tetrimino
+                    return new Block(pos, 0, new[,] { { color, color }, { color, color } }); // The O-Tetrimino
                 case 1:
-                    return new Block(pos, 0, new int[,] { { color, 0, 0 }, { color, color, color } }); // The J-Tetrimino
+                    return new Block(pos, 0, new[,] { { color, 0, 0 }, { color, color, color } }); // The J-Tetrimino
                 case 2:
-                    return new Block(pos, 0, new int[,] { { 0, 0, color }, { color, color, color } }); // The L-Tetrimino
+                    return new Block(pos, 0, new[,] { { 0, 0, color }, { color, color, color } }); // The L-Tetrimino
                 case 3:
-                    return new Block(pos, 0, new int[,] { { 0, color, color }, { color, color, 0 } }); // The S-Tetrimino
+                    return new Block(pos, 0, new[,] { { 0, color, color }, { color, color, 0 } }); // The S-Tetrimino
                 case 4:
-                    return new Block(pos, 0, new int[,] { { color, color, 0 }, { 0, color, color } }); // The Z-Tetrimino
+                    return new Block(pos, 0, new[,] { { color, color, 0 }, { 0, color, color } }); // The Z-Tetrimino
                 case 5:
-                    return new Block(pos, 0, new int[,] { { color, color, color, color } }); // The I-Tetrimino
+                    return new Block(pos, 0, new[,] { { color, color, color, color } }); // The I-Tetrimino
                 case 6:
-                    return new Block(pos, 0, new int[,] { { 0, color, 0 }, { color, color, color } }); // The T-Tetrimino
+                    return new Block(pos, 0, new[,] { { 0, color, 0 }, { color, color, color } }); // The T-Tetrimino
                 default:
-                    return new Block(pos, 0, new int[,] { { 0, color, 0 }, { color, color, color } }); // The T-Tetrimino is default
+                    return new Block(pos, 0, new[,] { { 0, color, 0 }, { color, color, color } }); // The T-Tetrimino is default
             }
         }
+
         static void PrintNextBrick()
         {
             if (countPrint == 10)
@@ -389,7 +402,7 @@ namespace Tetris
             {
                 for (int x = 35; x < 46; x++)
                 {
-                    Console.BackgroundColor = (ConsoleColor)0;
+                    Console.BackgroundColor = 0;
                     Console.SetCursorPosition(x, y);
                     Console.Write("  ");
                 }
@@ -400,6 +413,7 @@ namespace Tetris
             nextBrick.Print(nextBrickX, nextBrickY);
             millisecond = DateTime.Now.Millisecond;
         }
+
         static void CheckForCompleteLines()
         {
             int counter = 0;
@@ -427,7 +441,6 @@ namespace Tetris
                 }
                 counter = 0;
             }
-            scoreTemp = 0;
         }
         static void ClearRow(int row)
         {
@@ -439,12 +452,13 @@ namespace Tetris
                     bigBlock[col, i] = bigBlock[col, i - 1];
                 }
             }
-            Sounds.SFX(Sounds.SoundEffects.ClearLine);
+            Sounds.Sfx(Sounds.SoundEffects.ClearLine);
             bigBlock.Print();
         }
         static void Main()
         {
             SetInitialGameParams();
+
             do
             {
                 if (Delay(level) == false)
@@ -460,15 +474,13 @@ namespace Tetris
                             PrintStatus();
                             continue;
                         }
-                        else
-                        {
-                            Down(0);
-                            brickPlayer[0].Print();
-                            Down(1);
-                            brickPlayer[1].Print();
-                            PrintStatus();
-                            continue;
-                        }
+
+                        Down(0);
+                        brickPlayer[0].Print();
+                        Down(1);
+                        brickPlayer[1].Print();
+                        PrintStatus();
+                        continue;
                     }
                     Down(0);
                     brickPlayer[0].Print();
@@ -478,6 +490,7 @@ namespace Tetris
 
             } while (true);
         }
+
         private static void SetInitialGameParams()
         {
             score = 0;
@@ -497,7 +510,7 @@ namespace Tetris
         }
         private static void SetGameField()
         {
-            Console.BackgroundColor = (ConsoleColor)0;
+            Console.BackgroundColor = 0;
             Console.ForegroundColor = (ConsoleColor)15;
             Console.Clear();
             Console.Title = "Console Tetris";

@@ -26,13 +26,14 @@ namespace Tetris
                 for (int indexCols = 0; indexCols < blockCols; indexCols++)
                 {
                     block[indexCols, indexRows] = blockData[indexCols, indexRows];
-                    if (blockData[indexCols, indexRows] != 0 ) filledCells++;
+                    if (blockData[indexCols, indexRows] != 0) filledCells++;
                 }
             }
         }
+
         public Block Clone()
         {
-            Block result = new Block(blockPositionX, blockPositionY, new int[blockCols, blockRows]);
+            var result = new Block(blockPositionX, blockPositionY, new int[blockCols, blockRows]);
 
             for (int indexRows = 0; indexRows < blockRows; indexRows++)
             {
@@ -41,11 +42,13 @@ namespace Tetris
                     result[indexCols, indexRows] = this[indexCols, indexRows];
                 }
             }
+
             return result;
         }
+
         public Block Rotate()
         {
-            int[,] newBlock = new int[this.block.GetLength(1), this.block.GetLength(0)];
+            var newBlock = new int[this.block.GetLength(1), this.block.GetLength(0)];
             int newColumn, newRow = 0;
             for (int oldColumn = this.block.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
             {
@@ -59,16 +62,18 @@ namespace Tetris
             }
             return new Block(this.blockPositionX, this.blockPositionY, newBlock);
         }
+
         public void SetColor(int color)
         {
             for (int indexRows = 0; indexRows < blockRows; indexRows++)
             {
                 for (int indexCols = 0; indexCols < blockCols; indexCols++)
                 {
-                    if (this[indexCols, indexRows] != 0) this[indexCols, indexRows]=color;
+                    if (this[indexCols, indexRows] != 0) this[indexCols, indexRows] = color;
                 }
             }
         }
+
         public static Block operator +(Block a, Block b)
         {
             int rows, cols, x, y;
@@ -87,7 +92,7 @@ namespace Tetris
                 cols = a.blockCols + a.blockPositionX - x;
             else cols = b.blockCols + b.blockPositionX - x;
 
-            Block result = new Block(x, y, new int[cols, rows]);
+            var result = new Block(x, y, new int[cols, rows]);
 
             for (int r = b.blockPositionY; r < b.blockRows + b.blockPositionY; r++)
             {
@@ -108,25 +113,29 @@ namespace Tetris
             }
             return result;
         }
+
         public static bool OverlapBlocks(params Block[] input)
         {
-            int filledCellsOfInput = input[0].filledCells;
-            Block result=input[0];
+            var filledCellsOfInput = input[0].filledCells;
+
+            var result = input[0];
+
             for (int i = 1; i < input.Length; i++)
-			{
-			 result+=input[i];
-             filledCellsOfInput += input[i].filledCells;  
-			}
-            if (filledCellsOfInput == result.filledCells)
-                return false;
-            else return true;
+            {
+                result += input[i];
+                filledCellsOfInput += input[i].filledCells;
+            }
+
+            return filledCellsOfInput != result.filledCells;
         }
+
         public int this[int x, int y]
         {
             get
             {
                 return block[x, y];
             }
+
             set
             {
                 if (value != 0 && block[x, y] == 0) filledCells++;
@@ -134,18 +143,22 @@ namespace Tetris
                 block[x, y] = value;
             }
         }
+
         public int FilledCells()
         {
             return filledCells;
         }
+
         public int Rows()
         {
             return blockRows;
         }
+
         public int Cols()
         {
             return blockCols;
         }
+
         public void Clear()
         {
             for (int x = 0; x < blockCols; x++)
@@ -155,7 +168,7 @@ namespace Tetris
                     if (this[x, y] != 0)
                     {
                         Console.SetCursorPosition((blockPositionX + x) * 2, blockPositionY + y);
-                        Console.BackgroundColor = (ConsoleColor)0;
+                        Console.BackgroundColor = 0;
                         Console.Write("  ");
                     }
                 }
@@ -165,31 +178,33 @@ namespace Tetris
         {
             int xCurrent = blockPositionX;
             int yCurrent = blockPositionY;
-            if (posiotion.Length==2)
+
+            if (posiotion.Length == 2)
             {
                 blockPositionX = posiotion[0];
                 blockPositionY = posiotion[1];
             }
-            int val;
-            Console.ForegroundColor = (ConsoleColor)0;
+
+            Console.ForegroundColor = 0;
             for (int x = 0; x < blockCols; x++)
             {
                 for (int y = 0; y < blockRows; y++)
                 {
-                    val = this[x, y];
-                    if (val != 0)
+                    int value = this[x, y];
+                    if (value != 0)
                     {
                         Console.SetCursorPosition((blockPositionX + x) * 2, blockPositionY + y);
-                        Console.BackgroundColor = (ConsoleColor)val;
+                        Console.BackgroundColor = (ConsoleColor)value;
                         Console.Write("[]");
                     }
                 }
             }
-             blockPositionX=xCurrent;
-             blockPositionY=yCurrent;
+
+            blockPositionX = xCurrent;
+            blockPositionY = yCurrent;
             Console.SetCursorPosition(34, 0);
-            Console.ForegroundColor = (ConsoleColor)0;
-            Console.BackgroundColor = (ConsoleColor)0;
+            Console.ForegroundColor = 0;
+            Console.BackgroundColor = 0;
         }
     }
 }
