@@ -15,7 +15,7 @@ namespace DisplayFileAndFolderInfo
         // file permision problems with C:\WINDOWS
 
         private static readonly List<IFileSystemEntity> FilesAndFolders = new List<IFileSystemEntity>();
-        private static readonly string Path = @"C:\Users\Webdude\Documents\C#";// Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static readonly string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         static void Main()
         {
@@ -61,7 +61,8 @@ namespace DisplayFileAndFolderInfo
                 rootFolder.AddItem(currentFile);
             }
 
-            foreach (var currentFolder in di.EnumerateDirectories().Select(directory => new Folder(directory.Name, directory.FullName)))
+            foreach (var currentFolder in di.EnumerateDirectories().Select(directory => new Folder(directory.Name,
+                directory.FullName)))
             {
                 rootFolder.AddItem(currentFolder);
                 TraverseFileSystemStructure(currentFolder);
