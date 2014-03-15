@@ -4,8 +4,8 @@ using System.Text;
 
 class CSharpBrackets
 {
-    static string indent = null;
-    static int indentCount = 0;
+    static string indent;
+    static int indentCount;
     static void Main()
     {
         if (File.Exists(@"..\..\input.txt"))

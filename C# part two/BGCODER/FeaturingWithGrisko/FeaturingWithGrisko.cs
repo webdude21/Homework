@@ -2,7 +2,7 @@
 
 class FeaturingWithGrisko
 {
-    static int resultCount = 0;
+    static int resultCount;
     static int[] isUsed;
 
     static void Main()

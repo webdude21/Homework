@@ -4,8 +4,8 @@ using System.Text.RegularExpressions;
 
 class FTML
 {
-    static string expression = "(?<tag><[^</]*>)(?<text>[^<]*)</[^<]*>";
-    static string input = null;
+    private const string Expression = "(?<tag><[^</]*>)(?<text>[^<]*)</[^<]*>";
+    static string input;
     static void Main()
     {
         input = GetInput();
@@ -15,9 +15,9 @@ class FTML
 
     static void RemoveTags()
     {
-        while(Regex.IsMatch(input, expression, RegexOptions.CultureInvariant))
+        while(Regex.IsMatch(input, Expression, RegexOptions.CultureInvariant))
         {
-                Match match = Regex.Match(input, expression, RegexOptions.CultureInvariant);
+                Match match = Regex.Match(input, Expression, RegexOptions.CultureInvariant);
                 string currentTag = match.Groups["tag"].Value.ToLower();
                 currentTag = currentTag.Substring(1, currentTag.Length - 2);
                 string currentText = match.Groups["text"].Value;
@@ -45,30 +45,27 @@ class FTML
     }
     static string ReverseString(string str)
     {
-        if (str.Contains(Environment.NewLine.ToString()))
+        if (str.Contains(Environment.NewLine))
         {
             StringBuilder output = new StringBuilder();
-            string[] substrings = str.Split(new string[] { Environment.NewLine.ToString() }, StringSplitOptions.RemoveEmptyEntries);
+            string[] substrings = str.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = substrings.Length - 1; i >= 0; i--)
             {
                 output.Append(ReverseOneLineString(substrings[i]));
                 if (i > 0)
                 {
-                    output.Append(Environment.NewLine.ToString());
+                    output.Append(Environment.NewLine);
                 }
             }
 
             return output.ToString();
         }
-        else
-        {
-            return ReverseOneLineString(str);
-        }
+        return ReverseOneLineString(str);
     }
 
     static string ReverseOneLineString(string str)
     {
-        StringBuilder output = new StringBuilder();
+        var output = new StringBuilder();
         for (int i = str.Length - 1; i >= 0; i--)
         {
             output.Append(str[i]);
@@ -78,7 +75,7 @@ class FTML
     }
     static string ToggleLetters(string input)
     {
-        StringBuilder output = new StringBuilder();
+        var output = new StringBuilder();
 
         foreach (char letter in input)
         {
@@ -100,7 +97,7 @@ class FTML
 
     static string GetInput()
     {
-        StringBuilder input = new StringBuilder();
+        var input = new StringBuilder();
         int lines = int.Parse(Console.ReadLine());
         for (int i = 0; i < lines; i++)
         {

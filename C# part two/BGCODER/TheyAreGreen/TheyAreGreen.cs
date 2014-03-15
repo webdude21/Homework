@@ -4,8 +4,8 @@ class TheyAreGreen
 {
     static int[] letters = new int[26];
     static int[] output;
-    static int inputLenght = 0;
-    static int wordCount = 0;
+    static int inputLenght;
+    static int wordCount;
 
     static void Main()
     {
@@ -62,7 +62,6 @@ class TheyAreGreen
             {
                 wordCount++;
             }
-            return;
         }
         else
         {

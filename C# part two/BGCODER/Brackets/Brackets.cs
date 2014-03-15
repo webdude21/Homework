@@ -1,11 +1,10 @@
 using System;
-using System.IO;
 
 class Brackets
 {
     static string input;
-    static int solutions = 0;
-    static int halfLenght = 0;
+    static int solutions;
+    static int halfLenght;
 
     static void Main()
     {

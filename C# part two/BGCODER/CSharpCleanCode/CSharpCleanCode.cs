@@ -1,14 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 class CSharpCleanCode
 {
     static StringBuilder output = new StringBuilder();
-    static bool inString = false;
-    static bool inMultiLineComment = false;
-    static bool escaping = false;
-    static bool escapeAll = false;
+    static bool inString;
+    static bool inMultiLineComment;
+    static bool escaping;
+    static bool escapeAll;
     static void Main()
     {
         int inputLines = int.Parse(Console.ReadLine());

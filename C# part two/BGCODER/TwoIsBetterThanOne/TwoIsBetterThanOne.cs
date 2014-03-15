@@ -3,12 +3,12 @@ using System.Text;
 
 class TwoIsBetterThanOne
 {
-    static ulong luckyNumbers = 0; // store the lucky numbers here
-    static int e = 0; // this is the E element as defined by the task description
+    static ulong luckyNumbers; // store the lucky numbers here
+    static int e; // this is the E element as defined by the task description
     static int[] magicDigits = { 3, 5 }; // this array holds the magic digits
     static int[] currentNumber; // this is used to store the current generated number
-    static ulong a = 0; // this is A as defined by the task description
-    static ulong b = 0; // this is B as defined by the task description
+    static ulong a; // this is A as defined by the task description
+    static ulong b; // this is B as defined by the task description
 
     static void Main()
     {

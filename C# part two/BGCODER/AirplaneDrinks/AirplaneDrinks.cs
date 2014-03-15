@@ -4,14 +4,14 @@ using System.Collections.Generic;
 class AirplaneDrinks
 {
     const byte timeToFillFlask = 47;
-    static byte servingsLeftInFlask = 0;
-    static ulong elapsedTime = 0;
+    static byte servingsLeftInFlask;
+    static ulong elapsedTime;
     const byte teaDrinker = 41;
     const byte coffeeDrinker = 0;
     const byte served = 5;
     static byte[] passengers;
-    static ulong stuardessPosition = 0;
-    static int leftToServe = 0;
+    static ulong stuardessPosition;
+    static int leftToServe;
     static List<ulong> teaDrinkers;
 
     static void Main()

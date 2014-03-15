@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 class ConsoleJustification
@@ -7,9 +6,9 @@ class ConsoleJustification
     static StringBuilder output = new StringBuilder();
     static string input;
     static string[] wordList;
-    static int usedLenght = 0;
-    static int wordsOnThisLine = 0;
-    static int firstWord = 0;
+    static int usedLenght;
+    static int wordsOnThisLine;
+    static int firstWord;
 
     static void Main()
     {
