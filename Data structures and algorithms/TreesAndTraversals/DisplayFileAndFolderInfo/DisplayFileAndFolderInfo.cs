@@ -14,14 +14,14 @@ namespace DisplayFileAndFolderInfo
         // I've set the path to the current user's MyDocuments folder since it's likely to get 
         // file permision problems with C:\WINDOWS
 
-        private static readonly List<IFileSystemEntity> FilesAndFolders = new List<IFileSystemEntity>();
         private static readonly string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         static void Main()
         {
             try
             {
-                GetFileFolderStructure(Path);
+                var rootDir = GetFileFolderStructure(Path);
+                TestFolderFileStructure(rootDir);
 
             }
 
@@ -29,43 +29,44 @@ namespace DisplayFileAndFolderInfo
             {
                 Console.WriteLine("{0} Please make sure you have the right permisions to access it.", unauthorizedAccess.Message);
             }
-
-            TestFolderFileStructure();
         }
 
-        private static void GetFileFolderStructure(string path)
+        private static IEnumerable<IFileSystemEntity> GetFileFolderStructure(string path)
         {
             var di = new DirectoryInfo(path);
             var rootDir = new Folder(di.Name, di.FullName);
             TraverseFileSystemStructure(rootDir);
+
+            return rootDir;
         }
 
-        private static void TestFolderFileStructure()
+        private static void TestFolderFileStructure(IEnumerable<IFileSystemEntity> rootDir)
         {
-            foreach (var fileEntry in FilesAndFolders)
+            foreach (var fileEntry in rootDir)
             {
                 Console.WriteLine(fileEntry);
-            }
 
-            Console.WriteLine("Folder '{0}'- Size: {1}", FilesAndFolders[0].Name, FilesAndFolders[0].Size);
+                if (fileEntry is Folder)
+                {
+                    TestFolderFileStructure(fileEntry as Folder);
+                }
+            }
         }
 
         private static void TraverseFileSystemStructure(Folder rootFolder)
         {
             var di = new DirectoryInfo(rootFolder.FullPath);
-            FilesAndFolders.Add(rootFolder);
 
             foreach (var currentFile in di.EnumerateFiles().Select(file => new File(file.Name, file.Length)))
             {
-                FilesAndFolders.Add(currentFile);
                 rootFolder.AddItem(currentFile);
             }
 
             foreach (var currentFolder in di.EnumerateDirectories().Select(directory => new Folder(directory.Name,
                 directory.FullName)))
             {
-                rootFolder.AddItem(currentFolder);
                 TraverseFileSystemStructure(currentFolder);
+                rootFolder.AddItem(currentFolder);
             }
         }
     }

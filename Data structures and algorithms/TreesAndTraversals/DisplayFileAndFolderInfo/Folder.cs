@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DisplayFileAndFolderInfo
 {
-    public class Folder : IFileSystemEntity
+    public class Folder : IFileSystemEntity, IEnumerable<IFileSystemEntity>
     {
         private readonly List<IFileSystemEntity> fileFolderList = new List<IFileSystemEntity>();
         public Folder(string name, string fullPath)
@@ -30,6 +31,14 @@ namespace DisplayFileAndFolderInfo
         public Folder[] Folders { get { return fileFolderList.OfType<Folder>().ToArray(); } }
         public File[] Files { get { return fileFolderList.OfType<File>().ToArray(); } }
         public string Name { get; set; }
+        public IEnumerator<IFileSystemEntity> GetEnumerator()
+        {
+            return fileFolderList.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)fileFolderList).GetEnumerator();
+        }
         public override string ToString()
         {
             return string.Format("{0} [Subfolders Count: {1}] [File Count: {2}]", this.Name, this.Folders.Length,
