@@ -1,0 +1,18 @@
+﻿nav ul {
+    list-style-type: none;
+    display: block;
+    margin: 10px;
+    padding: 0px;
+}
+
+    nav ul li {
+        float: left;
+        margin: 0px;
+        padding-right: 80px;
+    }
+
+    nav ul:after {
+        clear: both;
+        display: block;
+        content: "";
+    }
