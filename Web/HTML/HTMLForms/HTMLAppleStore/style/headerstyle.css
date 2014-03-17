@@ -1,0 +1,88 @@
+﻿nav ul {
+    list-style-type: none;
+    display: block;
+    margin: 10px;
+    padding: 0;
+}
+
+    nav ul li {
+        float: left;
+        font-size: 32px;
+        margin: 0;
+        padding-right: 10px;
+    }
+
+    nav ul:after {
+        clear: both;
+        display: block;
+        content: "";
+    }
+
+h1 {
+    margin-top: -15px;
+    margin-left: 25px;
+    margin-right: 70px;
+    background-color: white;
+    font-size: 28px;
+}
+
+#products {
+    float: left;
+    margin: 10px 10px 10px 10px;
+    padding: 5px 5px;
+    width: 744px;
+    border: 1px solid;
+}
+
+    #products ul.specs li {
+        margin: inherit;
+    }
+
+    #products ul {
+        height: 0;
+        margin: 5px 0 0 0;
+        padding: 5px;
+    }
+
+        #products ul li {
+            float: left;
+            margin: 20px 20px 0 0;
+            list-style-type: none;
+            font-size: 24px;
+        }
+
+        #products ul.specs li {
+            float: right;
+            margin: 5px 10px 0;
+        }
+
+            #products ul.specs li.price {
+                float: left;
+                margin: 5px 21px 5px 50px;
+                list-style-type: none;
+            }
+
+    #products li.product {
+        width: 345px;
+        border: 1px solid;
+    }
+
+figure {
+    float: left;
+    margin-left: 10px;
+    margin-top: -10px;
+    margin-bottom: -2px;
+    margin-right: 20px;
+}
+
+#sliders {
+    margin-top: 200px;
+}
+
+    #sliders input {
+        width: 350px;
+    }
+
+    #sliders label {
+        font-size: 40px;
+    }

@@ -1,0 +1,48 @@
+﻿table {
+    padding: 4px 3px 2px 4px;
+    border: 2px solid
+}
+
+input, select, textarea{
+    width: 258px;
+}
+
+input.button {
+    width: 232px;
+}
+
+input.smallbox {
+    width: 28px;
+}
+
+label {
+    font-weight: 800;
+}
+
+td.leftcol {
+    text-align: right;
+    width: 200px;
+}
+
+#number {
+    width: 100px;
+}
+#zipcode {
+    width: 60px;
+}
+
+#city {
+    width: 124px;
+}
+
+#year {
+    width: 40px;
+}
+
+#buttonrow {
+    align-content: space-around;
+}
+
+input.smallerbox {
+    width: 20px;
+}
