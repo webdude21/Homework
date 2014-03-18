@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPVariables", "PHPVariables\PHPVariables.csproj", "{4C1BF7BF-0CDC-4A49-BCB3-416C44D3213A}"
 EndProject
@@ -64,6 +64,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoroТheRabbit", "JoroТheRabbit\JoroТheRabbit.csproj", "{C6872DBB-FAA4-4882-934F-C7315D6163E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagesInABottle", "MessagesInABottle\MessagesInABottle.csproj", "{8C93108B-9C7E-41B9-AB31-6C90F14A5868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDogs", "HelpDogs\HelpDogs.csproj", "{31A38B24-5F76-47BB-B713-B4A4FAEE36FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogeCoin", "DogeCoin\DogeCoin.csproj", "{B6C3362B-4FCA-4B36-97B9-6BE5EEDBD575}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +199,14 @@ Global
 		{8C93108B-9C7E-41B9-AB31-6C90F14A5868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C93108B-9C7E-41B9-AB31-6C90F14A5868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C93108B-9C7E-41B9-AB31-6C90F14A5868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A38B24-5F76-47BB-B713-B4A4FAEE36FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A38B24-5F76-47BB-B713-B4A4FAEE36FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A38B24-5F76-47BB-B713-B4A4FAEE36FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A38B24-5F76-47BB-B713-B4A4FAEE36FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C3362B-4FCA-4B36-97B9-6BE5EEDBD575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C3362B-4FCA-4B36-97B9-6BE5EEDBD575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C3362B-4FCA-4B36-97B9-6BE5EEDBD575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C3362B-4FCA-4B36-97B9-6BE5EEDBD575}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
