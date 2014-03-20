@@ -15,10 +15,7 @@ class DogeCoin
         }
         for (var x = 1; x <= input[0]; x++)
             for (var y = 1; y <= input[1]; y++)
-                labyrinth[x, y] = labyrinth[x - 1, y] > labyrinth[x, y - 1]
-                    ? labyrinth[x, y] + labyrinth[x - 1, y]
-                    : labyrinth[x, y] += labyrinth[x, y - 1];
+                labyrinth[x, y] = labyrinth[x - 1, y] > labyrinth[x, y - 1] ? labyrinth[x, y] + labyrinth[x - 1, y] : labyrinth[x, y] + labyrinth[x, y - 1];
         Console.WriteLine(labyrinth[input[0], input[1]]);
     }
 }
-

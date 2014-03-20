@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace BGCODER
 {
@@ -8,8 +7,6 @@ namespace BGCODER
     {
         private static int[,] sudokuInput;
         private const int SudokuSize = 9;
-        private static Random randomGen = new Random();
-
         static void Main()
         {
             Console.SetIn(new StreamReader(@"../../input.txt"));
@@ -26,46 +23,6 @@ namespace BGCODER
                     }
                 }
             }
-
-            Solve(0, 3);
         }
-
-        public static void Solve(int startPosition, int tileSize)
-        {
-            var currentTile = new int[tileSize, tileSize];
-            var numberUsed = new bool[tileSize * tileSize];
-
-            for (var row = startPosition; row < tileSize; row++)
-            {
-                for (var col = startPosition; col < tileSize; col++)
-                {
-                    if (currentTile[row, col] != 0)
-                    {
-                        currentTile[row, col] = sudokuInput[row, col];
-                        numberUsed[currentTile[row, col]] = true;
-                    }
-                }
-            }
-        }
-
-        public bool CheckIfSolved(int[,] testSolution)
-        {
-            for (var row = 0; row < SudokuSize; row++)
-            {
-                var check = new bool[SudokuSize];
-                for (var col = 0; col < SudokuSize; col++)
-                {
-                    if (check[testSolution[row, col]])
-                    {
-                        return false;
-                    }
-                    check[testSolution[row, col]] = true;
-                }
-            }
-
-            return true;
-        }
-
-        public int GetRandomNumber { get; set; }
     }
 }

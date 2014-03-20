@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku", "BGCODER\Sudoku.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalanNumbers", "CatalanNumbers\CatalanNumbers.csproj", "{F0B37B4A-A9D0-44C0-86B7-05E3F3593C24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BracketsDP", "BracketsDP\BracketsDP.csproj", "{76C88232-6059-42D5-91D8-F699C10106BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar", "Guitar\Guitar.csproj", "{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F0B37B4A-A9D0-44C0-86B7-05E3F3593C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0B37B4A-A9D0-44C0-86B7-05E3F3593C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0B37B4A-A9D0-44C0-86B7-05E3F3593C24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C88232-6059-42D5-91D8-F699C10106BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C88232-6059-42D5-91D8-F699C10106BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C88232-6059-42D5-91D8-F699C10106BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C88232-6059-42D5-91D8-F699C10106BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
