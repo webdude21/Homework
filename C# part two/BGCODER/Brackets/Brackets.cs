@@ -12,7 +12,7 @@ class Brackets
         SolveTask();
     }
 
-    static void SolveTask()
+    static void SolveTask() 
     {
         if ((input.Length % 2) != 0)
         {

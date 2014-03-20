@@ -43,15 +43,15 @@ namespace HelpDogs
 
         public static void Solve()
         {
-            for (var i = 1; i <= n; i++)
+            for (var index = 1; index <= n; index++)
             {
-                if (labyrinth[i, 1] == Enemy) break;
-                labyrinth[i, 1] = 1;
+                if (labyrinth[index, 1] == Enemy) break;
+                labyrinth[index, 1] = 1;
             }
-            for (var i = 1; i <= m; i++)
+            for (var index = 1; index <= m; index++)
             {
-                if (labyrinth[1, i] == Enemy) break;
-                labyrinth[1, i] = 1;
+                if (labyrinth[1, index] == Enemy) break;
+                labyrinth[1, index] = 1;
             }
 
             for (var row = 1; row <= n; row++)

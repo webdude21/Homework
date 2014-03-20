@@ -5,50 +5,30 @@ class BracketsDP
 {
     static void Main()
     {
-
-        string input = Console.ReadLine();
-        int count = input.Length;
-        if (input[0] == ')' || input[count - 1] == '(' || count % 2 != 0)
-        {
-            Console.WriteLine(0);
-        }
-        else 
-        {
-            SolveTask(input, count);
-        }
-    }
-
-    static void SolveTask(string input, int count)
-    {
-        BigInteger[,] solutions = new BigInteger[count + 1, count + 2];
+        var input = Console.ReadLine();
+        var solutions = new BigInteger[2, input.Length + 2];
         solutions[0, 0] = 1;
-        for (int row = 1; row < count + 1; row++)
+        for (var row = 0; row < input.Length; row++)
         {
-            if (input[row - 1] == '(')
+            solutions[1, 0] = input[row] == '(' ? 0 : solutions[0, 1];
+            for (var col = 1; col <= input.Length; col++)
             {
-                solutions[row, 0] = 0;
-            }
-            else
-            {
-                solutions[row, 0] = solutions[row - 1, 1];
-            }
-
-            for (int col = 1; col < count + 1; col++)
-            {
-                if (input[row - 1] == '(')
+                switch (input[row])
                 {
-                    solutions[row, col] = solutions[row - 1, col - 1];
-                }
-                else if (input[row - 1] == ')')
-                {
-                    solutions[row, col] = solutions[row - 1, col + 1];
-                }
-                else
-                {
-                    solutions[row, col] = solutions[row - 1, col - 1] + solutions[row - 1, col + 1];
+                    case '(':
+                        solutions[1, col] = solutions[0, col - 1];
+                        break;
+                    case ')':
+                        solutions[1, col] = solutions[0, col + 1];
+                        break;
+                    default:
+                        solutions[1, col] = solutions[0, col + 1] + solutions[0, col - 1];
+                        break;
                 }
             }
+            for (var col = 0; col <= input.Length; col++)
+                solutions[0, col] = solutions[1, col];
         }
-        Console.WriteLine(solutions[count, 0]);
+        Console.WriteLine(solutions[0, 0]);
     }
 }
