@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ImplementLinkedList
 {
-    public class LinkedList<T> : IEnumerable
+    public class LinkedList<T> : IEnumerable<T>
     {
         public ListItem<T> FirstElement { get; private set; }
         public ListItem<T> LastElement { get; private set; }
@@ -128,7 +130,7 @@ namespace ImplementLinkedList
             }
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             var currentItem = this.FirstElement;
 
@@ -137,6 +139,23 @@ namespace ImplementLinkedList
                 yield return currentItem.Value;
                 currentItem = currentItem.NextItem;
             }
+        }
+
+        public override string ToString()
+        {
+            var resultBuilder = new StringBuilder();
+            foreach (var item in this)
+            {
+                resultBuilder.Append(item);
+                resultBuilder.Append(" ");
+            }
+
+            return "[" + resultBuilder.ToString().TrimEnd() + "]";
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

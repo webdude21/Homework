@@ -24,6 +24,7 @@ namespace ImplementLinkedList
             }
 
             Console.WriteLine(testList.Contains(2));
+            Console.WriteLine(testList);
         }
     }
 }
