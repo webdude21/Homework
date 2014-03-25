@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BracketsDP", "BracketsDP\Br
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guitar", "Guitar\Guitar.csproj", "{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveForJoy", "MoveForJoy\MoveForJoy.csproj", "{4A6A199F-7EF8-403C-B954-565B61C82A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecoverMessage", "RecoverMessage\RecoverMessage.csproj", "{DC96F4D0-A2EE-4136-A07A-59A194D0BFE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDCA8DEE-A41B-45E5-8AF4-B58C00B9B468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A6A199F-7EF8-403C-B954-565B61C82A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6A199F-7EF8-403C-B954-565B61C82A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6A199F-7EF8-403C-B954-565B61C82A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6A199F-7EF8-403C-B954-565B61C82A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC96F4D0-A2EE-4136-A07A-59A194D0BFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC96F4D0-A2EE-4136-A07A-59A194D0BFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC96F4D0-A2EE-4136-A07A-59A194D0BFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC96F4D0-A2EE-4136-A07A-59A194D0BFE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

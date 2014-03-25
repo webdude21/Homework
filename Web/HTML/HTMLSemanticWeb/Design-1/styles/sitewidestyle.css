@@ -1,0 +1,12 @@
+﻿h1 {
+    display: inline;
+    margin-left: 100px;
+    align-self: center;
+}
+
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+}

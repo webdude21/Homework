@@ -1,28 +1,91 @@
 ﻿using System;
-using System.IO;
 
-namespace BGCODER
+class Sudoku
 {
-    class Sudoku
-    {
-        private static int[,] sudokuInput;
-        private const int SudokuSize = 9;
-        static void Main()
-        {
-            Console.SetIn(new StreamReader(@"../../input.txt"));
-            sudokuInput = new int[SudokuSize, SudokuSize];
+    private const int GridSize = 9;
+    private const int TileSize = 3;
+    private static readonly int[,] Grid = new int[GridSize, GridSize];
 
-            for (var i = 0; i < SudokuSize; i++)
+    static void Main()
+    {
+        var firstRow = GridSize;
+        var firstCol = GridSize;
+        ReadInput(ref firstRow, ref firstCol);
+        Solve(firstRow, firstCol);
+        PrintResultOnConsole();
+    }
+    private static void PrintResultOnConsole()
+    {
+        for (var row = 0; row < GridSize; row++)
+        {
+            for (var col = 0; col < GridSize; col++)
             {
-                var charArray = Console.ReadLine().ToCharArray();
-                for (var j = 0; j < SudokuSize; j++)
+                Console.Write(Grid[row, col]);
+            }
+            Console.WriteLine();
+        }
+    }
+    private static void ReadInput(ref int firstRow, ref int firstCol)
+    {
+        for (var row = 0; row < GridSize; row++)
+        {
+            var line = Console.ReadLine();
+            for (var col = 0; col < GridSize; col++)
+            {
+                if (line[col] - '0' > 0 && line[col] - '0' < 10) Grid[row, col] = line[col] - '0';
+                else
                 {
-                    if (charArray[j] - '0' < 10 && charArray[j] - '0' > 0)
+                    if (firstRow >= row && firstCol > col)
                     {
-                        sudokuInput[i, j] = charArray[j] - '0';
+                        firstRow = row;
+                        firstCol = col;
                     }
                 }
             }
         }
+    }
+    static bool Solve(int row, int col)
+    {
+        var usedDigits = GetUsedDigits(row, col);
+        for (var digit = 1; digit < GridSize + 1; digit++)
+        {
+            if (!usedDigits[digit - 1])
+            {
+                Grid[row, col] = digit;
+                var nextRow = row;
+                var nextCol = col;
+                GetNextCell(ref nextRow, ref nextCol);
+                if (nextRow == GridSize) return true;
+                if (Solve(nextRow, nextCol)) return true;
+            }
+        }
+        Grid[row, col] = 0;
+        return false;
+    }
+
+    private static void GetNextCell(ref int nextRow, ref int nextCol)
+    {
+        while (nextRow < GridSize && Grid[nextRow, nextCol] > 0)
+        {
+            if (++nextCol > 8)
+            {
+                nextCol = 0;
+                nextRow++;
+            }
+        }
+    }
+    private static bool[] GetUsedDigits(int row, int col)
+    {
+        var usedDigits = new bool[GridSize];
+        for (var index = 0; index < GridSize; index++)
+        {
+            if (Grid[row, index] > 0) usedDigits[Grid[row, index] - 1] = true;
+            if (Grid[index, col] > 0) usedDigits[Grid[index, col] - 1] = true;
+            if (Grid[(row / TileSize) * TileSize + index / TileSize,
+                (col / TileSize) * TileSize + index % TileSize] > 0)
+                usedDigits[Grid[(row / TileSize) * TileSize + index / TileSize,
+                    (col / TileSize) * TileSize + index % TileSize] - 1] = true;
+        }
+        return usedDigits;
     }
 }

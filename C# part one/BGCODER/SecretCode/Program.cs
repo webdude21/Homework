@@ -19,13 +19,10 @@ class Program
         {
             result = a + c;
         }
-
         else if (b == 8)
         {
             result = a * c;
         }
-
-
         if (result % 4 == 0)
         {
             output = result / 4;
