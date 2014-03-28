@@ -26,7 +26,7 @@ namespace TreeTraversal
 
         private static int FindLongestPath()
         {
-            int longestPath = 0;
+            var longestPath = 0;
 
             foreach (var leaf in FindLeaves())
             {
@@ -38,27 +38,34 @@ namespace TreeTraversal
 
         private static void TryPath(Node<int> startNode, int currentDepth, ref int maxPathCount)
         {
-            if (visited[nodeList.IndexOf(startNode)])
+            while (true)
             {
-                if (currentDepth > maxPathCount)
+                if (visited[nodeList.IndexOf(startNode)])
                 {
-                    maxPathCount = currentDepth;
+                    if (currentDepth > maxPathCount)
+                    {
+                        maxPathCount = currentDepth;
+                    }
+                    return;
                 }
-                return;
-            }
 
-            visited[nodeList.IndexOf(startNode)] = true;
+                visited[nodeList.IndexOf(startNode)] = true;
 
-            if (startNode.HasParent)
-            {
-                TryPath(startNode.Parent, currentDepth + 1, ref maxPathCount);
-            }
-            else if (startNode.HasChildren)
-            {
-                foreach (var child in startNode.Offspring)
+                if (startNode.HasParent)
                 {
-                    TryPath(child, currentDepth + 1, ref maxPathCount);
+                    startNode = startNode.Parent;
+                    currentDepth = currentDepth + 1;
+                    continue;
                 }
+
+                if (startNode.HasChildren)
+                {
+                    foreach (var child in startNode.Offspring)
+                    {
+                        TryPath(child, currentDepth + 1, ref maxPathCount);
+                    }
+                }
+                break;
             }
         }
 
@@ -80,29 +87,24 @@ namespace TreeTraversal
         private static IList<Node<int>> ReadInput()
         {
             if (File.Exists(@"..\..\input.txt"))
-            {
                 Console.SetIn(new StreamReader(@"..\..\input.txt"));
-            }
 
             var n = int.Parse(Console.ReadLine());
             var nodes = new Node<int>[n];
 
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 nodes[i] = new Node<int>(i);
             }
 
-            for (int i = 1; i <= n - 1; i++)
+            for (var i = 1; i <= n - 1; i++)
             {
-                int[] inputData = Console.ReadLine().Split().Select(int.Parse).ToArray();
-
-                int parentId = inputData[0];
-                int childId = inputData[1];
-
+                var inputData = Console.ReadLine().Split().Select(int.Parse).ToArray();
+                var parentId = inputData[0];
+                var childId = inputData[1];
                 nodes[parentId].AddChild(nodes[childId]);
                 nodes[childId].AddPerent(nodes[parentId]);
             }
-
             return nodes;
         }
     }
