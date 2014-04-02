@@ -1,0 +1,40 @@
+body, p, ul, li {
+    margin: 10px;
+    padding: 10px;
+}
+
+table,tr,td,th{
+    padding-left: 6px;
+    padding-right: 6px;
+    border-collapse: collapse;
+    box-shadow: -1px 0 0 rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+thead tr th{
+    background-color: #56b906;
+    color: whitesmoke;
+    font-weight: lighter;
+    text-align: left;
+}
+
+tbody tr:nth-child(even){
+    background-color: #f4f4f4;
+ }
+
+tbody tr td{
+    padding-right: 3em;
+}
+
+[class *= 'flag'] {
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-top: 0.2em;
+    width: 20px;
+    height: 14px;
+    background-image: url(../images/flags.png);
+    vertical-align: text-top;
+}
+.germany-flag { background-position:   0 0; }
+.mexico-flag  { background-position: 0 -14px; }
+.uk-flag      { background-position: 0 -28px; }

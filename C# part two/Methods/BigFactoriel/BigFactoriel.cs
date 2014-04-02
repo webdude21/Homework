@@ -17,7 +17,7 @@ class CalcFact
         // I've left to accept more the n>100 because the program handles it well up to 10000
         Console.Write("Please input n for the !n calculation: ");
         int n;
-        bool validInput = int.TryParse(Console.ReadLine(), out n);
+        var validInput = int.TryParse(Console.ReadLine(), out n);
 
         while (!validInput)
         {
@@ -35,12 +35,12 @@ class CalcFact
         return n;
     }
 
-    static List<int> MultiplyNumber(List<int> a, int b)
+    static List<int> MultiplyNumber(IReadOnlyList<int> a, int b)
     {
-        int memory = 0; 
+        var memory = 0; 
         // This will be used to carry over the surplus from each digit being added.
-        List<int> result = new List<int>(); // This list will hold the digits
-        for (int i = a.Count - 1; i >= 0; i--)
+        var result = new List<int>(); // This list will hold the digits
+        for (var i = a.Count - 1; i >= 0; i--)
         {
             if (((a[i] * b) + memory) < 10)
             {
@@ -80,10 +80,10 @@ class CalcFact
         return result;
     }
 
-    static void PrintList(List<int> input)
+    static void PrintList(IEnumerable<int> input)
     {
         // Straight forword printing of the list of digits
-        foreach (int element in input)
+        foreach (var element in input)
         {
             Console.Write("{0}", element);
         }
@@ -93,9 +93,9 @@ class CalcFact
     static void Fact(int n)
     {
         // This calculates the factorial
-        List<int> resultFact = new List<int>();
-        resultFact.Add(1);
-        for (int currFact = 1; currFact <= n; currFact++)
+        var resultFact = new List<int> {1};
+
+        for (var currFact = 1; currFact <= n; currFact++)
         {
             resultFact = MultiplyNumber(resultFact, currFact);
         }

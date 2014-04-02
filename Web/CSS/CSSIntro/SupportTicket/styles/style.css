@@ -1,0 +1,62 @@
+body, p, ul, li {
+    margin: 10px;
+    padding: 10px;
+}
+
+h1{
+    font-weight: lighter;
+}
+
+a:hover, a{
+    color: lemonchiffon;
+    text-decoration: none
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+body {
+    background-color: gray;
+}
+
+h1, dd.darker{
+    color: lightgray;
+}
+
+dl{
+    overflow: hidden;
+}
+dt{
+    color: whitesmoke;
+    font-style: italic;
+    float: left;
+}
+
+dd{
+    color: lemonchiffon;
+    margin-left: 10em;
+}
+
+dt, dd{
+    margin-top: 1.2em;
+}
+
+dd.status {
+    color: darkorange;
+    font-weight: bold;
+}
+
+#redStatus {
+    color: red;
+}
+
+#name:before {
+    content: ' ';
+    background: mediumseagreen;
+    margin-right: 6px;
+    width: 0.9em;
+    height: 0.9em;
+    border-radius: 90%;
+    display: inline-block;
+}

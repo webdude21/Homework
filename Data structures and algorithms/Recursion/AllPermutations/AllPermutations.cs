@@ -1,36 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-class AllPermutations
+namespace AllPermutations
 {
-    static int recursiveCalls = 0;
-    static void Main()
+    class AllPermutations
     {
-        Console.Write("n= ");
-        int n = int.Parse(Console.ReadLine());
-        int[] array = new int[n];
-        GeneratePermutations(0, array); 
-        Console.WriteLine("Number of recursive calls: {0} ", recursiveCalls);
-    }
-
-    static void GeneratePermutations(int index, int[] array)
-    {
-
-        if (index == array.Length)
+        static int recursiveCalls;
+        static void Main()
         {
-            recursiveCalls++;
-            return;
+            Console.Write("n= ");
+            var n = int.Parse(Console.ReadLine());
+            var array = new int[n];
+            GeneratePermutations(0, array); 
+            Console.WriteLine("Number of recursive calls: {0} ", recursiveCalls);
         }
-        else
-        {   
-            for (int i = 0; i < array.Length; i++)
+
+        static void GeneratePermutations(int index, IList<int> array)
+        {
+
+            if (index == array.Count)
             {
-                array[index] = i + 1;
-                GeneratePermutations(index + 1, array);
+                PrintCombination(array);
+                recursiveCalls++;
             }
+            else
+            {   
+                for (var i = 0; i < array.Count; i++)
+                {
+                    array[index] = i + 1;
+                    GeneratePermutations(index + 1, array);
+                }
+            }
+        }
+
+        static void PrintCombination(IEnumerable<int> arr)
+        {
+            foreach (var number in arr)
+            {
+                Console.Write(number);
+            }
+            Console.WriteLine();
         }
     }
 }

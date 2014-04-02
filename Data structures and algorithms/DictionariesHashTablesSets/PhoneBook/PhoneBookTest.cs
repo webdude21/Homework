@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Wintellect.PowerCollections;
 
 namespace PhoneBook
 {
@@ -11,8 +12,6 @@ namespace PhoneBook
             {
                var input = new StreamReader(filePath).ReadToEnd();
             }
-
-
         }
     }
 }

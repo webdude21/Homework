@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. NestedLoopsN", "NestedLoopsN\1. NestedLoopsN.csproj", "{B4041D32-5343-45A4-8D10-91C73CBC95A5}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. CombinationsWithDuplicates", "CombinationsWithDuplicates\2. CombinationsWithDuplicates.csproj", "{6498F194-7AE6-4F96-B31C-5E6116091058}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. AllPermutations", "AllPermutations\4. AllPermutations.csproj", "{9E8F919D-3316-4908-BB09-FA5ECAC67A24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. AllOrderedKsubNelements", "AllOrderedKsubNelements\5. AllOrderedKsubNelements.csproj", "{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9E8F919D-3316-4908-BB09-FA5ECAC67A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E8F919D-3316-4908-BB09-FA5ECAC67A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E8F919D-3316-4908-BB09-FA5ECAC67A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

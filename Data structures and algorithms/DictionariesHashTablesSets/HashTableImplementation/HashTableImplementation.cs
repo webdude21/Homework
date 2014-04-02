@@ -33,7 +33,6 @@ namespace HashTableImplementation
             stopWatch.Stop();
             var afterHash = GC.GetTotalMemory(true);
 
-
             Console.WriteLine("The time needed to add {0} items in the HashTalbe was {1}", hashTest.Count, stopWatch.Elapsed);
             Console.WriteLine("Current capacity is {0} items", hashTest.Capacity);
             Console.WriteLine("{0} kb used", (afterHash-beforeHash) / 1024);

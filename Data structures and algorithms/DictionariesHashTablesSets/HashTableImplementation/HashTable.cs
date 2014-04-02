@@ -12,8 +12,8 @@ namespace HashTableImplementation
         private const double MaxLoadBeforeGrow = 0.75;
         private const int HashMagicNumber = 2147483647;
         private int tableLoad;
-        private const string CapacityZeroOrNegativeErrorMessage = "Initial HashTable size can not be less than or equal to 0!";
-
+        private const string CapacityZeroOrNegativeErrorMessage = 
+            "Initial HashTable size can not be less than or equal to 0!";
         public int Count { get; private set; }
         public HashTable(int initialCapacity = DefaultInitialCapacity)
         {

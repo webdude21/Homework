@@ -27,7 +27,6 @@ namespace ImplementHashedSet
             stopWatch.Stop();
             var afterHash = GC.GetTotalMemory(true);
 
-
             Console.WriteLine("The time needed to add {0} items in the HashedSet was {1}", elementsCount, stopWatch.Elapsed);
             Console.WriteLine("{0} kb used", (afterHash - beforeHash) / 1024);
         }

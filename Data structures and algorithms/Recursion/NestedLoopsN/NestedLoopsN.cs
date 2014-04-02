@@ -1,43 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 
-class NestedLoopsN
+namespace NestedLoopsN
 {
-    static int recursiveCalls = 0;
-    static void Main()
+    class NestedLoopsN
     {
-        Console.Write("n= ");
-        int n = int.Parse(Console.ReadLine());
-        int[] arr = new int[n];
-        GenerateCombinations(0, arr);
-        Console.WriteLine("Number of recursive calls: {0}", recursiveCalls);
-    }
-
-    static void GenerateCombinations(int index, int[] arr)
-    {
-        recursiveCalls++;
-        if (index == arr.Length)
-	    {
-            // We only print the array after we've reached the bootom of the current
-            // recursive call. That means the array is full and we can print it.
-            PrintCombination(arr);
-		    return;
-	    }
-        else
+        static int recursiveCalls;
+        static void Main()
         {
-            for (int i = 0; i < arr.Length; i++)
+            Console.Write("n= ");
+            var n = int.Parse(Console.ReadLine());
+            var arr = new int[n];
+            GenerateCombinations(0, arr);
+            Console.WriteLine("Number of recursive calls: {0}", recursiveCalls);
+        }
+
+        static void GenerateCombinations(int index, IList<int> arr)
+        {
+            recursiveCalls++;
+            if (index == arr.Count)
             {
-                arr[index] = i + 1;
-                GenerateCombinations(index + 1, arr);
+                // We only print the array after we've reached the bootom of the current
+                // recursive call. That means the array is full and we can print it.
+                PrintCombination(arr);
+            }
+            else
+            {
+                for (var i = 0; i < arr.Count; i++)
+                {
+                    arr[index] = i + 1;
+                    GenerateCombinations(index + 1, arr);
+                }
             }
         }
-    }
 
-    static void PrintCombination(int[] arr)
-    {
-        foreach (int number in arr)
+        static void PrintCombination(IEnumerable<int> arr)
         {
-            Console.Write(number);
+            foreach (var number in arr)
+            {
+                Console.Write(number);
+            }
+            Console.WriteLine();
         }
-        Console.WriteLine();
     }
 }
