@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. AllPermutations", "AllPe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. AllOrderedKsubNelements", "AllOrderedKsubNelements\5. AllOrderedKsubNelements.csproj", "{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12. EightQueenPuzzle", "EightQueenPuzzle\12. EightQueenPuzzle.csproj", "{83008BD6-131C-4C9A-A90B-5D1319050DB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
