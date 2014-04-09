@@ -1,0 +1,74 @@
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 20px;
+    font: 12px/1.2 Verdana, sans-serif
+}
+
+h1{
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    font-weight: 100;
+}
+
+section.MusicCategories{
+    background-color: #eeeeee;
+    padding: 15px;
+    display: block;
+    width: 400px;
+    overflow: hidden;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+li {
+    padding: 15px;
+    border: solid 1px #808080;
+    width: 370px;
+    list-style: none;
+    margin-top: 30px;
+    background-color: white;
+    position: relative;
+}
+
+li img{
+    float: left;
+    margin-right: 15px;
+    border: solid 1px #808080;
+}
+
+.listenBtn, .addBtn{
+    height: 21px;
+    color: white;
+    text-align: center;
+    padding-left: 10px;
+    font-size: 12px;
+    border: 2px outset #e48184;
+    border-right-color: #ba0000;
+    border-bottom-color: #BA0000;
+    border-left-color: #9d2727;
+}
+
+.listenBtn{
+    width: 69px;
+    background-image: url("../images/largeBtn.png");
+}
+
+.addBtn{
+    width: 56px;
+    background-image: url("../images/smallBtn.png");
+}
+
+.btnContainer{
+    position: absolute;
+    right: 15px;
+    bottom: 15px
+}

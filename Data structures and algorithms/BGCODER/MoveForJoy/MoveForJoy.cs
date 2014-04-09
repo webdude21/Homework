@@ -9,7 +9,7 @@ namespace MoveForJoy
         static void Main()
         {
 
-            var input = Console.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+            var input = Console.ReadLine().Split().Select(int.Parse).ToArray();
             var fX = input[0];
             var fY = input[1];
             var mX = input[2];

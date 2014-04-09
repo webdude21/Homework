@@ -5,7 +5,7 @@ class Guitar
     static void Main()
     {
         var songs = Console.ReadLine().Split(new[] { ", " },
-            StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
+            StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
         var start = int.Parse(Console.ReadLine());
         var maxVolume = int.Parse(Console.ReadLine());
         var solutions = new int[songs.Length + 1, maxVolume + 1];

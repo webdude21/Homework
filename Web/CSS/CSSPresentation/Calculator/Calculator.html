@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+<div id="container">
+<header>
+    <img src="images/icon.png" id="icon">
+    <h1>Calculator</h1>
+    <div id="close">x</div>
+    <div id="maximize">
+        <img src="images/max.png">
+    </div>
+    <div id="minimize">_</div>
+</header>
+<div id="calc-body">
+<header id="calc-header">
+    <ul id="menu">
+        <li>View</li>
+        <li>Edit</li>
+        <li>Help</li>
+    </ul>
+</header>
+<div id="input">
+    <input type="text" id="field" value="0">
+</div>
+<div id="nums">
+    <table id="table-nums">
+        <tr>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td class="centers">0000</td>
+            <td class="rights">0000</td>
+        </tr>
+        <tr>
+            <td class="grey-nums">63</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="grey-nums">47</td>
+            <td></td>
+            <td></td>
+            <td class="rights grey-nums">32</td>
+        </tr>
+        <tr>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td>0000</td>
+            <td class="centers">0000</td>
+            <td class="rights">0000</td>
+        </tr>
+        <tr>
+            <td class="grey-nums">31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="grey-nums">15</td>
+            <td></td>
+            <td></td>
+            <td class="rights grey-nums">0</td>
+        </tr>
+    </table>
+</div>
+<aside>
+    <div class="numValues">
+        <ul class="numValue-list">
+            <li>
+                <input type="radio" id="hex" name="sys"/>
+                <label for="hex">Hex</label>
+            </li>
+            <li>
+                <input type="radio" id="dec" checked="checked" name="sys" />
+                <label for="dec">Dec</label>
+            </li>
+            <li>
+                <input type="radio" id="oct" name="sys"/>
+                <label for="oct">Oct</label>
+            </li>
+            <li>
+                <input type="radio" id="bin" name="sys"/>
+                <label for="bin">Bin</label>
+            </li>
+        </ul>
+    </div>
+    <div class="numValues">
+        <ul class="numValue-list">
+            <li>
+                <input type="radio" id="qword" checked="checked" name="word"/>
+                <label for="qword">Qword</label>
+            </li>
+            <li>
+                <input type="radio" id="dword" name="word"/>
+                <label for="dword">Dword</label>
+            </li>
+            <li>
+                <input type="radio" id="word" name="word"/>
+                <label for="word">Word</label>
+            </li>
+            <li>
+                <input type="radio" id="byte" name="word"/>
+                <label for="byte">Byte</label>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div id="main">
+    <table id="keys" cellpadding="2">
+        <tr>
+            <td>
+                <button class="disabled" disabled="disabled"></button>
+            </td>
+            <td>
+                <button class="functions onHover" id="mod">Mod</button>
+            </td>
+            <td>
+                <button class="letters">A</button>
+            </td>
+            <td>
+                <button class="dark-functions special">MC</button>
+            </td>
+            <td>
+                <button class="dark-functions special">MR</button>
+            </td>
+            <td>
+                <button class="dark-functions special">MS</button>
+            </td>
+            <td>
+                <button class="dark-functions special">M+</button>
+            </td>
+            <td>
+                <button class="dark-functions special">M-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="functions onHover">(</button>
+            </td>
+            <td>
+                <button class="functions onHover">)</button>
+            </td>
+            <td>
+                <button class="letters">B</button>
+            </td>
+            <td>
+                <button class="functions onHover">&#8592;</button>
+            </td>
+            <td>
+                <button class="functions onHover">CE</button>
+            </td>
+            <td>
+                <button class="functions onHover">C</button>
+            </td>
+            <td>
+                <button class="functions onHover">&plusmn;</button>
+            </td>
+            <td>
+                <button class="letters" disabled="disabled">&radic;</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="functions onHover">RoL</button>
+            </td>
+            <td>
+                <button class="functions onHover">RoR</button>
+            </td>
+            <td>
+                <button class="letters">C</button>
+            </td>
+            <td>
+                <button class="nums onHover">7</button>
+            </td>
+            <td>
+                <button class="nums onHover">8</button>
+            </td>
+            <td>
+                <button class="nums onHover">9</button>
+            </td>
+            <td>
+                <button class="functions onHover">/</button>
+            </td>
+            <td>
+                <button class="letters" disabled="disabled">%</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="functions onHover">Or</button>
+            </td>
+            <td>
+                <button class="functions onHover">Xor</button>
+            </td>
+            <td>
+                <button class="letters">D</button>
+            </td>
+            <td>
+                <button class="nums onHover">4</button>
+            </td>
+            <td>
+                <button class="nums onHover">5</button>
+            </td>
+            <td>
+                <button class="nums onHover">6</button>
+            </td>
+            <td>
+                <button class="functions onHover">*</button>
+            </td>
+            <td>
+                <button class="letters" disabled="disabled">1/x</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="functions onHover">Lsh</button>
+            </td>
+            <td>
+                <button class="functions onHover">Rsh</button>
+            </td>
+            <td>
+                <button class="letters">E</button>
+            </td>
+            <td>
+                <button class="nums onHover">1</button>
+            </td>
+            <td>
+                <button class="nums onHover">2</button>
+            </td>
+            <td>
+                <button class="nums onHover">3</button>
+            </td>
+            <td>
+                <button class="functions onHover">-</button>
+            </td>
+            <td rowspan="2">
+                <button class="long functions onHover">=</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="functions onHover">Not</button>
+            </td>
+            <td>
+                <button class="functions onHover">And</button>
+            </td>
+            <td>
+                <button class="letters">F</button>
+            </td>
+            <td colspan="2">
+                <button class="big nums onHover">0</button>
+            </td>
+            <td>
+                <button class="letters">.</button>
+            </td>
+            <td>
+                <button class="functions onHover">+</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
