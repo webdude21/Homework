@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 
-namespace KnapsackProblem
+namespace Food
 {
-    class KnapsackProblem
+    class Food
     {
-        private const int MaxWeight = 10;
+        private static int maxWeight;
         static void Main()
         {
             var itemList = ReadInput();
             var keepArray = Solve(itemList);
             PrintResult(GetResult(itemList, keepArray));
         }
+
         private static int[,] Solve(IList<Item> itemList)
         {
-     {
             var valueArray = new int[itemList.Count + 1, maxWeight + 1];
             var keepArray = new int[itemList.Count + 1, maxWeight + 1];
 
@@ -41,21 +41,23 @@ namespace KnapsackProblem
 
             return keepArray;
         }
-        private static void PrintResult(IEnumerable<Item> getResult)
+        private static void PrintResult(IList<Item> getResult)
         {
-            Console.WriteLine("The optimal solution of this knapsack problem is: ");
+            Console.WriteLine(getResult.Sum(x => x.Price));
+
             foreach (var item in getResult)
             {
                 Console.WriteLine(item);
             }
         }
-        private static IEnumerable<Item> GetResult(IList<Item> itemList, int[,] keepArray)
+        private static IList<Item> GetResult(IList<Item> itemList, int[,] keepArray)
         {
-            var weightLeft = MaxWeight;
+            var weightLeft = maxWeight;
             var finelItemList = new List<Item>();
 
             for (var i = itemList.Count - 1; i >= 0; i--)
             {
+                if (itemList[i].Weight > maxWeight) continue;
                 if (keepArray[i + 1, itemList[i].Weight] == 1 && itemList[i].Weight <= weightLeft)
                 {
                     finelItemList.Add(itemList[i]);
@@ -67,17 +69,52 @@ namespace KnapsackProblem
         }
         private static IList<Item> ReadInput()
         {
-            if (File.Exists(@"..\..\input.txt"))
-                Console.SetIn(new StreamReader(@"..\..\input.txt"));
-            
-            var itemList = new List<Item>();
-            var inputLine = Console.ReadLine();
-            while (inputLine != null)
+            maxWeight = int.Parse(Console.ReadLine());
+            var linesOfInput = int.Parse(Console.ReadLine());
+            var itemList = new Item[linesOfInput];
+
+            for (var i = 0; i < linesOfInput; i++)
             {
-                itemList.Add(new Item(inputLine));
-                inputLine = Console.ReadLine();
+                itemList[i] = new Item(Console.ReadLine());
             }
-            return itemList.ToArray();
+
+            return itemList;
+        }
+    }
+
+    class Item
+    {
+        public string Name { get; private set; }
+        public int Weight { get; private set; }
+        public int Price { get; private set; }
+
+        public Item(string stringInfo)
+        {
+            this.Name = GetNameFromString(stringInfo);
+            this.Weight = GetWeightFromString(stringInfo);
+            this.Price = GetpriceFromString(stringInfo);
+        }
+
+        private int GetpriceFromString(string stringInfo)
+        {
+            var stringSplit = stringInfo.Split();
+            return int.Parse(stringSplit[2]);
+        }
+
+        private int GetWeightFromString(string stringInfo)
+        {
+            var stringSplit = stringInfo.Split();
+            return int.Parse(stringSplit[1]);
+        }
+
+        private static string GetNameFromString(string stringInfo)
+        {
+            return stringInfo.Split().FirstOrDefault();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Name);
         }
     }
 }

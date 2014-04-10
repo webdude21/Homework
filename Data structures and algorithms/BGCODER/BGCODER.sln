@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecoverMessage", "RecoverMe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximalPath", "MaximalPath\MaximalPath.csproj", "{7B0C6789-A635-47EA-BF2A-04C267C1FFA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food", "Food\Food.csproj", "{561CD0E6-789E-4694-9DA9-78D22620DD67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7B0C6789-A635-47EA-BF2A-04C267C1FFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0C6789-A635-47EA-BF2A-04C267C1FFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0C6789-A635-47EA-BF2A-04C267C1FFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{561CD0E6-789E-4694-9DA9-78D22620DD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561CD0E6-789E-4694-9DA9-78D22620DD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561CD0E6-789E-4694-9DA9-78D22620DD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561CD0E6-789E-4694-9DA9-78D22620DD67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
