@@ -7,6 +7,7 @@ namespace Food
     class Food
     {
         private static int maxWeight;
+        private static int maxValue;
         static void Main()
         {
             var itemList = ReadInput();
@@ -23,22 +24,19 @@ namespace Food
             {
                 for (var col = 1; col <= maxWeight; col++)
                 {
-                    if ((itemList[row - 1].Weight <= col) &&
+                    var remainingSpace = col - itemList[row - 1].Weight;
+                    if (remainingSpace >= 0 && valueArray[row - 1, remainingSpace] +
                         itemList[row - 1].Price >= valueArray[row - 1, col])
                     {
-                        var remainingSpace = col - itemList[row - 1].Weight;
-                        if (remainingSpace >= 0 && valueArray[row - 1, remainingSpace] +
-                            itemList[row - 1].Price >= valueArray[row - 1, col])
-                        {
-                            valueArray[row, col] = itemList[row - 1].Price;
-                            keepArray[row, col] = 1;
-                        }
-                        else
-                            valueArray[row, col] = valueArray[row - 1, col];
+                        valueArray[row, col] = itemList[row - 1].Price + valueArray[row - 1, remainingSpace];
+                        keepArray[row, col] = 1;
                     }
+                    else
+                        valueArray[row, col] = valueArray[row - 1, col];
                 }
             }
 
+            maxValue = valueArray[itemList.Count, maxWeight];
             return keepArray;
         }
         private static void PrintResult(IList<Item> getResult)
@@ -58,10 +56,10 @@ namespace Food
             for (var i = itemList.Count - 1; i >= 0; i--)
             {
                 if (itemList[i].Weight > maxWeight) continue;
-                if (keepArray[i + 1, itemList[i].Weight] == 1 && itemList[i].Weight <= weightLeft)
+                if (keepArray[i + 1, weightLeft] == 1 && itemList[i].Weight <= weightLeft)
                 {
                     finelItemList.Add(itemList[i]);
-                    weightLeft = weightLeft - itemList[i].Weight;
+                    weightLeft -= itemList[i].Weight;
                 }
             }
 
@@ -71,17 +69,15 @@ namespace Food
         {
             maxWeight = int.Parse(Console.ReadLine());
             var linesOfInput = int.Parse(Console.ReadLine());
-            var itemList = new Item[linesOfInput];
+            var itemList = new List<Item>();
 
             for (var i = 0; i < linesOfInput; i++)
             {
-                itemList[i] = new Item(Console.ReadLine());
+                itemList.Add(new Item(Console.ReadLine()));
             }
-
             return itemList;
         }
     }
-
     class Item
     {
         public string Name { get; private set; }

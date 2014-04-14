@@ -1,0 +1,70 @@
+body, ul, li, section, article, a{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body{
+    background-color: #1e3741;
+    width: 715px;
+}
+
+#topMenu ul li{
+    float: left;
+    padding: 10px 15px;
+    background-color: #4b5f67;
+    margin: 10px 1px;
+    margin-bottom: 20px;
+}
+
+ul li#selected{
+    background-color: #1e3741;
+}
+
+ul li#selected a{
+    color:  #ffffff;
+}
+
+#topMenu a{
+    color: #7ea1b0;
+    text-decoration: none #83877c;
+}
+
+#topMenu a:hover{
+    text-decoration: underline;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+#articles a{
+    text-decoration: none;
+    padding-right: 20px;
+    color: #9fb7c1;
+}
+
+#articles ul li{
+    padding: 15px 10px;
+    border-bottom: solid #546166 1px;
+}
+
+#articles ul li:last-child{
+    border-bottom: none;
+}
+
+#selected2{
+    background-color: #00968c;
+}
+
+#selected2 a{
+    color: #ffffff;
+}
+
+#articles ul{
+    width: 300px;
+    float: left;
+}

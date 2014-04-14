@@ -1,0 +1,70 @@
+/* Variable */
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+img,
+input,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: silver;
+}
+body section.gallery {
+  text-align: center;
+}
+body section.gallery ul {
+  position: relative;
+  margin-top: 20px;
+}
+body section.gallery li {
+  display: inline;
+  list-style-type: none;
+}
+body section.gallery li:target .gallery-thumbnail {
+  display: inline;
+  opacity: 1;
+}
+body section.gallery li:target .gallery-photo {
+  display: block;
+  position: absolute;
+  margin-top: 10px;
+  left: 25%;
+  right: 25%;
+}
+body section.gallery li:target .gallery-photo img {
+  border: 2px solid #000000;
+}
+body section.gallery .gallery-photo {
+  display: none;
+}
+body section.gallery .gallery-thumbnail {
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
+}
+body section.gallery .gallery-thumbnail:hover {
+  opacity: 0.7;
+}
+body section.gallery .gallery-thumbnail img {
+  border: 2px solid #000000;
+  width: 15%;
+}

@@ -1,4 +1,15 @@
-﻿using System;
+﻿/* Write a program based on dynamic programming to solve the "Knapsack Problem": 
+ * you are given N products, each has weight Wi and costs Ci and a knapsack of capacity 
+ * M and you want to put inside a subset of the products with highest cost and weight ≤ M.
+ * The numbers N, M, Wi and Ci are integers in the range [1..500]. Example: M=10 kg, N=6, products:
+ * beer – weight=3, cost=2
+ * vodka – weight=8, cost=12
+ * cheese – weight=4, cost=5
+ * nuts – weight=1, cost=4
+ * ham – weight=2, cost=3
+ * whiskey – weight=8, cost=13 */
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -15,13 +26,12 @@ namespace KnapsackProblem
         }
         private static int[,] Solve(IList<Item> itemList)
         {
-     {
-            var valueArray = new int[itemList.Count + 1, maxWeight + 1];
-            var keepArray = new int[itemList.Count + 1, maxWeight + 1];
+            var valueArray = new int[itemList.Count + 1, MaxWeight + 1];
+            var keepArray = new int[itemList.Count + 1, MaxWeight + 1];
 
             for (var row = 1; row <= itemList.Count; row++)
             {
-                for (var col = 1; col <= maxWeight; col++)
+                for (var col = 1; col <= MaxWeight; col++)
                 {
                     if ((itemList[row - 1].Weight <= col) &&
                         itemList[row - 1].Price >= valueArray[row - 1, col])
