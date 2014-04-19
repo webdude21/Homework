@@ -1,0 +1,82 @@
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+body {
+  font-size: 16px;
+}
+body div#wrapper {
+  width: 960px;
+  padding: 25px;
+}
+body div#wrapper a.btn-unselect {
+  position: absolute;
+  left: 179px;
+  top: 115px;
+  float: left;
+}
+body div#wrapper a.btn-select {
+  position: absolute;
+  left: 213px;
+  top: 115px;
+  float: left;
+}
+body div#wrapper ul {
+  float: left;
+  overflow-y: scroll;
+  width: 150px;
+  height: 200px;
+  border-top-left-radius: 5px;
+  list-style-type: none;
+  background: #d7d0fa;
+  background: -moz-linear-gradient(top, #d7d0fa 0%, #8169ff 1%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d7d0fa), color-stop(1%, #8169ff), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, #d7d0fa 0%, #8169ff 1%, #ffffff 100%);
+  background: -o-linear-gradient(top, #d7d0fa 0%, #8169ff 1%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #d7d0fa 0%, #8169ff 1%, #ffffff 100%);
+  background: linear-gradient(to bottom, #d7d0fa 0%, #8169ff 1%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d7d0fa', endColorstr='#ffffff', GradientType=0);
+}
+body div#wrapper ul.selected-items {
+  margin-left: 72px;
+}
+body div#wrapper ul li {
+  padding: 5px 15px;
+}
+body div#wrapper ul li:first-letter {
+  text-decoration: underline;
+}
+body div#wrapper ul li.selected {
+  background: #6c4eff;
+}
+body div#wrapper ul li:not(:first-child) {
+  border-top: 1px solid black;
+}

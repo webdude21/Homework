@@ -1,0 +1,128 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+/* ClearFix */
+body {
+  font-size: 16px;
+}
+body a {
+  text-decoration: none;
+  color: #c72d2f;
+}
+body #wrapper {
+  width: 960px;
+  padding: 20px;
+}
+body #wrapper span {
+  text-transform: uppercase;
+}
+body #wrapper > div {
+  padding: 10px 4px 5px 4px;
+  display: inline;
+  float: left;
+  width: 140px;
+  border: 2px solid #d3d7da;
+}
+body #wrapper > div:nth-of-type(1) div:not(.yellowBox) {
+  margin-top: 5px;
+  margin-right: 0px;
+}
+body #wrapper > div:nth-of-type(6) div:not(.yellowBox) {
+  margin-top: 5px;
+  margin-right: 41px;
+}
+body #wrapper > div:nth-of-type(even) {
+  height: 265px;
+}
+body #wrapper > div:nth-of-type(odd) {
+  height: 245px;
+}
+body #wrapper > div div.yellowBox {
+  border: 1px solid yellow;
+  margin-top: 16px;
+  background-color: #ffffdd;
+}
+body #wrapper > div p {
+  margin-top: 16px;
+}
+body #wrapper > div div:not(.yellowBox) {
+  margin-top: 5px;
+  margin-right: 26px;
+}
+body #wrapper > div hgroup {
+  background-position: left bottom !important;
+  background-position-x: 0%;
+  background-position-y: 100%;
+  padding-left: 40px;
+  height: 40px;
+  display: table-cell;
+  vertical-align: bottom;
+}
+body #wrapper > div hgroup h2,
+body #wrapper > div hgroup h3 {
+  font-size: 1em;
+}
+body #wrapper > div:nth-of-type(odd) {
+  border-right: none;
+}
+body #wrapper > div:nth-of-type(even) {
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 22%, #f1f2f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(22%, #ffffff), color-stop(100%, #f1f2f4));
+  background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 22%, #f1f2f4 100%);
+  background: -o-linear-gradient(top, #ffffff 0%, #ffffff 22%, #f1f2f4 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #ffffff 22%, #f1f2f4 100%);
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 22%, #f1f2f4 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f1f2f4', GradientType=0);
+}
+body #wrapper > div:nth-of-type(1) hgroup {
+  background: url("imgs/install.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(2) hgroup {
+  background: url("imgs/tuneUp.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(3) hgroup {
+  background: url("imgs/manage.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(4) hgroup {
+  background: url("imgs/openSource.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(5) hgroup {
+  background: url("imgs/twitter.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(6) hgroup {
+  background: url("imgs/about.png") no-repeat;
+}
+body #wrapper > div:nth-of-type(3),
+body #wrapper > div:nth-of-type(5) {
+  border-left: none;
+}

@@ -1,0 +1,116 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, 'Palatino Linotype', 'Book Antiqua', 'URW Palladio L', serif;
+}
+body {
+  font-size: 16px;
+  color: #ffffff;
+}
+body #wrapper {
+  width: 960px;
+  padding: 25px;
+}
+body #wrapper form {
+  width: 380px;
+  text-align: right;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid #575757;
+}
+body #wrapper form,
+body #wrapper form input,
+body #wrapper form button {
+  color: #ffffff;
+  background: #444444;
+  background: -moz-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebff5b), color-stop(100%, #444444));
+  background: -webkit-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -o-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -ms-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: linear-gradient(to bottom, #ebff5b 0%, #444444 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebff5b', endColorstr='#444444', GradientType=0);
+}
+body #wrapper form input[type=radio] {
+  display: none;
+  color: black;
+}
+body #wrapper form input[type=radio]:checked + label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+body #wrapper form button,
+body #wrapper form input[type="reset"] {
+  color: #333;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  margin-top: 15px;
+  border-bottom: 1px solid black;
+  font-family: Arial;
+}
+body #wrapper form button:hover,
+body #wrapper form input[type="reset"]:hover {
+  background: #f1ff8e;
+}
+body #wrapper form label {
+  font-size: 1rem;
+}
+body #wrapper form label#radio-yes {
+  margin-top: 15px;
+}
+body #wrapper form fieldset {
+  padding: 10px 15px 0px 15px;
+  border: 3px solid #575757;
+  border-radius: 5px;
+}
+body #wrapper form fieldset:last-of-type {
+  margin-bottom: 10px;
+}
+body #wrapper form fieldset input {
+  font-weight: 100;
+  font-size: 14px;
+  padding: 5px 15px;
+  border: 2px solid #575757;
+  border-radius: 5px;
+  width: 149px;
+  margin-bottom: 5px;
+}
+body #wrapper form fieldset input#tb-age {
+  padding: 5px;
+  width: 35px;
+}
+body #wrapper form fieldset legend {
+  font-style: italic;
+  padding: 0px 15px;
+  font-size: 1.3rem;
+  font-weight: bolder;
+}

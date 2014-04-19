@@ -10,13 +10,11 @@ namespace EightQueenPuzzle
         private const int Queen = 2000;
         private static readonly int[,] AttackablePosition = new int[BoardSize, BoardSize];
         private static int solutionCount;
-
         static void Main()
         {
-            Solve(0,0);
+            Solve(0, 0);
             Console.WriteLine("{0} solutions ware found", solutionCount);
         }
-
         private static void Solve(int queenCount, int col)
         {
             if (queenCount == BoardSize)
@@ -28,16 +26,14 @@ namespace EightQueenPuzzle
 
             for (var row = 0; row < BoardSize; row++)
             {
-                if (AttackablePosition[row,col] == FreeCell)
+                if (AttackablePosition[row, col] == FreeCell)
                 {
                     UpdatePositionsWith(1, row, col);
                     Solve(queenCount + 1, col + 1);
                     UpdatePositionsWith(-1, row, col);
                 }
             }
-
         }
-
         private static void UpdatePositionsWith(int updateNumber, int row, int col)
         {
             for (var index = 0; index < BoardSize; index++)
@@ -68,7 +64,6 @@ namespace EightQueenPuzzle
             if (updateNumber == -1)
                 AttackablePosition[row, col] = FreeCell;
         }
-
         private static void PrintSolution()
         {
             var sb = new StringBuilder();
@@ -80,7 +75,6 @@ namespace EightQueenPuzzle
                 }
                 sb.Append(Environment.NewLine);
             }
-
             Console.WriteLine(sb);
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. NestedLoopsN", "NestedLoopsN\1. NestedLoopsN.csproj", "{B4041D32-5343-45A4-8D10-91C73CBC95A5}"
 EndProject
@@ -14,6 +14,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. AllOrderedKsubNelements", "AllOrderedKsubNelements\5. AllOrderedKsubNelements.csproj", "{F7F0ED33-8B1F-4C41-9BF9-556AEE6E4127}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12. EightQueenPuzzle", "EightQueenPuzzle\12. EightQueenPuzzle.csproj", "{83008BD6-131C-4C9A-A90B-5D1319050DB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7. FindAllPathsInLabyrinth", "FindAllPathsInLabyrinth\7. FindAllPathsInLabyrinth.csproj", "{3907FAD7-95E5-4DCA-B854-9695AC2134A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8. FindAtLeastOnePathInLabyrinth", "FindAtLeastOnePathInLabyrinth\8. FindAtLeastOnePathInLabyrinth.csproj", "{3CE4389B-2389-46D6-A0CF-952FDE7BBA73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9. LargestConnectedAreaInLabyrinth", "LargestConnectedAreaInLabyrinth\9. LargestConnectedAreaInLabyrinth.csproj", "{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10. FindAllPassableAreas", "FindAllPassableAreas\10. FindAllPassableAreas.csproj", "{B83C6804-145A-4109-9C61-4793A06A159F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,22 @@ Global
 		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83008BD6-131C-4C9A-A90B-5D1319050DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3907FAD7-95E5-4DCA-B854-9695AC2134A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3907FAD7-95E5-4DCA-B854-9695AC2134A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3907FAD7-95E5-4DCA-B854-9695AC2134A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3907FAD7-95E5-4DCA-B854-9695AC2134A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE4389B-2389-46D6-A0CF-952FDE7BBA73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE4389B-2389-46D6-A0CF-952FDE7BBA73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE4389B-2389-46D6-A0CF-952FDE7BBA73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE4389B-2389-46D6-A0CF-952FDE7BBA73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B83C6804-145A-4109-9C61-4793A06A159F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83C6804-145A-4109-9C61-4793A06A159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83C6804-145A-4109-9C61-4793A06A159F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83C6804-145A-4109-9C61-4793A06A159F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

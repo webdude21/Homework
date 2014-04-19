@@ -1,0 +1,67 @@
+/* Reset All  */
+html,
+#wrapper,
+body,
+li,
+ul,
+a {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-size: 16px;
+}
+body #wrapper {
+  width: 960px;
+}
+body #wrapper a {
+  text-decoration: none;
+  color: black;
+}
+body #wrapper ul.sidebar {
+  background: #d29bff;
+  background: -moz-linear-gradient(top, #d29bff 0%, #907bfe 89%, #8b76ff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d29bff), color-stop(89%, #907bfe), color-stop(100%, #8b76ff));
+  background: -webkit-linear-gradient(top, #d29bff 0%, #907bfe 89%, #8b76ff 100%);
+  background: -o-linear-gradient(top, #d29bff 0%, #907bfe 89%, #8b76ff 100%);
+  background: -ms-linear-gradient(top, #d29bff 0%, #907bfe 89%, #8b76ff 100%);
+  background: linear-gradient(to bottom, #d29bff 0%, #907bfe 89%, #8b76ff 100%);
+  padding: 5px 15px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  list-style: none;
+  width: 185px;
+}
+body #wrapper ul.sidebar li {
+  font-size: 1.4rem;
+  padding: 5px 15px;
+  border-bottom: 1px solid #9D00FF;
+  position: relative;
+}
+body #wrapper ul.sidebar li:last-of-type {
+  border: none;
+}
+body #wrapper ul.sidebar li ul {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  list-style: none;
+  padding: 5px 0px;
+  top: -5px;
+  left: 190px;
+  width: 235px;
+  background: #b5aaff url(imgs/arrow.png) no-repeat 5px 15px;
+}
+body #wrapper ul.sidebar li ul li {
+  margin-right: 5px;
+  margin-left: 20px;
+  font-size: 1.1rem;
+}
+body #wrapper ul.sidebar li:hover {
+  border: 1px #9d00ff solid;
+  border-radius: 5px;
+}
+body #wrapper ul.sidebar li:hover ul {
+  display: block;
+}

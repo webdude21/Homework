@@ -1,0 +1,89 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  font-family: Constantina, Georgia, 'Nimbus Roman No9 L', serif;
+}
+
+body {
+  font-size: 16px;
+
+  #wrapper {
+    width: 960px;
+    padding: 25px;
+
+    div{
+      position: relative;
+      border-radius: 15px;
+      border: 1px solid black;
+      padding: 10px 35px 20px;
+      width: 863px;
+
+      background: #df28ff;
+      background: -moz-linear-gradient(top,  #df28ff 0%, #df28ff 15%, #f2afff 60%, #f5c3fe 68%, #f9dbff 75%, #f9dbff 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#df28ff), color-stop(15%,#df28ff), color-stop(60%,#f2afff), color-stop(68%,#f5c3fe), color-stop(75%,#f9dbff), color-stop(100%,#f9dbff));
+      background: -webkit-linear-gradient(top,  #df28ff 0%,#df28ff 15%,#f2afff 60%,#f5c3fe 68%,#f9dbff 75%,#f9dbff 100%);
+      background: -o-linear-gradient(top,  #df28ff 0%,#df28ff 15%,#f2afff 60%,#f5c3fe 68%,#f9dbff 75%,#f9dbff 100%);
+      background: -ms-linear-gradient(top,  #df28ff 0%,#df28ff 15%,#f2afff 60%,#f5c3fe 68%,#f9dbff 75%,#f9dbff 100%);
+      background: linear-gradient(to bottom,  #df28ff 0%,#df28ff 15%,#f2afff 60%,#f5c3fe 68%,#f9dbff 75%,#f9dbff 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#df28ff', endColorstr='#f9dbff',GradientType=0 );
+
+      h1{
+        font-size: 1.8rem;
+        padding-bottom: 5px;
+        padding-top: 5px;
+      }
+      p{
+        &:first-of-type{
+          margin-left: 15px;
+          display: inline-block;
+          padding: 5px 15px;
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+        &:last-of-type{
+          text-align: justify;
+          padding-bottom: 11px;
+          padding-top: 21px;
+        }
+      }
+      img{
+        position: absolute;
+        top: 83px;
+
+        &.left-arrow{
+          left: 0px;
+        }
+        &.right-arrow{
+          right:0px;
+        }
+      }
+    }
+  }
+}

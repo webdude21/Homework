@@ -1,0 +1,126 @@
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, 'Times New Roman', 'Nimbus Roman No9 L', 'Freeserif', Times, serif;
+}
+body {
+  font-size: 16px;
+  padding: 15px;
+  width: 960px;
+}
+body #wrapper {
+  overflow: hidden;
+}
+body #wrapper ul.tab-strip {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  height: 230px;
+  position: relative;
+}
+body #wrapper ul.tab-strip > li {
+  list-style-type: none;
+  background: #ededed;
+  background: -moz-linear-gradient(top, #ededed 1%, #ababab 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #ededed), color-stop(100%, #ababab));
+  background: -webkit-linear-gradient(top, #ededed 1%, #ababab 100%);
+  background: -o-linear-gradient(top, #ededed 1%, #ababab 100%);
+  background: -ms-linear-gradient(top, #ededed 1%, #ababab 100%);
+  background: linear-gradient(to bottom, #ededed 1%, #ababab 100%);
+  padding: 5px 15px;
+  float: left;
+  border-radius: 5px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+body #wrapper ul.tab-strip > li:hover {
+  background: #eee;
+}
+body #wrapper ul.tab-strip > li a.tab-btn {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4rem;
+}
+body #wrapper ul.tab-strip > li.current {
+  background: none;
+  border-bottom: none;
+  border-radius: 0;
+}
+body #wrapper ul.tab-strip > li.current:hover {
+  background: #eee;
+}
+body #wrapper ul.tab-strip > li.current a {
+  font-size: 1.4rem;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content {
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  width: 330px;
+  height: 230px;
+  border-top: none;
+  padding: 15px 5px 5px;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content table {
+  border-collapse: collapse;
+  background: #eeeeee;
+  border: 1px solid black;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content table thead {
+  background: #aaaaaa;
+  background: -moz-linear-gradient(top, #aaaaaa 0%, #eeeeee 75%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aaaaaa), color-stop(75%, #eeeeee));
+  background: -webkit-linear-gradient(top, #aaaaaa 0%, #eeeeee 75%);
+  background: -o-linear-gradient(top, #aaaaaa 0%, #eeeeee 75%);
+  background: -ms-linear-gradient(top, #aaaaaa 0%, #eeeeee 75%);
+  background: linear-gradient(to bottom, #aaaaaa 0%, #eeeeee 75%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaaa', endColorstr='#eeeeee', GradientType=0);
+}
+body #wrapper ul.tab-strip > li.current div.tab-content table th {
+  padding: 5px 15px 5px 15px;
+  border: 1px solid black;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content table td {
+  padding: 5px 15px 5px 5px;
+  border: 1px solid black;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content ul {
+  list-style-type: disc;
+}
+body #wrapper ul.tab-strip > li.current div.tab-content ul > li > ul {
+  margin-left: 25px;
+  list-style-type: lower-alpha;
+}
+body #wrapper ul.tab-strip > li.current a.tab-btn {
+  font-weight: bolder;
+}
+body #wrapper ul.tab-strip > li:not(.current) div.tab-content {
+  display: none;
+}

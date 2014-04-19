@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Write a recursive program for generating and printing all permutations of the numbers 
+ * 1, 2, ..., n for given integer number n. Example: 
+ * n=3 => {1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2},{3, 2, 1} */
+
+using System;
 using System.Collections.Generic;
 
 namespace AllPermutations
@@ -11,24 +15,28 @@ namespace AllPermutations
             Console.Write("n= ");
             var n = int.Parse(Console.ReadLine());
             var array = new int[n];
-            GeneratePermutations(0, array); 
+            var usedNumbers = new bool[n];
+            GeneratePermutations(0, array, usedNumbers);
             Console.WriteLine("Number of recursive calls: {0} ", recursiveCalls);
         }
 
-        static void GeneratePermutations(int index, IList<int> array)
+        static void GeneratePermutations(int index, IList<int> array, IList<bool> usedNumbers)
         {
-
             if (index == array.Count)
             {
                 PrintCombination(array);
                 recursiveCalls++;
+                return;
             }
-            else
-            {   
-                for (var i = 0; i < array.Count; i++)
+
+            for (var i = 0; i < array.Count; i++)
+            {
+                if (!usedNumbers[i])
                 {
                     array[index] = i + 1;
-                    GeneratePermutations(index + 1, array);
+                    usedNumbers[i] = true;
+                    GeneratePermutations(index + 1, array, usedNumbers);
+                    usedNumbers[i] = false; 
                 }
             }
         }
