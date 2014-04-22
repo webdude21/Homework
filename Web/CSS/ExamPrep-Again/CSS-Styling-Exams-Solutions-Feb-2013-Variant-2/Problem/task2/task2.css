@@ -1,0 +1,114 @@
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+}
+body div#wrapper {
+  width: 960px;
+  padding: 25px;
+}
+body div#wrapper ul.notification-list {
+  display: inline-block;
+  list-style-type: none;
+  position: relative;
+}
+body div#wrapper ul.notification-list a {
+  text-decoration: none;
+  color: #5e5e5e;
+}
+body div#wrapper ul.notification-list > li {
+  float: left;
+  background: #dddddd;
+  background: -moz-linear-gradient(top, #aaaaaa 0%, #dddddd 80%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aaaaaa), color-stop(80%, #dddddd));
+  background: -webkit-linear-gradient(top, #aaaaaa 0%, #dddddd 80%);
+  background: -o-linear-gradient(top, #aaaaaa 0%, #dddddd 80%);
+  background: -ms-linear-gradient(top, #aaaaaa 0%, #dddddd 80%);
+  background: linear-gradient(to bottom, #aaaaaa 0%, #dddddd 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaaa', endColorstr='#dddddd', GradientType=0);
+  padding: 5px 15px;
+  border: 1px solid black;
+}
+body div#wrapper ul.notification-list > li a {
+  font-size: 1.2em;
+}
+body div#wrapper ul.notification-list > li:hover {
+  border-bottom: 2px solid #dddddd;
+}
+body div#wrapper ul.notification-list > li:first-of-type {
+  border-top-left-radius: 15px;
+  border-right: none;
+}
+body div#wrapper ul.notification-list > li:last-of-type {
+  border-top-right-radius: 15px;
+  border-left: none;
+  padding-right: 18px;
+}
+body div#wrapper ul.notification-list > li div.content {
+  background: #cccccc;
+  background: -moz-linear-gradient(top, #dddddd 30%, #cccccc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #dddddd), color-stop(100%, #cccccc));
+  background: -webkit-linear-gradient(top, #dddddd 30%, #cccccc 100%);
+  background: -o-linear-gradient(top, #dddddd 30%, #cccccc 100%);
+  background: -ms-linear-gradient(top, #dddddd 30%, #cccccc 100%);
+  background: linear-gradient(to bottom, #dddddd 30%, #cccccc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#cccccc', GradientType=0);
+  position: absolute;
+  left: 0px;
+  top: 33px;
+  border: 1px solid black;
+  border-top: none;
+  width: 470px;
+}
+body div#wrapper ul.notification-list > li div.content a {
+  font-size: 1em;
+}
+body div#wrapper ul.notification-list > li div.content a:hover {
+  text-decoration: underline;
+}
+body div#wrapper ul.notification-list > li div.content ul {
+  list-style-type: none;
+}
+body div#wrapper ul.notification-list > li div.content ul li {
+  padding: 5px 15px;
+}
+body div#wrapper ul.notification-list > li div.content ul li img {
+  margin-right: 5px;
+}
+body div#wrapper ul.notification-list > li:not(:hover) div.content {
+  display: none;
+}
+body div#wrapper img {
+  width: 15px;
+}

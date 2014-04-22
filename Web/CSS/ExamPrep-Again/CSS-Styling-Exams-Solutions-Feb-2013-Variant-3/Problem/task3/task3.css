@@ -1,0 +1,119 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  font-family: Cambria, 'Palatino Linotype', 'Book Antiqua', 'URW Palladio L', serif;
+  color: #ffffff;
+}
+body div#wrapper {
+  width: 960px;
+}
+body div#wrapper form {
+  margin: 25px;
+  padding: 15px;
+  border: 1px solid #575757;
+  border-radius: 15px;
+  text-align: right;
+  width: 380px;
+  background: #444444;
+  background: -moz-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebff5b), color-stop(100%, #444444));
+  background: -webkit-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -o-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: -ms-linear-gradient(top, #ebff5b 0%, #444444 100%);
+  background: linear-gradient(to bottom, #ebff5b 0%, #444444 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebff5b', endColorstr='#444444', GradientType=0);
+}
+body div#wrapper form #tb-age {
+  padding: 5px;
+  width: 35px;
+}
+body div#wrapper form input[type="reset"],
+body div#wrapper form button {
+  padding: 5px 15px;
+  font-size: 1.2em;
+  background: #444444;
+  background: -moz-linear-gradient(top, #e3fd28 0%, #444444 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e3fd28), color-stop(100%, #444444));
+  background: -webkit-linear-gradient(top, #e3fd28 0%, #444444 100%);
+  background: -o-linear-gradient(top, #e3fd28 0%, #444444 100%);
+  background: -ms-linear-gradient(top, #e3fd28 0%, #444444 100%);
+  background: linear-gradient(to bottom, #e3fd28 0%, #444444 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3fd28', endColorstr='#444444', GradientType=0);
+  border: none;
+  color: #444444;
+  border-bottom: 1px inset black;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+body div#wrapper form input[type="reset"]:hover,
+body div#wrapper form button:hover {
+  background: #f1ff8e;
+}
+body div#wrapper form input[type="radio"]:checked + label {
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+body div#wrapper form input[type="radio"] {
+  display: none;
+}
+body div#wrapper form fieldset {
+  border: 3px solid #575757;
+  border-radius: 5px;
+  padding: 0px 15px;
+}
+body div#wrapper form fieldset:last-of-type {
+  margin-bottom: 10px;
+}
+body div#wrapper form fieldset legend {
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+body div#wrapper form fieldset input {
+  background: #444444;
+  background: -moz-linear-gradient(top, #e8fc5b 0%, #444444 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8fc5b), color-stop(100%, #444444));
+  background: -webkit-linear-gradient(top, #e8fc5b 0%, #444444 100%);
+  background: -o-linear-gradient(top, #e8fc5b 0%, #444444 100%);
+  background: -ms-linear-gradient(top, #e8fc5b 0%, #444444 100%);
+  background: linear-gradient(to bottom, #e8fc5b 0%, #444444 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8fc5b', endColorstr='#444444', GradientType=0);
+  padding: 5px 15px;
+  border: 2px solid #474747;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+}

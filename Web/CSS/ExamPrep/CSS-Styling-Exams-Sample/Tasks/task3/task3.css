@@ -1,99 +1,102 @@
-﻿html,
+html,
+header,
+nav,
 body,
-div,
-p,
-a,
-input,
-ul,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
 li,
+ul,
+a,
+p,
+img,
 fieldset,
 button,
+form,
 input,
-select,
-option,
-textarea {
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
   margin: 0;
   padding: 0;
 }
 body {
   font-size: 16px;
-  color: #333333;
 }
-body #wrapper #popup-box {
-  width: 110px;
-  margin: 15px;
+body div#wrapper {
+  width: 960px;
+  margin-top: 14px;
+  margin-left: 15px;
+}
+body div#wrapper ul#popup-box li.popup-item {
+  position: relative;
+  width: 100px;
+  padding: 5px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid black;
   list-style-type: none;
 }
-body #wrapper #popup-box li.popup-item {
-  position: relative;
-  border-bottom: 1px solid black;
-  padding: 5px;
-}
-body #wrapper #popup-box li.popup-item:first-of-type {
+body div#wrapper ul#popup-box li.popup-item:first-of-type {
   border-top: 1px solid black;
 }
-body #wrapper #popup-box li.popup-item > a {
-  color: #333333;
-  line-height: 25px;
-  text-decoration: none;
-  vertical-align: central;
-  display: block;
-}
-body #wrapper #popup-box li.popup-item > a:hover {
-  background-color: rbga(0, 0, 0, 0.2);
-}
-body #wrapper #popup-box li.popup-item > a span.current {
+body div#wrapper ul#popup-box li.popup-item .current {
   font-weight: bold;
 }
-body #wrapper #popup-box li.popup-item > a img {
-  width: 25px;
-  vertical-align: central;
-}
-body #wrapper #popup-box li.popup-item > div {
-  display: block;
+body div#wrapper ul#popup-box li.popup-item .popup-content {
   position: absolute;
   left: 120px;
-  top: 0;
-  width: 200px;
+  top: 0px;
 }
-body #wrapper #popup-box li.popup-item > div.invisible {
-  display: none;
-}
-body #wrapper #popup-box li.popup-item > div > a {
+body div#wrapper ul#popup-box li.popup-item .popup-content .btn-popup-close {
   position: absolute;
   top: 15px;
-  right: 5px;
-  text-decoration: none;
-  color: #333333;
-  border: 1px solid black;
-  padding: 0 5px;
+  left: 176px;
+  border: 1px solid #000000;
   border-radius: 5px;
+  padding: 0px 5px;
 }
-body #wrapper #popup-box li.popup-item > div > a:hover {
-  text-decoration: underline;
-}
-body #wrapper #popup-box li.popup-item > div fieldset {
-  border: 1px solid black;
+body div#wrapper ul#popup-box li.popup-item .popup-content fieldset {
   padding: 15px;
+  border: 1px solid #000000;
 }
-body #wrapper #popup-box li.popup-item > div fieldset legend {
-  font-weight: bold;
-  font-size: 1.2em;
+body div#wrapper ul#popup-box li.popup-item .popup-content fieldset legend {
+  padding-left: 2px;
+  padding-right: 2px;
+  font-weight: bolder;
+  font-size: 1.2rem;
 }
-body #wrapper #popup-box li.popup-item > div fieldset button {
+body div#wrapper ul#popup-box li.popup-item .popup-content fieldset button {
   padding: 5px 10px;
-  background: #666666;
-  background: -moz-linear-gradient(top, #cccccc 0%, #666666 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cccccc), color-stop(100%, #666666));
-  background: -webkit-linear-gradient(top, #cccccc 0%, #666666 100%);
-  background: -o-linear-gradient(top, #cccccc 0%, #666666 100%);
-  background: -ms-linear-gradient(top, #cccccc 0%, #666666 100%);
-  background: linear-gradient(to bottom, #cccccc 0%, #666666 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#666666', GradientType=0);
-  border: 0;
   border-radius: 15px;
-  color: #333333;
+  border: none;
+  background: #cacaca;
+  background: -moz-linear-gradient(top, #cacaca 0%, #686868 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cacaca), color-stop(100%, #686868));
+  background: -webkit-linear-gradient(top, #cacaca 0%, #686868 100%);
+  background: -o-linear-gradient(top, #cacaca 0%, #686868 100%);
+  background: -ms-linear-gradient(top, #cacaca 0%, #686868 100%);
+  background: linear-gradient(to bottom, #cacaca 0%, #686868 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cacaca', endColorstr='#686868', GradientType=0);
 }
-body #wrapper #popup-box li.popup-item > div fieldset button:hover {
+body div#wrapper ul#popup-box li.popup-item .popup-content fieldset button:hover {
   background: #cccccc;
+}
+body div#wrapper ul#popup-box li.popup-item a {
+  text-decoration: none;
+  color: #000000;
+}
+body div#wrapper ul#popup-box li.popup-item a img {
+  width: 25px;
+}
+body div#wrapper .invisible {
+  display: none;
 }

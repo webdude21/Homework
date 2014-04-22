@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@{from-color}', endColorstr='@{to-color}',GradientType=0 );
+}
+
+body {
+  font-size: 16px;
+  font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;
+
+  #wrapper {
+    width: 960px;
+    margin-left: 50px;
+
+    a{
+      text-decoration: none;
+      color: #000000;
+      font-size: 1.2em;
+      &.current{
+        font-weight: bolder;
+      }
+    }
+
+    button{
+      border: 2px solid #000000;
+      .linear-gradient(#000000,0%,white,100%);
+      padding: 5px 10px;
+      font-size: 1.2em;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      margin-top: 3px;
+
+      &:hover{
+      .linear-gradient(#000000,0%,#cacaca,100%);
+      }
+    }
+
+    form{
+      width: 450px;
+      text-align: right;
+      .linear-gradient(white,10%,#595959,100%);
+
+      label{
+        font-weight: bolder;
+        margin-right: 1px;
+      }
+
+      input{
+        padding: 10px 15px;
+        color: #ffffff;
+        border: none;
+        border-radius: 15px;
+        margin-bottom: 7px;
+        .linear-gradient(#020202,0%,#cacaca,100%);
+      }
+
+      fieldset{
+        border: 5px solid black;
+        border-radius: 5px;
+        padding-right: 75px;
+
+        legend{
+          padding: 0px 10px;
+          font-size: 1.7em;
+          font-weight: bolder;
+          font-style: italic;
+          margin-bottom: 13px;
+        }
+      }
+    }
+
+    .invisible{
+      display: none;
+    }
+  }
+}

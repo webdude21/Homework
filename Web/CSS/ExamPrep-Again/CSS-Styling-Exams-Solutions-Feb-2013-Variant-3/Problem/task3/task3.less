@@ -1,0 +1,123 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+
+@border: #575757;
+@text: #444444;
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from-color}', endColorstr='@{to-color}', GradientType=0);
+}
+
+body {
+  font-size: 16px;
+  font-family: Cambria, 'Palatino Linotype', 'Book Antiqua', 'URW Palladio L', serif;
+  color: #ffffff;
+
+  div#wrapper {
+    width: 960px;
+
+    form {
+      margin: 25px;
+      padding: 15px;
+      border: 1px solid @border;
+      border-radius: 15px;
+      text-align: right;
+      width: 380px;
+      .linear-gradient(#ebff5b, 0%, #444444, 100%);
+
+      #tb-age{
+        padding: 5px;
+        width: 35px;
+      }
+
+      input[type="reset"], button{
+        padding: 5px 15px;
+        font-size: 1.2em;
+        .linear-gradient(#e3fd28, 0%, #444444, 100%);
+        border: none;
+        color: @text;
+        border-bottom: 1px inset black;
+        border-radius: 5px;
+        margin-top: 15px;
+
+        &:hover{
+          background: #f1ff8e;
+        }
+      }
+
+      input[type="radio"]:checked+label {
+        font-weight:bolder;
+        font-size: 1.1em;
+      }
+
+      input[type="radio"]{
+        display: none;
+      }
+
+
+      fieldset {
+        border: 3px solid @border;
+        border-radius: 5px;
+        padding: 0px 15px;
+
+        &:last-of-type{
+          margin-bottom: 10px;
+        }
+
+        legend{
+          padding-right: 15px;
+          padding-left: 15px;
+          font-size: 1.3em;
+          font-style: italic;
+          font-weight: bolder;
+          margin-bottom: 10px;
+        }
+
+        input{
+          .linear-gradient(#e8fc5b, 0%, #444444, 100%);
+          padding: 5px 15px;
+          border: 2px solid #474747;
+          border-radius: 5px;
+          margin-bottom: 5px;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

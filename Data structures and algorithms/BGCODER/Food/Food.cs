@@ -7,7 +7,7 @@ namespace Food
     class Food
     {
         private static int maxWeight;
-        private static int maxValue;
+
         static void Main()
         {
             var itemList = ReadInput();
@@ -36,7 +36,6 @@ namespace Food
                 }
             }
 
-            maxValue = valueArray[itemList.Count, maxWeight];
             return keepArray;
         }
         private static void PrintResult(IList<Item> getResult)

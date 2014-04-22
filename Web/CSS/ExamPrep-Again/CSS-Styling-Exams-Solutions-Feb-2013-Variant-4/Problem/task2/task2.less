@@ -1,0 +1,95 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+span,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  font-size: 16px;
+  font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+
+  #wrapper {
+    width: 960px;
+
+    > div{
+      margin: 15px;
+      border-radius: 5px;
+      background: #cccccc;
+      padding: 10px;
+      width: 680px;
+      overflow: hidden;
+
+      div.holder{
+        float: left;
+        img{
+          width: 550px;
+          border-radius: 5px;
+        }
+      }
+
+      div.playlist{
+        display: inline-block;
+
+        ul{
+          text-align: center;
+          display: inline-block;
+          margin-left: 10px;
+
+          li{
+            padding: 5px 2px 5px 8px;
+            border-bottom: 1px solid black;
+            list-style: none;
+
+            span{
+              display: block;
+              margin-top: -5px;
+            }
+
+            img{
+              border-radius: 10px;
+            }
+
+            a{
+              display: block;
+              text-decoration: none;
+              color: black;
+              font-weight: bold;
+
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

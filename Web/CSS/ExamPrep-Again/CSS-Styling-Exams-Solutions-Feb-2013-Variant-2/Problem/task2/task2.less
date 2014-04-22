@@ -1,0 +1,126 @@
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from-color}', endColorstr='@{to-color}', GradientType=0);
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+
+  div#wrapper {
+    width: 960px;
+    padding: 25px;
+
+    ul.notification-list{
+      display: inline-block;
+      list-style-type: none;
+      position: relative;
+
+      a {
+        text-decoration: none;
+        color: #5e5e5e;
+      }
+
+      > li{
+
+        float: left;
+        .linear-gradient(#aaa,0%,#ddd,80%);
+        padding: 5px 15px;
+        border: 1px solid black;
+
+        a{
+          font-size: 1.2em;
+        }
+
+        &:hover{
+          border-bottom: 2px solid #dddddd;
+        }
+
+        &:first-of-type{
+          border-top-left-radius: 15px;
+          border-right: none;
+        }
+
+        &:last-of-type{
+          border-top-right-radius: 15px;
+          border-left: none;
+          padding-right: 18px;
+        }
+
+
+        div.content{
+          .linear-gradient(#ddd,30%,#ccc,100%);
+          position: absolute;
+          left: 0px;
+          top: 33px;
+          border: 1px solid black;
+          border-top: none;
+          width: 470px;
+
+          a{
+            font-size: 1em;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+
+          ul{
+            list-style-type: none;
+            li{
+              padding: 5px 15px;
+              img{
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+
+        &:not(:hover) div.content{
+          display: none;
+        }
+      }
+    }
+    img {
+      width: 15px;
+    }
+  }
+}

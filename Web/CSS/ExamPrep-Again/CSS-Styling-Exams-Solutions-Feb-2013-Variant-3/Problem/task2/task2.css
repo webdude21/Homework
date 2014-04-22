@@ -1,0 +1,83 @@
+/* Reset All  */
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+body div#wrapper {
+  width: 960px;
+  padding: 25px;
+  display: inline-block;
+}
+body div#wrapper div.select-list {
+  display: inline-block;
+}
+body div#wrapper a {
+  margin-top: 90px;
+  float: left;
+}
+body div#wrapper a.btn-unselect {
+  margin-left: 4px;
+  margin-right: 2px;
+}
+body div#wrapper a.btn-select {
+  margin-right: 4px;
+  margin-left: 2px;
+}
+body div#wrapper ul {
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #8169ff 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8169ff), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, #8169ff 0%, #ffffff 100%);
+  background: -o-linear-gradient(top, #8169ff 0%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #8169ff 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, #8169ff 0%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8169ff', endColorstr='#ffffff', GradientType=0);
+  float: left;
+  overflow-y: scroll;
+  height: 200px;
+  width: 150px;
+  border-top-left-radius: 5px;
+}
+body div#wrapper ul li {
+  list-style-type: none;
+  padding: 5px 15px 5px 15px;
+}
+body div#wrapper ul li:first-letter {
+  text-decoration: underline;
+}
+body div#wrapper ul li:not(:last-of-type) {
+  border-bottom: 1px solid black;
+}
+body div#wrapper ul li.selected {
+  background: #6c4eff;
+}

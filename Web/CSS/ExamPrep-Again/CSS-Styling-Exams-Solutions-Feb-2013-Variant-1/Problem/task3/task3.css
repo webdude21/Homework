@@ -1,0 +1,136 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+body {
+  font-family: Cambria, 'Times New Roman', 'Nimbus Roman No9 L', 'Freeserif', Times, serif;
+  font-size: 16px;
+}
+body div#wrapper {
+  width: 960px;
+  padding: 30px;
+}
+body div#wrapper div {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 5px 15px;
+  width: 350px;
+  background: #aaaaaa;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #aaaaaa));
+  background: -webkit-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: linear-gradient(to bottom, #eeeeee 0%, #aaaaaa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#aaaaaa', GradientType=0);
+}
+body div#wrapper div h1 {
+  font-size: 1.8em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 7px;
+}
+body div#wrapper div input {
+  background-color: #eeeeee;
+  padding: 9px 15px 10px;
+  border: none;
+  border-radius: 5px;
+  color: #555555;
+  font-size: 13px;
+  width: 245px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+body div#wrapper div button {
+  background: #aaaaaa;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #aaaaaa));
+  background: -webkit-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%, #aaaaaa 100%);
+  background: linear-gradient(to bottom, #eeeeee 0%, #aaaaaa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#aaaaaa', GradientType=0);
+  border: none;
+  padding: 5px 15px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  vertical-align: bottom;
+  margin-bottom: 3px;
+}
+body div#wrapper div button:hover {
+  background: #eeeeee;
+}
+body div#wrapper div ul li {
+  color: #555555;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 200px;
+  margin-bottom: 5px;
+  padding: 5px 15px 5px 15px;
+}
+body div#wrapper div ul li span:not(.date) {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+body div#wrapper div ul li span.date {
+  font-size: 0.8em;
+  font-weight: normal;
+  font-family: Consolas, 'Lucida Console', 'DejaVu Sans Mono', monospace;
+  display: block;
+}
+body div#wrapper div ul li.me-item {
+  background: #c0faff;
+  background: -moz-linear-gradient(top, #29edff 0%, #c0faff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #29edff), color-stop(100%, #c0faff));
+  background: -webkit-linear-gradient(top, #29edff 0%, #c0faff 100%);
+  background: -o-linear-gradient(top, #29edff 0%, #c0faff 100%);
+  background: -ms-linear-gradient(top, #29edff 0%, #c0faff 100%);
+  background: linear-gradient(to bottom, #29edff 0%, #c0faff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29edff', endColorstr='#c0faff', GradientType=0);
+  float: right;
+}
+body div#wrapper div ul li.me-item span.date {
+  float: right;
+}
+body div#wrapper div ul li.toshko-item {
+  float: left;
+  background: #6fff3b;
+  background: -moz-linear-gradient(top, #dfffd2 0%, #6fff3b 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dfffd2), color-stop(100%, #6fff3b));
+  background: -webkit-linear-gradient(top, #dfffd2 0%, #6fff3b 100%);
+  background: -o-linear-gradient(top, #dfffd2 0%, #6fff3b 100%);
+  background: -ms-linear-gradient(top, #dfffd2 0%, #6fff3b 100%);
+  background: linear-gradient(to bottom, #dfffd2 0%, #6fff3b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfffd2', endColorstr='#6fff3b', GradientType=0);
+}
+body div#wrapper div ul li.toshko-item span:first-of-type {
+  margin-left: 144px;
+}

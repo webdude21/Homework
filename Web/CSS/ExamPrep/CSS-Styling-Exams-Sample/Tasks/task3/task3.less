@@ -1,0 +1,124 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+
+  div#wrapper {
+    width: 960px;
+    margin-top: 14px;
+    margin-left: 15px;
+
+
+    ul#popup-box{
+
+      li.popup-item{
+
+        position: relative;
+        width: 100px;
+        padding: 5px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid black;
+        list-style-type: none;
+
+        &:first-of-type{
+          border-top: 1px solid black;
+        }
+
+        .current{
+          font-weight: bold;
+        }
+
+        .popup-content{
+          position: absolute;
+          left: 120px;
+          top: 0px;
+
+          .btn-popup-close{
+            position: absolute;
+            top: 15px;
+            left: 176px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 0px 5px;
+          }
+
+          fieldset{
+            padding: 15px;
+            border: 1px solid #000000;
+
+            legend{
+              padding-left: 2px;
+              padding-right: 2px;
+              font-weight: bolder;
+              font-size: 1.2rem;
+            }
+            
+            button{
+              &:hover{
+                background: #cccccc;
+              }
+
+              padding: 5px 10px;
+              border-radius: 15px;
+              border: none;
+
+              background: #cacaca;
+              background: -moz-linear-gradient(top,  #cacaca 0%, #686868 100%);
+              background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cacaca), color-stop(100%,#686868));
+              background: -webkit-linear-gradient(top,  #cacaca 0%,#686868 100%);
+              background: -o-linear-gradient(top,  #cacaca 0%,#686868 100%);
+              background: -ms-linear-gradient(top,  #cacaca 0%,#686868 100%);
+              background: linear-gradient(to bottom,  #cacaca 0%,#686868 100%);
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cacaca', endColorstr='#686868',GradientType=0 );
+            }
+          }
+        }
+
+        a{
+          text-decoration: none;
+          color: #000000;
+
+          img{
+            width: 25px;
+          }
+        }
+      }
+    }
+
+    .invisible{
+      display: none;
+    }
+
+
+  }
+}

@@ -1,0 +1,137 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@{from-color}', endColorstr='@{to-color}',GradientType=0 );
+}
+
+.default-border() {
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+body {
+  font-family: Cambria, 'Times New Roman', 'Nimbus Roman No9 L', 'Freeserif', Times, serif;
+  font-size: 16px;
+
+  div#wrapper {
+    width: 960px;
+    padding: 30px;
+
+    div{
+      .default-border();
+      padding: 5px 15px;
+      width: 350px;
+      .linear-gradient(#eeeeee,0%,#aaaaaa, 100%);
+
+      h1{
+        font-size: 1.8em;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 7px;
+      }
+
+      input{
+        background-color: #eeeeee;
+        padding: 9px 15px 10px;
+        border: none;
+        border-radius: 5px;
+        color: #555555;
+        font-size: 13px;
+        width: 245px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+
+      button{
+        .linear-gradient(#eeeeee,0%,#aaaaaa, 100%);
+        border: none;
+        padding: 5px 15px;
+        font-size: 1.1em;
+        border-radius: 5px;
+        vertical-align: bottom;
+        margin-bottom: 3px;
+
+        &:hover{
+          background: #eeeeee;
+        }
+      }
+
+      ul{
+        li{
+          color: #555555;
+          .default-border();
+          width: 200px;
+          margin-bottom: 5px;
+          padding: 5px 15px 5px 15px;
+
+          span:not(.date){
+            font-size: 1.1em;
+            font-weight: bold;
+          }
+
+          span.date{
+            font-size: 0.8em;
+            font-weight: normal;
+            font-family: Consolas, 'Lucida Console', 'DejaVu Sans Mono', monospace;
+            display: block;
+          }
+
+          &.me-item{
+            .linear-gradient(#29edff,0%,#c0faff, 100%);
+            float: right;
+            span.date{
+              float: right;
+            }
+          }
+
+          &.toshko-item{
+            span:first-of-type{
+              margin-left: 144px;
+            }
+
+            float: left;
+            .linear-gradient(#dfffd2,0%,#6fff3b, 100%);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+html,
+header,
+nav,
+body,
+h1,
+h2,
+h3,
+ol,
+dl,
+dd,
+dt,
+li,
+ul,
+a,
+p,
+img,
+fieldset,
+button,
+form,
+input,
+legend,
+footer,
+aside,
+tr,
+td,
+table,
+th,
+thead {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-size: 18px;
+}
+body div#wrapper {
+  padding: 50px;
+  width: 960px;
+  color: #444444;
+}
+body div#wrapper table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 15px 6px;
+}
+body div#wrapper table th {
+  background: #898989;
+  background: -moz-linear-gradient(top, #ececec 0%, #898989 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #898989));
+  background: -webkit-linear-gradient(top, #ececec 0%, #898989 100%);
+  background: -o-linear-gradient(top, #ececec 0%, #898989 100%);
+  background: -ms-linear-gradient(top, #ececec 0%, #898989 100%);
+  background: linear-gradient(to bottom, #ececec 0%, #898989 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ececec', endColorstr='#898989', GradientType=0);
+  padding: 5px;
+  color: #444444;
+  border: 1px solid black;
+}
+body div#wrapper table th:first-of-type {
+  border-top-left-radius: 15px;
+}
+body div#wrapper table tbody tr:nth-of-type(odd) {
+  background: #898989;
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #898989 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(100%, #898989));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #898989 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #898989 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #898989 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #898989 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cbcbcb', endColorstr='#898989', GradientType=0);
+}
+body div#wrapper table tbody tr:nth-of-type(even) {
+  background: #cbcbcb;
+  background: -moz-linear-gradient(top, #898989 0%, #cbcbcb 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #898989), color-stop(100%, #cbcbcb));
+  background: -webkit-linear-gradient(top, #898989 0%, #cbcbcb 100%);
+  background: -o-linear-gradient(top, #898989 0%, #cbcbcb 100%);
+  background: -ms-linear-gradient(top, #898989 0%, #cbcbcb 100%);
+  background: linear-gradient(to bottom, #898989 0%, #cbcbcb 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#898989', endColorstr='#cbcbcb', GradientType=0);
+}
+body div#wrapper table tbody td {
+  border: 1px solid black;
+  color: white;
+  padding: 5px;
+}
+body div#wrapper ul.accordion {
+  list-style-type: none;
+  width: 400px;
+  text-align: center;
+  background-color: #aaaaaa;
+}
+body div#wrapper ul.accordion li:not(.current) .accordion-content {
+  display: none;
+}
+body div#wrapper ul.accordion li {
+  border: 1px solid black;
+  text-align: center;
+}
+body div#wrapper ul.accordion li .accordion-content {
+  color: #5e5e5e;
+  text-align: left;
+  padding: 5px 15px 5px 15px;
+}
+body div#wrapper ul.accordion li .accordion-content h1 {
+  text-align: center;
+  margin: 5px;
+  font-size: 1.6em;
+}
+body div#wrapper ul.accordion li .accordion-content p {
+  text-align: justify;
+  color: #444444;
+}
+body div#wrapper ul.accordion a.accordion-btn {
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: bold;
+  display: block;
+  color: #444444;
+  background: #eeeeee;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 22%, #ebebeb 26%, #acacac 74%, #aaaaaa 78%, #aaaaaa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(22%, #eeeeee), color-stop(26%, #ebebeb), color-stop(74%, #acacac), color-stop(78%, #aaaaaa), color-stop(100%, #aaaaaa));
+  background: -webkit-linear-gradient(top, #eeeeee 0%, #eeeeee 22%, #ebebeb 26%, #acacac 74%, #aaaaaa 78%, #aaaaaa 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%, #eeeeee 22%, #ebebeb 26%, #acacac 74%, #aaaaaa 78%, #aaaaaa 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%, #eeeeee 22%, #ebebeb 26%, #acacac 74%, #aaaaaa 78%, #aaaaaa 100%);
+  background: linear-gradient(to bottom, #eeeeee 0%, #eeeeee 22%, #ebebeb 26%, #acacac 74%, #aaaaaa 78%, #aaaaaa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#aaaaaa', GradientType=0);
+}
+body div#wrapper ul.accordion a.accordion-btn:hover {
+  background: #aaaaaa;
+}

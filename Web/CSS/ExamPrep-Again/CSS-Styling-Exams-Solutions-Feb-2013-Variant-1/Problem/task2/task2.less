@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@{from-color}', endColorstr='@{to-color}',GradientType=0 );
+}
+
+body {
+  font-size: 16px;
+  font-family: Cambria, 'Times New Roman', 'Nimbus Roman No9 L', 'Freeserif', Times, serif;
+}
+
+#wrapper {
+  width: 960px;
+
+  ul.tab-strip {
+    margin: 15px;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 340px;
+    height: 230px;
+    display: inline-block;
+    position: relative;
+
+    div.tab-content {
+      display: none;
+    }
+
+    a.tab-btn {
+      text-decoration: none;
+      color: black;
+      border-radius: 5px;
+      .linear-gradient(#eee,0%,#aaa,100%);
+      font-size: 1.4em;
+      padding: 5px 15px;
+      display: inline-block;
+      border: 1px solid black;
+      border-left: none;
+      border-top: none;
+      &:hover{
+        background: #eeeeee;
+      }
+    }
+
+    > li {
+      float: left;
+
+      &:last-of-type a.tab-btn{
+        border-right: none;
+      }
+
+      &.current{
+        a.tab-btn{
+          font-weight: bolder;
+          background: none;
+          border-bottom: none;
+          border-radius: 0;
+        }
+      }
+
+      &.current div.tab-content {
+        display: block;
+        position: absolute;
+        left: 0px;
+        top: 30px;
+        padding: 20px 10px 20px 20px;
+
+        table{
+          background: #eeeeee;
+          border: 1px solid black;
+          border-collapse: collapse;
+          td, th{
+            border: 1px solid black;
+            padding: 5px;
+          }
+
+          thead{
+            th{
+              padding: 5px 15px;
+            }
+            .linear-gradient(#aaa,0%,#eee,80%);
+          }
+        }
+
+        li{
+          list-style-type: disc;
+          li{
+            margin-left: 25px;
+            list-style-type: lower-alpha;
+          }
+        }
+      }
+    }
+  }
+}
