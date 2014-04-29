@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrays</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number">Number to look for: </label>
+<input type="text" id="tb-number"/>
+<button id="btn" onclick="useBinarySearch()">Show Binary Search</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    var numberArray = [-101,2,3,4,5,14,15,17,80,102];
+    jsConsole.writeLine("You've got the following array [" + numberArray +
+            "], type a number and you will get the index where it is!");
+</script>
+<script src="scripts/binary-search.js"></script>
+<script>
+    // Write a program that finds the index of given element in a sorted array of
+    // integers by using the binary search algorithm (find it in Wikipedia)
+    function useBinarySearch() {
+        var numberArray = [-101,2,3,4,5,14,15,17,80,102];
+        var numberToLookFor = jsConsole.readInteger("#tb-number");
+        var indexWhereFound = binarySearch(numberToLookFor, numberArray);
+        // The algorithm itself is in the file "scripts/binary-search.js"
+        if (isNaN(indexWhereFound) || indexWhereFound === -1)
+            jsConsole.writeLine("Nothing was found!");
+        else
+            jsConsole.writeLine("The number you're looking is at index: " + indexWhereFound);
+    }
+</script>
+</body>
+</html>

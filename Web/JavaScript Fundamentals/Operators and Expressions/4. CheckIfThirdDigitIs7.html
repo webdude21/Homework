@@ -7,13 +7,13 @@
     <body>
         <label for='tb-number'>Number: </label>
         <input type="text" id="tb-number" />
-        <button id="btn" onclick="CheckIfThirdDigitIsSeven()">Check</button>
+        <button id="btn" onclick="checkIfThirdDigitIsSeven()">Check</button>
         <div id="js-console">
         </div>
         <script src="scripts/js-console.js"></script>
         <script>
         // Write an expression that checks for given integer if its third digit (right-to-left) is 7. E. g. 1732 > true.
-        function CheckIfThirdDigitIsSeven() {
+        function checkIfThirdDigitIsSeven() {
             var number = jsConsole.readInteger("#tb-number");
             if (isNaN(number)) {
                 jsConsole.writeLine("The input is not valid")

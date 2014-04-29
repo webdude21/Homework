@@ -9,13 +9,13 @@
         <input type="text" id="tb-x" />
         <label for='tb-y'>Y: </label>
         <input type="text" id="tb-y" />
-        <button id="btn" onclick="CheckIfInCircle()">Check</button>
+        <button id="btn" onclick="checkIfInCircle()">Check</button>
         <div id="js-console">
         </div>
         <script src="scripts/js-console.js"></script>
         <script>
         // Write an expression that checks if given print (x,  y) is within a circle K(O, 5).
-        function CheckIfInCircle() {
+        function checkIfInCircle() {
             var x = jsConsole.readInteger("#tb-x");
             var y = jsConsole.readInteger("#tb-y");
             var circleRadius = 5;

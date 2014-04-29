@@ -68,7 +68,7 @@ class BinarySearch
                 indexWhereFound = currentIndex;
                 break;
             }
-            else if (keyNumber > middle)
+            if (keyNumber > middle)
             {
                 left = middle; // Those constrain the search bounds 
             }

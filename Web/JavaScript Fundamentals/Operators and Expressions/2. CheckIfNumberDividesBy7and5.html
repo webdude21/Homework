@@ -6,13 +6,13 @@
     </head>
     <body>
     <input type="text" id="tb-number" />
-    <button id="btn" onclick="Check()">Check if can be divided by 7 and 5</button>
+    <button id="btn" onclick="check()">Check if can be divided by 7 and 5</button>
     <div id="js-console">
     </div>
     <script src="scripts/js-console.js"></script>
     <script>
         // Write an expression that checks if given integer is odd or even.
-        function Check() {
+        function check() {
             var number = jsConsole.readInteger("#tb-number");
             if (isNaN(number)) {
                 jsConsole.writeLine("The input is not a number")

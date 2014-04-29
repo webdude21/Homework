@@ -7,13 +7,13 @@
     <body>
         <label for='tb-number'>Number: </label>
         <input type="text" id="tb-number" />
-        <button id="btn" onclick="CheckThirdBit()">Check</button>
+        <button id="btn" onclick="checkThirdBit()">Check</button>
         <div id="js-console">
         </div>
         <script src="scripts/js-console.js"></script>
         <script>
         // Write a boolean expression for finding if the bit 3 (counting from 0) of a given integer is 1 or 0.
-        function CheckThirdBit() {
+        function checkThirdBit() {
             var number = jsConsole.readInteger("#tb-number");
             if (isNaN(number)) {
                 jsConsole.writeLine("The input is not valid")

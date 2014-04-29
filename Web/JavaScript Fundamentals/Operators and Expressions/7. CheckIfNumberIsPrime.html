@@ -7,7 +7,7 @@
     <body>
         <label for='tb-input'>Input: </label>
         <input type="text" id="tb-input" />
-        <button id="btn" onclick="ChechIfPrime()">Check</button>
+        <button id="btn" onclick="checkIfPrime()">Check</button>
         <div id="js-console">
         </div>
         <script src="scripts/js-console.js"></script>
@@ -17,7 +17,7 @@
         If the number is prime it will it should only divide by one and itself.
         In the loop I start with the number two and finish without
         using the number itself as a divisor. */
-        function ChechIfPrime() {
+        function checkIfPrime() {
             var divisor = false;
             var input = jsConsole.readInteger("#tb-input");
             if (isNaN(input)) {

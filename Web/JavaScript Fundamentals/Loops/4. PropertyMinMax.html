@@ -5,18 +5,18 @@
     <link href="styles/js-console.css" rel="stylesheet"/>
 </head>
 <body>
-<button id="btn" onclick="FindMinAndMax()">Print Min And Max</button>
+<button id="btn" onclick="findMinAndMax()">Print Min And Max</button>
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
 <script>
     // Write a script that finds the max and min
     // number from a sequence of numbers
-    function FindMinAndMax() {
-        [document, window, navigator].forEach(FindMinAndMaxOfObject);
+    function findMinAndMax() {
+        [document, window, navigator].forEach(findMinAndMaxOfObject);
     }
 
-    function FindMinAndMaxOfObject(obj) {
+    function findMinAndMaxOfObject(obj) {
         // Admittedly it will not work if you have a very long word with a lot of 'z'-ies in it :)
         var outputString = '';
         var min = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" +

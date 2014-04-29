@@ -7,14 +7,14 @@
 <body>
 <label for="tb-number-one">Number [0-999]: </label>
 <input type="text" id="tb-number-one"/>
-<button id="btn" onclick="ConvertNumberToName()">Convert to name</button>
+<button id="btn" onclick="convertNumberToName()">Convert to name</button>
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
 <script>
     /* Write script that asks for a digit and depending on the input shows the
      * name of that digit (in English) using a switch statement.     */
-    function ConvertNumberToName() {
+    function convertNumberToName() {
         var input = jsConsole.readInteger('#tb-number-one');
         var dec = [ "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" ];
         var special = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",

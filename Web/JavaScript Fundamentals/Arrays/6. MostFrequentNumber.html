@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrays</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="findMostFrequentNumber()">Print numbers</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a program that finds the most frequent number in an array
+    function findMostFrequentNumber() {
+        // This is not the most efficient way of doing it, but is an interesting
+        // way to exercise the use of Arrays in JavaScript which is the main idea.
+        // The most efficient way is to use DP and a couple of variables.
+        var usedArray = [];
+        var numberArray = [4, 1, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9, 3];
+        jsConsole.write('[' + numberArray + '] => ');
+
+        for (var i = 0; i < numberArray.length; i++) {
+            if (isNaN(usedArray[numberArray[i]]))
+                usedArray[numberArray[i]] = 1;
+            else
+                usedArray[numberArray[i]]++;
+        }
+
+        var mostUsed = findMostUsed(usedArray);
+        var timesUsed = usedArray[mostUsed];
+
+        printResult(timesUsed, mostUsed);
+    }
+
+    function printResult(timesUsed, mostUsed) {
+        for (var i = 1; i <= timesUsed; i++) {
+            jsConsole.write(mostUsed);
+            if (i < timesUsed)
+                jsConsole.write(', ');
+        }
+    }
+
+    function findMostUsed(usedArray) {
+        var mostUsed = 0;
+        for (var j = 0; j < usedArray.length; j++) {
+            if (isNaN(usedArray[mostUsed]))
+                mostUsed = j;
+            else if (!isNaN(usedArray[mostUsed]) && usedArray[mostUsed] < usedArray[j])
+                mostUsed = j;
+        }
+        return mostUsed;
+    }
+</script>
+</body>
+</html>
