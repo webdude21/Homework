@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Loops</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number">Input n: </label>
+<input type="text" id="tb-number"/>
+<button id="btn" onclick="PrintNumbersUpToN()">Print numbers</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a script that prints all the numbers from 1 to N, that are
+    // not divisible by 3 and 7 at the same time
+    function PrintNumbersUpToN() {
+        var n = jsConsole.readInteger("#tb-number");
+        var outputString = '';
+
+        if (isNaN(n) || n < 1) {
+            jsConsole.writeLine("The input is not valid!")
+        }
+        else {
+            for (var i = 1; i <= n; i++) {
+                if (i % 21 > 0){
+                    outputString += i;
+                    if (i < n){
+                        outputString += ', ';
+                    }
+                }
+            }
+            jsConsole.writeLine(outputString);
+        }
+    }
+</script>
+</body>
+</html>

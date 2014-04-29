@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <input type="text" id="tb-number" />
+        <button id="btn" onclick="CheckIfOddOrEven()">Check if odd or even</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        // Write an expression that checks if given integer is odd or even.
+        function CheckIfOddOrEven() {
+            var number = jsConsole.readInteger("#tb-number");
+            if (isNaN(number)) {
+                jsConsole.writeLine("The input is not a number")
+            } 
+            else {
+                jsConsole.writeLine("The number " + number + " is " + (number % 2 === 0 ? "even" : " odd"));
+            }
+        }
+        </script>
+    </body>
+</html>

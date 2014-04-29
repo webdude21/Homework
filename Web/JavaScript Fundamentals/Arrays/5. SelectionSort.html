@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrays</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="sortArray()">Print numbers</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Sorting an array means to arrange its elements in increasing order.
+    // Write a script to sort an array. Use the "selection sort" algorithm:
+    // Find the smallest element, move it at the first position, find the
+    // smallest from the rest, move it at the second position, etc.
+
+    function sortArray() {
+        var numberArray = [3, 2, 3, 12, -100, -24, 23, 4, 22, 12, 24, 4];
+        jsConsole.writeLine('The initial array: [' + numberArray + ']');
+        jsConsole.writeLine('The sorted array: [' + selectionSort(numberArray) + ']');
+    }
+
+    function selectionSort(numberArray) {
+        var sortedArray = new Array(numberArray.length);
+        var current = 0;
+
+        for (var i = 0; i < sortedArray.length; i++) {
+            current = findMin(numberArray);
+            sortedArray[i] = numberArray[current];
+            numberArray.splice(current, 1);
+        }
+
+        return sortedArray;
+    }
+
+    function findMin(numberArray) {
+        var minIndex = 0;
+        for (var j = 1; j < numberArray.length; j++)
+            if (numberArray[j] < numberArray[minIndex])
+                minIndex = j;
+        return minIndex;
+    }
+</script>
+</body>
+</html>

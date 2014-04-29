@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">First integer</label>
+<input type="text" id="tb-number-one"/>
+<label for="tb-number-two">Second integer</label>
+<input type="text" id="tb-number-two"/>
+<button id="btn" onclick="CheckAndExchange()">Print</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write an if statement that examines two integer variables and exchanges their
+     * values if the first one is greater than the second one. */
+    function CheckAndExchange() {
+        var firstInteger = jsConsole.readInteger('#tb-number-one');
+        var secondInteger = jsConsole.readInteger('#tb-number-two');
+
+        if (firstInteger > secondInteger){
+            var tempVariable = secondInteger;
+            secondInteger = firstInteger;
+            firstInteger = tempVariable;
+        }
+        jsConsole.writeLine("The value of the first variable is: " + firstInteger);
+        jsConsole.writeLine("The value of the second variable is: " + secondInteger);
+    }
+</script>
+</body>
+</html>

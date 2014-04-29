@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">Digit</label>
+<input type="text" id="tb-number-one"/>
+<button id="btn" onclick="ConvertDigitToName()">Convert to name</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write script that asks for a digit and depending on the input shows the
+     * name of that digit (in English) using a switch statement.     */
+    function ConvertDigitToName() {
+        var digit = jsConsole.readInteger('#tb-number-one');
+        switch (digit)
+        {
+            case 1: jsConsole.writeLine("The digit is one");
+                break;
+            case 2: jsConsole.writeLine("The digit is two");
+                break;
+            case 3: jsConsole.writeLine("The digit is three");
+                break;
+            case 4: jsConsole.writeLine("The digit is four");
+                break;
+            case 5: jsConsole.writeLine("The digit is five");
+                break;
+            case 6: jsConsole.writeLine("The digit is six");
+                break;
+            case 7: jsConsole.writeLine("The digit is seven");
+                break;
+            case 8: jsConsole.writeLine("The digit is eight");
+                break;
+            case 9: jsConsole.writeLine("The digit is nine");
+                break;
+            case 0: jsConsole.writeLine("The digit is zero");
+                break;
+            default: jsConsole.writeLine("You've entered something else!");
+                break;
+        }
+    }
+</script>
+</body>
+</html>

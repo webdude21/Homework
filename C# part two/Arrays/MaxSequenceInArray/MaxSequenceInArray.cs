@@ -8,21 +8,21 @@ class MaxSequenceInArray
     {
         Console.Write("Please input a valid integer for the number of integers to expect: ");
         int nubmerOfMembers;
-        int maxLen = 1;
-        int len = 1;
-        int longestOne = 0;
-        bool validInput = int.TryParse(Console.ReadLine(), out nubmerOfMembers);
+        var maxLen = 1;
+        var len = 1;
+        var longestOne = 0;
+        var validInput = int.TryParse(Console.ReadLine(), out nubmerOfMembers);
         // Restart the application if the input is invalid
         if (!validInput)
         {
             Main();
         }
 
-        int[] arr = new int[nubmerOfMembers]; // Initialize the array using the input from the user
+        var arr = new int[nubmerOfMembers]; // Initialize the array using the input from the user
 
         for (int i = 0; i < nubmerOfMembers; i++)
         {
-            Console.Write("Please input a valid integer for member {0} in the array: ", i+1);
+            Console.Write("Please input a valid integer for member {0} in the array: ", i + 1);
             bool result = int.TryParse(Console.ReadLine(), out arr[i]);
 
             if (!result)
@@ -33,7 +33,7 @@ class MaxSequenceInArray
 
         for (int i = 0; i < nubmerOfMembers - 1; i++)
         {
-            if (arr[i] == arr[i+1])
+            if (arr[i] == arr[i + 1])
             {
                 len++;
             }
@@ -42,7 +42,7 @@ class MaxSequenceInArray
                 if (len > maxLen)
                 {
                     maxLen = len;
-                    longestOne = arr[i];  
+                    longestOne = arr[i];
                 }
                 len = 1;
             }
@@ -54,6 +54,6 @@ class MaxSequenceInArray
             longestOne = arr[arr.Length - 1];
         }
 
-         Console.WriteLine("The longest sequence is formed by {0} elements of \"{1}\" .", maxLen, longestOne);
+        Console.WriteLine("The longest sequence is formed by {0} elements of \"{1}\" .", maxLen, longestOne);
     }
 }

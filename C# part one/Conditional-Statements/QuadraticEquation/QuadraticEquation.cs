@@ -4,25 +4,25 @@ using System.Globalization;
 
 class QuadraticEquation
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         Console.Write("Please enter a number for a: ");
-        double a = double.Parse(Console.ReadLine());
+        var a = double.Parse(Console.ReadLine());
         Console.Write("Please enter a number for b: ");
-        double b = double.Parse(Console.ReadLine());
+        var b = double.Parse(Console.ReadLine());
         Console.Write("Please enter a number for c: ");
-        double c = double.Parse(Console.ReadLine());
+        var c = double.Parse(Console.ReadLine());
 
-        double D = ((b * b) - (4 * a * c));
-        double onlyRoot = ((-b) / (2 * a));
-        double firstRoot = ((-b) + (Math.Sqrt(D))) / (2 * a);
-        double secondRoot = ((-b) - (Math.Sqrt(D))) / (2 * a);
-        bool oneRoot = (D == 0);
-        bool twoRoots = (D > 0);
+        var D = ((b * b) - (4 * a * c));
+        var onlyRoot = ((-b) / (2 * a));
+        var firstRoot = ((-b) + (Math.Sqrt(D))) / (2 * a);
+        var secondRoot = ((-b) - (Math.Sqrt(D))) / (2 * a);
+        var oneRoot = (Math.Abs(D) < 0.0001);
+        var twoRoots = (D > 0);
         // This is where solving the equation happens.
 
-        if (oneRoot == true)
+        if (oneRoot)
         {
             Console.WriteLine("The only real root of the equation is: {0:0.00}", onlyRoot);
         }

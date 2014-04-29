@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">a:</label>
+<input type="text" id="tb-number-one"/>
+<label for="tb-number-two">b:</label>
+<input type="text" id="tb-number-two"/>
+<label for="tb-number-three">c:</label>
+<input type="text" id="tb-number-three"/>
+<button id="btn" onclick="SolveEquation()">Solve Equation</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Sort 3 real values in descending order using nested if statements. */
+    function SolveEquation() {
+        var a = jsConsole.readInteger('#tb-number-one');
+        var b = jsConsole.readInteger('#tb-number-two');
+        var c = jsConsole.readInteger('#tb-number-three');
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            jsConsole.writeLine("The input is invalid!");
+        }
+        else {
+            var D = ((b * b) - (4 * a * c));
+            var onlyRoot = ((-b) / (2 * a));
+            var firstRoot = ((-b) + (Math.sqrt(D))) / (2 * a);
+            var secondRoot = ((-b) - (Math.sqrt(D))) / (2 * a);
+            var oneRoot = (Math.abs(D) < 0.0001);
+            var twoRoots = (D > 0);
+
+            if (oneRoot) {
+                jsConsole.writeLine("The only real root of the equation is:" + onlyRoot);
+            }
+            else if (twoRoots) {
+                jsConsole.writeLine("The two real root of the equation are: " + firstRoot + " and " + secondRoot);
+            }
+            else {
+                jsConsole.writeLine("The equation has no roots");
+            }
+        }
+    }
+</script>
+</body>
+</html>

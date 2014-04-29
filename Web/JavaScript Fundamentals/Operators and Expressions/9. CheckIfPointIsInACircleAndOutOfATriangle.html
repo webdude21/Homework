@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Operators and Expressions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for='tb-x'>X: </label>
+<input type="text" id="tb-x"/>
+<label for='tb-y'>Y: </label>
+<input type="text" id="tb-y"/>
+<button id="btn" onclick="CheckIfInCircle()">Check</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write an expression that checks for given point (x, y) if it
+     * is within the circle K( (1,1), 3) and out of the rectangle
+     * R(top=1, left=-1, width=6, height=2). */
+    function CheckIfInCircle() {
+        var x = jsConsole.readInteger("#tb-x");
+        var y = jsConsole.readInteger("#tb-y");
+        var withinCircle = false;
+        var outsideRectangle = false;
+        var circleRadius = 3;
+
+        if (isNaN(x) || isNaN(y)) {
+            jsConsole.writeLine("The input is not valid")
+        }
+        else {
+            if (((x - 1) * (x - 1) + (y - 1) * (y - 1)) < (circleRadius * circleRadius))
+                withinCircle = true;
+            if (!((x >= 1 && x <= 1 - 6) && (y <= 1 && y >= 1 - 2)))
+                outsideRectangle = true;
+            if (outsideRectangle === true && withinCircle === true) {
+                jsConsole.writeLine("The given point is both inside the circle and" +
+                        " outside of the rectangle");
+            }
+            else {
+                jsConsole.writeLine("The given point is either outside the circle " +
+                        "and/or inside of the rectangle");
+            }
+        }
+    }
+</script>
+</body>
+</html>

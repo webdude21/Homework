@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <label for='tb-number'>Number: </label>
+        <input type="text" id="tb-number" />
+        <button id="btn" onclick="CheckIfThirdDigitIsSeven()">Check</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        // Write an expression that checks for given integer if its third digit (right-to-left) is 7. E. g. 1732 > true.
+        function CheckIfThirdDigitIsSeven() {
+            var number = jsConsole.readInteger("#tb-number");
+            if (isNaN(number)) {
+                jsConsole.writeLine("The input is not valid")
+            } else {
+                jsConsole.writeLine("The third digit" + (parseInt((number / 100) % 10) === 7 ? " is " : " isn't ") + "7!")
+            }
+        }
+        </script>
+    </body>
+</html>

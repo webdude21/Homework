@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-1">First number</label>
+<input type="text" id="tb-number-1"/>
+<label for="tb-number-2">Second number</label>
+<input type="text" id="tb-number-2"/>
+<label for="tb-number-3">Third number</label>
+<input type="text" id="tb-number-3"/>
+<label for="tb-number-4">Fourth number</label>
+<input type="text" id="tb-number-4"/>
+<label for="tb-number-5">Fifth number</label>
+<input type="text" id="tb-number-5"/>
+<button id="btn" onclick="FindLargestNumber()">Get Largest Number</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write a script that finds the greatest of given 5 variables.*/
+    function FindLargestNumber() {
+        var numbers = new Array(5);
+        var currentMax = Number.MIN_VALUE;
+        var validInput = true;
+
+        for (var i = 0; i < numbers.length; i++) {
+            numbers[i] = parseFloat(document.getElementById('tb-number-' + (i + 1)).value);
+            if (isNaN(numbers[i]))
+                validInput = false;
+        }
+
+        if (validInput) {
+            for (i = 0; i < numbers.length; i++) {
+                if (numbers[i] > currentMax) {
+                    currentMax = numbers[i];
+                }
+            }
+            jsConsole.writeLine("The largest number is: " + currentMax);
+        }
+        else {
+            jsConsole.writeLine("Invalid input!");
+        }
+    }
+</script>
+</body>
+</html>

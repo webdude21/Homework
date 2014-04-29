@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrays</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="findMaxSequence()">Print numbers</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a script that finds the maximal sequence of equal elements in an array.
+    var numberArray = [2, 1, 1, 2, 3, 3, 2, 2, 2, 1];
+
+    function findMaxSequence() {
+        var maxLength = 1;
+        var currentLength = 1;
+        var longestOne = 0;
+
+        for (var i = 0; i < numberArray.length - 1; i++) {
+            if (numberArray[i] == numberArray[i + 1]) {
+                currentLength++;
+            }
+            else {
+                if (currentLength > maxLength) {
+                    maxLength = currentLength;
+                    longestOne = numberArray[i];
+                }
+                currentLength = 1;
+            }
+        }
+
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+            longestOne = numberArray.length - 1;
+        }
+
+        printResult(i, maxLength, longestOne);
+    }
+
+    function printResult(i, maxLen, longestOne) {
+        jsConsole.write('[' + numberArray.toString() + '] => ');
+        for (i = 0; i < maxLen; i++) {
+            jsConsole.write(longestOne);
+            if (i < maxLen - 1)
+                jsConsole.write(',');
+        }
+        jsConsole.writeLine();
+    }
+</script>
+</body>
+</html>

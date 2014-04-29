@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">First real number</label>
+<input type="text" id="tb-number-one"/>
+<label for="tb-number-two">Second real number</label>
+<input type="text" id="tb-number-two"/>
+<label for="tb-number-three">Third real number</label>
+<input type="text" id="tb-number-three"/>
+<button id="btn" onclick="CheckSignOfProduct()">Check</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write a script that shows the sign (+ or -) of the product of three
+     * real numbers without calculating it. Use a sequence of if statements. */
+    function CheckSignOfProduct() {
+        var firstNumber = jsConsole.readInteger('#tb-number-one');
+        var secondNumber = jsConsole.readInteger('#tb-number-two');
+        var thirdNumber = jsConsole.readInteger('#tb-number-three');
+
+        if (isNaN(firstNumber) || isNaN(secondNumber) || isNaN(thirdNumber)) {
+            jsConsole.writeLine("The input is invalid!")
+        }
+        else {
+            var negativeNumbers = 0;
+            if (firstNumber < 0)
+                negativeNumbers++;
+            if (secondNumber < 0)
+                negativeNumbers++;
+            if (thirdNumber < 0)
+                negativeNumbers++;
+            jsConsole.writeLine("The sign of the product of the three numbers is "
+                    + ((negativeNumbers % 2 === 0) ? "positive" : "negative"));
+        }
+    }
+</script>
+</body>
+</html>

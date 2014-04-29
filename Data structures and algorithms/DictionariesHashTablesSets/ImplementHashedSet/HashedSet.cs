@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using HashTableImplementation;
 
 namespace ImplementHashedSet
@@ -64,10 +65,7 @@ namespace ImplementHashedSet
         }
         public IEnumerator<T> GetEnumerator()
         {
-            foreach (var keyValuePair in this.internalHashTable)
-            {
-                yield return keyValuePair.Value;
-            }
+            return this.internalHashTable.Select(keyValuePair => keyValuePair.Value).GetEnumerator();
         }
         IEnumerator IEnumerable.GetEnumerator()
         {

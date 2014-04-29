@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Operators and Expressions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for='tb-height'>Height: </label>
+<input type="text" id='tb-height'/>
+<label for='tb-a'>A: </label>
+<input type="text" id='tb-a'/>
+<label for='tb-b'>B: </label>
+<input type="text" id='tb-b'/>
+<button id="btn" onclick="CalculateArea()">Calculate area</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write an expression that calculates trapezoid's area by
+    // given sides a and b and height h.
+    function CalculateArea() {
+        var height = jsConsole.readFloat("#tb-height");
+        var a = jsConsole.readFloat("#tb-a");
+        var b = jsConsole.readFloat("#tb-b");
+        if (!(isNaN(height) || isNaN(a) || isNaN(b))) {
+            jsConsole.writeLine("The rectangle's area is: " +
+                    (height * ((a + b) / 2)));
+        } else {
+            jsConsole.writeLine("The input is not valid")
+        }
+    }
+</script>
+</body>
+</html>

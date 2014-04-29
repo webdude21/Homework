@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">Number [0-999]: </label>
+<input type="text" id="tb-number-one"/>
+<button id="btn" onclick="ConvertNumberToName()">Convert to name</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write script that asks for a digit and depending on the input shows the
+     * name of that digit (in English) using a switch statement.     */
+    function ConvertNumberToName() {
+        var input = jsConsole.readInteger('#tb-number-one');
+        var dec = [ "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" ];
+        var special = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+            "seventeen", "eighteen", "nineteen"];
+        var mainDigits = [ "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" ];
+
+
+        if (!(isNaN(input) || input > 999 || input < 0)) {
+            var digit = parseInt(input % 10);
+            var tens = parseInt((input / 10) % 10);
+            var hundred = parseInt((input / 100) % 10);
+            var stringName = '';
+            var space = ' ';
+
+            if (hundred != 0) {
+                stringName += (mainDigits[hundred] + " hundred ");
+                if (tens != 0 && tens != 1 && input >= 20) {
+                    stringName += (" and " + dec[tens] + space);
+                    if (digit != 0) {
+                        stringName += (mainDigits[digit]);
+                    }
+                }
+                else if (tens === 1) {
+                    stringName += ("and " + special[digit]);
+                }
+                else {
+                    if (digit != 0) {
+                        stringName += ("and " + mainDigits[digit] + space);
+                    }
+                }
+            }
+            else {
+                if (tens != 0 && tens != 1 && input >= 20) {
+                    stringName += (space + dec[tens]);
+                    if (digit != 0) {
+                        stringName += (mainDigits[digit]);
+                    }
+                }
+                else if (tens === 1) {
+                    stringName += (space + special[digit]);
+                }
+                else {
+                    stringName += (space + mainDigits[digit]);
+                }
+            }
+            jsConsole.writeLine(stringName);
+        } else {
+            jsConsole.writeLine("The input is invalid!");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Loops</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="FindMinAndMax()">Print Min And Max</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a script that finds the max and min
+    // number from a sequence of numbers
+    function FindMinAndMax() {
+        [document, window, navigator].forEach(FindMinAndMaxOfObject);
+    }
+
+    function FindMinAndMaxOfObject(obj) {
+        // Admittedly it will not work if you have a very long word with a lot of 'z'-ies in it :)
+        var outputString = '';
+        var min = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" +
+                "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+        var max = "";
+        var currentProperty;
+
+        for (var prop in obj) {
+            currentProperty = prop.toString();
+            if (currentProperty > max) {
+                max = currentProperty;
+            }
+            if (currentProperty < min) {
+                min = currentProperty;
+            }
+        }
+
+        jsConsole.writeLine("In the " + obj);
+        jsConsole.writeLine("The lexicographically largest property is " + max);
+        jsConsole.writeLine("The lexicographically smallest property is " + min);
+    }
+</script>
+</body>
+</html>

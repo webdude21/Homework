@@ -9,14 +9,11 @@ namespace ImplementLinkedList
     {
         public ListItem<T> FirstElement { get; private set; }
         public ListItem<T> LastElement { get; private set; }
-
         public int Count { get; private set; }
-
         public void AddFirst(T item)
         {
             AddFirst(new ListItem<T>(item));
         }
-
         public void AddFirst(ListItem<T> item)
         {
             this.Count += 1;
@@ -32,12 +29,10 @@ namespace ImplementLinkedList
                 this.FirstElement = item;
             }
         }
-
         public void AddLast(T item)
         {
             AddLast(new ListItem<T>(item));
         }
-
         public void AddLast(ListItem<T> item)
         {
             if (Count == 0)
@@ -51,7 +46,6 @@ namespace ImplementLinkedList
             item.PreviousItem = this.LastElement;
             this.LastElement = item;
         }
-
         public void RemoveFirst()
         {
             if (FirstElement == null)
@@ -62,7 +56,6 @@ namespace ImplementLinkedList
             this.Count -= 1;
             this.FirstElement = this.FirstElement.NextItem;
         }
-
         public void RemoveLast()
         {
             if (LastElement == null)
@@ -74,14 +67,12 @@ namespace ImplementLinkedList
             this.Count -= 1;
             this.LastElement = this.LastElement.PreviousItem;
         }
-
         public void Clear()
         {
             this.FirstElement = null;
             this.LastElement = null;
             this.Count = 0;
         }
-
         public bool Contains(T item)
         {
             foreach (var value in this)
@@ -93,7 +84,6 @@ namespace ImplementLinkedList
             }
             return false;
         }
-
         public T this[int index]
         {
             get
@@ -129,7 +119,6 @@ namespace ImplementLinkedList
                 currentItem.Value = value;
             }
         }
-
         public IEnumerator<T> GetEnumerator()
         {
             var currentItem = this.FirstElement;
@@ -140,7 +129,6 @@ namespace ImplementLinkedList
                 currentItem = currentItem.NextItem;
             }
         }
-
         public override string ToString()
         {
             var resultBuilder = new StringBuilder();
@@ -152,7 +140,6 @@ namespace ImplementLinkedList
 
             return "[" + resultBuilder.ToString().TrimEnd() + "]";
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

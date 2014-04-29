@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <label for='tb-x'>X: </label>
+        <input type="text" id="tb-x" />
+        <label for='tb-y'>Y: </label>
+        <input type="text" id="tb-y" />
+        <button id="btn" onclick="CheckIfInCircle()">Check</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        // Write an expression that checks if given print (x,  y) is within a circle K(O, 5).
+        function CheckIfInCircle() {
+            var x = jsConsole.readInteger("#tb-x");
+            var y = jsConsole.readInteger("#tb-y");
+            var circleRadius = 5;
+            if (isNaN(x) || isNaN(y)) {
+                jsConsole.writeLine("The input is not valid")
+            } else if ((x * x + y * y) < (circleRadius * circleRadius)) {
+                jsConsole.writeLine("The point is within the circle!");
+        } else {
+            jsConsole.writeLine("The point is outside of the circle!");
+        }
+        }
+        </script>
+    </body>
+</html>

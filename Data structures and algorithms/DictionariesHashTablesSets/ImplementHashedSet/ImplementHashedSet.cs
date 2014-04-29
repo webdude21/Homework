@@ -10,7 +10,7 @@ namespace ImplementHashedSet
     {
         static void Main()
         {
-            const int elementsCount = 30000;
+            const int elementsCount = 300000;
             var rand = new Random();
             var beforeHash = GC.GetTotalMemory(true);
 

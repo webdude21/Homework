@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <label for='tb-height'>Height: </label>
+        <input type="text" id="tb-height" />
+        <label for='tb-width'>Width: </label>
+        <input type="text" id="tb-width" />
+        <button id="btn" onclick="CalculateArea()">Calculate area</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        // Write an expression that calculates rectangle’s area by given width and height.
+        function CalculateArea() {
+            var height = jsConsole.readFloat("#tb-height");
+            var width = jsConsole.readFloat("#tb-width");
+            if (isNaN(height) || isNaN(width)) {
+                jsConsole.writeLine("The input is not valid")
+            } else {
+                jsConsole.writeLine("The rectangle’s area is " + height * width)
+            }
+        }
+        </script>
+    </body>
+</html>

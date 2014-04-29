@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <label for='tb-number'>Number: </label>
+        <input type="text" id="tb-number" />
+        <button id="btn" onclick="CheckThirdBit()">Check</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        // Write a boolean expression for finding if the bit 3 (counting from 0) of a given integer is 1 or 0.
+        function CheckThirdBit() {
+            var number = jsConsole.readInteger("#tb-number");
+            if (isNaN(number)) {
+                jsConsole.writeLine("The input is not valid")
+            } else {
+                jsConsole.writeLine("The third bit of " + number + (number & (1<<3) ? " is 1" : " is 0 "))
+            }
+        }
+        </script>
+    </body>
+</html>

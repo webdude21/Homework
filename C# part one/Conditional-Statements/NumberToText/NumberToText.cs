@@ -2,24 +2,24 @@
 
 class Program
 {
-// Write a program that converts a number in the range [0...999] to a text corresponding to its English pronunciation.
- 
+    // Write a program that converts a number in the range [0...999] to a text corresponding to its English pronunciation.
+
     static void Main()
     {
         string[] dec = { "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
-        string[] special = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+        string[] special = { "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
         string[] mainDigits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
-        int input = 0;
+        int input;
         Console.WriteLine("Please enter a number in the range [0, 999]");
 
-        bool isValid = int.TryParse(Console.ReadLine(), out input);
+        var isValid = int.TryParse(Console.ReadLine(), out input);
         if (isValid && input >= 0 && input < 1000)
         {
-            int digit = input % 10;
-            int tens = (input / 10) % 10;
-            int hundred = (input / 100) % 10;
- 
+            var digit = input % 10;
+            var tens = (input / 10) % 10;
+            var hundred = (input / 100) % 10;
+
             if (hundred != 0)
             {
                 Console.Write("{0} hundred ", mainDigits[hundred]);
@@ -48,7 +48,10 @@ class Program
                 if (tens != 0 && tens != 1 && input >= 20)
                 {
                     Console.Write("{0} ", dec[tens]);
-                    Console.Write("{0} ", mainDigits[digit]);
+                    if (digit != 0)
+                    {
+                        Console.Write("{0} ", mainDigits[digit]);
+                    }
                 }
                 else if (tens == 1)
                 {
@@ -58,7 +61,7 @@ class Program
                 {
                     Console.Write("{0} ", mainDigits[digit]);
                 }
- 
+
             }
             Console.WriteLine();
         }

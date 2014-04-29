@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Conditional Statements</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number-one">First number</label>
+<input type="text" id="tb-number-one"/>
+<label for="tb-number-two">Second number</label>
+<input type="text" id="tb-number-two"/>
+<label for="tb-number-three">Third number</label>
+<input type="text" id="tb-number-three"/>
+<button id="btn" onclick="FindLargestNumber()">Get Largest Number</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    /* Write a script that finds the biggest of three integers
+     * using nested if statements. */
+    function FindLargestNumber() {
+        var firstNumber = jsConsole.readInteger('#tb-number-one');
+        var secondNumber = jsConsole.readInteger('#tb-number-two');
+        var thirdNumber = jsConsole.readInteger('#tb-number-three');
+
+        if (isNaN(firstNumber) || isNaN(secondNumber) || isNaN(thirdNumber)) {
+            jsConsole.writeLine("The input is invalid!");
+        }
+        else {
+            if (firstNumber < secondNumber)
+                firstNumber = secondNumber;
+            if (firstNumber < thirdNumber)
+                firstNumber = thirdNumber;
+
+            jsConsole.writeLine("The biggest number is " + firstNumber);
+        }
+    }
+</script>
+</body>
+</html>

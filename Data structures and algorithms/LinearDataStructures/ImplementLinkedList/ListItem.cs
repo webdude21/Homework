@@ -5,12 +5,10 @@
         public T Value { get; set; }
         public ListItem<T> NextItem { get; set; }
         public ListItem<T> PreviousItem { get; set; }
-
         public ListItem(T value)
         {
             this.Value = value;
         }
-
         public override string ToString()
         {
             return this.Value.ToString();

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Operators and Expressions</title>
+        <link href="styles/js-console.css" rel="stylesheet" />
+    </head>
+    <body>
+        <label for='tb-input'>Input: </label>
+        <input type="text" id="tb-input" />
+        <button id="btn" onclick="ChechIfPrime()">Check</button>
+        <div id="js-console">
+        </div>
+        <script src="scripts/js-console.js"></script>
+        <script>
+        /* Write an expression that checks if given positive integer 
+        number n (n ≤ 100) is prime. E.g. 37 is prime.
+        If the number is prime it will it should only divide by one and itself.
+        In the loop I start with the number two and finish without
+        using the number itself as a divisor. */
+        function ChechIfPrime() {
+            var divisor = false;
+            var input = jsConsole.readInteger("#tb-input");
+            if (isNaN(input)) {
+                jsConsole.writeLine("The input is not valid")
+            } 
+            else{
+                for (var n = 2; (n < input) && (divisor === false); n++) {
+                    divisor = ((input % n) === 0);
+                }
+                if (divisor === false) {
+                    jsConsole.writeLine("The number is Prime");
+                } else jsConsole.writeLine("The number is Composite");
+            }
+        }
+        </script>
+    </body>
+</html>
