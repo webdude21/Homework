@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Functions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Reverse Digits</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a function that reverses the digits of given decimal
+    // number. Example: 256  652
+    function readInput() {
+        var input = jsConsole.readFloat('#tb-input');
+
+        if (!isNaN(input)) {
+            jsConsole.writeLine("The digit is " + reverseNumber(input));
+        }
+        else {
+            jsConsole.writeLine("The input was invalid!");
+        }
+    }
+
+    function reverseNumber(number) {
+        var inputAsStringArr = number.toString().split('');
+        inputAsStringArr = inputAsStringArr.reverse();
+        return parseFloat(inputAsStringArr.join(''));
+    }
+</script>
+</body>
+</html>

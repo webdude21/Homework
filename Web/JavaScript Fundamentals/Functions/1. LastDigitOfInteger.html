@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Functions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Print numbers</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a function that returns the last digit of given integer
+    // as an English word. Examples:
+    // 512  "two", 1024  "four", 12309  "nine"
+
+    function readInput() {
+        var input = getLastDigit(jsConsole.readInteger('#tb-input'));
+
+        if (!isNaN(input) && input > -1 && input < 10) {
+            jsConsole.writeLine("The digit is " + convertDigitToName(input));
+        }
+        else {
+            jsConsole.writeLine("The input was invalid!");
+        }
+    }
+
+    function getLastDigit(input) {
+        return parseInt(input % 10);
+    }
+
+    function convertDigitToName(digit) {
+        var digitName = '';
+        switch (digit) {
+            case 1:
+                digitName = "one";
+                break;
+            case 2:
+                digitName = "two";
+                break;
+            case 3:
+                digitName = "three";
+                break;
+            case 4:
+                digitName = "four";
+                break;
+            case 5:
+                digitName = "five";
+                break;
+            case 6:
+                digitName = "six";
+                break;
+            case 7:
+                digitName = "seven";
+                break;
+            case 8:
+                digitName = "eight";
+                break;
+            case 9:
+                digitName = "nine";
+                break;
+            case 0:
+                digitName = "zero";
+                break;
+        }
+        return digitName;
+    }
+</script>
+</body>
+</html>

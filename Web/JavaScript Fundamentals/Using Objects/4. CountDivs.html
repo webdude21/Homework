@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Functions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="printDivCount()">Count divs</button>
+<div id="js-console">
+</div>
+<div>
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a script that finds the maximal increasing sequence in an array.
+    function  printDivCount(){
+        jsConsole.writeLine("There are " + countDivs() + " divs in the document.");
+    }
+
+    function countDivs() {
+        var divs = document.getElementsByTagName('div');
+        return divs.length;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Functions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-number">Index: </label>
+<input type="text" id="tb-number">
+<button id="btn" onclick="countNumbersInArray()">Count</button>
+<div id="js-console">
+</div>
+<div>
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    var numberArray = [4, 1, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9, 3];
+    jsConsole.writeLine('This is the array: [' + numberArray + ']');
+</script>
+<script>
+    // Write a function that checks if the element at given position in
+    // given array of integers is bigger than its two neighbors (when such exist).
+
+    function countNumbersInArray() {
+        var numberArray = [4, 1, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9, 3];
+        var inputIndex = jsConsole.readInteger('#tb-number');
+        var result = checkIfBiggerThanNeighbours(numberArray, inputIndex);
+        jsConsole.writeLine('The number at that index is bigger than its neighbours: '+ result);
+    }
+
+    function checkIfBiggerThanNeighbours(numArray, index) {
+
+        if (index < 1 || index >= numArray.length - 1) {
+            return false;
+        }
+
+        return numArray[index] > numArray[index + 1] &&
+                numArray[index] > numArray[index - 1];
+
+    }
+</script>
+</body>
+</html>

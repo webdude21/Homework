@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Data Types and Variables</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    //02. Create a string variable with quoted text in it.
+    var quoted = "\"How you doin'?\", Joey said.";
+    console.log(quoted); //"How you doin'?", Joey said.
+
+    //03. Try typeof on all variables you created.
+    jsConsole.writeLine(typeof (isFalseZero)); //boolean
+    jsConsole.writeLine(typeof (floatingNumber)); //number
+    jsConsole.writeLine(typeof (intNumber)); //number
+    jsConsole.writeLine(typeof (phone)); //object
+    jsConsole.writeLine(typeof (text)); //string
+
+    //04. Create null, undefined variables and try typeof on them.
+    var first;
+    var second = null;
+
+    console.log(typeof (first)); //undefined
+    console.log(typeof (second)); //object
+</script>
+</body>
+</html>

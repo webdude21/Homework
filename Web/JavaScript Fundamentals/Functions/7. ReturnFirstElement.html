@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Functions</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="countNumbersInArray()">Execute</button>
+<div id="js-console">
+</div>
+<div>
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a function that returns the index of the first element in array
+    // that is bigger than its neighbors, or -1, if there’s no such element.
+
+    function countNumbersInArray() {
+        var numberArray = [4, 1, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9, 3];
+        jsConsole.writeLine('This is the array: [' + numberArray + ']');
+        var result = firstIndexBiggerThanNeighbours(numberArray);
+
+        if (result === -1){
+            jsConsole.writeLine("There is no element that is bigger than it's neighbours");
+        }
+        else{
+            jsConsole.writeLine("The first element that is bigger than its " +
+                    "neighbours is at index " + result);
+        }
+    }
+
+    function firstIndexBiggerThanNeighbours(numArray){
+
+        for (var i = 0; i < numArray.length; i++) {
+           if (checkIfBiggerThanNeighbours(numArray, i)){
+               return i;
+           }
+        }
+
+        return -1;
+    }
+
+    function checkIfBiggerThanNeighbours(numArray, index) {
+
+        if (index < 1 || index >= numArray.length - 1) {
+            return false;
+        }
+
+        return numArray[index] > numArray[index + 1] &&
+                numArray[index] > numArray[index - 1];
+    }
+</script>
+</body>
+</html>

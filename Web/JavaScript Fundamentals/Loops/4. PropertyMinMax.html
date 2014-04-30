@@ -26,12 +26,12 @@
 
         for (var prop in obj) {
             currentProperty = prop.toString();
-            if (currentProperty > max) {
+
+            if (currentProperty > max)
                 max = currentProperty;
-            }
-            if (currentProperty < min) {
+
+            if (currentProperty < min)
                 min = currentProperty;
-            }
         }
 
         jsConsole.writeLine("In the " + obj);

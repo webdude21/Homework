@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Data Types and Variables</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Assign all the possible JavaScript literals to different variables.
+
+    //Boolean literals
+    var isFalseZero = (false == 0);
+    jsConsole.writeLine(isFalseZero); //true
+
+    //Floating-point literals
+    var floatingNumber = -.1231;
+    jsConsole.writeLine(floatingNumber); //-0.1231
+
+    //Integers
+    var intNumber = (302 / 3) | 0;
+    jsConsole.writeLine(intNumber); //100
+
+    //Array literals
+    var coffees = ["French Roast", "Colombian", "Kona"];
+
+    //Object literals
+    var Sales = 'Toyota';
+
+    function CarTypes(name) {
+        if (name != "Honda") {
+            return "Sorry, we don't sell " + name + ".";
+        }
+        return name;
+    }
+
+    var car = { myCar: "Saturn", getCar: CarTypes("Honda"), special: Sales };
+
+    jsConsole.writeLine(car.myCar);   // Saturn
+    jsConsole.writeLine(car.getCar);  // Honda
+    jsConsole.writeLine(car.special); // Toyota
+
+    //String literals
+    var text = "one line \nanother line";
+    jsConsole.writeLine(text); //one line
+    //another line
+
+    //03. Try typeof on all variables you created.
+    jsConsole.writeLine(typeof (isFalseZero)); //boolean
+    jsConsole.writeLine(typeof (floatingNumber)); //number
+    jsConsole.writeLine(typeof (intNumber)); //number
+    jsConsole.writeLine(typeof (coffees)); // array
+    jsConsole.writeLine(typeof (phone)); //object
+    jsConsole.writeLine(typeof (text)); //string
+
+</script>
+</body>
+</html>
