@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="testULGen()">Test</button>
+<div data-type="template" id="list-item">
+    <strong>-{name}-</strong> <span>-{age}-</span>
+</div>
+
+<script src="scripts/string-format.js"></script>
+<script>
+    // Write a function that creates a HTML UL using a template for every HTML LI.
+    // The source of the list should an array of elements.
+    // Replace all placeholders marked with –{…}–   with the value of the
+    // corresponding property of the object. Example:
+    // <div data-type="template" id="list-item">
+    // <strong>-{name}-</strong> <span>-{age}-</span>/div>
+    // var people = [{name: "Peter", age: 14},…];
+    // var tmpl = document.getElementById("list-item").innerHtml;
+    // var peopleList = generateList(people,template);
+    // peopleList = "<ul><li><strong>Peter</strong><span>14</span></li><li>…</li>…</ul>
+
+    function testULGen() {
+        var people =
+                [
+                    { name: 'Georgi', age: 24 },
+                    { name: 'Pesho', age: 18 } ,
+                    { name: 'Chorban', age: 34 },
+                    { name: 'Fostata', age: 25 }
+                ];
+
+        var template = document.getElementById("list-item").innerHTML;
+        document.getElementById("list-item").outerHTML = generateList(people, template)
+    }
+
+    function generateList(people, template) {
+        var result = '';
+
+        var addListItem = function (listItem) {
+            var itemReplacer = function (match, p1) {
+                return '<li>' + listItem[p1] + '</li>';
+            };
+            result += template.replace(/-\{(.*?)\}-/g, itemReplacer);
+        };
+
+        people.forEach(addListItem);
+        return '<ul>' + result + '</ul>'
+    }
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 function stringFormat(str) {
     var strFormatArgs = arguments;
 
-    var formatReplacer = function formatReplacer(match, p1) {
+    var formatReplacer = function(match, p1) {
         return strFormatArgs[parseInt(p1) + 1] || match;
     };
 

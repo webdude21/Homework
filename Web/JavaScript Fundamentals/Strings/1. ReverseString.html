@@ -11,7 +11,6 @@
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
-<script src="scripts/extract-palindromes.js"></script>
 <script>
     // Write a JavaScript function reverses string and
     // returns itExample: "sample"  "elpmas".
@@ -19,6 +18,10 @@
     function readInput() {
         var input = document.getElementById('tb-input').value;
         jsConsole.writeLine(reverseString(input));
+    }
+
+    function reverseString(str) {
+        return str.split('').reverse().join('');
     }
 </script>
 </body>
