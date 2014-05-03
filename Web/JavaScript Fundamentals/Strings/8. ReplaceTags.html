@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Parse to JSON</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a JavaScript function that replaces in a HTML document
+    // given as string all the tags <a href="…">…</a> with
+    // corresponding tags [URL=…]…/URL]. Sample HTML fragment:
+
+    function readInput() {
+        var input = document.getElementById('tb-input').value;
+        var result = replaceTags(input);
+        jsConsole.writeLine(result);
+    }
+
+    function replacerFunction(match, p1, p2, p3) {
+        var result = match;
+        result = result.replace(p1, '[URL=');
+        result = result.replace(p2, ']');
+        result = result.replace(p3, '[/URL]');
+        return result;
+    }
+
+    function replaceTags(str) {
+        var matchingRegex = /(<\s*a\s*href\s*=)[^>]*("\s*>)[^<]*(<\s*\/\s*a\s*>)/gi;
+        return str.replace(matchingRegex, replacerFunction);
+    }
+</script>
+</body>
+</html>

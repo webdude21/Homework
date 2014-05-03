@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<button id="btn" onclick="testStringFormat()">Test</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script src="scripts/string-format.js"></script>
+<script>
+    function testStringFormat() {
+        var format = "{0}, {1}, {0} text {2}";
+        jsConsole.writeLine(stringFormat(format, 1, "Pesho", "Gosho"));
+    }
+</script>
+</body>
+</html>

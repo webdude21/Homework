@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Print palindromes</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a program that extracts from a given text all
+    // palindromes, e.g. "ABBA", "lamal", "exe".
+
+    var testString = 'Something Abba, something else lamal, something something-exe?';
+    document.getElementById('tb-input').value = testString;
+
+    function readInput() {
+        var input = document.getElementById('tb-input').value;
+        var result = extractPalindromes(input);
+        jsConsole.writeLine(result);
+    }
+
+    function checkIfPalindrome(str) {
+        return str.split('').reverse().join('').toLowerCase() === str.toLowerCase();
+    }
+
+    function extractPalindromes(str) {
+        var matchingRegex = /\b\w*\b/gi;
+        var words = str.match(matchingRegex);
+        var palindromes = [];
+
+        for (var index = 0; index < words.length; index++) {
+            if (words[index] !== '' && checkIfPalindrome(words[index])) {
+                palindromes.push(words[index]);
+            }
+        }
+        return palindromes;
+    }
+</script>
+</body>
+</html>

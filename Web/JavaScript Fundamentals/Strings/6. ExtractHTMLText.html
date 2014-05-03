@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-textInput">Input text: </label>
+<textarea id="tb-textInput"></textarea>
+<button id="btn" onclick="testExtraction()">Escape Whitespace</button>
+<script>
+    // Write a function that replaces non breaking white-spaces in a text with &nbsp;
+    function testExtraction() {
+        document.getElementById('tb-textInput').value =
+                removeTags(document.getElementById('tb-textInput').value);
+    }
+
+    function removeTags(str) {
+        return str.replace(/<(.*?)>/ig, '');
+    }
+</script>
+</body>
+</html>

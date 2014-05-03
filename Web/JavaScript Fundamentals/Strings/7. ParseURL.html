@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Parse to JSON</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a script that parses an URL address given in the format
+    // and extracts from it the [protocol], [server] and [resource]
+    // elements. Return the elements in a JSON object.For example
+    // from the URL http://www.devbg.org/forum/index.php the following
+    // information should be extracted:
+
+    function readInput() {
+        var input = document.getElementById('tb-input').value;
+        var jsonResult = parseUrlToJSON(input);
+        printJSON(jsonResult);
+    }
+
+    function printJSON(jsonResult) {
+        for (var prop in jsonResult) {
+            jsConsole.writeLine(prop + ": " + jsonResult[prop]);
+        }
+    }
+
+    function parseUrlToJSON(str) {
+        var regexParser = /(https?|ftp):\/\/([^\/]+)\/(.*)/i;
+        var result = str.match(regexParser);
+        return {
+            protocol: result[1],
+            server: result[2],
+            resource: result[3]};
+    }
+</script>
+</body>
+</html>

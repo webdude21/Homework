@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Retrieve Emails</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a function for extracting all email addresses from given
+    // text. All substrings that match the format
+    // <identifier>@<host>…<domain> should be recognized as emails.
+    // Return the emails as array of strings.
+
+    var testString = 'Something something Darthmall@deathstar.com, something something darkside@force.co.uk';
+    document.getElementById('tb-input').value = testString;
+
+    function readInput() {
+        var input = document.getElementById('tb-input').value;
+        var result = exportEmailsToArray(input);
+        jsConsole.writeLine(result);
+    }
+
+    function exportEmailsToArray(str) {
+        var matchingRegex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}\b/gi;
+        return str.match(matchingRegex);
+    }
+</script>
+</body>
+</html>

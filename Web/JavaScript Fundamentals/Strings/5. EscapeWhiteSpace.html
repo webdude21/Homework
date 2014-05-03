@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-textInput">Input text: </label>
+<textarea id="tb-textInput"></textarea>
+<button id="btn" onclick="testReplaceWhiteSpace()">Escape Whitespace</button>
+<script>
+    // Write a function that replaces non breaking white-spaces in a text with &nbsp;
+    function testReplaceWhiteSpace() {
+        document.getElementById('tb-textInput').value =
+                replaceWhiteSpace(document.getElementById('tb-textInput').value);
+
+    }
+
+    function replaceWhiteSpace(str) {
+        return str.replace(/ /g, '&nbsp;');
+    }
+</script>
+</body>
+</html>

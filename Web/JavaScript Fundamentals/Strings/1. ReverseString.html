@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-input">Input: </label>
+<input type="text" id="tb-input">
+<button id="btn" onclick="readInput()">Reverse String</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script src="scripts/extract-palindromes.js"></script>
+<script>
+    // Write a JavaScript function reverses string and
+    // returns itExample: "sample"  "elpmas".
+
+    function readInput() {
+        var input = document.getElementById('tb-input').value;
+        jsConsole.writeLine(reverseString(input));
+    }
+</script>
+</body>
+</html>

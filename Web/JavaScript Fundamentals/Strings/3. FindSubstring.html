@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Strings</title>
+    <link href="styles/js-console.css" rel="stylesheet"/>
+</head>
+<body>
+<label for="tb-inputSubString">Input substring: </label>
+<input type="text" id="tb-inputSubString">
+<label for="tb-textInput">Input substring: </label>
+<textarea id="tb-textInput"></textarea>
+<button id="btn" onclick="readInput()">Count substrings</button>
+<div id="js-console">
+</div>
+<script src="scripts/js-console.js"></script>
+<script>
+    // Write a JavaScript function that finds how many times a substring
+    // is contained in a given text (perform case insensitive search).
+    // Example: The target substring is "in". The text is as follows:
+
+    function readInput() {
+        var inputSubString = document.getElementById('tb-inputSubString').value;
+        var inputText = document.getElementById('tb-textInput').value;
+        jsConsole.writeLine("The substring '" + inputSubString + "' was found " +
+                findOccurrencesInText(inputText, inputSubString) + " times");
+    }
+
+    function findOccurrencesInText(textInput, wordInput, caseSensitive) {
+        var matchOptions = 'g';
+
+        if (!caseSensitive === true) {
+            matchOptions = matchOptions + 'i';
+        }
+
+        var resultArr = textInput.match(new RegExp(wordInput, matchOptions));
+        return resultArr ? resultArr.length : 0;
+    }
+
+</script>
+</body>
+</html>

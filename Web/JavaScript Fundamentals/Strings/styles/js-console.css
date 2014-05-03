@@ -1,0 +1,41 @@
+﻿.js-console {
+    margin: 0;
+}
+
+body textarea#tb-textInput {
+    margin: 2px;
+    height: 230px;
+    width: 310px;
+    vertical-align: bottom;
+}
+
+body .js-console {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: black;
+    width: 800px;
+    height: 500px;
+    font-family: Consolas;
+    font-size: 18px;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    word-break: break-all;
+}
+
+body .js-console > p {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+}
+
+body .js-console > p > span {
+    margin: 0;
+    padding: 0;
+}
+
+body .js-console > p > br {
+    display: inline-block;
+    margin-bottom: 5px;
+}
