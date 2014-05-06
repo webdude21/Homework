@@ -31,9 +31,8 @@
                     { name: 'Chorban', age: 34 },
                     { name: 'Fostata', age: 25 }
                 ];
-
         var template = document.getElementById("list-item").innerHTML;
-        document.getElementById("list-item").outerHTML = generateList(people, template)
+        document.getElementById("list-item").outerHTML = generateList(people, template);
     }
 
     function generateList(people, template) {
@@ -47,7 +46,7 @@
         };
 
         people.forEach(addListItem);
-        return '<ul>' + result + '</ul>'
+        return '<ul>' + result + '</ul>';
     }
 </script>
 </body>

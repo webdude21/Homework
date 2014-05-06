@@ -25,7 +25,6 @@ String.prototype.toMixCase = function () {
             charArray[index] = charArray[index].toString().toUpperCase();
         }
     }
-
     return charArray.join("");
 };
 

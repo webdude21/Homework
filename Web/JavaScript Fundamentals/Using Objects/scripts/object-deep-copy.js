@@ -6,7 +6,7 @@ function deepCopyTest() {
 
     var deepCopyOfTestLine = deepCopy(testLine);
     deepCopyOfTestLine.startPoint.Y = 19;
-
+    console.log("");
     jsConsole.writeLine(testLine.startPoint.Y);
     jsConsole.writeLine(deepCopyOfTestLine.startPoint.Y);
 }

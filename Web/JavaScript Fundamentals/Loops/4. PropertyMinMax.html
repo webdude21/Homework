@@ -17,13 +17,12 @@
     }
 
     function findMinAndMaxOfObject(obj) {
-        // Admittedly it will not work if you have a very long word with a lot of 'z'-ies in it :)
         var outputString = '';
-        var min = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" +
-                "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
-        var max = "";
+        var min = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
+         + 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+        var max = '';
         var currentProperty;
-
+        
         for (var prop in obj) {
             currentProperty = prop.toString();
 
