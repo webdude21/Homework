@@ -62,12 +62,10 @@ function Solve(args) {
                 sumOfNumber += labirynth[curRow][curCol];
                 labirynth[curRow][curCol] = 0;
                 numberOfJumps++;
-            }
-            else {
+            } else {
                 return "lost " + numberOfJumps;
             }
-        }
-        else {
+        } else {
             return "out " + sumOfNumber;
         }
 
