@@ -9,42 +9,31 @@ function Solve(inputArr) {
     String.prototype.splitByWhiteSpace = function splitByWhiteSpace() {
         return this.trim().split(/\s+/gi);
     };
-
-    function getNumberValue(obj){
-        return isNaN(parseInt(obj)) ? funcList[obj] : parseInt(obj);
+    function getNumberValue(str){
+        return isNaN(parseInt(str)) ? funcList[str] : parseInt(str);
     }
 
     function mathOperation(argArray) {
         var operation = argArray[0];
-        var resultVariable = argArray[1]; // get first operand
-        resultVariable = isNaN(resultVariable) ? funcList[resultVariable] : parseInt(resultVariable);
+        var resultVariable = getNumberValue(argArray[1]); // get first operand
         var operands = argArray.slice(2);
 
         switch (operation) {
             case '+':
-                operands.forEach(function (obj) {
-                    resultVariable += getNumberValue(obj);
-                });
+                operands.forEach(function (obj){resultVariable += getNumberValue(obj)});
                 break;
             case '-':
-                operands.forEach(function (obj) {
-                    resultVariable -= getNumberValue(obj);
-                });
+                operands.forEach(function (obj){resultVariable -= getNumberValue(obj)});
                 break;
             case '*':
-                operands.forEach(function (obj) {
-                    resultVariable *= getNumberValue(obj);
-                });
+                operands.forEach(function (obj){resultVariable *= getNumberValue(obj)});
                 break;
             case '/':
-                operands.forEach(function (obj) {
-                    resultVariable /= getNumberValue(obj);
-                });
+                operands.forEach(function (obj){resultVariable /= getNumberValue(obj)});
                 break;
         }
-        if (resultVariable === Infinity) {
-            dividingByZero = true;
-        }
+
+        dividingByZero = (resultVariable === Infinity);
         return parseInt(resultVariable, 10);
     }
 
