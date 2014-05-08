@@ -9,19 +9,14 @@
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
-<script src="scripts/forumla-bits.js"></script>
+<script src="scripts/clojure.js"></script>
 <script>
     function HandleInput() {
-        var args = [134,
-            150,
-            22,
-            16,
-            31,
-            31,
-            31,
-            31
-        ];
-        jsConsole.writeLine(Solver(args));
+        var zeroTestArr = ['(def func 10)',
+            '(def newFunc (+  func 2))',
+            '(def sumFunc (+ func func newFunc 0 0 0))',
+            '(* sumFunc 2)'];
+        jsConsole.writeLine(Solve(zeroTestArr));
     }
 </script>
 </body>
