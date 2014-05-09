@@ -56,6 +56,10 @@ build/
 [Bb]in/
 [Oo]bj/
 
+# StyleCop
+*.StyleCop
+StyleCop*
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*

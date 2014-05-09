@@ -15,7 +15,7 @@ function Solve(inputArr) {
 
     function mathOperation(argArray) {
         var operation = argArray[0];
-        var resultVariable = getNumberValue(argArray[1]); // get first operand
+        var resultVariable = getNumberValue(argArray[1]);
         var operands = argArray.slice(2);
 
         switch (operation) {

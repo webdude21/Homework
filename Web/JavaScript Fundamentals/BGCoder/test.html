@@ -9,13 +9,13 @@
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
-<script src="scripts/clojure.js"></script>
+<script src="scripts/listy.js"></script>
 <script>
     function HandleInput() {
-        var zeroTestArr = ['(def func 10)',
-            '(def newFunc (+  func 2))',
-            '(def sumFunc (+ func func newFunc 0 0 0))',
-            '(* sumFunc 2)'];
+        var zeroTestArr = ['def definition[-100, -100, -100]',
+            'def definitionResult sum[definition]',
+            'def defTest sum[definitionResult, 6457457, 2345234, -234546]',
+            'avg[defTest, 1, 2, 3]'];
         jsConsole.writeLine(Solve(zeroTestArr));
     }
 </script>
