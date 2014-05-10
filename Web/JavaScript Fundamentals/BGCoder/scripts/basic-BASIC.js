@@ -1,26 +1,26 @@
-function Solver(params) {
+function Solver(input) {
     var variables = { V: 0, W: 0, X: 0, Y: 0, Z: 0};
     var output = '';
     var stopFound = false;
-    var codeByLines = [];
+    var code = [];
 
-    for (var inputLine = 0; inputLine < params.length; inputLine += 1) {
-        var lineNumber = parseInt(params[inputLine]);
-        codeByLines[lineNumber] =
-            params[inputLine].slice(lineNumber.toString().length).trim().replace(/\s+/g, '');
+    for (var index = 0; index < input.length; index += 1) {
+        var lineNumber = parseInt(input[index]);
+        code[lineNumber] =
+            input[index].slice(lineNumber.toString().length).trim().replace(/\s+/g, '');
     }
 
-    for (var currentLine = 0; currentLine < codeByLines.length; currentLine += 1) {
+    for (var line = 0; line < code.length; line += 1) {
         if (stopFound) {
             break;
         }
-        if (codeByLines[currentLine]) {
-            manageLine(codeByLines[currentLine])
+        if (code[line]) {
+            execute(code[line])
         }
     }
 
-    function getValueFromStr(stringInput) {
-        return isNaN(parseInt(stringInput)) ? variables[stringInput[0]] : parseInt(stringInput);
+    function getValueFromStr(str) {
+        return isNaN(parseInt(str)) ? variables[str[0]] : parseInt(str);
     }
 
     function assignment(str) {
@@ -68,28 +68,28 @@ function Solver(params) {
         }
 
         if (boolResult) {
-            manageLine(str.split('THEN')[1]);
+            execute(str.split('THEN')[1]);
         }
     }
 
-    function manageLine(lineInput) {
-        if (lineInput.indexOf('IF') === 0) {
-            condition(lineInput);
+    function execute(statement) {
+        if (statement.indexOf('IF') === 0) {
+            condition(statement);
         }
-        else if (lineInput.indexOf('PRINT') === 0) {
-            output = output + variables[lineInput.slice(5)] + '\r\n';
+        else if (statement.indexOf('PRINT') === 0) {
+            output = output + variables[statement.slice(5)] + '\r\n';
         }
-        else if (lineInput.indexOf('CLS') === 0) {
+        else if (statement.indexOf('CLS') === 0) {
             output = '';
         }
-        else if (lineInput.indexOf('GOTO') === 0) {
-            currentLine = parseInt(lineInput.split('GOTO').pop()) - 1;
+        else if (statement.indexOf('GOTO') === 0) {
+            line = parseInt(statement.split('GOTO').pop()) - 1;
         }
-        else if (lineInput.indexOf('STOP') === 0) {
+        else if (statement.indexOf('STOP') === 0) {
             stopFound = true;
         }
         else {
-            assignment(lineInput);
+            assignment(statement);
         }
     }
 
