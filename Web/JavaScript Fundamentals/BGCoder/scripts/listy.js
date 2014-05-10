@@ -7,7 +7,6 @@ function Solve(inputArr) {
     String.prototype.splitByWhiteSpace = function splitByWhiteSpace() {
         return this.trim().split(/\s+/gi);
     };
-
     String.prototype.extractExpression = function extractExpression() {
         return this.match(/\[[^]*\]/gi)[0].slice(1, -1);
     };

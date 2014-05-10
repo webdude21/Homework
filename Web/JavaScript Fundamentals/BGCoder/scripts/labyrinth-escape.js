@@ -5,7 +5,7 @@ function Solve(args) {
     currentLine = args[1].split(' ');
     var curRow = parseInt(currentLine[0], 10);
     var curCol = parseInt(currentLine[1], 10);
-    var labirynth = fillNumberArray(N, M);
+    var labyrinth = fillNumberArray(N, M);
 
     function fillNumberArray(N, M) {
         var filler = 1;
@@ -46,8 +46,8 @@ function Solve(args) {
     }
 
     // first step
-    var sumOfNumber = labirynth[curRow][curCol];
-    labirynth[curRow][curCol] = 0;
+    var sumOfNumber = labyrinth[curRow][curCol];
+    labyrinth[curRow][curCol] = 0;
     var numberOfJumps = 1;
     var nextStep;
 
@@ -58,9 +58,9 @@ function Solve(args) {
 
         if ((curRow < N && curRow >= 0) && (curCol < M && curCol >= 0)) {
 
-            if (labirynth[curRow][curCol] > 0) {
-                sumOfNumber += labirynth[curRow][curCol];
-                labirynth[curRow][curCol] = 0;
+            if (labyrinth[curRow][curCol] > 0) {
+                sumOfNumber += labyrinth[curRow][curCol];
+                labyrinth[curRow][curCol] = 0;
                 numberOfJumps++;
             } else {
                 return "lost " + numberOfJumps;

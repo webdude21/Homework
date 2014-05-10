@@ -47,7 +47,7 @@ function Solve(args) {
                     numberOfJumps++;
                 }
                 else {
-                    return "caught  " + numberOfJumps;
+                    return "caught " + numberOfJumps;
                 }
             }
             else {
