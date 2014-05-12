@@ -5,24 +5,14 @@
     <link href="styles/js-console.css" rel="stylesheet"/>
 </head>
 <body>
-<button id="btn" onclick="HandleInput()">Test</button>
+<button id="btn" onclick="performTest()">Test</button>
 <div id="js-console">
 </div>
 <script src="scripts/js-console.js"></script>
-<script src="scripts/basic-BASIC.js"></script>
+<script src="scripts/joro-the-rabbit.js"></script>
 <script>
-    function HandleInput() {
-        var zeroTestArr = [
-            '5 X=-1',
-            '6 IF X=-1 THEN X=0',
-            '7 PRINT X',
-            '8 CLS',
-            '10 PRINT X',
-            '20 X=X+1',
-            '30 IF X < 4 THEN GOTO 10',
-            '40 STOP',
-            '50 PRINT X',
-            'RUN'];
+    function performTest() {
+        var zeroTestArr = ['1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0'];
         jsConsole.writeLine(Solver(zeroTestArr));
     }
 </script>

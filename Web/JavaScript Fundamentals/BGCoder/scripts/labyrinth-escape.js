@@ -68,6 +68,5 @@ function Solve(args) {
         } else {
             return "out " + sumOfNumber;
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,32 +9,29 @@ class PHPVariables
     static void Main()
     {
         string currentLine = null;
-        List<string> variables = new List<string>();
-        StringBuilder input = new StringBuilder();
+        var variables = new List<string>();
+        var input = new StringBuilder();
 
         while (currentLine != "?>")
         {
-            currentLine = Console.ReadLine().Trim();
-            input.Append("\r\n");
-            input.Append(currentLine);
+            currentLine = Console.ReadLine();
+            input.AppendLine(currentLine);
         }
 
-        string vars = @"(?<!\\\$)(?<=\$)\w+|(?<=\\\\\$)(?<=\$)\w+";
-        string comments = @"(?<![""']+)/\*[^\*/]+\*/|(?<![""']+)//.*|#.*";
+        const string vars = @"(?<!\\\$)(?<=\$)\w+|(?<=\\\\\$)(?<=\$)\w+";
+        const string comments = @"//.*|(?<![""']+)#.*|/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*/";
+        var output = Regex.Replace(input.ToString(), comments, "", RegexOptions.IgnoreCase);
+        var matches = Regex.Matches(output, vars, RegexOptions.IgnorePatternWhitespace);
 
-        string output = Regex.Replace(input.ToString(), comments, "", RegexOptions.IgnoreCase);
-        MatchCollection matches = Regex.Matches(output, vars, RegexOptions.IgnorePatternWhitespace);
-        foreach (Match match in matches)
+        foreach (var match in matches.Cast<Match>().Where(match => !variables.Contains(match.ToString())))
         {
-            if (!variables.Contains(match.ToString()))
-            {
-                variables.Add(match.ToString());
-            }
+            variables.Add(match.ToString());
         }
+
         Console.WriteLine(variables.Count);
-        foreach (string var in variables)
+        foreach (var variable in variables)
         {
-            Console.WriteLine(var);
+            Console.WriteLine(variable);
         }
     }
 }
