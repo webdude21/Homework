@@ -1,12 +1,12 @@
 function Solver(inputArr) {
     inputArr.shift();
-    var input = '';
+    var document = '';
     var currentMatches;
 
     for (var i = 0; i < inputArr.length; i++) {
-        input += inputArr[i];
+        document += inputArr[i];
         if (i < inputArr.length - 1) {
-            input += ('\r\n');
+            document += ('\n');
         }
     }
 
@@ -21,13 +21,13 @@ function Solver(inputArr) {
             case 'del':
                 return '';
             case 'rev':
-                return reverseString(tagContent);
+                return tagContent.split('').reverse().join('');
         }
     };
 
     do {
-        currentMatches = input.match(/<([^>]+)>([^<]*)<\/\1>/i);
-        input = input.replace(/<([^>]+)>([^<]*)<\/\1>/i, tagReplacer);
+        currentMatches = document.match(/<([^>]+)>([^<]*)<\/\1>/i);
+        document = document.replace(/<([^>]+)>([^<]*)<\/\1>/i, tagReplacer);
     }
     while (currentMatches);
 
@@ -40,18 +40,5 @@ function Solver(inputArr) {
         return strToggled;
     }
 
-    function reverseString(tagContent) {
-        var strOutput = '';
-        var strReversed = tagContent.split('\r\n');
-        for (var index = strReversed.length - 1; index >= 0; index--) {
-            for (var chr = strReversed[index].length - 1; chr >= 0; chr--) {
-                strOutput += strReversed[index][chr];
-            }
-            if (index > 0) {
-                strOutput += ('\r\n');
-            }
-        }
-        return strOutput;
-    }
-    return input;
+    return document;
 }
