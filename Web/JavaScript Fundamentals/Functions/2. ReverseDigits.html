@@ -26,9 +26,7 @@
     }
 
     function reverseNumber(number) {
-        var inputAsStringArr = number.toString().split('');
-        inputAsStringArr = inputAsStringArr.reverse();
-        return parseFloat(inputAsStringArr.join(''));
+        return parseFloat(number.toString().split('').reverse().join(''));
     }
 </script>
 </body>

@@ -1,5 +1,5 @@
 function Solver(input) {
-    var valley = input[0].trim().split(', ');
+    var valley = input[0].split(', ');
     input = input.slice(2);
     var patterns = [];
     var maxCoin = -Infinity;

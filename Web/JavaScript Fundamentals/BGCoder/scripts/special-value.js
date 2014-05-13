@@ -5,7 +5,7 @@ function Solver(input) {
     var maxSpecialValue = 0;
 
     for (var row = 0; row < input.length; row++) {
-        input[row] = input[row].trim().split(', ');
+        input[row] = input[row].split(', ');
         for (var col = 0; col < input[row].length; col++) {
             input[row][col] = parseInt(input[row][col]);
         }

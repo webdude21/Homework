@@ -1,22 +1,26 @@
 function Solver(input) {
-    var terrain = input[0].trim().split(', ');
+    var terrain = input[0].split(', ');
     var maxVisited = 0;
     var terrainLength = terrain.length;
 
     for (var i = 0; i < terrainLength; i++) {
-        terrain[i] = parseInt(terrain[i], 10);
+        terrain[i] = terrain[i] | 0;
     }
 
     for (var jumpSize = 1; jumpSize < terrainLength; jumpSize++) {
-        for (var startPos = 0; startPos < terrainLength; startPos++) {
+        for (var startPos = 1; startPos < terrainLength; startPos++) {
             var currentMax = 1;
             var position = startPos;
-            var nextStep = getNextStep(position, jumpSize);
+
+            var nextStep = position + jumpSize >= terrainLength ?
+                position + jumpSize - terrainLength : position + jumpSize;
 
             while (terrain[position] < terrain[nextStep]) {
-                currentMax++;
+                currentMax += 1;
                 position = nextStep;
-                nextStep = getNextStep(position, jumpSize);
+
+                nextStep = position + jumpSize >= terrainLength ?
+                    position + jumpSize - terrainLength : position + jumpSize;
             }
 
             if (currentMax > maxVisited) {
@@ -24,11 +28,5 @@ function Solver(input) {
             }
         }
     }
-
-    function getNextStep(currentPosition, jumpSize) {
-        return currentPosition + jumpSize >= terrainLength ?
-            currentPosition + jumpSize - terrainLength : currentPosition + jumpSize;
-    }
-
     return maxVisited;
 }
