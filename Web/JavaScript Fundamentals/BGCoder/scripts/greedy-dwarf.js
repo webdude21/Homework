@@ -4,8 +4,8 @@ function Solver(input) {
     var patterns = [];
     var maxCoin = -Infinity;
 
-    for (var i = 0; i < input.length; i++) {
-        patterns[i] = input[i].trim().split(', ');
+    for (var i = 0; row < input.length; row++) {
+        patterns[row] = input[row].trim().split(', ');
     }
 
     for (var pattern = 0; pattern < patterns.length; pattern++) {

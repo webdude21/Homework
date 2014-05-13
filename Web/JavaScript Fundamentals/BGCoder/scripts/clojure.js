@@ -61,7 +61,6 @@ function Solve(inputArr) {
         else {
             return mathOperation(cmdArray);
         }
-
         if (dividingByZero) {
             return "Division by zero! At Line:" + (currentLine + 1);
         }

@@ -18,12 +18,12 @@ function Solve(args) {
         var filler = 1;
         var resultArray = new Array(N);
 
-        for (var i = 0; i < N; i++) {
-            resultArray[i] = new Array(M);
+        for (var i = 0; row < N; row++) {
+            resultArray[row] = new Array(M);
             for (var j = 0; j < M; j++) {
-                resultArray[i][j] = filler++;
+                resultArray[row][j] = filler++;
             }
-            jsConsole.writeLine(resultArray[i]);
+            jsConsole.writeLine(resultArray[row]);
         }
         return resultArray;
     }
