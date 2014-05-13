@@ -1,14 +1,7 @@
 function Solver(inputArr) {
     inputArr.shift();
-    var document = '';
+    var text = inputArr.join('\n');
     var currentMatches;
-
-    for (var i = 0; i < inputArr.length; i++) {
-        document += inputArr[i];
-        if (i < inputArr.length - 1) {
-            document += ('\n');
-        }
-    }
 
     var tagReplacer = function tagReplacer(match, tag, tagContent) {
         switch (tag.toLowerCase()) {
@@ -26,8 +19,8 @@ function Solver(inputArr) {
     };
 
     do {
-        currentMatches = document.match(/<([^>]+)>([^<]*)<\/\1>/i);
-        document = document.replace(/<([^>]+)>([^<]*)<\/\1>/i, tagReplacer);
+        currentMatches = text.match(/<([^>]+)>([^<]*)<\/\1>/i);
+        text = text.replace(/<([^>]+)>([^<]*)<\/\1>/i, tagReplacer);
     }
     while (currentMatches);
 
@@ -39,6 +32,5 @@ function Solver(inputArr) {
         }
         return strToggled;
     }
-
-    return document;
+    return text;
 }
