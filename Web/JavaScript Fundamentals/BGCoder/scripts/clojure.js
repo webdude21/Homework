@@ -3,7 +3,7 @@ function Solve(inputArr) {
     var clojureMatch = /(\([^()]*\))/gi;
     var dividingByZero = false;
 
-    String.prototype.removeBrackets = function removeBrackets() {
+    String.prototype.deleteBrackets = function removeBrackets() {
         return this.slice(1, -1);
     };
     String.prototype.splitByWhiteSpace = function splitByWhiteSpace() {
@@ -39,13 +39,13 @@ function Solve(inputArr) {
 
     for (var currentLine = 0; currentLine < inputArr.length; currentLine++) {
 
-        var currentCommand = inputArr[currentLine].removeBrackets();
+        var currentCommand = inputArr[currentLine].deleteBrackets();
         var clojure = currentCommand.match(clojureMatch);
 
         if (clojure) {
             clojure = clojure[0].toString();
             currentCommand = currentCommand.replace(clojure, '');
-            clojure = clojure.removeBrackets();
+            clojure = clojure.deleteBrackets();
         }
 
         var cmdArray = currentCommand.splitByWhiteSpace();

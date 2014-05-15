@@ -1,6 +1,6 @@
-function Solver(inputArr) {
-    inputArr.shift();
-    var text = inputArr.join('\n');
+function Solver(input) {
+    input.shift();
+    var text = input.join('\n');
     var currentMatches;
 
     var tagReplacer = function tagReplacer(match, tag, tagContent) {
@@ -16,6 +16,15 @@ function Solver(inputArr) {
             case 'rev':
                 return tagContent.split('').reverse().join('');
         }
+
+        function toggleString() {
+            var strToggled = '';
+            for (var index = 0; index < tagContent.length; index++) {
+                strToggled += tagContent[index] === tagContent[index].toUpperCase() ?
+                    tagContent[index].toLowerCase() : tagContent[index].toUpperCase();
+            }
+            return strToggled;
+        }
     };
 
     do {
@@ -24,13 +33,5 @@ function Solver(inputArr) {
     }
     while (currentMatches);
 
-    function toggleString(tagContent) {
-        var strToggled = '';
-        for (var index = 0; index < tagContent.length; index++) {
-            strToggled += tagContent[index] === tagContent[index].toUpperCase() ?
-                tagContent[index].toLowerCase() : tagContent[index].toUpperCase();
-        }
-        return strToggled;
-    }
     return text;
 }

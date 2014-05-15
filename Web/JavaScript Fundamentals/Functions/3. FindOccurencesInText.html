@@ -24,7 +24,7 @@
         var textInput = document.getElementById('tb-textInput').value;
         var wordInput = document.getElementById('tb-wordInput').value;
 
-        if (document.getElementById('caseSensitive').checked){
+        if (document.getElementById('caseSensitive').checked) {
             var caseSensitive = true;
         }
 
@@ -39,7 +39,7 @@
             matchOptions = matchOptions + 'i';
         }
 
-        var resultArr = textInput.match(new RegExp(wordInput, matchOptions));
+        var resultArr = textInput.match(new RegExp('\\b' + wordInput + '\\b', matchOptions));
         return resultArr ? resultArr.length : 0;
     }
 </script>
