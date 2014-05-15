@@ -1,8 +1,5 @@
 function Solver(input) {
-    input.shift();
-    input.pop();
     var text = input.join('\n');
-    text += ' ';
     var result = [];
     var char = 0;
     var inMultiLineComment = false;
@@ -27,9 +24,15 @@ function Solver(input) {
     }
 
     while (char < text.length) {
-        if (text[char] === '\\' && text[char + 2] !== '\\') {
+        escaping = false;
+        if (text[char] === '\\') {
             escaping = true;
-            char++;
+            char += 2;
+            if (inVariable) {
+                inVariable = false;
+                addVariable(currentVariable);
+                currentVariable = '';
+            }
             continue;
         }
         if (!escaping) {
@@ -75,9 +78,7 @@ function Solver(input) {
                         }
                         else {
                             inVariable = false;
-                            if (result.indexOf(currentVariable) === -1) {
-                                result.push(currentVariable);
-                            }
+                            addVariable(currentVariable);
                             currentVariable = '';
                         }
                     }
@@ -88,9 +89,7 @@ function Solver(input) {
                 inString = false;
             }
         }
-        escaping = false;
         char++;
     }
-
     return result.length > 0 ? result.length + ('\n') + result.join('\n') : '0';
 }
