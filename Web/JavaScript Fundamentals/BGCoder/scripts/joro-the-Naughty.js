@@ -18,12 +18,11 @@ function Solve(args) {
         var filler = 1;
         var resultArray = new Array(N);
 
-        for (var i = 0; row < N; row++) {
-            resultArray[row] = new Array(M);
+        for (var i = 0; i < N; i++) {
+            resultArray[i] = new Array(M);
             for (var j = 0; j < M; j++) {
-                resultArray[row][j] = filler++;
+                resultArray[i][j] = filler++;
             }
-            jsConsole.writeLine(resultArray[row]);
         }
         return resultArray;
     }
@@ -39,7 +38,7 @@ function Solve(args) {
         for (var index = 1; index < rowPos.length; index++) {
             curRow += rowPos[index];
             curCol += colPos[index];
-            if ((curRow < N && curRow >= 0) &&
+            if ((curRow < N && curRow + curRow >= 0) &&
                 (curCol < M && curCol >= 0)) {
                 if (field[curRow][curCol] > 0) {
                     sumOfNumber += field[curRow][curCol];
@@ -47,7 +46,7 @@ function Solve(args) {
                     numberOfJumps++;
                 }
                 else {
-                    return "caught " + numberOfJumps;
+                    return "caught  " + numberOfJumps;
                 }
             }
             else {
