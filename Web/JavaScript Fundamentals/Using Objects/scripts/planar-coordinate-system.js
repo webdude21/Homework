@@ -40,31 +40,31 @@ function checkIfThreeLinesCanFormTriangle(a, b, c) {
 
 function Point(x, y) {
     if (!isNaN(x) && !isNaN(y)) {
-        var self = this;
+        var that = this;
         this.X = x;
         this.Y = y;
         this.toString = function () {
-            return '[' + self.X + ',' + self.Y + ']';
+            return '[' + that.X + ',' + that.Y + ']';
         };
 
-        return self;
+        return that;
     }
 }
 
 function Line(startPoint, endPoint) {
     if (startPoint instanceof Point && endPoint instanceof Point) {
-        var self = this;
+        var that = this;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.toString = function () {
-            return "{" + self.startPoint.toString() + ' '
-                + self.endPoint.toString() + "}";
+            return "{" + that.startPoint.toString() + ' '
+                + that.endPoint.toString() + "}";
         };
         this.getLength = function () {
             return Math.sqrt(Math.pow((endPoint.X - startPoint.X), 2) +
                 Math.pow((endPoint.Y - startPoint.Y), 2));
         };
 
-        return self;
+        return that;
     }
 }

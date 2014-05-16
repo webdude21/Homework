@@ -10,6 +10,8 @@ class ConsoleJustification
     static int wordsOnThisLine;
     static int firstWord;
 
+    string = "";
+
     static void Main()
     {
         int nLines = int.Parse(Console.ReadLine());

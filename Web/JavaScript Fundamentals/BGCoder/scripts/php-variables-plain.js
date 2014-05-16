@@ -11,16 +11,16 @@ function Solver(input) {
     var currentVariable = '';
 
     function addVariable(variable) {
-        if (result.indexOf(variable) === -1) {
+        if (result.indexOf(variable) === -1 && variable !== '') {
             result.push(variable);
         }
     }
 
-    function isValidVariableChar(charecter) {
-        if (charecter >= 'a' && charecter <= 'z') return true;
-        if (charecter >= 'A' && charecter <= 'Z') return true;
-        if (charecter >= '0' && charecter <= '9') return true;
-        return charecter === '_';
+    function isValidVariableChar(character) {
+        if (character >= 'a' && character <= 'z') return true;
+        if (character >= 'A' && character <= 'Z') return true;
+        if (character >= '0' && character <= '9') return true;
+        return character === '_';
     }
 
     while (char < text.length) {
@@ -70,6 +70,10 @@ function Solver(input) {
                         }
                     }
                     if (text[char] === '$') {
+                        if (inVariable) {
+                            addVariable(currentVariable);
+                            currentVariable = '';
+                        }
                         inVariable = true;
                     }
                     else if (inVariable) {
@@ -91,5 +95,6 @@ function Solver(input) {
         }
         char++;
     }
+    result.sort();
     return result.length > 0 ? result.length + ('\n') + result.join('\n') : '0';
 }

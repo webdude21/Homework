@@ -2,10 +2,10 @@
     margin: 0;
 }
 
-body textarea#tb-textInput {
+body textarea {
     margin: 2px;
-    height: 230px;
-    width: 310px;
+    height: 600px;
+    width: 600px;
     vertical-align: bottom;
 }
 
