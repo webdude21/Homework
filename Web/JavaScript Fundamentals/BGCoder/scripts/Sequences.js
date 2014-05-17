@@ -1,4 +1,4 @@
-function Solve(params) {
+function solve(params) {
     var answer = 0;
     var previousNumber = Number.MAX_VALUE;
 

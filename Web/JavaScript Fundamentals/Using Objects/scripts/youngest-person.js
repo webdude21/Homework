@@ -3,10 +3,10 @@
 
 function test() {
     var persons = [
-        {firstname: "Gosho", lastname: "Petrov", age: 32},
-        {firstname: "Bay", lastname: "Ivan", age: 23},
-        {firstname: "Pesho", lastname: "Georgiev", age: 19},
-        {firstname: "Michael", lastname: "Bay", age: 81}];
+        { firstname: "Gosho", lastname: "Petrov", age: 32 },
+        { firstname: "Bay", lastname: "Ivan", age: 23 },
+        { firstname: "Pesho", lastname: "Georgiev", age: 19 },
+        { firstname: "Michael", lastname: "Bay", age: 81 }];
     printInitialArray(persons);
     jsConsole.write('The youngest person is: ');
     findYoungestPerson(persons);
@@ -20,7 +20,7 @@ function printInitialArray(arr) {
     }
 }
 
-function comparePersons(a,b) {
+function comparePersons(a, b) {
     if (a.age < b.age)
         return -1;
     if (a.age > b.age)

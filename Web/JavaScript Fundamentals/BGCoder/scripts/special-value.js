@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     input.shift();
     var pathEnded = false;
     var visited = [];

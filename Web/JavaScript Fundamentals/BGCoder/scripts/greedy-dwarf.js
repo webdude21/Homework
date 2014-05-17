@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var valley = input[0].split(', ');
     input = input.slice(2);
     var patterns = [];

@@ -1,4 +1,4 @@
-function Solve(args) {
+function solve(args) {
     var currentLine = args[0].split(' ');
     var N = parseInt(currentLine[0], 10);
     var M = parseInt(currentLine[1], 10);

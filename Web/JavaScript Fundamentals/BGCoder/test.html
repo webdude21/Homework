@@ -8,12 +8,12 @@
 <label for="tb-textInput">Input: </label><textarea id="tb-textInput"></textarea>
 <label for="tb-textOutput">Output: </label><textarea id="tb-textOutput"></textarea>
 <button id="btn" onclick="performTest()">Test</button>
-<script src="scripts/csharp-cleancode.js"></script>
+<script src="scripts/genome-decoder.js"></script>
 <script>
     function performTest() {
         var input = document.getElementById("tb-textInput").value;
         var inputArr = input.split('\n');
-        document.getElementById("tb-textOutput").value = Solver(inputArr);
+        document.getElementById("tb-textOutput").value = solve(inputArr);
     }
 </script>
 </body>

@@ -39,6 +39,14 @@
         }
     }
 
+    function multiplyString(str, timesToMultiply) {
+        var strOut = '';
+        for (var times = 0; times < timesToMultiply; times++) {
+            strOut += str;
+        }
+        return strOut;
+    }
+
 
     if (!String.prototype.trimChars) {
         String.prototype.trimChars = function (chars) {

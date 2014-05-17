@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var output = '';
     var code = '';
     var buffer = '';

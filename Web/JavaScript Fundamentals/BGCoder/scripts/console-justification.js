@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var charsPerLine = parseInt(input[1]);
     input = input.slice(2);
     var words = [];

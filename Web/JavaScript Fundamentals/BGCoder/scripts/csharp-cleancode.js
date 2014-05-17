@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     input.shift();
     var text = input.join('\n');
     var bufferLine = '';
@@ -76,11 +76,13 @@ function Solver(input) {
                             inVerbatimString = true;
                             bufferLine += text[char];
                             char += 1;
+                            continue;
                         }
                         else {
                             inString = true;
                             bufferLine += text[char];
                             char += 1;
+                            continue;
                         }
                     }
                 }

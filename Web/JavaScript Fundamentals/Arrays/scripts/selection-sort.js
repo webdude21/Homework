@@ -1,6 +1,6 @@
 function selectionSort(numberArray) {
     var sortedArray = new Array(numberArray.length);
-    var current = 0;
+    var current;
 
     for (var i = 0; i < sortedArray.length; i++) {
         current = findMin(numberArray);

@@ -1,4 +1,4 @@
-function Solve(inputArr) {
+function solve(inputArr) {
     var funcList = {};
 
     String.prototype.splitByComma = function splitByComma() {

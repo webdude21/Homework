@@ -1,4 +1,4 @@
-function Solver(params) {
+function solve(params) {
     var track = [];
 
     for (var row = 0; row < 8; row++) {

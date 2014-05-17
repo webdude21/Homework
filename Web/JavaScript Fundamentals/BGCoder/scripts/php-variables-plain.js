@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var text = input.join('\n');
     var result = [];
     var char = 0;

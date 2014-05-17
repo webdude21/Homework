@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var pleasantness = input[0].trim().split(/\s*,\s*/gi);
     var answer = pleasantness.length;
 

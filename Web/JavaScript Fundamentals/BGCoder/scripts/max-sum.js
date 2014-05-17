@@ -1,4 +1,4 @@
-function Solve(params) {
+function solve(params) {
     var currentMaxSum = 0;
     var maxSum = -Number.MAX_VALUE;
 

@@ -21,7 +21,7 @@ function group(persons, prop) {
     persons.forEach(function (person) {
         var value = person[prop];
         result[value] = result[value] || [];
-        result[value].push(person)
+        result[value].push(person);
     });
-    return result
+    return result;
 }

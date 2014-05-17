@@ -20,11 +20,11 @@ function run() {
     jsConsole.writeLine(b);
     jsConsole.writeLine(c);
 
-    if (checkIfThreeLinesCanFormTriangle(a,b,c)){
-        jsConsole.writeLine("Can form a triangle")
+    if (checkIfThreeLinesCanFormTriangle(a, b, c)) {
+        jsConsole.writeLine("Can form a triangle");
     }
-    else{
-        jsConsole.writeLine("Cannot form a triangle")
+    else {
+        jsConsole.writeLine("Cannot form a triangle");
     }
 }
 

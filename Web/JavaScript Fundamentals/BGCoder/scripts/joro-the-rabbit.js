@@ -1,4 +1,4 @@
-function Solver(input) {
+function solve(input) {
     var terrain = input[0].split(', ');
     var maxVisited = 0;
     var terrainLength = terrain.length;
