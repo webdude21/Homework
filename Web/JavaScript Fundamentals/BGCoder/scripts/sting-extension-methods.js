@@ -5,6 +5,27 @@
         }
     }
 
+    if (!String.prototype.reduceWhiteSpace) {
+        String.prototype.reduceWhiteSpace = function () {
+            var output = '';
+            var char = 0;
+            var inWhiteSpace = true;
+            while (char < this.length) {
+                if (this[char] === ' ' || this[char] === '\t') {
+                    if (!inWhiteSpace) {
+                        inWhiteSpace = true;
+                        output += this[char];
+                    }
+                } else {
+                    inWhiteSpace = false;
+                    output += this[char];
+                }
+                char++;
+            }
+            return output;
+        }
+    }
+
     if (!String.prototype.trimLeft) {
         String.prototype.trimLeft = function () {
             return (this + '$%&').trim().slice(0, -3);
@@ -20,6 +41,24 @@
         String.prototype.trimLeftChars = function (chars) {
             var regEx = new RegExp('^[' + chars + ']+');
             return this.replace(regEx, '');
+        }
+    }
+
+
+    if (!String.prototype.trimLeftChars) {
+        String.prototype.trimLeftChars = function (chars) {
+            var regEx = new RegExp('^[' + chars + ']+');
+            return this.replace(regEx, '');
+        }
+    }
+
+    if (!String.prototype.replaceAll) {
+        String.prototype.replaceAll = function (textToReplace, replacement) {
+            var output = this;
+            while (output.indexOf(textToReplace) > -1) {
+                output = output.replace(textToReplace, replacement);
+            }
+            return output;
         }
     }
 

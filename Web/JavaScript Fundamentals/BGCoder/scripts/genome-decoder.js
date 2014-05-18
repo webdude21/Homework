@@ -90,6 +90,5 @@ function solve(input) {
     formatSequence(decodedSequence);
     addLineNumbers();
 
-
     return result.trimRight();
 }
