@@ -3,7 +3,6 @@ function solve(args) {
     var N = parseInt(currentLine[0], 10);
     var M = parseInt(currentLine[1], 10);
     var jumps = parseInt(currentLine[2], 10);
-    currentLine = args[1].split(' ');
     var rowPos = [];
     var colPos = [];
     var field = fillArray(N, M);
@@ -14,14 +13,14 @@ function solve(args) {
         colPos.push(parseInt(currentLine[1], 10));
     }
 
-    function fillArray(N, M) {
+    function fillArray(rows, cols) {
         var filler = 1;
-        var resultArray = new Array(N);
+        var resultArray = new Array(rows);
 
-        for (var i = 0; i < N; i++) {
-            resultArray[i] = new Array(M);
-            for (var j = 0; j < M; j++) {
-                resultArray[i][j] = filler++;
+        for (var row = 0; row < rows; row++) {
+            resultArray[row] = new Array(cols);
+            for (var col = 0; col < cols; col++) {
+                resultArray[row][col] = filler++;
             }
         }
         return resultArray;

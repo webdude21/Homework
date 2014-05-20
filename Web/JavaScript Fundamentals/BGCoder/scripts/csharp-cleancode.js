@@ -3,7 +3,7 @@ function solve(input) {
     var text = input.join('\n');
     var bufferLine = '';
     var output = '';
-    var char = 0;
+    var chr = 0;
     var inMultiLineComment = false;
     var inLineComment = false;
     var inString = false;
@@ -16,79 +16,78 @@ function solve(input) {
             if (this === '' || this === null || this.trim() === '') {
                 return true;
             }
-        }
+            return false;
+        };
     }
 
-    while (char < text.length) {
+    while (chr < text.length) {
         escaping = false;
-        if (text[char] === '\\' && !inVerbatimString) {
+        if (text[chr] === '\\' && !inVerbatimString) {
             escaping = true;
             if (!inLineComment && !inMultiLineComment && !inSummary) {
-                bufferLine += text[char] + text[char + 1];
+                bufferLine += text[chr] + text[chr + 1];
             }
-            char += 2;
+            chr += 2;
             continue;
         }
         if (!escaping) {
             if (!inLineComment) {
                 if (!inString && !inVerbatimString) {
                     if (!inSummary) {
-                        if (!inMultiLineComment && text.substring(char, char + 3) === "///" && text[char + 4] !== "/") {
+                        if (!inMultiLineComment && text.substring(chr, chr + 3) === "///" && text[chr + 4] !== "/") {
                             bufferLine += '///';
                             inSummary = true;
-                            char += 3;
-                            continue
+                            chr += 3;
+                            continue;
                         }
-                        if (text.substring(char, char + 2) === "*/") {
+                        if (text.substring(chr, chr + 2) === "*/") {
                             inMultiLineComment = false;
-                            char += 2;
-                            continue
+                            chr += 2;
+                            continue;
                         }
-                        if (text.substring(char, char + 2) === "/*") {
+                        if (text.substring(chr, chr + 2) === "/*") {
                             inMultiLineComment = true;
-                            char += 2;
-                            continue
+                            chr += 2;
+                            continue;
                         }
-                        if (text.substring(char, char + 2) === "//" && !inMultiLineComment) {
+                        if (text.substring(chr, chr + 2) === "//" && !inMultiLineComment) {
                             inLineComment = true;
-                            char += 2;
-                            continue
+                            chr += 2;
+                            continue;
                         }
                     }
                 }
                 if (!inMultiLineComment && !inLineComment && !inSummary) {
-                    if (text[char] === '"') {
+                    if (text[chr] === '"') {
                         if (inVerbatimString) {
-                            if (text[char + 1] !== '"') {
+                            if (text[chr + 1] !== '"') {
                                 inVerbatimString = !inVerbatimString;
                             }
-                            bufferLine += text[char];
-                            char += 1;
+                            bufferLine += text[chr];
+                            chr += 1;
                             continue;
-                        }
-                        else if (inString) {
+                        } else if (inString) {
                             inString = false;
-                            bufferLine += text[char];
-                            char += 1;
-                            continue
-                        }
-                        if (text[char - 1] === '@') {
-                            inVerbatimString = true;
-                            bufferLine += text[char];
-                            char += 1;
+                            bufferLine += text[chr];
+                            chr += 1;
                             continue;
                         }
-                        else {
+                        if (text[chr - 1] === '@') {
+                            inVerbatimString = true;
+                            bufferLine += text[chr];
+                            chr += 1;
+                            continue;
+                        } else {
                             inString = true;
-                            bufferLine += text[char];
-                            char += 1;
+                            bufferLine += text[chr];
+                            chr += 1;
                             continue;
                         }
                     }
                 }
             }
         }
-        if (text[char] === '\n') {
+        if (text[chr] === '\n') {
             inSummary = false;
             inLineComment = false;
             inString = false;
@@ -98,9 +97,9 @@ function solve(input) {
             bufferLine = '';
         }
         if (!inMultiLineComment && !inLineComment) {
-            bufferLine += text[char];
+            bufferLine += text[chr];
         }
-        char++;
+        chr++;
     }
     return (output + bufferLine).trim();
 }

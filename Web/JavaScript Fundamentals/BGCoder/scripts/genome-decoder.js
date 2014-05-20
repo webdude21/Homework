@@ -7,7 +7,7 @@ function solve(input) {
     if (!String.prototype.trimRight) {
         String.prototype.trimRight = function () {
             return ('$%&' + this).trim().slice(0, -3);
-        }
+        };
     }
 
     function addLineNumbers() {
@@ -49,8 +49,8 @@ function solve(input) {
         return outputStr;
     }
 
-    function isDigit(char) {
-        if (char >= '0' && char <= '9') return true;
+    function isDigit(chr) {
+        if (chr >= '0' && chr <= '9') return true;
     }
 
     function multiplyString(str, timesToMultiply) {
@@ -63,22 +63,20 @@ function solve(input) {
 
     function decodeSequence(sequence) {
         var index = 0;
-        var char = '';
-        var inNumber = false;
+        var chr = '';
         var currentNumber = '';
         var output = '';
 
         while (index < sequence.length) {
-            char = sequence[index];
-            if (isDigit(char)) {
-                currentNumber += char;
-                inNumber = true;
+            chr = sequence[index];
+            if (isDigit(chr)) {
+                currentNumber += chr;
             }
             else if (currentNumber === '') {
-                output += char;
+                output += chr;
             }
             else {
-                output += multiplyString(char, parseInt(currentNumber));
+                output += multiplyString(chr, parseInt(currentNumber));
                 currentNumber = '';
             }
             index++;

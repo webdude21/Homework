@@ -15,7 +15,6 @@ function solve(input) {
         return strOut;
     }
 
-    // get all the words and put them in an array
     for (var i = 0; i < input.length; i++) {
         words = words.concat(input[i].match(/\w+/gi));
     }
@@ -34,12 +33,11 @@ function solve(input) {
                 var wordCount = currentLine.length - 1;
                 var availableSpace = charsPerLine - charsSoFar + wordCount;
                 var minSpaceBetweenWords = parseInt(availableSpace / (wordCount));
-                var whiteSpaceLeft = availableSpace - (minSpaceBetweenWords * wordCount)
+                var whiteSpaceLeft = availableSpace - (minSpaceBetweenWords * wordCount);
             }
             if (currentLine.length === 1) {
                 output += (currentLine[0]);
-            }
-            else {
+            } else {
                 for (var wrd = 0; wrd < currentLine.length; wrd++) {
                     output += (currentLine[wrd]);
                     if (wrd < wordCount) {

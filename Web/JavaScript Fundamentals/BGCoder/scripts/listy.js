@@ -14,15 +14,14 @@ function solve(inputArr) {
     for (var index = 0; index < inputArr.length - 1; index++) {
 
         if (inputArr[index].slice(0, 3) === 'def') {
-            var currentCMDLine = inputArr[index].splitByWhiteSpace();
+            var currentCmdLine = inputArr[index].splitByWhiteSpace();
             var currentExpression = inputArr[index].extractExpression();
-            var operation = currentCMDLine[2].slice(0, 3);
+            var currentOperation = currentCmdLine[2].slice(0, 3);
 
-            if (operation.indexOf(',') > -1 || operation.indexOf('[') > -1) {
-                funcList[currentCMDLine[1]] = currentExpression;
-            }
-            else {
-                funcList[currentCMDLine[1]] = solveExpression(currentExpression, operation);
+            if (currentOperation.indexOf(',') > -1 || currentOperation.indexOf('[') > -1) {
+                funcList[currentCmdLine[1]] = currentExpression;
+            } else {
+                funcList[currentCmdLine[1]] = solveExpression(currentExpression, currentOperation);
             }
         }
     }
@@ -31,8 +30,7 @@ function solve(inputArr) {
 
     if (inputArr[lastIndex].slice(0, 3).indexOf('[') > -1) {
         return funcList[inputArr[lastIndex].slice(1, -1)];
-    }
-    else {
+    }else {
         return solveExpression(inputArr[lastIndex].extractExpression(), inputArr[lastIndex].slice(0, 3));
     }
 
@@ -57,38 +55,37 @@ function solve(inputArr) {
                     return solveExpression(variable, operation);
                 }
                 return variable;
-            }
-            else {
+            } else {
                 return parseInt(str);
             }
         }
 
-        function sum(operands) {
-            var sum = 0;
-            operands.forEach(function (obj) {
-                sum += getNumberValue(obj)
+        function sum(operandColection) {
+            var currentSum = 0;
+            operandColection.forEach(function (obj) {
+                currentSum += getNumberValue(obj);
             });
-            return sum;
+            return currentSum;
         }
 
-        function min(operands) {
-            var min = Number.MAX_VALUE;
-            for (var index = 0; index < operands.length; index++) {
-                if (getNumberValue(operands[index]) < min) {
-                    min = getNumberValue(operands[index]);
+        function min(operandColection) {
+            var minValue = Number.MAX_VALUE;
+            for (var i = 0; i < operandColection.length; i++) {
+                if (getNumberValue(operandColection[i]) < minValue) {
+                    minValue = getNumberValue(operandColection[i]);
                 }
             }
-            return min;
+            return minValue;
         }
 
-        function max(operands) {
-            var max = -Number.MAX_VALUE;
-            for (var index = 0; index < operands.length; index++) {
-                if (getNumberValue(operands[index]) > max) {
-                    max = getNumberValue(operands[index]);
+        function max(operandColection) {
+            var maxValue = -Number.MAX_VALUE;
+            for (var i = 0; i < operandColection.length; i++) {
+                if (getNumberValue(operandColection[i]) > maxValue) {
+                    maxValue = getNumberValue(operandColection[i]);
                 }
             }
-            return max;
+            return maxValue;
         }
     }
 }

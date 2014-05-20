@@ -6,10 +6,12 @@ function Solve(inputArr) {
     String.prototype.deleteBrackets = function removeBrackets() {
         return this.slice(1, -1);
     };
+
     String.prototype.splitByWhiteSpace = function splitByWhiteSpace() {
         return this.trim().split(/\s+/gi);
     };
-    function getNumberValue(str){
+
+    function getNumberValue(str) {
         return isNaN(parseInt(str)) ? funcList[str] : parseInt(str);
     }
 
@@ -20,16 +22,16 @@ function Solve(inputArr) {
 
         switch (operation) {
             case '+':
-                operands.forEach(function (obj){resultVariable += getNumberValue(obj)});
+                operands.forEach(function (obj) { resultVariable += getNumberValue(obj); });
                 break;
             case '-':
-                operands.forEach(function (obj){resultVariable -= getNumberValue(obj)});
+                operands.forEach(function (obj) { resultVariable -= getNumberValue(obj); });
                 break;
             case '*':
-                operands.forEach(function (obj){resultVariable *= getNumberValue(obj)});
+                operands.forEach(function (obj) { resultVariable *= getNumberValue(obj); });
                 break;
             case '/':
-                operands.forEach(function (obj){resultVariable /= getNumberValue(obj)});
+                operands.forEach(function (obj) { resultVariable /= getNumberValue(obj); });
                 break;
         }
 
@@ -49,16 +51,15 @@ function Solve(inputArr) {
         }
 
         var cmdArray = currentCommand.splitByWhiteSpace();
+
         if (cmdArray[0] === 'def') {
             var variableName = cmdArray[1];
             if (clojure) {
                 funcList[variableName] = mathOperation(clojure.splitByWhiteSpace());
-            }
-            else {
+            } else {
                 funcList[variableName] = getNumberValue(cmdArray[2]);
             }
-        }
-        else {
+        } else {
             return mathOperation(cmdArray);
         }
         if (dividingByZero) {

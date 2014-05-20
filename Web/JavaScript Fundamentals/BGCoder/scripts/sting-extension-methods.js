@@ -2,46 +2,46 @@
     if (!String.prototype.contains) {
         String.prototype.contains = function (searchPattern) {
             return this.indexOf(searchPattern) > -1;
-        }
+        };
     }
 
     if (!String.prototype.reduceWhiteSpace) {
         String.prototype.reduceWhiteSpace = function () {
             var output = '';
-            var char = 0;
+            var chr = 0;
             var inWhiteSpace = true;
-            while (char < this.length) {
-                if (this[char] === ' ' || this[char] === '\t') {
+            while (chr < this.length) {
+                if (this[chr] === ' ' || this[chr] === '\t') {
                     if (!inWhiteSpace) {
                         inWhiteSpace = true;
-                        output += this[char];
+                        output += this[chr];
                     }
                 } else {
                     inWhiteSpace = false;
-                    output += this[char];
+                    output += this[chr];
                 }
-                char++;
+                chr++;
             }
             return output;
-        }
+        };
     }
 
     if (!String.prototype.trimLeft) {
         String.prototype.trimLeft = function () {
             return (this + '$%&').trim().slice(0, -3);
-        }
+        };
     }
     if (!String.prototype.trimRight) {
         String.prototype.trimRight = function () {
             return ('$%&' + this).trim().slice(0, -3);
-        }
+        };
     }
 
     if (!String.prototype.trimLeftChars) {
         String.prototype.trimLeftChars = function (chars) {
             var regEx = new RegExp('^[' + chars + ']+');
             return this.replace(regEx, '');
-        }
+        };
     }
 
 
@@ -49,7 +49,7 @@
         String.prototype.trimLeftChars = function (chars) {
             var regEx = new RegExp('^[' + chars + ']+');
             return this.replace(regEx, '');
-        }
+        };
     }
 
     if (!String.prototype.replaceAll) {
@@ -59,7 +59,7 @@
                 output = output.replace(textToReplace, replacement);
             }
             return output;
-        }
+        };
     }
 
     if (!String.prototype.trimRightChars) {
@@ -67,7 +67,7 @@
 
             var regEx = new RegExp('[' + chars + ']+$');
             return this.replace(regEx, '');
-        }
+        };
     }
 
     if (!String.prototype.isNullOrEmpty) {
@@ -75,7 +75,7 @@
             if (this === '' || this === null || this.trim() === '') {
                 return true;
             }
-        }
+        };
     }
 
     function multiplyString(str, timesToMultiply) {
@@ -90,7 +90,7 @@
     if (!String.prototype.trimChars) {
         String.prototype.trimChars = function (chars) {
             return this.trimLeftChars(chars).trimRightChars(chars);
-        }
+        };
     }
 
     if (!String.prototype.padLeft) {
@@ -107,7 +107,7 @@
                 str = char + str;
             }
             return str;
-        }
+        };
     }
 
     if (!String.prototype.padRight) {
@@ -124,6 +124,6 @@
                 str += char;
             }
             return str;
-        }
+        };
     }
 })();

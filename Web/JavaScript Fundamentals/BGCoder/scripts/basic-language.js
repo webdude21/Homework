@@ -54,9 +54,8 @@ function solve(input) {
         statement = statement.trim();
         if (statement.indexOf('FOR') === 0) {
             loop(statement, cycles);
-        }
-        else if (statement.indexOf('PRINT') === 0) {
-            print(statement, cycles)
+        } else if (statement.indexOf('PRINT') === 0) {
+            print(statement, cycles);
         }
     }
     return output;

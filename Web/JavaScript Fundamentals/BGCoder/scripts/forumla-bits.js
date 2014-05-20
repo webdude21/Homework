@@ -113,4 +113,3 @@ function solve(params) {
         return ("No " + countSteps);
     }
 }
-

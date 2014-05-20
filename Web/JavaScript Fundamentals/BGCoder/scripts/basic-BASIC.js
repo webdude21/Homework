@@ -1,5 +1,5 @@
 function solve(input) {
-    var variables = { V: 0, W: 0, X: 0, Y: 0, Z: 0};
+    var variables = { V: 0, W: 0, X: 0, Y: 0, Z: 0 };
     var output = '';
     var stopFound = false;
     var code = [];
@@ -15,7 +15,7 @@ function solve(input) {
             break;
         }
         if (code[line]) {
-            execute(code[line])
+            execute(code[line]);
         }
     }
 
@@ -31,8 +31,7 @@ function solve(input) {
         if (isNaN(parseInt(stringInput))) {
             firstNumber = variables[stringInput[0]];
             stringInput = stringInput.slice(1);
-        }
-        else {
+        } else {
             firstNumber = parseInt(stringInput);
             stringInput = stringInput.slice(firstNumber.toString().length);
         }
@@ -42,11 +41,9 @@ function solve(input) {
 
         if (operation === '+') {
             variables[resultVar] = firstNumber + getValueFromStr(stringInput);
-        }
-        else if (operation === '-') {
+        } else if (operation === '-') {
             variables[resultVar] = firstNumber - getValueFromStr(stringInput);
-        }
-        else {
+        } else {
             variables[resultVar] = firstNumber;
         }
     }
@@ -75,20 +72,15 @@ function solve(input) {
     function execute(statement) {
         if (statement.indexOf('IF') === 0) {
             condition(statement);
-        }
-        else if (statement.indexOf('PRINT') === 0) {
+        } else if (statement.indexOf('PRINT') === 0) {
             output = output + variables[statement.slice(5)] + '\r\n';
-        }
-        else if (statement.indexOf('CLS') === 0) {
+        } else if (statement.indexOf('CLS') === 0) {
             output = '';
-        }
-        else if (statement.indexOf('GOTO') === 0) {
+        } else if (statement.indexOf('GOTO') === 0) {
             line = parseInt(statement.split('GOTO').pop()) - 1;
-        }
-        else if (statement.indexOf('STOP') === 0) {
+        } else if (statement.indexOf('STOP') === 0) {
             stopFound = true;
-        }
-        else {
+        } else {
             assignment(statement);
         }
     }

@@ -7,14 +7,14 @@ function solve(args) {
     var curCol = parseInt(currentLine[1], 10);
     var labyrinth = fillNumberArray(N, M);
 
-    function fillNumberArray(N, M) {
+    function fillNumberArray(rows, cols) {
         var filler = 1;
-        var resultArray = new Array(N);
+        var resultArray = new Array(rows);
 
-        for (var i = 0; row < N; row++) {
-            resultArray[row] = new Array(M);
-            for (var j = 0; j < M; j++) {
-                resultArray[row][j] = filler++;
+        for (var row = 0; row < rows; row++) {
+            resultArray[row] = new Array(cols);
+            for (var col = 0; col < cols; col++) {
+                resultArray[row][col] = filler++;
             }
         }
         return resultArray;

@@ -1,0 +1,1 @@
+function (e){x=e[0];y=e[1];return x>0?y>0?1:3:y<0?2:0}

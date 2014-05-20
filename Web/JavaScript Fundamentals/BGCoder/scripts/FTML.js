@@ -3,7 +3,7 @@ function solve(input) {
     var text = input.join('\n');
     var currentMatches;
 
-    var tagReplacer = function tagReplacer(match, tag, tagContent) {
+    var tagReplacer = function(match, tag, tagContent) {
         switch (tag.toLowerCase()) {
             case 'lower':
                 return tagContent.toLowerCase();

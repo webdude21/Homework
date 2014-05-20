@@ -4,22 +4,22 @@ function solve(input) {
     if (!String.prototype.reduceWhiteSpace) {
         String.prototype.reduceWhiteSpace = function () {
             var output = '';
-            var char = 0;
+            var chr = 0;
             var inWhiteSpace = true;
-            while (char < this.length) {
-                if (this[char] === ' ' || this[char] === '\t') {
+            while (chr < this.length) {
+                if (this[chr] === ' ' || this[chr] === '\t') {
                     if (!inWhiteSpace) {
                         inWhiteSpace = true;
-                        output += this[char];
+                        output += this[chr];
                     }
                 } else {
                     inWhiteSpace = false;
-                    output += this[char];
+                    output += this[chr];
                 }
-                char++;
+                chr++;
             }
             return output;
-        }
+        };
     }
 
     return result.reduceWhiteSpace();
