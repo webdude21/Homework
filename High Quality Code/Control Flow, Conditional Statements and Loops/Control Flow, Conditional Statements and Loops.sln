@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cook", "Cook\Cook.csproj", "{C4558291-F9B7-4B4D-900B-459D54590844}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. RefactorClass", "RefactorClass\1. RefactorClass.csproj", "{5B29C551-C813-4459-987E-C2FA545DF989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. RefactorStatements", "RefactorStatements\2. RefactorStatements.csproj", "{D1D1D911-2F72-410D-8588-99D015900F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. RefactorLoop", "RefactorLoop\3. RefactorLoop.csproj", "{CCE4FB80-92AC-4FF0-AEEE-AD8F98A03112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C4558291-F9B7-4B4D-900B-459D54590844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4558291-F9B7-4B4D-900B-459D54590844}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4558291-F9B7-4B4D-900B-459D54590844}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4558291-F9B7-4B4D-900B-459D54590844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B29C551-C813-4459-987E-C2FA545DF989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B29C551-C813-4459-987E-C2FA545DF989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B29C551-C813-4459-987E-C2FA545DF989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B29C551-C813-4459-987E-C2FA545DF989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D1D911-2F72-410D-8588-99D015900F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D1D911-2F72-410D-8588-99D015900F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D1D911-2F72-410D-8588-99D015900F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D1D911-2F72-410D-8588-99D015900F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE4FB80-92AC-4FF0-AEEE-AD8F98A03112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE4FB80-92AC-4FF0-AEEE-AD8F98A03112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE4FB80-92AC-4FF0-AEEE-AD8F98A03112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE4FB80-92AC-4FF0-AEEE-AD8F98A03112}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

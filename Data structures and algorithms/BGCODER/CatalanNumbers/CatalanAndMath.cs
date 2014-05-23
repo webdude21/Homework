@@ -4,7 +4,7 @@ class CatalanAndMath
     static void Main()
     {
         // In the combinatorial mathematics, the Catalan numbers are calculated by the following formula:
-        ulong twoTimesNFact = 1; // I asign 1 to those variables since factorial calculations of 1 and 0 are useless
+        ulong twoTimesNFact = 1; // I assign 1 to those variables since factorial calculations of 1 and 0 are useless
         ulong nPlusOneFact = 1;
         ulong nFact = 1;
         var userInputN = ulong.Parse(Console.ReadLine());

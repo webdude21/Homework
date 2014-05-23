@@ -3,11 +3,11 @@ function Solve(inputArr) {
     var clojureMatch = /(\([^()]*\))/gi;
     var dividingByZero = false;
 
-    String.prototype.deleteBrackets = function removeBrackets() {
+    String.prototype.deleteBrackets = function() {
         return this.slice(1, -1);
     };
 
-    String.prototype.splitByWhiteSpace = function splitByWhiteSpace() {
+    String.prototype.splitByWhiteSpace = function() {
         return this.trim().split(/\s+/gi);
     };
 

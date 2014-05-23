@@ -1,5 +1,5 @@
 function solve(params) {
-    var currentMaxSum = 0;
+    var currentMaxSum;
     var maxSum = -Number.MAX_VALUE;
 
     for (var i = 1; i < params.length; i++) {
