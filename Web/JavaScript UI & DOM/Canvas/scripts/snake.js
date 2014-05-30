@@ -9,7 +9,9 @@ function startGame() {
     var gameField = gameCanvas.getContext("2d");
     var gameObjects = [];
     var basicChunkSize = 5;
+    document.getElementById('score').innerHTML = "Score: 0";
     var apple = document.getElementById('apple');
+    var stone = document.getElementById('stone');
     var reachedInitialLength = false;
     var score = 0;
     var level = 10;
@@ -23,18 +25,18 @@ function startGame() {
         }
     }
 
-    function generateFood() {
-        var randomX = Math.floor((Math.random() * gameCanvas.width - basicChunkSize) + basicChunkSize);
-        var randomY = Math.floor((Math.random() * (gameCanvas.height - basicChunkSize ) + basicChunkSize));
-        gameObjects.push(createFoodObject(randomX, randomY, apple));
+    function generateRandomObject(objectCreator, objectsArray, image, type) {
+        var randomX = Math.floor((Math.random() * (gameCanvas.width - basicChunkSize) + basicChunkSize));
+        var randomY = Math.floor((Math.random() * (gameCanvas.height - basicChunkSize) + basicChunkSize));
+        objectsArray.push(objectCreator(randomX, randomY, image, type));
     }
 
-    function createFoodObject(x, y, image) {
-        var newFoodObject = createGameObject(x, y, image.width, image.height);
-        newFoodObject.type = 'food';
-        newFoodObject.image = image;
-        return newFoodObject;
-    }
+    var objectGenerator = function objectGenerator(x, y, image, type) {
+        var newObject = createGameObject(x, y, image.width, image.height);
+        newObject.image = image;
+        newObject.type = type;
+        return newObject;
+    };
 
     Array.prototype.unset = function (value) {
         if (this.indexOf(value) !== -1) { // Make sure the value exists
@@ -42,7 +44,7 @@ function startGame() {
         }
     };
 
-    function makeSnake(x, y, movementRate, basicChunkSize, initialLength, initialDirection) {
+    function makeSnake(x, y, movementRate, basicChunkSize, initialLength, growRate, initialDirection) {
         return {
             segmentRadius: basicChunkSize || 5,
             headX: x || 50,
@@ -60,15 +62,18 @@ function startGame() {
                 return {
                     x: that.headX || 0,
                     y: that.headY || 0,
-                    width: that.segmentRadius || 1,
-                    height: that.segmentRadius || 1,
+                    width: that.segmentRadius * 2 || 1,
+                    height: that.segmentRadius * 2 || 1,
                     type: 'snakeBody'
                 }
             },
             grow: function grow() {
-                this.body.push(this.createSnakeBodyPart());
-                if (this.body.length > this.length) {
-                    this.length++;
+                var rate = growRate || 1;
+                for (var i = 0; i < rate; i++) {
+                    this.body.push(this.createSnakeBodyPart());
+                    if (this.body.length > this.length) {
+                        this.length++;
+                    }
                 }
             },
             update: function () {
@@ -140,15 +145,16 @@ function startGame() {
             }
             else {
                 gameField.beginPath();
-                gameField.drawCircle(objectsToDraw[i].x, objectsToDraw[i].y, objectsToDraw[i].width);
+                gameField.drawCircle(objectsToDraw[i].x, objectsToDraw[i].y, objectsToDraw[i].width / 2);
                 gameField.fill();
             }
         }
     }
 
-    var snake = makeSnake(50, 50, 2, basicChunkSize);
+    var snake = makeSnake(50, 50, 2, basicChunkSize, 15, 10);
     attachKeyboardControl(snake);
-    var foodGeneratorId = setInterval(generateFood, 5000);
+    var foodGeneratorId = setInterval(generateRandomObject(objectGenerator, gameObjects, apple, 'food'), 5000);
+    var stoneGeneratorId = setInterval(generateRandomObject(objectGenerator, gameObjects, stone, 'stone'), 10000);
 
     function gameOver() {
         var fontSize = 120;
@@ -160,6 +166,7 @@ function startGame() {
         gameField.fillStyle = 'red';
         gameField.fillText("Game Over", gameCanvas.width / 2, gameCanvas.height / 2);
         window.clearInterval(foodGeneratorId);
+        window.clearInterval(stoneGeneratorId);
     }
 
     function updateScore() {
@@ -173,9 +180,8 @@ function startGame() {
         }
 
         if (snake.isAlive) {
-
-            snake.move();
             snake.update();
+            snake.move();
 
             for (var i = 0; i < gameObjects.length; i++) {
                 if (doCollide(gameObjects[i], snake.getHead())) {
@@ -183,6 +189,10 @@ function startGame() {
                         snake.grow();
                         gameObjects.unset(gameObjects[i]);
                         updateScore();
+                    }
+                    else {
+                        snake.isAlive = false;
+                        gameOver();
                     }
                 }
             }
@@ -204,8 +214,9 @@ function startGame() {
     }
 
     function inGameField(snake) {
-        if (snake.headX >= basicChunkSize && snake.headY >= basicChunkSize) {
-            if (snake.headX + basicChunkSize <= gameCanvas.width && snake.headY + basicChunkSize <= gameCanvas.height) {
+        var snakeSize = snake.segmentRadius / 2;
+        if (snake.headX >= snakeSize && snake.headY >= snakeSize) {
+            if (snake.headX + snakeSize <= gameCanvas.width && snake.headY + snakeSize <= gameCanvas.height) {
                 return true;
             }
         }
@@ -215,15 +226,14 @@ function startGame() {
         function collisionCheck(firstObject, secondObject) {
             if (secondObject.x < firstObject.x + firstObject.width &&
                 secondObject.x > firstObject.x) {
-                return true
-            }
-            if (secondObject.y < firstObject.y + firstObject.height &&
-                secondObject.y > firstObject.y) {
-                return true
+                if (secondObject.y < firstObject.y + firstObject.height &&
+                    secondObject.y > firstObject.y) {
+                    return true
+                }
             }
         }
 
-        return collisionCheck(firstObject, secondObject) && collisionCheck(secondObject, firstObject);
+        return collisionCheck(firstObject, secondObject) || collisionCheck(secondObject, firstObject);
     }
 
     function runGame() {
