@@ -1,3 +1,17 @@
-#apple{
+#apple {
     display: none;
+}
+
+header#instruments {
+    overflow: hidden;
+    height: 40px;
+    width: 800px;
+}
+
+#btn-start {
+    float: right;
+}
+
+#theCanvas {
+
 }

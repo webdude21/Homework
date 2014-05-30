@@ -8,9 +8,11 @@ function startGame() {
     var gameCanvas = document.getElementById("the-canvas");
     var gameField = gameCanvas.getContext("2d");
     var gameObjects = [];
-    var basicChunkSize = 8;
-    var magicVar = 1;
+    var basicChunkSize = 5;
     var apple = document.getElementById('apple');
+    var reachedInitialLength = false;
+    var score = 0;
+    var level = 10;
 
     function createGameObject(x, y, w, h) {
         return {
@@ -22,8 +24,8 @@ function startGame() {
     }
 
     function generateFood() {
-        var randomX = Math.floor((Math.random() * gameCanvas.width) + basicChunkSize);
-        var randomY = Math.floor((Math.random() * gameCanvas.height) + basicChunkSize);
+        var randomX = Math.floor((Math.random() * gameCanvas.width - basicChunkSize) + basicChunkSize);
+        var randomY = Math.floor((Math.random() * (gameCanvas.height - basicChunkSize ) + basicChunkSize));
         gameObjects.push(createFoodObject(randomX, randomY, apple));
     }
 
@@ -34,19 +36,13 @@ function startGame() {
         return newFoodObject;
     }
 
-    function createSnakeBodyPart(x, y, basicChunkSize) {
-        var newBodyObject = createGameObject(x, y, basicChunkSize * magicVar, basicChunkSize * magicVar);
-        newBodyObject.type = 'snakeBody';
-        return newBodyObject;
-    }
-
     Array.prototype.unset = function (value) {
         if (this.indexOf(value) !== -1) { // Make sure the value exists
             this.splice(this.indexOf(value), 1);
         }
     };
 
-    function makeSnake(x, y, movementRate, basicChunkSize, initialDirection) {
+    function makeSnake(x, y, movementRate, basicChunkSize, initialLength, initialDirection) {
         return {
             segmentRadius: basicChunkSize || 5,
             headX: x || 50,
@@ -55,15 +51,29 @@ function startGame() {
             movementRate: movementRate || 1,
             direction: initialDirection || 'down',
             body: [],
+            length: initialLength || 15,
             getHead: function () {
                 return this.body[this.body.length - 1];
             },
+            createSnakeBodyPart: function () {
+                var that = this;
+                return {
+                    x: that.headX || 0,
+                    y: that.headY || 0,
+                    width: that.segmentRadius || 1,
+                    height: that.segmentRadius || 1,
+                    type: 'snakeBody'
+                }
+            },
             grow: function grow() {
-                this.body.push(createSnakeBodyPart(this.headX, this.headY, this.segmentRadius));
+                this.body.push(this.createSnakeBodyPart());
+                if (this.body.length > this.length) {
+                    this.length++;
+                }
             },
             update: function () {
                 this.body.shift();
-                this.body.push(createSnakeBodyPart(this.headX, this.headY, this.segmentRadius));
+                this.body.push(this.createSnakeBodyPart());
             },
             move: function () {
                 switch (this.direction) {
@@ -142,6 +152,7 @@ function startGame() {
 
     function gameOver() {
         var fontSize = 120;
+        gameField.closePath();
         gameField.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
         gameField.beginPath();
         gameField.font = fontSize + "px Tahoma";
@@ -151,6 +162,10 @@ function startGame() {
         window.clearInterval(foodGeneratorId);
     }
 
+    function updateScore() {
+        document.getElementById('score').innerHTML = "Score: " + (score += level);
+    }
+
     function decideInteraction(snake) {
         if (!inGameField(snake)) {
             snake.isAlive = false;
@@ -158,17 +173,33 @@ function startGame() {
         }
 
         if (snake.isAlive) {
+
+            snake.move();
+            snake.update();
+
             for (var i = 0; i < gameObjects.length; i++) {
                 if (doCollide(gameObjects[i], snake.getHead())) {
                     if (gameObjects[i].type === 'food') {
                         snake.grow();
                         gameObjects.unset(gameObjects[i]);
+                        updateScore();
                     }
                 }
             }
 
-            snake.move();
-            snake.update();
+            for (var j = 0; j < snake.body.length - basicChunkSize * 2; j++) {
+                if (doCollide(snake.body[j], snake.getHead())) {
+                    snake.isAlive = false;
+                    gameOver();
+                }
+            }
+
+            if (!reachedInitialLength) {
+                snake.grow();
+                if (snake.body.length >= snake.length) {
+                    reachedInitialLength = true;
+                }
+            }
         }
     }
 
@@ -195,15 +226,18 @@ function startGame() {
         return collisionCheck(firstObject, secondObject) && collisionCheck(secondObject, firstObject);
     }
 
-    function animate() {
-        gameField.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-        decideInteraction(snake);
-        drawGameObjects(gameObjects, 'blue');
-        drawGameObjects(snake.body, 'red');
-        requestAnimFrame(function () {
-            animate();
-        });
+    function runGame() {
+        if (snake.isAlive) {
+            gameField.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+            decideInteraction(snake);
+            drawGameObjects(gameObjects, 'blue');
+            drawGameObjects(snake.body, 'green');
+            drawGameObjects(snake.body, 'green');
+            requestAnimFrame(function () {
+                runGame();
+            });
+        }
     }
 
-    animate();
+    runGame();
 }
