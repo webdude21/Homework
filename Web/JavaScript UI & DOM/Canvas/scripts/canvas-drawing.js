@@ -130,7 +130,7 @@ window.onload = function () {
         canvas.stroke();
         canvas.fill();
         drawChimney(x + 200, y - 110);
-        drawDoor(x + 71, y + 215)
+        drawDoor(x + 71, y + 215);
         drawWindow(x + 20, y + 25);
         drawWindow(x + 160, y + 25);
         drawWindow(x + 160, y + 118);
