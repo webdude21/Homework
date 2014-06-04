@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace InheritanceAndPolymorphism
+﻿namespace InheritanceAndPolymorphism
 {
+    using System.Collections.Generic;
+
     public class OffsiteCourse : Course
     {
         public OffsiteCourse(string courseName)
