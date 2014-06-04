@@ -8,10 +8,17 @@ header#instruments {
     width: 800px;
 }
 
-#btn-start {
-    float: right;
+#score {
+    font-weight: bolder;
+    font-size: 24px;
 }
 
-#theCanvas {
+#btn-start {
+    float: right;
+    border-radius: 5px;
+}
 
+#the-canvas {
+    border: 1px solid black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }

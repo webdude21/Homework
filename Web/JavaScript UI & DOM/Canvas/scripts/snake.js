@@ -1,10 +1,15 @@
 function startGame() {
+    // animation shim
     window.requestAnimFrame = (function requestAnimFrame() {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame
             || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame;
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
     })();
 
+    // game variables initialization
     var gameCanvas = document.getElementById("the-canvas");
     var gameField = gameCanvas.getContext("2d");
     var gameObjects = [];
@@ -15,6 +20,8 @@ function startGame() {
     var reachedInitialLength = false;
     var score = 0;
     var level = 10;
+    var snake = makeSnake(50, 50, 2, basicChunkSize, 15, 10);
+    attachKeyboardControl(snake);
 
     function createGameObject(x, y, w, h) {
         return {
@@ -25,24 +32,43 @@ function startGame() {
         }
     }
 
-    function generateRandomObject(objectCreator, objectsArray, image, type) {
+    function generateRandomObject() {
         var randomX = Math.floor((Math.random() * (gameCanvas.width - basicChunkSize) + basicChunkSize));
         var randomY = Math.floor((Math.random() * (gameCanvas.height - basicChunkSize) + basicChunkSize));
-        objectsArray.push(objectCreator(randomX, randomY, image, type));
+        return createGameObject(randomX, randomY);
     }
 
-    var objectGenerator = function objectGenerator(x, y, image, type) {
-        var newObject = createGameObject(x, y, image.width, image.height);
+    var objectGenerator = function objectGenerator(randomFunction, image, type, gameObjects) {
+        var newObject = randomFunction();
+        var index = 0;
+
+        while (index < gameObjects.length) {
+            if (doCollide(gameObjects[index], newObject)) {
+                newObject = randomFunction();
+                index = 0;
+            }
+            else {
+                index++;
+            }
+        }
+
         newObject.image = image;
         newObject.type = type;
-        return newObject;
+        newObject.width = image.width;
+        newObject.height = image.height;
+        gameObjects.push(newObject);
     };
 
-    Array.prototype.unset = function (value) {
-        if (this.indexOf(value) !== -1) { // Make sure the value exists
-            this.splice(this.indexOf(value), 1);
-        }
+    var foodGenerator = function () {
+        return objectGenerator(generateRandomObject, apple, 'food', gameObjects);
     };
+
+    var stoneGenerator = function () {
+        return objectGenerator(generateRandomObject, stone, 'stone', gameObjects)
+    };
+
+    var foodGeneratorId = window.setInterval(foodGenerator, 5000);
+    var stoneGeneratorId = window.setInterval(stoneGenerator, 10000);
 
     function makeSnake(x, y, movementRate, basicChunkSize, initialLength, growRate, initialDirection) {
         return {
@@ -54,6 +80,7 @@ function startGame() {
             direction: initialDirection || 'down',
             body: [],
             length: initialLength || 15,
+            growRate: growRate || 1,
             getHead: function () {
                 return this.body[this.body.length - 1];
             },
@@ -68,8 +95,7 @@ function startGame() {
                 }
             },
             grow: function grow() {
-                var rate = growRate || 1;
-                for (var i = 0; i < rate; i++) {
+                for (var i = 0; i < this.growRate; i++) {
                     this.body.push(this.createSnakeBodyPart());
                     if (this.body.length > this.length) {
                         this.length++;
@@ -101,7 +127,7 @@ function startGame() {
         }
     }
 
-    var attachKeyboardControl = function (snake) {
+    function attachKeyboardControl(snake) {
         document.onkeydown = function (event) {
             event = event || window.event;
             var upOrDown = snake.direction === 'up' || snake.direction === 'down';
@@ -133,7 +159,7 @@ function startGame() {
                     break;
             }
         }
-    };
+    }
 
     function drawGameObjects(objectsToDraw, color) {
         gameField.fillStyle = color;
@@ -150,11 +176,6 @@ function startGame() {
             }
         }
     }
-
-    var snake = makeSnake(50, 50, 2, basicChunkSize, 15, 10);
-    attachKeyboardControl(snake);
-    var foodGeneratorId = setInterval(generateRandomObject(objectGenerator, gameObjects, apple, 'food'), 5000);
-    var stoneGeneratorId = setInterval(generateRandomObject(objectGenerator, gameObjects, stone, 'stone'), 10000);
 
     function gameOver() {
         var fontSize = 120;
@@ -197,7 +218,7 @@ function startGame() {
                 }
             }
 
-            for (var j = 0; j < snake.body.length - basicChunkSize * 2; j++) {
+            for (var j = 0; j < snake.body.length - snake.growRate * 2; j++) {
                 if (doCollide(snake.body[j], snake.getHead())) {
                     snake.isAlive = false;
                     gameOver();
@@ -239,10 +260,9 @@ function startGame() {
     function runGame() {
         if (snake.isAlive) {
             gameField.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-            decideInteraction(snake);
             drawGameObjects(gameObjects, 'blue');
             drawGameObjects(snake.body, 'green');
-            drawGameObjects(snake.body, 'green');
+            decideInteraction(snake);
             requestAnimFrame(function () {
                 runGame();
             });

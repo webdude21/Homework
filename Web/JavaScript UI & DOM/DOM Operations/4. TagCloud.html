@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>TagCloud</title>
+</head>
+<body>
+<label for="ib-minFontSize">Min Font Size (px): </label><input type="number" id="ib-minFontSize" value="17"/>
+<label for="ib-maxFontSize">Max Font Size (px): </label><input type="number" id="ib-maxFontSize" value="42"/>
+<button id="btn-generate" onclick="generateTagFromUserInput()">Generate</button><br>
+<label for="ta-cloudInput">Input comma delimited text to generate cloud: </label><textarea id="ta-cloudInput" style="width:250px; height:100px"></textarea>
+<script src="scripts/tag-cloud.js"></script>
+<script>
+    var defaultTags = ["cms", "javascript", "js",
+        "ASP.NET MVC", ".net", ".net", "css",
+        "wordpress", "xaml", "js", "http", "web",
+        "asp.net", "asp.net MVC", "ASP.NET MVC",
+        "wp", "javascript", "js", "cms", "html",
+        "javascript", "http", "http", "CMS"];
+
+    document.getElementById('ta-cloudInput').value = defaultTags.join(',');
+</script>
+</body>
+</html>

@@ -12,6 +12,13 @@
             anticlockwise)
     };
 
+
+    Array.prototype.unset = function (value) {
+        if (this.indexOf(value) !== -1) {
+            this.splice(this.indexOf(value), 1);
+        }
+    };
+
     if (CanvasRenderingContext2D.prototype.drawEllipse === undefined) {
         CanvasRenderingContext2D.prototype.drawEllipse = function drawEllipse(centerX, centerY, w, h) {
             this.beginPath();

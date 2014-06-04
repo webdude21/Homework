@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DOM Operations</title>
+</head>
+<body style="position: relative; overflow: hidden;">
+<label for="nb-divCount">How many divs to generate?</label><input id="nb-divCount" type="number">
+<button id="btn-generate" onclick="generate()">Generate</button>
+<script src="scripts/generate-random-divs.js"></script>
+<script>
+    function generate(){
+        var documentFragment = generateDivs(document.getElementById('nb-divCount').value);
+        document.body.appendChild(documentFragment);
+    }
+</script>
+</body>
+</html>
