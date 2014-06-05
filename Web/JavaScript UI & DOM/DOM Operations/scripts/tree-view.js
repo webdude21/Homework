@@ -1,48 +1,26 @@
-function appendTreeView() {
-    var treeView = document.getElementById('three-view');
+function generateTreeView() {
+    var liElements = document.getElementsByTagName('li');
 
-    var handleClick = function () {
-        if (this.hideChildren) {
-            this.hideChildren = false;
-            showChildren(this);
-        }
-        else {
-            this.hideChildren = true;
-            hideChildren(this);
+    var showHideChildren = function (event) {
+        event.stopPropagation();
+        for (var i = 0, len = this.children.length; i < len; i++) {
+            this.children[i].style.display =
+                    this.children[i].style.display == 'none' ? 'block' : 'none';
         }
     };
 
-    function initialize(treeView) {
-        attachEvent(treeView, 'click', handleClick, true);
-        for (var node = 0, len = treeView.children.length; node < len; node++) {
-            hideChildren(treeView.children[node], false);
-            treeView.children[node].hideChildren = true;
+    function initializeTreeView(event, handler, collection) {
+        for (var i = 0, len = collection.length; i < len; i++) {
+            hideChildren(collection[i]);
+            collection[i].addEventListener(event, handler, false)
         }
     }
 
-    function attachEvent(treeView, event, handler, recursive){
-        for (var node = 0, len = treeView.children.length; node < len; node++) {
-            treeView.children[node].addEventListener(event, handler, false);
-            if (recursive){
-                attachEvent(treeView.children[node], event, handler, recursive)
-            }
+    function hideChildren(node) {
+        for (var i = 0, len = node.children.length; i < len ; i++) {
+            node.children[i].style.display = 'none';
         }
     }
 
-    function hideChildren(item, recursive) {
-        for (var i = 0, len = item.children.length; i < len; i++) {
-            item.children[i].style.display = 'none';
-            if (recursive) {
-                hideChildren(item.children[i], recursive);
-            }
-        }
-    }
-
-    function showChildren(item) {
-        for (var i = 0, len = item.children.length; i < len; i++) {
-            item.children[i].style.display = 'block';
-        }
-    }
-
-    initialize(treeView);
+    initializeTreeView('click', showHideChildren, liElements);
 }
