@@ -1,0 +1,105 @@
+body, textarea, input, button, img, div {
+  margin: 0;
+  padding: 0;
+}
+
+@baseWidth: 550px;
+@baseHeight: 600px;
+
+.alternativeLook() {
+  padding: 10px;
+  border: 2px dashed #C3C3C6;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
+}
+
+.linear-gradient(@from-color,@from-pos,@to-color,@to-pos) {
+  background: @to-color;
+  background: -moz-linear-gradient(top, @from-color @from-pos, @to-color @to-pos);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from-pos,@from-color), color-stop(@to-pos,@to-color));
+  background: -webkit-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -o-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: -ms-linear-gradient(top, @from-color @from-pos,@to-color @to-pos);
+  background: linear-gradient(to bottom, @from-color @from-pos,@to-color @to-pos);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{from-color}', endColorstr='@{to-color}', GradientType=0);
+}
+
+.formInnerStyles() {
+  border: 1px solid #C3C3C6;
+  border-radius: 7px;
+  outline: none;
+  border-top-color: #97989A;
+  border-right-color: #97989A;
+}
+
+.textStyle() {
+  padding: 10px;
+  color: #484848;
+  font-size: 26px;
+  font-family: 'Arial';
+}
+
+#wrapper {
+  padding: 10px;
+
+  #fs-task-editor, #fs-task-list {
+    float: left;
+    margin: 5px;
+    width: @baseWidth;
+    height: @baseHeight;
+    padding: 15px 10px;
+    border: 3px solid #254f5e;
+    border-radius: 10px;
+    .linear-gradient(#437e9b, 80%, #6cd0ff, 100%);
+
+    #btn-group {
+      border: none;
+      margin: 0;
+      padding: 0;
+      text-align: right;
+
+      input.bnt-form {
+        padding: 10px;
+        .alternativeLook();
+
+        &:hover {
+          background: rgba(48, 48, 48, 0.30);
+        }
+      }
+    }
+
+    #ta-content, #in-title {
+      padding: 10px;
+      .textStyle();
+      .formInnerStyles();
+      .linear-gradient(#b5eaea, 25%, #60c5ea, 100%);
+    }
+
+    #in-title {
+      width: 290px;
+    }
+
+    #radio-group {
+      #ld-priority {
+        text-align: right;
+        padding: 0px 5px;
+      }
+      .alternativeLook();
+      padding: 5px;
+      float: right;
+    }
+
+    #ta-content {
+      margin: 10px 0px;
+      width: 525px;
+      height: 450px;
+      resize: none;
+      overflow: hidden;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Just ToDo</title>
+    <link rel="stylesheet" href="styles/just-todo.css">
+</head>
+<body>
+<div id="wrapper">
+    <form id="fs-task-editor">
+        <input id="in-title" placeholder="Task title" maxlength="28">
+        <fieldset id="radio-group">
+            <legend id="ld-priority">Priority</legend>
+            <input class="rb-priority" id="rb-low" name="priority" type="radio" value="low"/>
+            <label for="rb-low">Low</label>
+            <input class="rb-priority" id="rb-normal" name="priority" type="radio" value="normal"/>
+            <label for="rb-normal">Normal</label>
+            <input class="rb-priority" id="rb-high" name="priority" type="radio" value="high"/>
+            <label for="rb-high">High</label>
+        </fieldset>
+        <textarea id="ta-content" placeholder="Task title"></textarea>
+        <fieldset id="btn-group">
+            <input type="button" class="bnt-form" id="btn-add" value="Add task">
+            <input type="reset" class="bnt-form" id="btn-clear" value="Clear">
+        </fieldset>
+    </form>
+    <form id="fs-task-list">
+        <ul id="ul-tasklist"></ul>
+    </form>
+</div>
+<script src="scripts/core/task.js"></script>
+<script src="scripts/core/organizer.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+body,
+textarea,
+input,
+button,
+img,
+div {
+  margin: 0;
+  padding: 0;
+}
+#wrapper {
+  padding: 10px;
+}
+#wrapper #fs-task-editor,
+#wrapper #fs-task-list {
+  float: left;
+  margin: 5px;
+  width: 550px;
+  height: 600px;
+  padding: 15px 10px;
+  border: 3px solid #254f5e;
+  border-radius: 10px;
+  background: #6cd0ff;
+  background: -moz-linear-gradient(top, #437e9b 80%, #6cd0ff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(80%, #437e9b), color-stop(100%, #6cd0ff));
+  background: -webkit-linear-gradient(top, #437e9b 80%, #6cd0ff 100%);
+  background: -o-linear-gradient(top, #437e9b 80%, #6cd0ff 100%);
+  background: -ms-linear-gradient(top, #437e9b 80%, #6cd0ff 100%);
+  background: linear-gradient(to bottom, #437e9b 80%, #6cd0ff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#437e9b', endColorstr='#6cd0ff', GradientType=0);
+}
+#wrapper #fs-task-editor #btn-group,
+#wrapper #fs-task-list #btn-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+#wrapper #fs-task-editor #btn-group input.bnt-form,
+#wrapper #fs-task-list #btn-group input.bnt-form {
+  padding: 10px;
+  border: 2px dashed #C3C3C6;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
+}
+#wrapper #fs-task-editor #btn-group input.bnt-form:hover,
+#wrapper #fs-task-list #btn-group input.bnt-form:hover {
+  background: rgba(48, 48, 48, 0.3);
+}
+#wrapper #fs-task-editor #ta-content,
+#wrapper #fs-task-list #ta-content,
+#wrapper #fs-task-editor #in-title,
+#wrapper #fs-task-list #in-title {
+  padding: 10px;
+  color: #484848;
+  font-size: 26px;
+  font-family: 'Arial';
+  border: 1px solid #C3C3C6;
+  border-radius: 7px;
+  outline: none;
+  border-top-color: #97989A;
+  border-right-color: #97989A;
+  background: #60c5ea;
+  background: -moz-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #b5eaea), color-stop(100%, #60c5ea));
+  background: -webkit-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -o-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -ms-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: linear-gradient(to bottom, #b5eaea 25%, #60c5ea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b5eaea', endColorstr='#60c5ea', GradientType=0);
+}
+#wrapper #fs-task-editor #in-title,
+#wrapper #fs-task-list #in-title {
+  width: 290px;
+}
+#wrapper #fs-task-editor #radio-group,
+#wrapper #fs-task-list #radio-group {
+  padding: 10px;
+  border: 2px dashed #C3C3C6;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
+  padding: 5px;
+  float: right;
+}
+#wrapper #fs-task-editor #radio-group #ld-priority,
+#wrapper #fs-task-list #radio-group #ld-priority {
+  text-align: right;
+  padding: 0px 5px;
+}
+#wrapper #fs-task-editor #ta-content,
+#wrapper #fs-task-list #ta-content {
+  margin: 10px 0px;
+  width: 525px;
+  height: 450px;
+  resize: none;
+  overflow: hidden;
+}
