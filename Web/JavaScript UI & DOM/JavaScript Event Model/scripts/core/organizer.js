@@ -10,9 +10,9 @@ Organizer.prototype.add = function add(task) {
     }
 };
 
-Organizer.prototype.remove = function add(task) {
+Organizer.prototype.remove = function remove(task) {
     var index = this.tasks.indexOf(task);
     if (index !== -1) {
-        this.tasks.splice(index(task), 1);
+        this.tasks.splice(index, 1);
     }
 };

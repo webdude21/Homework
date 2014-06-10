@@ -1,4 +1,4 @@
-body, textarea, input, button, img, div {
+body, textarea, input, button, img, div, ul, li, span, p {
   margin: 0;
   padding: 0;
 }
@@ -47,6 +47,51 @@ body, textarea, input, button, img, div {
 #wrapper {
   padding: 10px;
 
+  #fs-task-list{
+    overflow: auto;
+
+    #ul-task-list{
+      list-style-type: none;
+
+      .task-item{
+        position: relative;
+        margin: 10px 0px;
+        padding: 10px;
+        .textStyle();
+        font-size: 14px;
+        .formInnerStyles();
+        .linear-gradient(#b5eaea, 25%, #60c5ea, 100%);
+
+        .task-item-title{
+          font-size: 1.7em;
+          margin-bottom: 5px;
+        }
+        
+        .delete-btn{
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          .alternativeLook();
+          padding: 2px 4px;
+          border: 2px solid #97989A;
+          color: #484848;
+          &:hover {
+            background: rgba(48, 48, 48, 0.30);
+          }
+        }
+
+        .task-item-priority{
+          border: 2px solid #97989A;
+          float: right;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
   #fs-task-editor, #fs-task-list {
     float: left;
     margin: 5px;
@@ -62,8 +107,19 @@ body, textarea, input, button, img, div {
       margin: 0;
       padding: 0;
       text-align: right;
+      font-size: 18px;
+      font-family: 'Arial';
+      color: #d9d9dc;
+      font-weight: bolder;
 
-      input.bnt-form {
+      #date-picker-container{
+        display: inline;
+        float: left;
+        #due-date{
+          .alternativeLook();
+        }
+      }
+      input.bnt-form, {
         padding: 10px;
         .alternativeLook();
 
@@ -84,7 +140,7 @@ body, textarea, input, button, img, div {
       width: 290px;
     }
 
-    #radio-group {
+    #priority-group {
       #ld-priority {
         text-align: right;
         padding: 0px 5px;

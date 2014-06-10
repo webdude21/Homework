@@ -3,12 +3,76 @@ textarea,
 input,
 button,
 img,
-div {
+div,
+ul,
+li,
+span,
+p {
   margin: 0;
   padding: 0;
 }
 #wrapper {
   padding: 10px;
+}
+#wrapper #fs-task-list {
+  overflow: auto;
+}
+#wrapper #fs-task-list #ul-task-list {
+  list-style-type: none;
+}
+#wrapper #fs-task-list #ul-task-list .task-item {
+  position: relative;
+  margin: 10px 0px;
+  padding: 10px;
+  color: #484848;
+  font-size: 26px;
+  font-family: 'Arial';
+  font-size: 14px;
+  border: 1px solid #C3C3C6;
+  border-radius: 7px;
+  outline: none;
+  border-top-color: #97989A;
+  border-right-color: #97989A;
+  background: #60c5ea;
+  background: -moz-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #b5eaea), color-stop(100%, #60c5ea));
+  background: -webkit-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -o-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: -ms-linear-gradient(top, #b5eaea 25%, #60c5ea 100%);
+  background: linear-gradient(to bottom, #b5eaea 25%, #60c5ea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b5eaea', endColorstr='#60c5ea', GradientType=0);
+}
+#wrapper #fs-task-list #ul-task-list .task-item .task-item-title {
+  font-size: 1.7em;
+  margin-bottom: 5px;
+}
+#wrapper #fs-task-list #ul-task-list .task-item .delete-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 10px;
+  border: 2px dashed #C3C3C6;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
+  padding: 2px 4px;
+  border: 2px solid #97989A;
+  color: #484848;
+}
+#wrapper #fs-task-list #ul-task-list .task-item .delete-btn:hover {
+  background: rgba(48, 48, 48, 0.3);
+}
+#wrapper #fs-task-list #ul-task-list .task-item .task-item-priority {
+  border: 2px solid #97989A;
+  float: right;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 #wrapper #fs-task-editor,
 #wrapper #fs-task-list {
@@ -34,6 +98,27 @@ div {
   margin: 0;
   padding: 0;
   text-align: right;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
+}
+#wrapper #fs-task-editor #btn-group #date-picker-container,
+#wrapper #fs-task-list #btn-group #date-picker-container {
+  display: inline;
+  float: left;
+}
+#wrapper #fs-task-editor #btn-group #date-picker-container #due-date,
+#wrapper #fs-task-list #btn-group #date-picker-container #due-date {
+  padding: 10px;
+  border: 2px dashed #C3C3C6;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-family: 'Arial';
+  color: #d9d9dc;
+  font-weight: bolder;
 }
 #wrapper #fs-task-editor #btn-group input.bnt-form,
 #wrapper #fs-task-list #btn-group input.bnt-form {
@@ -77,8 +162,8 @@ div {
 #wrapper #fs-task-list #in-title {
   width: 290px;
 }
-#wrapper #fs-task-editor #radio-group,
-#wrapper #fs-task-list #radio-group {
+#wrapper #fs-task-editor #priority-group,
+#wrapper #fs-task-list #priority-group {
   padding: 10px;
   border: 2px dashed #C3C3C6;
   border-radius: 10px;
@@ -91,8 +176,8 @@ div {
   padding: 5px;
   float: right;
 }
-#wrapper #fs-task-editor #radio-group #ld-priority,
-#wrapper #fs-task-list #radio-group #ld-priority {
+#wrapper #fs-task-editor #priority-group #ld-priority,
+#wrapper #fs-task-list #priority-group #ld-priority {
   text-align: right;
   padding: 0px 5px;
 }
