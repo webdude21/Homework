@@ -4,7 +4,10 @@ var TASK_ID_INFO_IN_HTML = {
     priorityClassName: 'rb-priority',
     dueDateID: 'due-date',
     addButtonID: 'btn-add',
-    ulToAddTasksToID: 'ul-task-list'
+    ulToAddTasksToID: 'ul-task-list',
+    lowPriorityID: 'rb-low',
+    normalPriorityID: 'rb-normal',
+    highPriorityID: 'rb-high'
 };
 
 var organizer = (new Organizer());
@@ -19,6 +22,32 @@ var addTaskToOrganizer = function addTaskToOrganizer() {
     document.getElementById(TASK_ID_INFO_IN_HTML.ulToAddTasksToID).appendChild(taskAsListItem);
 };
 
+var removeTaskFromOrganizer = function removeTaskFromOrganizer(itemToDelete) {
+    organizer.remove(itemToDelete.itemReference);
+    itemToDelete.parentNode.removeChild(itemToDelete);
+};
+
+var loadIntoEditor = function loadIntoEditor(itemToLoad) {
+    document.getElementById(TASK_ID_INFO_IN_HTML.titleID).value = itemToLoad.title;
+    document.getElementById(TASK_ID_INFO_IN_HTML.contentID).value = itemToLoad.content;
+    document.getElementById(TASK_ID_INFO_IN_HTML.dueDateID).value = itemToLoad.dueDate;
+
+    var priority;
+
+    switch (TASK_ID_INFO_IN_HTML.priority) {
+        case 'high':
+            priority = TASK_ID_INFO_IN_HTML.highPriorityID;
+            break;
+        case 'low':
+            priority = TASK_ID_INFO_IN_HTML.lowPriorityID;
+            break;
+        default:
+            priority = TASK_ID_INFO_IN_HTML.normalPriorityID;
+    }
+
+    document.getElementById(priority).checked = "checked";
+};
+
 attachEvents(TASK_ID_INFO_IN_HTML);
 
 function attachEvents(args) {
@@ -28,6 +57,20 @@ function attachEvents(args) {
 function retrieveTaskInformation(args) {
     var priorityGroup = document.getElementsByClassName(args.priorityClassName);
     var priority;
+    var fallBackDueDate = new Date();
+    fallBackDueDate.setDate(fallBackDueDate.getDate() + 14);
+    var calendarDate = document.getElementById(args.dueDateID).value;
+    calendarDate = calendarDate.split('-');
+
+    var validDate = calendarDate[1] > 0 && calendarDate[1] < 13 && calendarDate[2] > 0 && calendarDate[2] < 32
+        && calendarDate[0] > 1900 && calendarDate[0] < 3000;
+    var date;
+
+    if (validDate) {
+        date = new Date(calendarDate[0], calendarDate[1] - 1, calendarDate[2], 0, 0, 0, 0)
+    }else {
+        date = fallBackDueDate;
+    }
 
     for (var i = 0, len = priorityGroup.length; i < len; i++) {
         if (priorityGroup[i].checked) {
@@ -40,7 +83,7 @@ function retrieveTaskInformation(args) {
         title: document.getElementById(args.titleID).value,
         content: document.getElementById(args.contentID).value,
         priority: priority,
-        dueDate: document.getElementById(args.dueDateID).value
+        dueDate: date
     });
 }
 
@@ -70,10 +113,12 @@ function generateTaskHTML(task) {
     var deleteButton = document.createElement('button');
     deleteButton.className += ' delete-btn';
     deleteButton.textContent = 'X';
+
     deleteButton.addEventListener('click', function (event) {
-        var itemToDelete = event.target.parentNode;
-        organizer.remove(itemToDelete.itemReference);
-        itemToDelete.parentNode.removeChild(itemToDelete);
+        removeTaskFromOrganizer(event.target.parentNode);
+    });
+    currentTask.addEventListener('click', function (event) {
+        loadIntoEditor(event.target.itemReference);
     });
 
     switch (task.priority) {
