@@ -1,0 +1,29 @@
+body, thead, tr, td, th, tbody, div {
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  padding: 15px;
+
+  #generated-table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+
+    td, th{
+      border: 1px solid black;
+      padding: 3px;
+    }
+
+    thead {
+      background-color: #acacac;
+      color: white;
+    }
+    tbody {
+      tr:nth-of-type(even) {
+        background-color: #ededed;
+      }
+    }
+  }
+}
