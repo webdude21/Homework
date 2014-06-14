@@ -1,0 +1,11 @@
+#message-box {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    padding: 25px;
+    font-size: 40px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    opacity: 0;
+}
