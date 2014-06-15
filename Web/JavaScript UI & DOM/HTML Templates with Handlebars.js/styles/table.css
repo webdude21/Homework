@@ -8,23 +8,23 @@ div {
   padding: 0;
   margin: 0;
 }
-#wrapper {
+body {
   padding: 15px;
 }
-#wrapper #generated-table {
+body table {
   border-collapse: collapse;
   border: 1px solid black;
   text-align: center;
 }
-#wrapper #generated-table td,
-#wrapper #generated-table th {
+body table td,
+body table th {
   border: 1px solid black;
   padding: 3px;
 }
-#wrapper #generated-table thead {
+body table thead {
   background-color: #acacac;
   color: white;
 }
-#wrapper #generated-table tbody tr:nth-of-type(even) {
+body table tbody tr:nth-of-type(even) {
   background-color: #ededed;
 }

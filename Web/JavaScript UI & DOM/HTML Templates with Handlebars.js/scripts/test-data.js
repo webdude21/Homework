@@ -92,3 +92,18 @@ var items = {
         }
     ]
 };
+
+var books = [
+    { id: 1, title: 'JavaScript: The good parts', author: 'Douglas Crockford' },
+    { id: 2, title: 'Secrets of the JavaScript Ninja', author: 'John Resig' },
+    { id: 3, title: 'Core HTML5 Canvas: Graphics, Animation, and Game Development', author: 'David Geary' },
+    { id: 4, title: 'JavaScript Patterns', author: 'Stoyan Stefanov' }
+];
+
+var students = [
+    { number: 1, name: 'Georgi Gankov', mark: 6 },
+    { number: 2, name: 'Petar Petrov', mark: 6 },
+    { number: 3, name: 'Dinko Georgiev', mark: 5 },
+    { number: 4, name: 'Maria Todorova', mark: 3 },
+    { number: 5, name: 'Georgi Mihailov', mark: 4 }
+];

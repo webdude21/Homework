@@ -9,9 +9,9 @@
 </div>
 <script type="text/x-handlebars-template" id="select-template">
     <select id="generated-select">
-        {{#each items}}
+        {{#items}}
         <option value="{{value}}">{{text}}</option>
-        {{/each}}
+        {{/items}}
     </select>
 </script>
 <script src="scripts/test-data.js"></script>
