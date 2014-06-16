@@ -22,6 +22,12 @@
         };
     }
 
+    if (!Element.prototype.hasClassName) {
+        Element.prototype.hasClassName = function (name) {
+            return new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)").test(this.className);
+        };
+    }
+
     if (!Array.prototype.unset) {
         Array.prototype.unset = function (value) {
             if (this.indexOf(value) !== -1) {
@@ -154,9 +160,4 @@
 })();
 
 
-if (!Element.prototype.hasClassName) {
-    Element.prototype.hasClassName = function (name) {
-        return new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)").test(this.className);
-    };
-}
 
