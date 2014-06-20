@@ -76,19 +76,5 @@
             var handChecker = new PokerHandsChecker();
             Assert.AreEqual(true, handChecker.IsFourOfAKind(hand));
         }
-
-        [TestMethod]
-        public void TestForFiveOfAKind()
-        {
-            IList<ICard> cardList = new List<ICard>();
-            cardList.Add(new Card(CardFace.King, CardSuit.Spades));
-            cardList.Add(new Card(CardFace.King, CardSuit.Hearts));
-            cardList.Add(new Card(CardFace.King, CardSuit.Diamonds));
-            cardList.Add(new Card(CardFace.King, CardSuit.Clubs));
-            cardList.Add(new Card(CardFace.King, CardSuit.Clubs));
-            var hand = new Hand(cardList);
-            var handChecker = new PokerHandsChecker();
-            Assert.AreEqual(false, handChecker.IsFourOfAKind(hand));
-        }
     }
 }

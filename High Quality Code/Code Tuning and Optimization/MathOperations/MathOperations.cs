@@ -23,68 +23,68 @@
         private static void Main()
         {
             DisplayExecutionTime(
-                "Square root float",
+                "Square root float", 
                 () =>
-                {
-                    for (float i = 1; i < TestCount; i++)
                     {
-                        Math.Sqrt(i);
-                    }
-                });
+                        for (float i = 1; i < TestCount; i++)
+                        {
+                            Math.Sqrt(i);
+                        }
+                    });
 
             DisplayExecutionTime(
-                "Square root double",
+                "Square root double", 
                 () =>
-                {
-                    for (double i = 1; i < TestCount; i++)
                     {
-                        Math.Sqrt(i);
-                    }
-                });
+                        for (double i = 1; i < TestCount; i++)
+                        {
+                            Math.Sqrt(i);
+                        }
+                    });
 
             Console.WriteLine();
 
             DisplayExecutionTime(
-                "Ln float",
+                "Ln float", 
                 () =>
-                {
-                    for (float i = 1; i < TestCount; i++)
                     {
-                        Math.Log(i);
-                    }
-                });
+                        for (float i = 1; i < TestCount; i++)
+                        {
+                            Math.Log(i);
+                        }
+                    });
 
             DisplayExecutionTime(
-                "Ln double",
+                "Ln double", 
                 () =>
-                {
-                    for (double i = 1; i < TestCount; i++)
                     {
-                        Math.Log(i);
-                    }
-                });
+                        for (double i = 1; i < TestCount; i++)
+                        {
+                            Math.Log(i);
+                        }
+                    });
 
             Console.WriteLine();
 
             DisplayExecutionTime(
-                "Sin float",
+                "Sin float", 
                 () =>
-                {
-                    for (float i = 1; i < TestCount; i++)
                     {
-                        Math.Sin(i);
-                    }
-                });
+                        for (float i = 1; i < TestCount; i++)
+                        {
+                            Math.Sin(i);
+                        }
+                    });
 
             DisplayExecutionTime(
-                "Sin double",
+                "Sin double", 
                 () =>
-                {
-                    for (double i = 1; i < TestCount; i++)
                     {
-                        Math.Sin(i);
-                    }
-                });
+                        for (double i = 1; i < TestCount; i++)
+                        {
+                            Math.Sin(i);
+                        }
+                    });
         }
     }
 }
