@@ -20,3 +20,14 @@ function testMovingShapes() {
     movingShapes.add('rect');
     movingShapes.add('ellipse');
 }
+
+function testSpecialConsole() {
+
+    specialConsole.writeLine("Message: hello");
+    //logs to the console "Message: hello"
+    specialConsole.writeLine("Message: {0}", "hello");
+    //logs to the console "Message: hello"
+    specialConsole.writeError("Error: {0}", "Something happened");
+    specialConsole.writeWarning("Warning: {0}", "A warning");
+
+}
