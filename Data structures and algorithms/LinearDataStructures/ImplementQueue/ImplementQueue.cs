@@ -1,13 +1,13 @@
 ﻿/* Implement the ADT queue as dynamic linked list. Use generics
  * (LinkedQueue<T>) to allow storing different data types in the queue. */
 
-using System;
-
 namespace ImplementQueue
 {
-    class ImplementQueue
+    using System;
+
+    internal class ImplementQueue
     {
-        static void Main()
+        private static void Main()
         {
             var stackTest = new LinkedQueue<int>();
 
@@ -25,6 +25,7 @@ namespace ImplementQueue
             {
                 Console.WriteLine(stackTest.Dequeue());
             }
+
             Console.WriteLine(stackTest.Count);
         }
     }

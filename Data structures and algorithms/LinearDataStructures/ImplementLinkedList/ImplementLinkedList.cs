@@ -2,14 +2,13 @@
  * has two fields: value (of type T) and NextItem (of type ListItem<T>). 
  * Define additionally a class LinkedList<T> with a single field FirstElement 
  * (of type ListItem<T>). */
-
-using System;
-
 namespace ImplementLinkedList
 {
-    class LinkedListTests
+    using System;
+
+    internal class LinkedListTests
     {
-        static void Main()
+        private static void Main()
         {
             var testList = new LinkedList<int>();
             testList.AddFirst(5);

@@ -1,19 +1,77 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ImplementLinkedList
+﻿namespace ImplementLinkedList
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class LinkedList<T> : IEnumerable<T>
     {
         public ListItem<T> FirstElement { get; private set; }
+
         public ListItem<T> LastElement { get; private set; }
+
         public int Count { get; private set; }
+
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= this.Count || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                var currentItem = this.FirstElement;
+
+                for (var i = 0; i < index; i++)
+                {
+                    currentItem = currentItem.NextItem;
+                }
+
+                return currentItem.Value;
+            }
+
+            set
+            {
+                if (index >= this.Count || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                var currentItem = this.FirstElement;
+
+                for (var i = 0; i < index; i++)
+                {
+                    currentItem = currentItem.NextItem;
+                }
+
+                currentItem.Value = value;
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var currentItem = this.FirstElement;
+
+            while (currentItem != null)
+            {
+                yield return currentItem.Value;
+                currentItem = currentItem.NextItem;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
         public void AddFirst(T item)
         {
-            AddFirst(new ListItem<T>(item));
+            this.AddFirst(new ListItem<T>(item));
         }
+
         public void AddFirst(ListItem<T> item)
         {
             this.Count += 1;
@@ -29,13 +87,15 @@ namespace ImplementLinkedList
                 this.FirstElement = item;
             }
         }
+
         public void AddLast(T item)
         {
-            AddLast(new ListItem<T>(item));
+            this.AddLast(new ListItem<T>(item));
         }
+
         public void AddLast(ListItem<T> item)
         {
-            if (Count == 0)
+            if (this.Count == 0)
             {
                 AddFirst(item);
                 return;
@@ -46,9 +106,10 @@ namespace ImplementLinkedList
             item.PreviousItem = this.LastElement;
             this.LastElement = item;
         }
+
         public void RemoveFirst()
         {
-            if (FirstElement == null)
+            if (this.FirstElement == null)
             {
                 return;
             }
@@ -56,79 +117,31 @@ namespace ImplementLinkedList
             this.Count -= 1;
             this.FirstElement = this.FirstElement.NextItem;
         }
+
         public void RemoveLast()
         {
-            if (LastElement == null)
+            if (this.LastElement == null)
             {
-                RemoveFirst();
+                this.RemoveFirst();
                 return;
             }
 
             this.Count -= 1;
             this.LastElement = this.LastElement.PreviousItem;
         }
+
         public void Clear()
         {
             this.FirstElement = null;
             this.LastElement = null;
             this.Count = 0;
         }
+
         public bool Contains(T item)
         {
-            foreach (var value in this)
-            {
-                if (value.Equals(item))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Enumerable.Contains(this, item);
         }
-        public T this[int index]
-        {
-            get
-            {
-                if (index >= Count || index < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
 
-                var currentItem = this.FirstElement;
-
-                for (var i = 0; i < index; i++)
-                {
-                    currentItem = currentItem.NextItem;
-                }
-
-                return currentItem.Value;
-            }
-            set
-            {
-                if (index >= Count || index < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                var currentItem = this.FirstElement;
-
-                for (var i = 0; i < index; i++)
-                {
-                    currentItem = currentItem.NextItem;
-                }
-
-                currentItem.Value = value;
-            }
-        }
-        public IEnumerator<T> GetEnumerator()
-        {
-            var currentItem = this.FirstElement;
-
-            while (currentItem != null)
-            {
-                yield return currentItem.Value;
-                currentItem = currentItem.NextItem;
-            }
-        }
         public override string ToString()
         {
             var resultBuilder = new StringBuilder();
@@ -139,10 +152,6 @@ namespace ImplementLinkedList
             }
 
             return "[" + resultBuilder.ToString().TrimEnd() + "]";
-        }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

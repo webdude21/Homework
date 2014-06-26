@@ -1,50 +1,71 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace ImplementStack
+﻿namespace ImplementStack
 {
-    class StackAdt<T> : IEnumerable<T>
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    internal class StackAdt<T> : IEnumerable<T>
     {
-        private T[] internalStorage;
         private const int InitialCapacity = 16;
+
+        private T[] internalStorage;
 
         public StackAdt(int initialCapacity = InitialCapacity)
         {
             this.internalStorage = new T[initialCapacity];
         }
+
         public int CurrentCapacity
         {
-            get { return internalStorage.Length; }
+            get
+            {
+                return this.internalStorage.Length;
+            }
         }
 
         public int Count { get; private set; }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (var index = this.Count - 1; index >= 0; index--)
+            {
+                yield return this.internalStorage[index];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
         public void Push(T item)
         {
-            if (Count >= internalStorage.Length)
+            if (this.Count >= this.internalStorage.Length)
             {
-                Grow();
+                this.Grow();
             }
 
-            internalStorage[Count] = item;
-            Count++;
+            this.internalStorage[this.Count] = item;
+            this.Count++;
         }
+
         public T Pop()
         {
-            var itemToPop = Peek();
-            Count--;
+            var itemToPop = this.Peek();
+            this.Count--;
             return itemToPop;
         }
+
         public T Peek()
         {
-            if (Count > 0)
+            if (this.Count > 0)
             {
-                return internalStorage[Count - 1];
+                return this.internalStorage[this.Count - 1];
             }
 
             throw new InvalidOperationException("The stack is empty!");
         }
+
         private void Grow()
         {
             var index = 0;
@@ -57,17 +78,6 @@ namespace ImplementStack
             }
 
             this.internalStorage = newInternalStorage;
-        }
-        public IEnumerator<T> GetEnumerator()
-        {
-            for (var index = this.Count - 1; index >= 0; index--)
-            {
-                yield return internalStorage[index];
-            }
-        }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

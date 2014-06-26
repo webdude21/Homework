@@ -1,15 +1,14 @@
 ﻿/* Write a program that reads a sequence of integers (List<int>) ending with
  * an empty line and sorts them in an increasing order. */
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 namespace SortNumbers
 {
-    class SortNumbers
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
+    internal class SortNumbers
     {
-        static void Main()
+        private static void Main()
         {
             var numbers = ReadInput();
             numbers.Sort();
@@ -30,6 +29,7 @@ namespace SortNumbers
                 numbers.Add(int.Parse(currentLine));
                 currentLine = Console.ReadLine();
             }
+
             return numbers;
         }
     }

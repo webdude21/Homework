@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RemoveOddNumbersFromSequence")]
+[assembly: AssemblyTitle("LabyrinthMove")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RemoveOddNumbersFromSequence")]
+[assembly: AssemblyProduct("LabyrinthMove")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,13 +20,15 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1cf0e23c-8054-4a7e-b0a0-6cf340ece7dc")]
+[assembly: Guid("64960d98-7b8e-416a-bc7f-2f8e634d2472")]
 
 // Version information for an assembly consists of the following four values:
+//
 //      Major Version
 //      Minor Version 
 //      Build Number
 //      Revision
+//
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]

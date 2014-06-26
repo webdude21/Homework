@@ -20,9 +20,9 @@ namespace SequenceQueue
     {
         public static void Main()
         {
-            const int n = 2;
+            const int N = 2;
             var queue = new Queue<int>();
-            queue.Enqueue(n);
+            queue.Enqueue(N);
             var resultBuilder = new StringBuilder();
             for (var index = 0; index <= 50; index++)
             {
@@ -30,9 +30,10 @@ namespace SequenceQueue
                 resultBuilder.Append(currentNum);
                 resultBuilder.Append(", ");
                 queue.Enqueue(currentNum + 1);
-                queue.Enqueue(2 * currentNum + 1);
+                queue.Enqueue((2 * currentNum) + 1);
                 queue.Enqueue(currentNum + 2);
             }
+
             Console.WriteLine(resultBuilder.Remove(resultBuilder.Length - 2, 2));
         }
     }

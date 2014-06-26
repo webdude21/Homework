@@ -1,15 +1,15 @@
-﻿using System;
-
-namespace ImplementStack
+﻿namespace ImplementStack
 {
-    class ImplementStack
+    using System;
+
+    public class ImplementStack
     {
-        static void Main()
+        private static void Main()
         {
             var stackTest = new StackAdt<int>();
 
             for (var i = 0; i < 100; i++)
-            {   
+            {
                 stackTest.Push(i);
             }
 
@@ -17,7 +17,6 @@ namespace ImplementStack
             {
                 Console.WriteLine(i);
             }
-
 
             for (var i = 0; i < 100; i++)
             {

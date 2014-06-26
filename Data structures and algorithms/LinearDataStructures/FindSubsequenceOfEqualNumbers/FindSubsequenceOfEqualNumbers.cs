@@ -1,18 +1,17 @@
 ﻿/* Write a method that finds the longest subsequence of equal numbers in given List<int> and returns the result
  * as new List<int>. Write a program to test whether the method works correctly. */
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
 namespace FindSubsequenceOfEqualNumbers
 {
-    class FindSubsequenceOfEqualNumbers
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+
+    internal class FindSubsequenceOfEqualNumbers
     {
-        static void Main()
+        private static void Main()
         {
-           FindSequance();
+            FindSequance();
         }
 
         private static void FindSequance()
@@ -36,12 +35,15 @@ namespace FindSubsequenceOfEqualNumbers
                         bestSequenceLenght = currentSequenceLenght;
                         mostFrequentNumber = currentNumber;
                     }
+
                     currentSequenceLenght = 1;
                     currentNumber = numbers[index];
                 }
             }
+
             Console.WriteLine(ConvertResultToString(mostFrequentNumber, bestSequenceLenght));
         }
+
         private static string ConvertResultToString(int number, int repeatTimes)
         {
             var resultBuilder = new StringBuilder();
@@ -55,6 +57,7 @@ namespace FindSubsequenceOfEqualNumbers
             resultBuilder.Remove(resultBuilder.Length - 2, 2);
             return resultBuilder.ToString();
         }
+
         private static List<int> ReadInput()
         {
             Console.SetIn(new StreamReader(@"..\..\input.txt"));
@@ -66,6 +69,7 @@ namespace FindSubsequenceOfEqualNumbers
                 numbers.Add(int.Parse(currentLine));
                 currentLine = Console.ReadLine();
             }
+
             return numbers;
         }
     }

@@ -1,17 +1,16 @@
 ﻿/* Write a program that reads from the console a sequence of positive integer numbers. 
  * The sequence ends when empty line is entered. Calculate and print the sum and average 
  * of the elements of the sequence. Keep the sequence in List<int>. */
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace SequenceOfPositiveIntegers
 {
-    class SequenceOfPositiveIntegers
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
+    internal class SequenceOfPositiveIntegers
     {
-        static void Main()
+        private static void Main()
         {
             var numbers = ReadInput();
             var sum = numbers.Sum();
@@ -31,6 +30,7 @@ namespace SequenceOfPositiveIntegers
                 numbers.Add(int.Parse(currentLine));
                 currentLine = Console.ReadLine();
             }
+
             return numbers;
         }
     }

@@ -1,15 +1,14 @@
 ﻿/* Write a program that reads N integers from the console and reverses them using a stack. 
  * Use the Stack<int> class. */
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 namespace ReverseIntegersUsingStack
 {
-    class ReverseIntegersUsingStack
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
+    internal class ReverseIntegersUsingStack
     {
-        static void Main()
+        private static void Main()
         {
             var numbers = ReadInput();
 
@@ -30,6 +29,7 @@ namespace ReverseIntegersUsingStack
                 numbers.Push(int.Parse(currentLine));
                 currentLine = Console.ReadLine();
             }
+
             return numbers;
         }
     }
