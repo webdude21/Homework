@@ -1,4 +1,4 @@
-define(function () {
+define(['./section'], function (Section) {
     'use strict';
     var Container;
     Container = (function () {
@@ -11,7 +11,7 @@ define(function () {
     }());
 
     Container.prototype.add = function (section) {
-        if (section /* instanceof Section */) {
+        if (section instanceof Section) {
             this._content.push(section);
         } else {
             throw new TypeError('You must supply an object of the Section type.')

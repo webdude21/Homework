@@ -1,4 +1,4 @@
-define(function () {
+define(['./item'], function (Item) {
     'use strict';
     var Section;
     Section = (function () {
@@ -6,6 +6,7 @@ define(function () {
             this._title = title;
             this._content = [];
         }
+
         return Section;
     }());
 
@@ -17,10 +18,10 @@ define(function () {
     };
 
     Section.prototype.add = function (item) {
-        if (item /* instanceof Item */){
+        if (item instanceof Item) {
             this._content.push(item);
-        }else{
-            throw new TypeError ('You must supply an object of the Item type.')
+        } else {
+            throw new TypeError('You must supply an object of the Item type.')
         }
     };
 
