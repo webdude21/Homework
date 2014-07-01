@@ -258,6 +258,18 @@ var Zoo;
         AnimalCage.prototype.toString = function () {
             return this.internalStorage.join(', \r\n');
         };
+
+        AnimalCage.prototype.getAnimalAtIndex = function (index) {
+            if (index < this.internalStorage.length) {
+                return this.internalStorage[index];
+            } else {
+                throw new ReferenceError("Index out of range");
+            }
+        };
+
+        AnimalCage.prototype.forEach = function (callback) {
+            this.internalStorage.forEach(callback);
+        };
         return AnimalCage;
     })();
     Zoo.AnimalCage = AnimalCage;

@@ -15,6 +15,8 @@ function testSchoolSystem() {
 
 function testZoo() {
     var testContainer = document.getElementById('test-output');
+    var paragraph = document.createElement('p');
+    var documentFragment = document.createDocumentFragment();
 
     var cage = new Zoo.AnimalCage(16);
     var polarBearPepi = new Zoo.PolarBear("Pepi");
@@ -27,6 +29,17 @@ function testZoo() {
     cage.addAnimal(nickMonkey);
     cage.addAnimal(mimiSeaTurtle);
 
-    testContainer.textContent = cage.toString();
+    for (var i = 0, len = cage.getAnimalCount(); i < len; i++) {
+        var currentAnimal = cage.getAnimalAtIndex(i);
+        var clonedParagraph = paragraph.cloneNode(true);
+        clonedParagraph.textContent += currentAnimal.toString() + ' ';
+        clonedParagraph.textContent += currentAnimal.makeSound() + ' ';
+        clonedParagraph.textContent += currentAnimal.move() + ' ';
+        clonedParagraph.textContent += currentAnimal.sleep() + ' ';
+        clonedParagraph.textContent += '\r\n';
+        documentFragment.appendChild(clonedParagraph);
+    }
+
+    testContainer.appendChild(documentFragment);
 }
 //# sourceMappingURL=test-oop.js.map

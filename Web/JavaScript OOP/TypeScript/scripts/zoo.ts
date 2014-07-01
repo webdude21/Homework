@@ -289,6 +289,18 @@ module Zoo {
         toString() {
             return this.internalStorage.join(', \r\n');
         }
+
+        getAnimalAtIndex (index: number): T{
+            if (index < this.internalStorage.length){
+                return this.internalStorage[index];
+            } else{
+                throw new ReferenceError("Index out of range");
+            }
+        }
+
+        forEach(callback: () => any) {
+            this.internalStorage.forEach(callback);
+        }
     }
 }
 
