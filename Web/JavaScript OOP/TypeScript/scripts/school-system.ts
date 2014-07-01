@@ -47,7 +47,7 @@ module schoolSystem {
         students:Student[];
         teacher:Teacher;
 
-        constructor(teacher:Teacher, students:Student[]) {
+        constructor(teacher:Teacher, students?:Student[]) {
             this.teacher = teacher;
             if (students) {
                 this.students = students;
@@ -62,7 +62,7 @@ module schoolSystem {
             }
         }
 
-        toString(){
+        toString() {
             return this.students.join(' - ');
         }
     }

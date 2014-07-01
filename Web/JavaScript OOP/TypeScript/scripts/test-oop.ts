@@ -1,6 +1,8 @@
 /// <reference path="zoo.ts"/>
 /// <reference path="school-system.ts"/>
+
 function testSchoolSystem() {
+
     var testCapacity = 30;
     var testStudentArr = [];
 
@@ -14,7 +16,8 @@ function testSchoolSystem() {
 }
 
 function testZoo() {
-    var cage = new Zoo.AnimalCage(16);
+
+    var cage = new Zoo.AnimalCage<Zoo.IAnimal>(16);
     var polarBearPepi = new Zoo.PolarBear("Pepi");
     var kaaSnake = new Zoo.Snake("Kaa");
     var nickMonkey = new Zoo.Monkey("Nick");
@@ -27,4 +30,3 @@ function testZoo() {
 
     console.log(cage.toString());
 }
-//# sourceMappingURL=test-oop.js.map
