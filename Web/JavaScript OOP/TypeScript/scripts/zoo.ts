@@ -18,24 +18,11 @@ module Zoo {
     }
 
     export class Animal {
-        name:string;
-        lifeExpectancy:number;
-        legCount:number;
-        diet:AnimalProperties.Diet;
-        socialBehaviour:AnimalProperties.SocialBehavior;
-        environment:AnimalProperties.Environment;
         state:AnimalProperties.State;
+        constructor(public name: string, public lifeExpectancy: number, public diet:AnimalProperties.Diet,
+                    public socialBehaviour:AnimalProperties.SocialBehavior,
+            public environment: AnimalProperties.Environment, public legCount?:number) {
 
-        constructor(name:string, lifeExpectancy:number, diet:AnimalProperties.Diet,
-                    socialBehaviour:AnimalProperties.SocialBehavior,
-                    environment:AnimalProperties.Environment, legCount?:number) {
-
-            this.name = name;
-            this.lifeExpectancy = lifeExpectancy;
-            this.diet = diet;
-            this.socialBehaviour = socialBehaviour;
-            this.environment = environment;
-            this.legCount = legCount || 0;
             this.state = new AnimalProperties.State(false, true, true);
         }
 

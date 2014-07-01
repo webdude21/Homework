@@ -15,7 +15,7 @@ var Zoo;
             this.diet = diet;
             this.socialBehaviour = socialBehaviour;
             this.environment = environment;
-            this.legCount = legCount || 0;
+            this.legCount = legCount;
             this.state = new AnimalProperties.State(false, true, true);
         }
         Animal.prototype.toString = function () {
