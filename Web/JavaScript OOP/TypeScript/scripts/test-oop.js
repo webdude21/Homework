@@ -14,6 +14,8 @@ function testSchoolSystem() {
 }
 
 function testZoo() {
+    var testContainer = document.getElementById('test-output');
+
     var cage = new Zoo.AnimalCage(16);
     var polarBearPepi = new Zoo.PolarBear("Pepi");
     var kaaSnake = new Zoo.Snake("Kaa");
@@ -25,6 +27,6 @@ function testZoo() {
     cage.addAnimal(nickMonkey);
     cage.addAnimal(mimiSeaTurtle);
 
-    console.log(cage.toString());
+    testContainer.textContent = cage.toString();
 }
 //# sourceMappingURL=test-oop.js.map
