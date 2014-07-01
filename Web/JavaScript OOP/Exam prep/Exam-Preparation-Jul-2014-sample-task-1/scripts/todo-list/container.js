@@ -4,7 +4,7 @@ define(['./section'], function (Section) {
     Container = (function () {
 
         function Container() {
-            this._content = [];
+            this._items = [];
         }
 
         return Container;
@@ -12,7 +12,7 @@ define(['./section'], function (Section) {
 
     Container.prototype.add = function (section) {
         if (section instanceof Section) {
-            this._content.push(section);
+            this._items.push(section);
         } else {
             throw new TypeError('You must supply an object of the Section type.')
         }
@@ -20,7 +20,7 @@ define(['./section'], function (Section) {
 
     Container.prototype.getData = function () {
         var result = [];
-        this._content.forEach(function (section) {
+        this._items.forEach(function (section) {
             result.push(section.getData());
         });
 

@@ -4,7 +4,7 @@ define(['./item'], function (Item) {
     Section = (function () {
         function Section(title) {
             this._title = title;
-            this._content = [];
+            this._items = [];
         }
 
         return Section;
@@ -13,13 +13,13 @@ define(['./item'], function (Item) {
     Section.prototype.getData = function () {
         return {
             title: this._title,
-            array: this._content
+            items: this._items
         }
     };
 
     Section.prototype.add = function (item) {
         if (item instanceof Item) {
-            this._content.push(item);
+            this._items.push(item);
         } else {
             throw new TypeError('You must supply an object of the Item type.')
         }

@@ -3,14 +3,14 @@ define(function () {
     var Item;
     Item = (function () {
         function Item(content) {
-            this._content = content;
+            this.content = content;
         }
 
         return Item;
     })();
 
     Item.prototype.getData = function () {
-        return this._content;
+        return this.content;
     };
     return Item;
 });
