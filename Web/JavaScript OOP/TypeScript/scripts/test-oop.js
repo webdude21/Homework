@@ -12,6 +12,10 @@ function testSchoolSystem() {
     var testTeacher = new schoolSystem.Teacher('Georgi', 'Gankov', 42, 'Physics');
     var testClass = new schoolSystem.SchoolClass(testTeacher);
     testClass.addStudents(testStudentArr);
+
+    var testContainer = document.getElementById('test-output');
+
+    testContainer.textContent = testClass.toString();
 }
 
 function testZoo() {
