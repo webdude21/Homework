@@ -1,5 +1,6 @@
 /// <reference path="zoo.ts"/>
 /// <reference path="school-system.ts"/>
+/// <reference path="animal-cage.ts"/>
 function testSchoolSystem() {
     var testCapacity = 30;
     var testStudentArr = [];

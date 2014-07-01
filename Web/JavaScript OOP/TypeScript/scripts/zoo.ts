@@ -1,3 +1,6 @@
+/// <reference path="food.ts"/>
+/// <reference path="animal-properties.ts"/>
+
 module Zoo {
     "use strict";
 
@@ -244,72 +247,5 @@ module Zoo {
         }
     }
 
-    export class AnimalCage<T> {
-        private internalStorage:T[];
-        capacity:number;
 
-        constructor(capacity?:number) {
-            this.capacity = capacity || 50;
-            this.internalStorage = [];
-        }
-
-        addAnimal(item:T) {
-            if (this.capacity >= this.internalStorage.length) {
-                this.internalStorage.push(item);
-            } else {
-                throw new RangeError("You've exceeded the maximum capacity (" + this.capacity +
-                    ") of the cage.");
-            }
-        }
-
-        removeAnimal(item:T) {
-            var itemIndex = this.internalStorage.indexOf(item);
-            if (itemIndex > -1) {
-                this.internalStorage.splice(itemIndex, 1);
-            }
-        }
-
-        getAnimalCount() {
-            return this.internalStorage.length;
-        }
-
-        toString() {
-            return this.internalStorage.join(', \r\n');
-        }
-
-        getAnimalAtIndex (index: number): T{
-            if (index < this.internalStorage.length){
-                return this.internalStorage[index];
-            } else{
-                throw new ReferenceError("Index out of range");
-            }
-        }
-    }
 }
-
-module AnimalProperties {
-    "use strict";
-    export enum Diet { Carnivore, Herbivore, Omnivore }
-    export enum SocialBehavior { Egoistic, Cooperative, Altruistic, Revengeful }
-    export enum Environment { Forest, Plains, Jungle, Urban, Arctic, Sea, Ocean, River }
-
-    export class State {
-        hungry:boolean;
-        healthy:boolean;
-        happy:boolean;
-
-        constructor(hungry?:boolean, healthy?:boolean, happy?:boolean) {
-            this.hungry = hungry || true;
-            this.healthy = healthy || true;
-            this.happy = happy || true;
-        }
-    }
-}
-
-module Food {
-    export enum Meat { WhiteMeat, RedMead, Fat }
-    export enum Fruit { Banana, Orange, Apple, Pear, Cherry, Strawberry }
-    export enum Veggies { Carrots, EggPlant, Tomatoes, Potatoes, Cucumbers }
-    export enum SeaFood { Fish, Crustaceans, Molluscs, Algae }
-}
-
