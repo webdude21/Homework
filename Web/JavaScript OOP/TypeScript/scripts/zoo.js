@@ -266,10 +266,6 @@ var Zoo;
                 throw new ReferenceError("Index out of range");
             }
         };
-
-        AnimalCage.prototype.forEach = function (callback) {
-            this.internalStorage.forEach(callback);
-        };
         return AnimalCage;
     })();
     Zoo.AnimalCage = AnimalCage;

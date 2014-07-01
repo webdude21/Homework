@@ -297,10 +297,6 @@ module Zoo {
                 throw new ReferenceError("Index out of range");
             }
         }
-
-        forEach(callback: () => any) {
-            this.internalStorage.forEach(callback);
-        }
     }
 }
 
