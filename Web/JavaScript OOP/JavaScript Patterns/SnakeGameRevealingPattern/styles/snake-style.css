@@ -1,0 +1,24 @@
+#apple, #stone {
+    display: none;
+}
+
+header#instruments {
+    overflow: hidden;
+    height: 40px;
+    width: 800px;
+}
+
+#score {
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+#btn-start {
+    float: right;
+    border-radius: 5px;
+}
+
+#the-canvas {
+    border: 1px solid black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
