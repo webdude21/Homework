@@ -246,6 +246,4 @@ module Zoo {
             return "My name is " + this.name + ". I'm a Polar Bear, " + super.toString();
         }
     }
-
-
 }

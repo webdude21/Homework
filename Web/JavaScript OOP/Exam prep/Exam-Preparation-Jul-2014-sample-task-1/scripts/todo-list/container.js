@@ -2,7 +2,6 @@ define(['./section'], function (Section) {
     'use strict';
     var Container;
     Container = (function () {
-
         function Container() {
             this._items = [];
         }
