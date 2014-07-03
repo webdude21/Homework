@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ComboBox</title>
+    <link href="styles/combo-box.css" rel="stylesheet">
+    <script data-main="scripts/app-config"
+            src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+</head>
+<body>
+<div id="combo-box-container"></div>
+<script type="text/x-handlebars-template" id="person-template">
+    <div class="person-item" id="person-item-{{id}}">
+        <strong class="person-name">{{name}}</strong>
+
+        <p class="person-age">{{age}}</p>
+        <img src="{{avatarUrl}}" height="100"/>
+    </div>
+</script>
+</body>
+</html>

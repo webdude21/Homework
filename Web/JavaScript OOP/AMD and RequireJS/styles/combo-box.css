@@ -1,0 +1,22 @@
+.person-item {
+    width: 82px;
+    height: 100%;
+    border: 4px dashed lightseagreen;
+    display: none;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.person-item:hover {
+    background-color: darkseagreen;
+    opacity: 1;
+}
+
+.person-item.selected {
+    display: block;
+    opacity: 1;
+}
+
+.person-item.visible {
+    display: block;
+}
