@@ -1,19 +1,20 @@
 define(['courses/student'], function (Student) {
     'use strict';
-    var Course = (function () {
+    var Course;
+    Course = (function () {
 
         // shared private method
         function _getRanking(rankingList, studentsCount) {
             if (studentsCount >= rankingList.length) {
                 throw new RangeError('The amount of students requested' +
-                    ' is greater than the ammount in the array');
+                    ' is greater than the amount in the array');
             }
             return rankingList.slice(0, studentsCount);
         }
 
         // Function Constructor
-        var Course = (function (courseName, forumala) {
-            this._formula = forumala;
+        var Course = (function (courseName, formula) {
+            this._formula = formula;
             this._title = courseName;
             this._students = [];
             this._rankingByExam = [];

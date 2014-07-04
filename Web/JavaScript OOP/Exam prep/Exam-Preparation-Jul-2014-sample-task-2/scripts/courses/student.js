@@ -1,6 +1,7 @@
 define([], function () {
     'use strict';
-    return (function () {
+    var Student;
+    Student = (function () {
         function Student(params) {
             this.name = params.name;
             this.exam = params.exam;
@@ -12,4 +13,5 @@ define([], function () {
 
         return Student;
     }());
+    return Student;
 });
