@@ -15,7 +15,6 @@ define(['./section'], function (Section) {
         } else {
             throw new TypeError('You must supply an object of the Section type.')
         }
-
         return this;
     };
 
@@ -24,7 +23,6 @@ define(['./section'], function (Section) {
         this._items.forEach(function (section) {
             result.push(section.getData());
         });
-
         return result;
     };
 
