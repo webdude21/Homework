@@ -10,7 +10,9 @@ define(function () {
     })();
 
     Item.prototype.getData = function () {
-        return this.content;
+       return {
+           content: this.content
+       }
     };
     return Item;
 });

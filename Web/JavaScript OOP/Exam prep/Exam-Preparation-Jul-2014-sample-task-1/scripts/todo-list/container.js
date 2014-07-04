@@ -15,6 +15,8 @@ define(['./section'], function (Section) {
         } else {
             throw new TypeError('You must supply an object of the Section type.')
         }
+
+        return this;
     };
 
     Container.prototype.getData = function () {
@@ -25,5 +27,6 @@ define(['./section'], function (Section) {
 
         return result;
     };
+
     return Container;
 });

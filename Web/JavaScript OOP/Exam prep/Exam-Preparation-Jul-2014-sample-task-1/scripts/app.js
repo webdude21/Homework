@@ -36,28 +36,28 @@
 
   /* Should produce:
   [{ "title": "Superheroes",
-     "items": [{ "content": "Batman" }, 
+     "items": [{ "content": "Batman" },
                { "content": "Ironman" },
-               { "content": "Superman" }, 
-               { "content": "Wonderwoman" }, 
-               { "content": "The Flash" }, 
-               { "content": "Spiderman" }, 
+               { "content": "Superman" },
+               { "content": "Wonderwoman" },
+               { "content": "The Flash" },
+               { "content": "Spiderman" },
                { "content": "Captain America" },
-               { "content": "The Hulk" }, 
-               { "content": "Green arrow" }, 
+               { "content": "The Hulk" },
+               { "content": "Green arrow" },
                { "content": "Green Lantern" }]
    }, 
    { "title": "Greek Heroes",
-     "items": [{ "content": "Ajax" }, 
-               { "content": "Hercules" }, 
-               { "content": "Jason" }, 
-               { "content": "Perseus" }, 
+     "items": [{ "content": "Ajax" },
+               { "content": "Hercules" },
+               { "content": "Jason" },
+               { "content": "Perseus" },
                { "content": "Odysseus" }]
   
    }, 
    { "title": "Bulgarian Heroes",
-     "items": [{ "content": "Hristo Botev" }, 
-               { "content": "Vasil Levski" }, 
+     "items": [{ "content": "Hristo Botev" },
+               { "content": "Vasil Levski" },
                { "content": "Chavdar Vyivoda" }]
   }]
    */

@@ -23,6 +23,8 @@ define(['./item'], function (Item) {
         } else {
             throw new TypeError('You must supply an object of the Item type.')
         }
+
+        return this;
     };
 
     return Section;
