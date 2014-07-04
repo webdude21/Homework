@@ -30,7 +30,7 @@
     bulgarianHeroesSection.add(structures.getData('Vasil Levski'));
     bulgarianHeroesSection.add(structures.getData('Chavdar Vyivoda'));
 	
-    console.dir(JSON.stringify(heroesContainer.getData()));
+    console.log(JSON.stringify(heroesContainer.getData()));
   });
 
 

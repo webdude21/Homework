@@ -11,9 +11,15 @@ define(['./item'], function (Item) {
     }());
 
     Section.prototype.getData = function () {
+        var resultItems = [];
+
+        this._items.forEach(function (item) {
+            resultItems.push(item.getData());
+        });
+
         return {
             title: this._title,
-            items: this._items
+            items: resultItems
         }
     };
 
