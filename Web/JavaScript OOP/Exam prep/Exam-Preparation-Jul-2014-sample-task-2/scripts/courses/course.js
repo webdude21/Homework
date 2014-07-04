@@ -3,18 +3,23 @@ define(['courses/student'], function (Student) {
     var Course = (function () {
 
         // shared private method
-        var _getRanking = function (rankingList, studentsCount) {
+        function _getRanking(rankingList, studentsCount) {
             var result = [];
+
             rankingList.sort(function (studentOne, studentTwo) {
                 return studentTwo.score - studentOne.score;
             });
+
+            if (studentsCount >= rankingList.length){
+                throw new RangeError ('The amount of students requested' +
+                    ' is greater than the ammount in the array');
+            }
 
             for (var i = 0; i < studentsCount; i++) {
                 result.push(rankingList[i]);
             }
             return result
-        };
-
+        }
 
         // Function Constructor
         var Course = (function (courseName, forumala) {
