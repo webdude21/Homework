@@ -11,6 +11,6 @@
 
         var anotherStudent = new Student('Georgi', 'Gankov', 55);
 
-        console.log(testStudent.getLastName())
+        console.log(anotherStudent.getLastName());
     })
 }());
