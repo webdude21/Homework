@@ -45,7 +45,11 @@ define(['courses/student'], function (Student) {
                 })
             });
 
-            rankingList.sort(function (studentOne, studentTwo) {
+            self._rankingByTotalScore.sort(function (studentOne, studentTwo) {
+                return studentTwo.score - studentOne.score;
+            });
+
+            self._rankingByExam.sort(function (studentOne, studentTwo) {
                 return studentTwo.score - studentOne.score;
             });
 
