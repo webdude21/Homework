@@ -4,21 +4,11 @@ define(['courses/student'], function (Student) {
 
         // shared private method
         function _getRanking(rankingList, studentsCount) {
-            var result = [];
-
-            rankingList.sort(function (studentOne, studentTwo) {
-                return studentTwo.score - studentOne.score;
-            });
-
-            if (studentsCount >= rankingList.length){
-                throw new RangeError ('The amount of students requested' +
+            if (studentsCount >= rankingList.length) {
+                throw new RangeError('The amount of students requested' +
                     ' is greater than the ammount in the array');
             }
-
-            for (var i = 0; i < studentsCount; i++) {
-                result.push(rankingList[i]);
-            }
-            return result
+            return rankingList.slice(0, studentsCount);
         }
 
         // Function Constructor
@@ -53,6 +43,10 @@ define(['courses/student'], function (Student) {
                     student: student,
                     score: student.exam
                 })
+            });
+
+            rankingList.sort(function (studentOne, studentTwo) {
+                return studentTwo.score - studentOne.score;
             });
 
             return this;
