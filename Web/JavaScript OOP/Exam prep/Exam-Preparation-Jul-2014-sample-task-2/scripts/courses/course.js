@@ -1,6 +1,7 @@
 define(['courses/student'], function (Student) {
     'use strict';
     var Course = (function () {
+
         // shared private method
         var _getRanking = function (rankingList, studentsCount) {
             var result = [];
@@ -14,6 +15,8 @@ define(['courses/student'], function (Student) {
             return result
         };
 
+
+        // Function Constructor
         var Course = (function (courseName, forumala) {
             this._formula = forumala;
             this._title = courseName;
@@ -28,6 +31,7 @@ define(['courses/student'], function (Student) {
             } else {
                 throw new TypeError('You can add only add the Student type!');
             }
+            return this
         };
 
         Course.prototype.calculateResults = function () {
@@ -45,6 +49,8 @@ define(['courses/student'], function (Student) {
                     score: student.exam
                 })
             });
+
+            return this;
         };
 
         Course.prototype.getTopStudentsByTotalScore = function (studentsCount) {
