@@ -3,7 +3,7 @@ define(['./item'], function (Item) {
     var Section;
     Section = (function () {
         function Section(title) {
-            this._title = title;
+            this.title = title;
             this._items = [];
         }
 
@@ -18,7 +18,7 @@ define(['./item'], function (Item) {
         });
 
         return {
-            title: this._title,
+            title: this.title,
             items: resultItems
         }
     };

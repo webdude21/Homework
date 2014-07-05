@@ -15,7 +15,7 @@ define(['courses/student'], function (Student) {
         // Function Constructor
         var Course = (function (courseName, formula) {
             this._formula = formula;
-            this._title = courseName;
+            this.title = courseName;
             this._students = [];
             this._rankingByExam = [];
             this._rankingByTotalScore = [];

@@ -2,8 +2,15 @@ define(['courses/student'], function (Student) {
     var Course;
     Course = (function () {
 
-        function Course(title, formulaFunction) {
-            this._title = title;
+        function checkIfCalculated() {
+            if (this._calculated === false) {
+                throw new Error('You must calculate the ' +
+                    'results before requesting queries');
+            }
+        }
+
+        function Course(courseName, formulaFunction) {
+            this.title = courseName;
             this._formulaFunction = formulaFunction;
             this._students = [];
             this._calculated = false;
@@ -15,7 +22,7 @@ define(['courses/student'], function (Student) {
                 this._calculated = false;
             } else {
                 throw new TypeError('You should supply an ' +
-                    'object of the Student type.')
+                    'object of the Student type.');
             }
             return this;
         };
@@ -28,37 +35,30 @@ define(['courses/student'], function (Student) {
             });
         };
 
-        function checkIfCalculated() {
-            if (this._calculated === false) {
-                throw new Error('You must calculate the ' +
-                    'results before requesting queries')
-            }
-        }
-
-        function getSortedStudentsByParams(array, descending, property, studentsCount) {
+        function sortArrayOfObjects(arrayToBeSorted, descending, property, studentsCount) {
             if (descending) {
-                array.sort(function (firstStudent, secondStudent) {
+                arrayToBeSorted.sort(function (firstStudent, secondStudent) {
                     return secondStudent[property] - firstStudent[property];
                 });
             } else {
-                array.sort(function (firstStudent, secondStudent) {
+                arrayToBeSorted.sort(function (firstStudent, secondStudent) {
                     return firstStudent[property] - secondStudent[property];
                 });
             }
 
-            return array.slice(0, studentsCount);
+            return arrayToBeSorted.slice(0, studentsCount);
         }
 
         Course.prototype.getTopStudentsByExam = function (studentsCount) {
-            return getSortedStudentsByParams(this._students, true, 'exam', studentsCount);
+            return sortArrayOfObjects(this._students, true, 'exam', studentsCount);
         };
 
         Course.prototype.getTopStudentsByTotalScore = function (studentsCount) {
             checkIfCalculated();
-            return getSortedStudentsByParams(this._students, true, 'totalScore', studentsCount);
+            return sortArrayOfObjects(this._students, true, 'totalScore', studentsCount);
         };
 
-        return Course
+        return Course;
     }());
-    return Course
+    return Course;
 });
