@@ -1,10 +1,10 @@
 var obj = {
-	name: 'Gosho',
-	otherName: 'Pesho',
-	number: 7,
-	func: function(){
+    name: 'Gosho',
+    otherName: 'Pesho',
+    number: 7,
+    func: function () {
 
-	}
+    }
 };
 
 var objStr = JSON.stringify(obj);

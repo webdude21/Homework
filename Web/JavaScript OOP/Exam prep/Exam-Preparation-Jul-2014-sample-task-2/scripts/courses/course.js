@@ -1,72 +1,64 @@
 define(['courses/student'], function (Student) {
-    'use strict';
     var Course;
     Course = (function () {
 
-        // shared private method
-        function _getRanking(rankingList, studentsCount) {
-            if (studentsCount >= rankingList.length) {
-                throw new RangeError('The amount of students requested' +
-                    ' is greater than the amount in the array');
-            }
-            return rankingList.slice(0, studentsCount);
-        }
-
-        // Function Constructor
-        var Course = (function (courseName, formula) {
-            this._formula = formula;
-            this._title = courseName;
+        function Course(title, formulaFunction) {
+            this._title = title;
+            this._formulaFunction = formulaFunction;
             this._students = [];
-            this._rankingByExam = [];
-            this._rankingByTotalScore = [];
-        });
+            this._calculated = false;
+        }
 
         Course.prototype.addStudent = function (student) {
             if (student instanceof Student) {
                 this._students.push(student);
+                this._calculated = false;
             } else {
-                throw new TypeError('You can add only add the Student type!');
+                throw new TypeError('You should supply an ' +
+                    'object of the Student type.')
             }
-            return this
-        };
-
-        Course.prototype.calculateResults = function () {
-            var self = this;
-            var totalScore;
-
-            this._students.forEach(function (student) {
-                totalScore = self._formula(student);
-                self._rankingByTotalScore.push({
-                    student: student,
-                    score: totalScore
-                });
-                self._rankingByExam.push({
-                    student: student,
-                    score: student.exam
-                })
-            });
-
-            self._rankingByTotalScore.sort(function (studentOne, studentTwo) {
-                return studentTwo.score - studentOne.score;
-            });
-
-            self._rankingByExam.sort(function (studentOne, studentTwo) {
-                return studentTwo.score - studentOne.score;
-            });
-
             return this;
         };
 
-        Course.prototype.getTopStudentsByTotalScore = function (studentsCount) {
-            return _getRanking(this._rankingByTotalScore, studentsCount);
+        Course.prototype.calculateResults = function () {
+            var that = this;
+            this._calculated = true;
+            this._students.forEach(function (student) {
+                student.setTotalScore(that._formulaFunction(student));
+            });
         };
+
+        function checkIfCalculated() {
+            if (this._calculated === false) {
+                throw new Error('You must calculate the ' +
+                    'results before requesting queries')
+            }
+        }
+
+        function getSortedStudentsByParams(array, descending, property, studentsCount) {
+            if (descending) {
+                array.sort(function (firstStudent, secondStudent) {
+                    return secondStudent[property] - firstStudent[property];
+                });
+            } else {
+                array.sort(function (firstStudent, secondStudent) {
+                    return firstStudent[property] - secondStudent[property];
+                });
+            }
+
+            return array.slice(0, studentsCount);
+        }
 
         Course.prototype.getTopStudentsByExam = function (studentsCount) {
-            return _getRanking(this._rankingByExam, studentsCount);
+            return getSortedStudentsByParams(this._students, true, 'exam', studentsCount);
         };
 
-        return Course;
-    }());
+        Course.prototype.getTopStudentsByTotalScore = function (studentsCount) {
+            checkIfCalculated();
+            return getSortedStudentsByParams(this._students, true, 'totalScore', studentsCount);
+        };
 
-    return Course;
+        return Course
+    }());
+    return Course
 });
