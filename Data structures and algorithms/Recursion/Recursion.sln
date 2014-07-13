@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. NestedLoopsN", "NestedLoopsN\1. NestedLoopsN.csproj", "{B4041D32-5343-45A4-8D10-91C73CBC95A5}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9. LargestConnectedAreaInLabyrinth", "LargestConnectedAreaInLabyrinth\9. LargestConnectedAreaInLabyrinth.csproj", "{4EF60DE8-3705-4989-BB5E-CFB1478EB5D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10. FindAllPassableAreas", "FindAllPassableAreas\10. FindAllPassableAreas.csproj", "{B83C6804-145A-4109-9C61-4793A06A159F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringArraySort", "StringArraySort\StringArraySort.csproj", "{AA3E5D3C-2FB8-4D4C-8B61-1966DA80C119}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{B83C6804-145A-4109-9C61-4793A06A159F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B83C6804-145A-4109-9C61-4793A06A159F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B83C6804-145A-4109-9C61-4793A06A159F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3E5D3C-2FB8-4D4C-8B61-1966DA80C119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3E5D3C-2FB8-4D4C-8B61-1966DA80C119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3E5D3C-2FB8-4D4C-8B61-1966DA80C119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3E5D3C-2FB8-4D4C-8B61-1966DA80C119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

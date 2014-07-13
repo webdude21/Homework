@@ -88,7 +88,7 @@ define(['tech-store-models/item'], function (Item) {
         Store.prototype.addItem = function (storeItem) {
             _validateItem(storeItem);
             this._storeItems.push(storeItem);
-            return this;
+			return this;
         };
 
         Store.prototype.getAll = function () {

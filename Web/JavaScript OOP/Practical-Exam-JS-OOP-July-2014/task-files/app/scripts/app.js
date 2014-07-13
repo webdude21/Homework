@@ -5,7 +5,7 @@
         store = new Store('Telerik Academy Store');
         store = new Store('The Academy Store!');
         store.addItem(new Item('accessory', 'Academy Headphones', 55.9))
-            .addItem(new Item('smart-phone', 'Academy Mobile', 888.9))
+            .addItem(new Item('smart-phone', 'аcademy Mobile', 888.9))
             .addItem(new Item('notebook', 'Academy Note Enterprise', 2888.9))
             .addItem(new Item('accessory', 'Speakers', 154.9))
             .addItem(new Item('pc', 'The Academy', 999.9))
