@@ -1,19 +1,21 @@
-﻿using System.Collections.Generic;
-
-namespace School
+﻿namespace School
 {
+    using System.Collections.Generic;
+
     public class Teacher : Person, ICommentable
     {
-        private List<Discipline> toughtDisciplines = new List<Discipline>();
+        private readonly List<Discipline> toughtDisciplines = new List<Discipline>();
 
         public Teacher(string teacherName)
         {
             this.name = teacherName;
         }
 
+        public string Comments { get; set; }
+
         public void AddToughtDisciplines(params Discipline[] disciplines)
         {
-            foreach (Discipline disc in disciplines)
+            foreach (var disc in disciplines)
             {
                 this.toughtDisciplines.Add(disc);
             }
@@ -21,7 +23,7 @@ namespace School
 
         public void RemoveToughtDisciplines(params Discipline[] disciplines)
         {
-            foreach (Discipline disc in disciplines)
+            foreach (var disc in disciplines)
             {
                 this.toughtDisciplines.Remove(disc);
             }
@@ -30,18 +32,6 @@ namespace School
         public void RemoveAllToughtDisciplines()
         {
             this.toughtDisciplines.Clear();
-        }
-
-        public string Comments
-        {
-            get
-            {
-                return this.Comments;
-            }
-            set
-            {
-                this.Comments = value;
-            }
         }
 
         public override string ToString()

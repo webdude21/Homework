@@ -1,24 +1,20 @@
-﻿using System.Collections.Generic;
-
-namespace School
+﻿namespace School
 {
+    using System.Collections.Generic;
+
     public class Class : ICommentable
     {
-        private string name;
-        private List<Teacher> teachers = new List<Teacher>();
-        private List<Student> students = new List<Student>();
-
-        public string Name
-        {
-            get { return name; }
-            private set { name = value; }
-        }
+        private readonly List<Student> students = new List<Student>();
+        private readonly List<Teacher> teachers = new List<Teacher>();
 
         public Class(string name)
         {
             this.Name = name;
         }
 
+        public string Name { get; private set; }
+
+        public string Comments { get; set; }
 
         public void RemoveAllTeachers()
         {
@@ -27,7 +23,7 @@ namespace School
 
         public void AddTeachers(params Teacher[] newTeachers)
         {
-            foreach (Teacher teacher in newTeachers)
+            foreach (var teacher in newTeachers)
             {
                 this.teachers.Add(teacher);
             }
@@ -35,11 +31,12 @@ namespace School
 
         public void RemoveTeachers(params Teacher[] removeTeachers)
         {
-            foreach (Teacher teacher in removeTeachers)
+            foreach (var teacher in removeTeachers)
             {
                 this.teachers.Remove(teacher);
             }
         }
+
         public void RemoveAllStudents()
         {
             this.students.Clear();
@@ -47,30 +44,18 @@ namespace School
 
         public void AddStudents(params Student[] newStudents)
         {
-            foreach (Student student in newStudents)
+            foreach (var student in newStudents)
             {
                 this.students.Add(student);
-            }    
+            }
         }
 
         public void RemoveStudents(params Student[] removeStudetns)
         {
-            foreach (Student student in removeStudetns)
+            foreach (var student in removeStudetns)
             {
                 this.students.Remove(student);
             }
         }
-        public string Comments
-        {
-            get
-            {
-                return this.Comments;
-            }
-            set
-            {
-                this.Comments = value;
-            }
-        }
-
     }
 }

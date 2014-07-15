@@ -1,23 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace School
+﻿namespace School
 {
+    using System.Collections.Generic;
+
     public class School
     {
-        private List<Class> classes = new List<Class>();
-        private string name;
+        private readonly List<Class> classes = new List<Class>();
 
         public School(string schoolName)
         {
-            this.name = schoolName;
+            this.Name = schoolName;
         }
 
-        // I've made left the option to rename the school public, because schools often get renamed
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        public string Name { get; set; }
 
         public void AddClass(Class newClass)
         {
@@ -36,7 +30,7 @@ namespace School
 
         public override string ToString()
         {
-            return this.name.ToString();
+            return this.Name;
         }
     }
 }

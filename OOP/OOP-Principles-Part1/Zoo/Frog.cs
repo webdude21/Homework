@@ -6,6 +6,7 @@
             : base(name, age, sex)
         {
         }
+
         public string EvokeSound()
         {
             return "Ribbit, ribbit!";

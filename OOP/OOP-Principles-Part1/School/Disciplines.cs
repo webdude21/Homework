@@ -2,10 +2,6 @@
 {
     public class Discipline : ICommentable
     {
-        private string name;
-        private int numberOfLectures;
-        private int numberOfExercises;
-
         public Discipline(string disciplineName, int numOfLectures, int numOfExercises)
         {
             this.Name = disciplineName;
@@ -13,39 +9,21 @@
             this.NumberOfLectures = numOfLectures;
         }
 
-        public int NumberOfExercises
-        {
-            get { return numberOfExercises; }
-            set { numberOfExercises = value; }
-        }
+        public int NumberOfExercises { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        public string Name { get; set; }
 
-        public int NumberOfLectures
-        {
-            get { return numberOfLectures; }
-            set { numberOfLectures = value; }
-        }
+        public int NumberOfLectures { get; set; }
 
-        public string Comments
-        {
-            get
-            {
-                return this.Comments;
-            }
-            set
-            {
-                this.Comments = value;
-            }
-        }
+        public string Comments { get; set; }
 
         public override string ToString()
         {
-            return string.Format("Предметът {0} има {1} лекции и {2} упражнения.", this.name, this.numberOfLectures, this.numberOfExercises);
+            return string.Format(
+                "Предметът {0} има {1} лекции и {2} упражнения.", 
+                this.Name, 
+                this.NumberOfLectures, 
+                this.NumberOfExercises);
         }
     }
 }

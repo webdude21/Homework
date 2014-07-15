@@ -2,20 +2,22 @@
 {
     public class Worker : Human
     {
-        const decimal weekWorkDays = 5;
-        decimal WeekSalary { get; set; }
-        decimal WorkHoursPerDay { get; set; }
+        private const decimal WeekWorkDays = 5;
 
-        public Worker(string firstName, string LastName, decimal weekSalary, decimal workHoursPerDay)
-            : base(firstName, LastName)
+        public Worker(string firstName, string lastName, decimal weekSalary, decimal workHoursPerDay)
+            : base(firstName, lastName)
         {
             this.WeekSalary = weekSalary;
             this.WorkHoursPerDay = workHoursPerDay;
         }
 
+        private decimal WeekSalary { get; set; }
+
+        private decimal WorkHoursPerDay { get; set; }
+
         public decimal MoneyPerHour()
         {
-            return WeekSalary / WorkHoursPerDay / weekWorkDays;
+            return this.WeekSalary / this.WorkHoursPerDay / WeekWorkDays;
         }
 
         public override string ToString()
