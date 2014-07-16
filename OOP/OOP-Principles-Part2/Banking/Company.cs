@@ -2,6 +2,9 @@
 {
     public class Company : Custumer
     {
-        public Company(string name) : base(name) { }
+        public Company(string name)
+            : base(name)
+        {
+        }
     }
 }

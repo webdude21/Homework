@@ -12,42 +12,40 @@
  * Your task is to write a program to model the bank system by classes and interfaces.
  * You should identify the classes, interfaces, base classes and abstract actions and
  * implement the calculation of the interest functionality through overridden methods. */
-
-using System;
-
 namespace Banking
 {
-    class Banking
-    {
-        static void Main()
-        {
-            decimal monthsOfInterest = 20;
-            Bank obb = new Bank("United Bank of Bulgaria");
-            Individual dimo = new Individual("Dimo Petrov");
-            Individual petar = new Individual("Petar Georgiev");
-            Individual georgi = new Individual("Georgi Gankov");
-            Company divastoreEOOD = new Company("DivaStore EOOD");
-            Company petkoET = new Company("Petko Jordanov ET");
+    using System;
 
-            Account[] someAccounts = new Account[]
-            {
-                new Loan(2400, 2, petar),
-                new Deposit(10000, 6, divastoreEOOD),
-                new Loan(200, 5, divastoreEOOD),
-                new Mortgage(60000, 5, georgi),
-                new Deposit(1200, 6, georgi),
-                new Mortgage(1200000, 3, petkoET),
-                new Deposit(800, 7, dimo),
-                new Loan(200, 4, dimo )
-            };
+    internal class Banking
+    {
+        private static void Main()
+        {
+            const decimal MonthsOfInterest = 20;
+            var obb = new Bank("United Bank of Bulgaria");
+            var dimo = new Individual("Dimo Petrov");
+            var petar = new Individual("Petar Georgiev");
+            var georgi = new Individual("Georgi Gankov");
+            var divastoreEood = new Company("DivaStore EOOD");
+            var petkoEt = new Company("Petko Jordanov ET");
+
+            Account[] someAccounts =
+                {
+                    new Loan(2400, 2, petar), new Deposit(10000, 6, divastoreEood), 
+                    new Loan(200, 5, divastoreEood), new Mortgage(60000, 5, georgi), 
+                    new Deposit(1200, 6, georgi), new Mortgage(1200000, 3, petkoEt), 
+                    new Deposit(800, 7, dimo), new Loan(200, 4, dimo)
+                };
 
             obb.AddAccounts(someAccounts);
 
-            //this prints information about all of the accounts in the bank
+            // this prints information about all of the accounts in the bank
             Console.WriteLine(obb);
-            // this prints the avarage interest for all of the accounts in the collection of accounts
-            Console.WriteLine("The average interest for {0} months is {1}",
-                monthsOfInterest, obb.AvarageInterestRate(monthsOfInterest));
+
+            // this prints the average interest for all of the accounts in the collection of accounts
+            Console.WriteLine(
+                "The average interest for {0} months is {1}", 
+                MonthsOfInterest, 
+                obb.AvarageInterestRate(MonthsOfInterest));
         }
     }
 }

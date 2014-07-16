@@ -1,14 +1,18 @@
-﻿using System;
-
-class InvalidRangeException<T> : Exception
+﻿namespace GenericRangeException
 {
-    public T Start { get; protected set; }
-    public T End { get; protected set; }
+    using System;
 
-    public InvalidRangeException(T start, T end, Exception innerException = null)
-        : base("Out of range!", innerException)
+    internal class InvalidRangeException<T> : Exception
     {
-        this.Start = start;
-        this.End = end;
+        public InvalidRangeException(T start, T end, Exception innerException = null)
+            : base("Out of range!", innerException)
+        {
+            this.Start = start;
+            this.End = end;
+        }
+
+        public T Start { get; protected set; }
+
+        public T End { get; protected set; }
     }
 }

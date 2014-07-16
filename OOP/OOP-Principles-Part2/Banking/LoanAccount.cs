@@ -1,11 +1,24 @@
-﻿using System;
-
-namespace Banking
+﻿namespace Banking
 {
-    public class Loan : Account, IDeposit   
+    using System;
+
+    public class Loan : Account, IDeposit
     {
-        public Loan(decimal balance, decimal interestRate, Custumer custumer) : base(balance, interestRate, custumer) { }
-    
+        public Loan(decimal balance, decimal interestRate, Custumer custumer)
+            : base(balance, interestRate, custumer)
+        {
+        }
+
+        public void DepositMoney(decimal amount)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException("You cannot deposit negative amount of money.");
+            }
+
+            this.Balance += amount;
+        }
+
         public override decimal CalculateInterest(decimal numberOfMonths)
         {
             if (this.Custumer is Individual)
@@ -23,18 +36,6 @@ namespace Banking
             }
 
             return 0;
-        }
-
-        public void DepositMoney(decimal amount)
-        {
-            if (amount < 0)
-            {
-                throw new ArgumentOutOfRangeException("You cannot deposit negative amount of money.");
-            }
-            else
-            {
-                this.Balance += amount;
-            }
         }
     }
 }

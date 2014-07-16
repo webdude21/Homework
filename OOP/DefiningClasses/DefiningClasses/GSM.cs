@@ -1,182 +1,229 @@
-﻿using System.Text.RegularExpressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-public class GSM
+﻿namespace DefiningClasses
 {
-    // Fields
-    private static readonly GSM iphone4S = new GSM("IPhone-4S", "Apple", 900, "Pesho", new Display(4.5, Display.ColorDepth._32Bit),
-        new Battery("sanyo-321r54D", 120, 14, Battery.Type.LiPol));
-    private string name;
-    private string manufacturer;
-    private uint price;
-    private string owner;
-    private const string validation = @"\A[\w]{3}[-\w]{0,17}"; // This is the regex that's used for many of the validations in the properties
-    private Battery gsmBattery = null;
-    private Display gsmDisplay = null;
-    private List<Call> callHistory = new List<Call>();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
 
-    // Constructors
-    public GSM(string Name, string Manufacturer)
-        : this(Name, Manufacturer, 0, null)
+    public class GSM
     {
-        // This constructor accepts only name and manufacturer
-    }
+        // Fields
+        private const string Validation = @"\A[\w]{3}[-\w]{0,17}";
 
-    public GSM(string Name, string Manufacturer, uint Price, string Owner)
-        : this(Name, Manufacturer, Price, Owner, null, null)
-    {
-        // This everything except Battery and Display
-    }
+        // This is the regex that's used for many of the validations in the properties
+        private static readonly GSM iphone4S = new GSM(
+            "IPhone-4S", 
+            "Apple", 
+            "Pesho", 
+            new Display(4.5, Display.ColorDepth._32Bit), 
+            new Battery("sanyo-321r54D", 120, 14, Battery.Type.LiPol), 
+            900);
 
-    public GSM(string Name, string Manufacturer, uint Price = 100, string Owner, Display gsmDisplay, Battery gsmBattery)
-    {
-        this.Name = Name;
-        this.Manufacturer = Manufacturer;
-        this.Price = Price;
-        this.Owner = Owner;
-        this.gsmBattery = gsmBattery;
-        this.gsmDisplay = gsmDisplay;
-    }
+        private readonly List<Call> callHistory = new List<Call>();
 
-    // Methods
-    internal void ThrowArgumentExepttionNames(string input, string thrower)
-    {
-        throw new ArgumentOutOfRangeException(string.Format("The entry \"{0}\" isn't valid. The {1} must consist of between 3 and 20 valid charachters!",
-            input, thrower));
-    }
+        private Battery gsmBattery;
 
-    internal void AddCall(string PhoneNumber, int DurationInSeconds)
-    {
-        this.callHistory.Add(new Call(PhoneNumber, DurationInSeconds));
-    }
+        private Display gsmDisplay;
 
-    internal void ClearCallHistory()
-    {
-        this.callHistory.Clear();
-    }
+        private string manufacturer;
 
-    internal void ShowCalls()
-    {
-        if (callHistory.Count > 0)
+        private string name;
+
+        private string owner;
+
+        private uint price;
+
+        // Constructors
+        public GSM(string Name, string Manufacturer)
+            : this(Name, Manufacturer, 0, null)
         {
-            foreach (Call call in this.callHistory)
-            {
-                Console.WriteLine(call);
-            }
-        }
-        else
-        {
-            Console.WriteLine("The call history is empty");
+            // This constructor accepts only name and manufacturer
         }
 
-    }
-
-    internal void RemoveCall(int callId)
-    {
-        foreach (Call call in this.callHistory)
+        public GSM(string name, string manufacturer, uint price, string owner)
+            : this(name, manufacturer, owner, null, null, price)
         {
-            if (call.Id == callId)
-            {
-                this.callHistory.Remove(call);
-                return;
-            }
-        }
-    }
-
-    internal void RemoveLongestCall()
-    {
-        this.callHistory.Remove(callHistory.OrderByDescending(call => call.Duration.Ticks).First());
-    }
-
-    internal decimal CalculatePriceOfCalls(decimal pricePerMinute)
-    {
-        decimal total = 0;
-        foreach (Call call in this.callHistory)
-        {
-            total = total + ((decimal)(call.Duration.TotalMinutes) * pricePerMinute);
+            // This everything except Battery and Display
         }
 
-        return total;
-    }
-
-    // Properties
-
-    public List<Call> CallHistory { get { return callHistory; } }
-    public static GSM Iphone4S
-    {
-        get { return iphone4S; }
-    }
-
-    public string Name
-    {
-        get { return this.name; }
-        set
+        public GSM(
+            string name, 
+            string manufacturer, 
+            string owner, 
+            Display gsmDisplay, 
+            Battery gsmBattery, 
+            uint price = 100)
         {
-            if (Regex.IsMatch(value, validation))
+            this.Name = name;
+            this.Manufacturer = manufacturer;
+            this.Price = price;
+            this.Owner = owner;
+            this.gsmBattery = gsmBattery;
+            this.gsmDisplay = gsmDisplay;
+        }
+
+        public List<Call> CallHistory
+        {
+            get
             {
-                this.name = value;
-            }
-            else
-            {
-                ThrowArgumentExepttionNames(value, "name");
+                return this.callHistory;
             }
         }
-    }
 
-    public string Manufacturer
-    {
-        get { return this.manufacturer; }
-        private set
+        public static GSM Iphone4S
         {
-            if (Regex.IsMatch(value, validation))
+            get
             {
-                this.manufacturer = value;
-            }
-            else
-            {
-                ThrowArgumentExepttionNames(value, "manufacturer");
+                return iphone4S;
             }
         }
-    }
 
-    public uint Price
-    {
-        get { return this.price; }
-        set
+        public string Name
         {
-            if (value < 10 || value > 10000)
+            get
             {
-                throw new ArgumentOutOfRangeException("The price of the phone should be between 10 and 10000");
+                return this.name;
             }
-            else
+
+            set
             {
+                if (Regex.IsMatch(value, Validation))
+                {
+                    this.name = value;
+                }
+                else
+                {
+                    this.ThrowArgumentExepttionNames(value, "name");
+                }
+            }
+        }
+
+        public string Manufacturer
+        {
+            get
+            {
+                return this.manufacturer;
+            }
+
+            private set
+            {
+                if (Regex.IsMatch(value, Validation))
+                {
+                    this.manufacturer = value;
+                }
+                else
+                {
+                    this.ThrowArgumentExepttionNames(value, "manufacturer");
+                }
+            }
+        }
+
+        public uint Price
+        {
+            get
+            {
+                return this.price;
+            }
+
+            set
+            {
+                if (value < 10 || value > 10000)
+                {
+                    throw new ArgumentOutOfRangeException("The price of the phone should be between 10 and 10000");
+                }
+
                 this.price = value;
             }
         }
-    }
 
-    public string Owner
-    {
-        get { return this.owner; }
-        set
+        public string Owner
         {
-            if (Regex.IsMatch(value, validation))
+            get
             {
-                this.owner = value;
+                return this.owner;
+            }
+
+            set
+            {
+                if (Regex.IsMatch(value, Validation))
+                {
+                    this.owner = value;
+                }
+                else
+                {
+                    this.ThrowArgumentExepttionNames(value, "owner");
+                }
+            }
+        }
+
+        // Methods
+        internal void ThrowArgumentExepttionNames(string input, string thrower)
+        {
+            throw new ArgumentOutOfRangeException(
+                string.Format(
+                    "The entry \"{0}\" isn't valid. The {1} must consist of between 3 and 20 valid charachters!", 
+                    input, 
+                    thrower));
+        }
+
+        internal void AddCall(string phoneNumber, int durationInSeconds)
+        {
+            this.callHistory.Add(new Call(phoneNumber, durationInSeconds));
+        }
+
+        internal void ClearCallHistory()
+        {
+            this.callHistory.Clear();
+        }
+
+        internal void ShowCalls()
+        {
+            if (this.callHistory.Count > 0)
+            {
+                foreach (var call in this.callHistory)
+                {
+                    Console.WriteLine(call);
+                }
             }
             else
             {
-                ThrowArgumentExepttionNames(value, "owner");
+                Console.WriteLine("The call history is empty");
             }
         }
-    }
 
-    public override string ToString()
-    {
-        // To expand later on
-        return string.Format("{0}, {1}, {2}, {3}", this.name, this.manufacturer, this.price, this.owner);
+        internal void RemoveCall(int callId)
+        {
+            foreach (var call in this.callHistory)
+            {
+                if (call.Id == callId)
+                {
+                    this.callHistory.Remove(call);
+                    return;
+                }
+            }
+        }
+
+        internal void RemoveLongestCall()
+        {
+            this.callHistory.Remove(this.callHistory.OrderByDescending(call => call.Duration.Ticks).First());
+        }
+
+        internal decimal CalculatePriceOfCalls(decimal pricePerMinute)
+        {
+            decimal total = 0;
+            foreach (var call in this.callHistory)
+            {
+                total = total + ((decimal)call.Duration.TotalMinutes * pricePerMinute);
+            }
+
+            return total;
+        }
+
+        // Properties
+        public override string ToString()
+        {
+            // To expand later on
+            return string.Format("{0}, {1}, {2}, {3}", this.name, this.manufacturer, this.price, this.owner);
+        }
     }
 }
-

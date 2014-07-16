@@ -1,21 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Banking
+﻿namespace Banking
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Bank
     {
-        public string Name { get; private set; }
-        private List<Account> bankAccounts = new List<Account>();
-
-        public List<Account> BankAccounts
-        {
-            get { return new List<Account>(this.bankAccounts); }
-        }
+        private readonly List<Account> bankAccounts = new List<Account>();
 
         public Bank(string name)
         {
             this.Name = name;
+        }
+
+        public string Name { get; private set; }
+
+        public List<Account> BankAccounts
+        {
+            get
+            {
+                return new List<Account>(this.bankAccounts);
+            }
         }
 
         public void AddAccounts(IEnumerable<Account> accounts)
@@ -25,7 +29,7 @@ namespace Banking
 
         public void RemoveAccounts(IEnumerable<Account> accounts)
         {
-            foreach (Account account in accounts)
+            foreach (var account in accounts)
             {
                 this.bankAccounts.Remove(account);
             }

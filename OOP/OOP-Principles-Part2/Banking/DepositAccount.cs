@@ -1,20 +1,24 @@
-﻿using System;
-
-namespace Banking
+﻿namespace Banking
 {
+    using System;
+
     public class Deposit : Account, IDeposit, IWithdraw
     {
-        public Deposit(decimal balance, decimal interestRate, Custumer custumer) : base(balance, interestRate, custumer) { }
-
-        public override decimal CalculateInterest(decimal numberOfMonths)
+        public Deposit(decimal balance, decimal interestRate, Custumer custumer)
+            : base(balance, interestRate, custumer)
         {
-            if (this.Balance < 1000 && this.Balance >= 0 )
+        }
+
+        public void DepositMoney(decimal amount)
+        {
+            if (amount < 0)
             {
-                return 0;
+                throw new ArgumentOutOfRangeException("You cannot deposit negative amount of money.");
             }
 
-            return base.CalculateInterest(numberOfMonths);
+            this.Balance += amount;
         }
+
         public void DrawMoney(decimal amount)
         {
             if (amount < 0)
@@ -28,20 +32,19 @@ namespace Banking
             }
             else
             {
-                throw new InvalidOperationException("The amount your're trying to withdraw is more than what's in the account.");
+                throw new InvalidOperationException(
+                    "The amount you're trying to withdraw is more than what's in the account.");
             }
         }
 
-        public void DepositMoney(decimal amount)
+        public override decimal CalculateInterest(decimal numberOfMonths)
         {
-            if (amount < 0)
+            if (this.Balance < 1000 && this.Balance >= 0)
             {
-                throw new ArgumentOutOfRangeException("You cannot deposit negative amount of money.");
+                return 0;
             }
-            else
-            {
-                this.Balance += amount;
-            }
+
+            return base.CalculateInterest(numberOfMonths);
         }
     }
 }

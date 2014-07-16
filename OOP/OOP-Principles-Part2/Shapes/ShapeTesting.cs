@@ -5,23 +5,17 @@
  * must be kept equal to width and implement the CalculateSurface() method. Write a program that
  * tests the behavior of  the CalculateSurface() method for different shapes (Circle, Rectangle, 
  * Triangle) stored in an array. */
-
-using System;
-
 namespace Shapes
 {
-    class ShapeTesting
-    {
-        static void Main()
-        {
-            Shape[] shapes = new Shape[]
-            {
-                new Triangle(4,8),
-                new Circle(10),
-                new Rectangle(4,2)
-            };
+    using System;
 
-            foreach (Shape shape in shapes)
+    internal class ShapeTesting
+    {
+        private static void Main()
+        {
+            Shape[] shapes = { new Triangle(4, 8), new Circle(10), new Rectangle(4, 2) };
+
+            foreach (var shape in shapes)
             {
                 Console.WriteLine(shape);
             }
