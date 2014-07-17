@@ -17,7 +17,7 @@
 			var person = response[i];
 			list +=
 				"<li>" +
-					person.fname + " " + person.lname +
+					person.firstName + " " + person.lastName +
 				"</li>";
 		}
 		document.getElementById("http-response").innerHTML = list;
