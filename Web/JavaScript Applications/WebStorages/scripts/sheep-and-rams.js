@@ -3,25 +3,32 @@ var SheepAndRams;
     var NUMBER_OF_DIGITS = 4;
     var RAM = 'R';
     var SHEEP = 'S';
+    var USED = 'U';
+    var WIN_TEXT = 'Congratulations! You have Won!';
+    var MIN = 1000;
+    var MAX = 9999;
+    var VALIDATION_TEXT = 'Please input a number between ' + MIN + ' and ' + MAX;
 
     var Game = (function () {
-        function Game(userInputBox, randomFunction, resultPrint, cheatingEnabled) {
+        function Game(userInputBox, randomFunction, resultPrint, highScorePrompt, saveState, cheatingEnabled) {
             this.userInputBox = userInputBox;
             this.randomFunction = randomFunction;
             this.resultPrint = resultPrint;
+            this.highScorePrompt = highScorePrompt;
+            this.saveState = saveState;
             this.numberOfTries = 0;
-            this.numberToBeGuessed = this.randomFunction(1000, 9999);
+            this.numberToBeGuessed = this.randomFunction(MIN, MAX);
             if (cheatingEnabled) {
                 console.log(this.numberToBeGuessed);
             }
         }
         Game.prototype.getUserInput = function () {
             var userInput = parseInt(this.userInputBox.value, 10);
-            if (isNaN(userInput) || userInput < 1000 || userInput > 9999) {
-                throw new RangeError("Please provide a number between 1000 and 9999");
+            if (isNaN(userInput) || userInput < MIN || userInput > MAX) {
+                throw new RangeError(VALIDATION_TEXT);
             }
 
-            return userInput;
+            return this.convertToCharArray(userInput.toString());
         };
 
         Game.prototype.userGuess = function () {
@@ -30,11 +37,12 @@ var SheepAndRams;
             try  {
                 guess = this.getUserInput();
                 var result = this.evaluateUserGuess(guess);
-                this.resultPrint('You have ' + result.ramsCount + ' rams and ' + result.sheepCount + ' sheep!');
                 this.numberOfTries += 1;
+                var resultString = 'You have ' + result.ramsCount + ' rams and ' + result.sheepCount + ' sheep! You have tried to guess ' + this.numberOfTries + ' times!';
+                this.resultPrint(resultString);
             } catch (err) {
                 if (err instanceof RangeError) {
-                    this.resultPrint('Please input a number between 1000 and 9999');
+                    this.resultPrint(VALIDATION_TEXT);
                 } else {
                     throw err;
                 }
@@ -42,7 +50,9 @@ var SheepAndRams;
         };
 
         Game.prototype.userHasWon = function () {
-            this.resultPrint('Congratulations! You have Won!');
+            this.resultPrint(WIN_TEXT);
+            var player = this.highScorePrompt("Please enter your name", "Unnamed master");
+            this.saveState(player, this.numberOfTries.toString());
         };
 
         Game.prototype.evaluateUserGuess = function (guess) {
@@ -62,17 +72,26 @@ var SheepAndRams;
             };
         };
 
+        Game.prototype.convertToCharArray = function (str) {
+            var result = [];
+            for (var i = 0; i < str.length; i++) {
+                result.push(str[i]);
+            }
+
+            return result;
+        };
+
         Game.prototype.checkForRams = function (guess) {
-            var userGuessAsString = guess.toString();
-            var numberToBeGuessedAsString = this.numberToBeGuessed.toString();
+            var numberToBeGuessedAsString = this.convertToCharArray(this.numberToBeGuessed.toString());
             var leftToGuess = [];
             var ramsCount = 0;
 
             for (var index = 0; index < NUMBER_OF_DIGITS; index++) {
-                var currentChar = userGuessAsString[index];
+                var currentChar = guess[index];
                 if (currentChar === numberToBeGuessedAsString[index]) {
                     ramsCount++;
                     leftToGuess[index] = RAM;
+                    guess[index] = USED;
                 } else {
                     leftToGuess[index] = numberToBeGuessedAsString[index];
                 }
@@ -85,14 +104,14 @@ var SheepAndRams;
         };
 
         Game.prototype.checkForSheep = function (userGuess, leftToGuess) {
-            var userGuessAsString = userGuess.toString();
             var sheepCount = 0;
 
             for (var i = 0; i < NUMBER_OF_DIGITS; i++) {
                 for (var j = 0; j < NUMBER_OF_DIGITS; j++) {
-                    if (j != i && (userGuessAsString[i] === leftToGuess[j])) {
+                    if ((userGuess[i] === leftToGuess[j])) {
                         sheepCount++;
-                        leftToGuess[i] = SHEEP;
+                        userGuess[i] = USED;
+                        leftToGuess[j] = SHEEP;
                     }
                 }
             }
