@@ -10,8 +10,7 @@ var SheepAndRams;
     var VALIDATION_TEXT = 'Please input a number between ' + MIN + ' and ' + MAX;
 
     var Game = (function () {
-        function Game(userInputBox, randomFunction, resultPrint, highScorePrompt, saveState, cheatingEnabled) {
-            this.userInputBox = userInputBox;
+        function Game(randomFunction, resultPrint, highScorePrompt, saveState, cheatingEnabled) {
             this.randomFunction = randomFunction;
             this.resultPrint = resultPrint;
             this.highScorePrompt = highScorePrompt;
@@ -22,22 +21,23 @@ var SheepAndRams;
                 console.log(this.numberToBeGuessed);
             }
         }
-        Game.prototype.getUserInput = function () {
-            var userInput = parseInt(this.userInputBox.value, 10);
-            if (isNaN(userInput) || userInput < MIN || userInput > MAX) {
+        Game.parseUserInput = function (userInput) {
+            var userInputAsInt = parseInt(userInput, 10);
+            if (isNaN(userInputAsInt) || userInputAsInt < MIN || userInputAsInt > MAX) {
                 throw new RangeError(VALIDATION_TEXT);
             }
 
-            return this.convertToCharArray(userInput.toString());
+            SheepAndRams.Game.convertToCharArray(userInputAsInt.toString());
+            return (userInputAsInt.toString());
         };
 
-        Game.prototype.userGuess = function () {
+        Game.prototype.userGuess = function (userInput) {
             var guess;
 
             try  {
-                guess = this.getUserInput();
-                var result = this.evaluateUserGuess(guess);
+                guess = SheepAndRams.Game.parseUserInput(userInput);
                 this.numberOfTries += 1;
+                var result = this.evaluateUserGuess(guess);
                 var resultString = 'You have ' + result.ramsCount + ' rams and ' + result.sheepCount + ' sheep! You have tried to guess ' + this.numberOfTries + ' times!';
                 this.resultPrint(resultString);
             } catch (err) {
@@ -49,7 +49,7 @@ var SheepAndRams;
             }
         };
 
-        Game.prototype.userHasWon = function () {
+        Game.prototype.playerHasWon = function () {
             this.resultPrint(WIN_TEXT);
             var player = this.highScorePrompt("Please enter your name", "Unnamed master");
             this.saveState(player, this.numberOfTries.toString());
@@ -63,7 +63,7 @@ var SheepAndRams;
             if (rams.ramsCount < 4) {
                 sheep = this.checkForSheep(guess, rams.leftToGuess);
             } else {
-                this.userHasWon();
+                this.playerHasWon();
             }
 
             return {
@@ -72,7 +72,7 @@ var SheepAndRams;
             };
         };
 
-        Game.prototype.convertToCharArray = function (str) {
+        Game.convertToCharArray = function (str) {
             var result = [];
             for (var i = 0; i < str.length; i++) {
                 result.push(str[i]);
@@ -82,7 +82,7 @@ var SheepAndRams;
         };
 
         Game.prototype.checkForRams = function (guess) {
-            var numberToBeGuessedAsString = this.convertToCharArray(this.numberToBeGuessed.toString());
+            var numberToBeGuessedAsString = SheepAndRams.Game.convertToCharArray(this.numberToBeGuessed.toString());
             var leftToGuess = [];
             var ramsCount = 0;
 
