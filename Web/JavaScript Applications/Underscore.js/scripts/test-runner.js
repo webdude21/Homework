@@ -22,13 +22,13 @@ window.addEventListener('load', function () {
                 underScoreJSHomework.groupAnimalsByIDAndSortByNumberOfLegs();
                 break;
             case 4:
-                underScoreJSHomework.filterAndSortStudents();
+                underScoreJSHomework.sumLegsAmount();
                 break;
             case 5:
-                underScoreJSHomework.filterAndSortStudents();
+                underScoreJSHomework.findMostPopularAuthor();
                 break;
             case 6:
-                underScoreJSHomework.filterAndSortStudents();
+                underScoreJSHomework.findMostCommonFirstAndLastName();
                 break;
         }
     });

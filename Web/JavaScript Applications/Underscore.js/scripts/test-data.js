@@ -30,12 +30,24 @@ var TestData = (function () {
         }
     });
 
+    var Book = Object.create({
+        init: function (author, title) {
+            this.author = author;
+            this.title = title;
+            return this;
+        },
+        toString: function () {
+            return this.title + ' by ' + this.author;
+        }
+    });
+
     var students = [
         Object.create(Student).init('Georgi', 'Gankov', 45, [5, 6, 4, 3, 6]),
         Object.create(Student).init('Petar', 'Petrov', 34, [2, 2, 5, 4, 2]),
         Object.create(Student).init('Stanislav', 'Slavov', 21, [6, 4, 5, 6, 6, 6, 2, 2, 4]),
         Object.create(Student).init('Mityo', 'TheGun', 77, [3, 3, 3, 4, 5, 2, 6, 5]),
-        Object.create(Student).init('Iva', 'Petrova', 19, [6, 6, 6, 4, 5, 6, 5, 6, 5, 6])
+        Object.create(Student).init('Dimo', 'Petrov', 22, [6, 6, 6, 4, 5, 6, 5, 6, 5, 6]),
+        Object.create(Student).init('Georgi', 'Mihailov', 15, [6, 4, 5, 5])
     ];
 
     var animals = [
@@ -53,8 +65,20 @@ var TestData = (function () {
         Object.create(Animal).init('Yet Another Mosquito 1', 'insect', 6)
     ];
 
+    var books = [
+        Object.create(Book).init("Francis Scott Fizgerald", "The Great Gatsby"),
+        Object.create(Book).init("Joan Rowling", "Harry Potters and the Deathly Hallows"),
+        Object.create(Book).init("Joan Rowling", "Harry Potters and the Chamber of Secrets"),
+        Object.create(Book).init("Joan Rowling", "Harry Potter and the Goblet of Fire"),
+        Object.create(Book).init("John Steinback", "East from Heaven"),
+        Object.create(Book).init("Vladimir Nabokov", "Lolita"),
+        Object.create(Book).init("Astrid Lindgren", "Pippie The Long Stocking"),
+        Object.create(Book).init("Astrid Lindgren", "Emil from Ljoneberya")
+    ];
+
     return {
         students: students,
-        animals: animals
+        animals: animals,
+        books: books
     }
 }());

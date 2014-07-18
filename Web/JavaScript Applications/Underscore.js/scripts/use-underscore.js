@@ -3,6 +3,7 @@ var underScoreJSHomework = (function () {
 
     var students = TestData.students;
     var animals = TestData.animals;
+    var books = TestData.books;
 
     function filterAndSortStudents() {
 
@@ -60,12 +61,12 @@ var underScoreJSHomework = (function () {
         jsConsole.writeLine(result);
     }
 
-    function groupAnimalsByIDAndSortByNumberOfLegs(){
-        jsConsole.writeLine("The animals grouped by species and leg count:");
+    function groupAnimalsByIDAndSortByNumberOfLegs() {
+        jsConsole.writeLine("The animals grouped by species and leg count: ");
 
         var result = _.chain(animals)
             .groupBy('species')
-            .sortBy(function (animal){
+            .sortBy(function (animal) {
                 return animal.numberOfLegs;
             })
             .value();
@@ -73,10 +74,59 @@ var underScoreJSHomework = (function () {
         jsConsole.writeLine(result);
     }
 
+    function sumLegsAmount() {
+        jsConsole.writeLine("The sum of the legs of these animals: ");
+        jsConsole.writeLine(animals);
+        jsConsole.writeLine(' is: ');
+        var result = 0;
+
+        _.each(animals, function (animal) {
+            result += animal.numberOfLegs;
+        });
+
+        jsConsole.writeLine(result);
+    }
+
+    function findMostPopularAuthor() {
+        jsConsole.writeLine("Out of this collection of books: ");
+        jsConsole.writeLine('\r\n \r\n');
+        jsConsole.writeLine(books);
+
+        var mostPopularAuthor = findMostCommonValueByKey(books, 'author');
+
+        jsConsole.writeLine('\r\n \r\n');
+        jsConsole.writeLine('The most popular author is: ' + mostPopularAuthor);
+    }
+
+    function findMostCommonFirstAndLastName() {
+        jsConsole.writeLine("Out of these people: \r\n ");
+        jsConsole.writeLine(students);
+        jsConsole.writeLine('\r\n \r\n');
+
+        var mostCommonFirstName = findMostCommonValueByKey(students, 'firstName');
+        jsConsole.writeLine('The most common first name is: ' + mostCommonFirstName);
+
+        var mostCommonLastName = findMostCommonValueByKey(students, 'lastName');
+
+        jsConsole.writeLine('The most common last name is: ' + mostCommonLastName);
+
+    }
+
+    function findMostCommonValueByKey(collection, property) {
+        return _.chain(collection)
+            .countBy(property)
+            .pairs()
+            .max(_.last)
+            .value()[0];
+    }
+
     return {
         filterAndSortStudents: filterAndSortStudents,
         filterStudentsByAge: filterStudentsByAge,
         getStudentWithTheHighestMarks: getStudentWithTheHighestMarks,
-        groupAnimalsByIDAndSortByNumberOfLegs: groupAnimalsByIDAndSortByNumberOfLegs
+        groupAnimalsByIDAndSortByNumberOfLegs: groupAnimalsByIDAndSortByNumberOfLegs,
+        sumLegsAmount: sumLegsAmount,
+        findMostPopularAuthor: findMostPopularAuthor,
+        findMostCommonFirstAndLastName: findMostCommonFirstAndLastName
     }
 }());
