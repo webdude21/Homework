@@ -7,6 +7,7 @@ module SheepAndRams {
     var MIN = 1000;
     var MAX = 9999;
     var VALIDATION_TEXT = 'Please input a number between ' + MIN + ' and ' + MAX;
+    var DEFAULT_PLAYER_NAME = 'Unnamed master';
 
     export class Game {
         numberToBeGuessed:number;
@@ -56,7 +57,7 @@ module SheepAndRams {
 
         private playerHasWon() {
             this.resultPrint(WIN_TEXT);
-            var player = this.highScorePrompt("Please enter your name", "Unnamed master");
+            var player = this.highScorePrompt("Please enter your name", DEFAULT_PLAYER_NAME) || DEFAULT_PLAYER_NAME;
             this.saveState(player, this.numberOfTries.toString());
         }
 
