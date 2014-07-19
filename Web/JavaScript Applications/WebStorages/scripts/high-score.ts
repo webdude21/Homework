@@ -6,11 +6,11 @@ module HighScore {
         public getLocalStorageData() {
             var highScore = localStorage.getItem(this.localStorageName);
 
-            if (!highScore) {
-                var highScoreList = [];
-                highScore = localStorage.setItem(this.localStorageName, JSON.stringify(highScoreList));
-            } else {
+            if (highScore) {
                 highScore = JSON.parse(highScore);
+            } else {
+                highScore = [];
+                localStorage.setItem(this.localStorageName, JSON.stringify(highScore));
             }
 
             return highScore;
