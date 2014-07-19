@@ -4,6 +4,7 @@ var HighScore;
         function LocalStorageHandler(localStorageName) {
             this.localStorageName = localStorageName;
         }
+
         LocalStorageHandler.prototype.getLocalStorageData = function () {
             var highScore = localStorage.getItem(this.localStorageName);
 

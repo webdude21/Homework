@@ -1,3 +1,3 @@
-var HTTPRequests = (function(){
+var HTTPRequests = (function () {
 
 }());

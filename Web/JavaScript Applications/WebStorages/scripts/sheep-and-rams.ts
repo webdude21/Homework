@@ -13,11 +13,7 @@ module SheepAndRams {
         numberToBeGuessed:number;
         numberOfTries:number;
 
-        constructor(private randomFunction:(from:number, to:number) => number,
-                    private resultPrint:(str:string) => void,
-                    private highScorePrompt:(message:string, defaultValue:string) => string,
-                    private saveState:(playerName:string, playerScore:string) => void,
-                    cheatingEnabled?:boolean) {
+        constructor(private randomFunction:(from:number, to:number) => number, private resultPrint:(str:string) => void, private highScorePrompt:(message:string, defaultValue:string) => string, private saveState:(playerName:string, playerScore:string) => void, cheatingEnabled?:boolean) {
 
             this.numberOfTries = 0;
             this.numberToBeGuessed = this.randomFunction(MIN, MAX);

@@ -22,7 +22,7 @@
             }
         };
 
-        self.clear = function jsConsoleClear(){
+        self.clear = function jsConsoleClear() {
             textArea.innerHTML = '';
         };
 

@@ -1,6 +1,5 @@
-var TwitterApp = (function(){
-    function getPublicTweets(twitterAccount, outputContainer){
-        
+var TwitterApp = (function () {
+    function getPublicTweets(twitterAccount, outputContainer) {
 
 
     }
