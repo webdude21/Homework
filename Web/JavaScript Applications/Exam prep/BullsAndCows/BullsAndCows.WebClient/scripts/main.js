@@ -22,7 +22,7 @@ var registerUser = {
 //    alert(JSON.stringify(err));
 //});
 
-bcPersister.user.login(user, saveSessionKey, loginError);
+// bcPersister.user.login(user, saveSessionKey, loginError);
 
 function saveSessionKey(data){
     sessionKey = data.sessionKey;
@@ -31,3 +31,6 @@ function saveSessionKey(data){
 function loginError(data){
     JSON.stringify(data);
 }
+
+var controller = controllers.get();
+controller.loadUI('#wrapper');

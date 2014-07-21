@@ -28,7 +28,12 @@
         }
 
         MainPersister.prototype.isUserLoggedIn = function () {
+            debugger;
             return !!(nickname && sessionKey);
+        };
+
+        MainPersister.prototype.getNickname = function (){
+            return nickname;
         };
 
         return MainPersister;
@@ -47,7 +52,10 @@
                 authCode: CryptoJS.SHA1(user.username + user.password).toString()
             };
 
-            httpRequester.postJSON(url, userData, success, error);
+            httpRequester.postJSON(url, userData, function(data){
+                saveUserData(data);
+                success(data);
+            }, error);
         };
 
         UserPersister.prototype.register = function (user, success, error) {
