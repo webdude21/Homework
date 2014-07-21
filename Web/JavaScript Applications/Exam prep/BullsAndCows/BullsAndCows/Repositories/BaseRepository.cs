@@ -12,7 +12,7 @@ namespace BullsAndCows.Repository
 
         protected const string GameStatusOpen = "open";
         protected const string GameStatusFull = "full";
-        protected const string GameStatusInProgress = "in progress";
+        protected const string GameStatusInProgress = "in-progress";
         protected const string GameStatusFinished = "finished";
 
         protected const string MessageStateUnread = "unread";

@@ -1,5 +1,4 @@
-﻿/// <reference path="jquery-2.1.1.js" />
-var httpRequester = (function () {
+﻿var httpRequester = (function () {
     function getJSON(url, success, error) {
 		$.ajax({
 			url: url,

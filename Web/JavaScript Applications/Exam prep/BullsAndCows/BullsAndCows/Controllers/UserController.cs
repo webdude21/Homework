@@ -15,7 +15,7 @@ namespace BullsAndCows.Controllers
         /*
 {
    "username": "Dodo",
-    "nickname": "Doncho Minkov",
+   "nickname": "Doncho Minkov",
    "authCode": "6fa9133efe05348e430bd5a4585b595f0cb6cba3"
 }
        */

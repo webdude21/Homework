@@ -18,7 +18,6 @@ namespace BullsAndCows.Controllers
         static BaseApiController()
         {
             ErrorToStatusCodes["INV_GAME_USR"] = HttpStatusCode.BadRequest;
-            ErrorToStatusCodes["ERR_GEN_SVR"] = HttpStatusCode.InternalServerError;
             ErrorToStatusCodes["INV_OP_TURN"] = HttpStatusCode.BadRequest;
             ErrorToStatusCodes["ERR_INV_NUM"] = HttpStatusCode.BadRequest;
             ErrorToStatusCodes["ERR_INV_USR"] = HttpStatusCode.BadRequest;
@@ -39,6 +38,7 @@ namespace BullsAndCows.Controllers
             ErrorToStatusCodes["ERR_DUP_USR"] = HttpStatusCode.Conflict;
             ErrorToStatusCodes["ERR_DUP_NICK"] = HttpStatusCode.Conflict;
             ErrorToStatusCodes["INV_USR_AUTH"] = HttpStatusCode.BadRequest;
+            ErrorToStatusCodes["ERR_GEN_SVR"] = HttpStatusCode.InternalServerError;
         }
 
         public BaseApiController()

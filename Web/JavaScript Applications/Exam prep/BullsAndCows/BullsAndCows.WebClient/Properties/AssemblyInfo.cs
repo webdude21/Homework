@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BullsAndCows.Client")]
+[assembly: AssemblyTitle("BullsAndCows.WebClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BullsAndCows.Client")]
+[assembly: AssemblyProduct("BullsAndCows.WebClient")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4f8f13b4-b1fe-48b2-aea9-80d5a8bedb08")]
+[assembly: Guid("ec2ceb84-f44e-43f9-bab7-1520bcb460b4")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -19,12 +19,12 @@ namespace BullsAndCows.Repository
                 {
                     throw new ServerErrorException("Invalid user", "ERR_INV_USR");
                 }
-                
+
                 var unreadMessageState = context.MessageStates.First(ms => ms.State == MessageStateUnread);
                 var readMessageState = context.MessageStates.First(ms => ms.State == MessageStateRead);
 
                 IEnumerable<Message> unreadMessages = user.Messages.Where(msg => msg.MessageState == unreadMessageState);
-                var messageModels = ParseMessagesToModels(unreadMessages);
+                var messageModels = ParseMessagesToModels(unreadMessages).Reverse();
 
                 foreach (var msg in unreadMessages)
                 {
@@ -45,7 +45,7 @@ namespace BullsAndCows.Repository
                 {
                     throw new ServerErrorException("Invalid user", "ERR_INV_USR");
                 }
-                var messageModels = ParseMessagesToModels(user.Messages);
+                var messageModels = ParseMessagesToModels(user.Messages).Reverse();
                 var readMessageState = context.MessageStates.First(ms => ms.State == MessageStateRead);
                 foreach (var msg in user.Messages)
                 {
