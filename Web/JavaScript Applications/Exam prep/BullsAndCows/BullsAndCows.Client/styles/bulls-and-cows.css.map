@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "file": "bulls-and-cows.css",
+  "sources": [
+    "bulls-and-cows.less"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAM;AAAQ;AAAI;EACd,SAAA;EACA,UAAA"
+}
