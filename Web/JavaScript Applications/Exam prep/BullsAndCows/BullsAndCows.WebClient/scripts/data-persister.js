@@ -28,11 +28,10 @@
         }
 
         MainPersister.prototype.isUserLoggedIn = function () {
-            debugger;
             return !!(nickname && sessionKey);
         };
 
-        MainPersister.prototype.getNickname = function (){
+        MainPersister.prototype.getNickname = function () {
             return nickname;
         };
 
@@ -52,7 +51,7 @@
                 authCode: CryptoJS.SHA1(user.username + user.password).toString()
             };
 
-            httpRequester.postJSON(url, userData, function(data){
+            httpRequester.postJSON(url, userData, function (data) {
                 saveUserData(data);
                 success(data);
             }, error);
@@ -74,6 +73,7 @@
 
         UserPersister.prototype.logout = function (success, error) {
             var url = this.rootUrl + 'logout/' + sessionKey;
+
             httpRequester.getJSON(url, function (data) {
                 success(data);
                 clearUserData();
@@ -81,7 +81,9 @@
         };
 
         UserPersister.prototype.scores = function (success, error) {
+            var url = this.rootUrl + 'scores/' + sessionKey;
 
+            httpRequester.getJSON(url, success, error)
         };
 
         return UserPersister;

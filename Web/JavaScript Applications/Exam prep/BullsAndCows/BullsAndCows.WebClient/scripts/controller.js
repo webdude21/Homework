@@ -4,7 +4,11 @@ var controllers = (function () {
 
     var Controller = (function () {
 
-        function clearContent (selector){
+        function displayErrorMessage(errorData) {
+            alert(errorData.responseJSON.Message);
+        }
+
+        function clearContent(selector) {
             $(selector).html('');
         }
 
@@ -16,10 +20,21 @@ var controllers = (function () {
 
             context.persister.user.login(userData, function () {
                 alert('logged in');
-                context.loadUI(selector)
-            }, function (err) {
-                alert(JSON.stringify(err));
-            });
+                context.loadGameUI(selector);
+            }, displayErrorMessage);
+        }
+
+        function tryToRegister(context, selector) {
+            var userData = {
+                username: $('#tb-login-username').val(),
+                nickname: $('#tb-login-nickname').val(),
+                password: $('#tb-login-password').val()
+            };
+
+            context.persister.user.register(userData, function () {
+                alert('registered');
+                context.loadGameUI(selector);
+            }, displayErrorMessage);
         }
 
         function Controller() {
@@ -32,15 +47,17 @@ var controllers = (function () {
             } else {
                 this.loadLoginFormUI(selector);
             }
+
+            this.attachUIEventHandlers(selector);
         };
 
         Controller.prototype.loadGameUI = function (selector) {
             clearContent(selector);
             var $gameUI = $('<form />')
-                .append($('<label for="tb-login-username">' + this.persister.getNickname() +  ' </label>'))
-                .append($('<button id="btn-logout"/>').text('Logout'));
+                .append($('<label for="tb-login-username">' + this.persister.getNickname() + ' </label>'))
+                .append($('<button id="btn-logout"/>').text('Logout'))
+                .append($('<button id="btn-highscores"/>').text('highscore'));
             $(selector).append($gameUI);
-            this.attachUIEventHandlers(selector);
         };
 
         Controller.prototype.loadLoginFormUI = function (selector) {
@@ -50,9 +67,28 @@ var controllers = (function () {
                 .append($('<input type="text" id="tb-login-username" />'))
                 .append($('<label for="tb-login-password">Password: </label>'))
                 .append($('<input type="password" id="tb-login-password" />'))
-                .append($('<button id="btn-login"/>').text('Login'));
+                .append($('<button id="btn-login"/>').text('Login'))
+                .append($('<button id="btn-registration"/>').text('Registration'));
             $(selector).append($loginForm);
-            this.attachUIEventHandlers(selector);
+        };
+
+        Controller.prototype.loadRegisterFormUI = function () {
+            $('#tb-login-username')
+                .after($('<input type="text" id="tb-login-nickname" />'))
+                .after($('<label for="tb-login-nickname">Nickname: </label>'));
+            $('#btn-registration').detach();
+            $('#btn-login').detach();
+            $('#tb-login-password')
+                .after($('<button id="btn-register"/>').text('Register'));
+        };
+
+        Controller.prototype.printHighScores = function (data, selector) {
+            var $highScoreList = $('<ul>');
+            data.forEach(function (item) {
+                $highScoreList.append($('<li><p>' + item.nickname + ' - ' + item.score + '</p></li>'));
+            });
+
+            $(selector).append($highScoreList);
         };
 
         Controller.prototype.attachUIEventHandlers = function (selector) {
@@ -66,12 +102,28 @@ var controllers = (function () {
                 that.persister.user.logout(function () {
                     alert('Logged out!');
                     that.loadLoginFormUI(selector);
-                }, function (data) {
-                    alert(JSON.stringify(data));
-                });
+                }, displayErrorMessage);
 
                 return false;
-            })
+            });
+
+            $(selector).on('click', '#btn-highscores', function () {
+                that.persister.user.scores(function (data) {
+                    that.printHighScores(data, selector);
+                }, displayErrorMessage);
+
+                return false;
+            });
+
+            $(selector).on('click', '#btn-registration', function () {
+                that.loadRegisterFormUI();
+                return false;
+            });
+
+            $(selector).on('click', '#btn-register', function () {
+                tryToRegister(that, selector);
+                return false;
+            });
         };
 
         return Controller
