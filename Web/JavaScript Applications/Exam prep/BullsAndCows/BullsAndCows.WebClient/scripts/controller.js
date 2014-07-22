@@ -49,6 +49,18 @@ var controllers = (function () {
             }, displayErrorMessage);
         }
 
+        function tryToJoinGame(context, selector) {
+            var requestData = {
+                gameId: $('#tb-join-game-id').val(),
+                number: parseInt($('#tb-secret-number').val()),
+                password: $('#tb-game-password').val()
+            };
+
+            context.persister.game.loadJoinGameUI(requestData, function () {
+                alert('Game Joined');
+            }, displayErrorMessage);
+        }
+
         function Controller() {
             this.persister = DataPersister.getPersister(serverUrl);
         }
@@ -66,15 +78,17 @@ var controllers = (function () {
         Controller.prototype.loadGameUI = function (selector) {
             clearContent(selector);
             var $userRelatedStuff = $('<form />').addClass('ui-form')
-                .append($('<label for="lb-login-username">' + this.persister.getNickname() + ' </label>'))
+                .append($('<label for="lb-login-username">' +
+                    this.persister.getNickname() + '</label>'))
                 .append($('<button id="btn-logout"/>').text('Logout'))
                 .append($('<button id="btn-highscores"/>').text('Show high scores'))
-                .append($('<button id="btn-open-creation-form"/>').text('Create Game'));
+                .append($('<button id="btn-open-creation-form"/>').text('Create Game'))
+                .append($('<button id="btn-join-form"/>').text('Join Game'));
             $(selector).append($userRelatedStuff);
 
         };
 
-        Controller.prototype.createGameUI = function (selector) {
+        Controller.prototype.createGameFormUI = function (selector) {
             clearContent(selector);
             var $gameRelatedStuff = $('<form />').addClass('ui-form')
                 .append($('<label for="tb-create-game-title">Game Title: </label>'))
@@ -84,6 +98,20 @@ var controllers = (function () {
                 .append($('<label for="tb-game-password">Game Password (optional):</label>'))
                 .append($('<input type="password" id="tb-game-password" />'))
                 .append($('<button id="btn-create-game"/>').text('Create Game'))
+                .append($('<button id="btn-cancel"/>').text('Cancel'));
+            $(selector).append($gameRelatedStuff);
+        };
+
+        Controller.prototype.loadJoinGameUI = function (selector) {
+            clearContent(selector);
+            var $gameRelatedStuff = $('<form />').addClass('ui-form')
+                .append($('<label for="tb-join-game-id">Game ID: </label>'))
+                .append($('<input type="text" id="tb-join-game-id" />'))
+                .append($('<label for="tb-secret-number">Number: </label>'))
+                .append($('<input type="number" id="tb-secret-number" pattern="/d{4}" />'))
+                .append($('<label for="tb-game-password">Game Password (optional):</label>'))
+                .append($('<input type="password" id="tb-game-password" />'))
+                .append($('<button id="btn-join-game"/>').text('Join Game'))
                 .append($('<button id="btn-cancel"/>').text('Cancel'));
             $(selector).append($gameRelatedStuff);
         };
@@ -144,7 +172,7 @@ var controllers = (function () {
             });
 
             $(selector).on('click', '#btn-open-creation-form', function () {
-                that.createGameUI(selector);
+                that.createGameFormUI(selector);
                 return false;
             });
 
@@ -162,6 +190,17 @@ var controllers = (function () {
                 tryToCreateGame(that, selector);
                 return false;
             });
+
+            $(selector).on('click', '#btn-join-game', function () {
+                tryToJoinGame(that, selector);
+                return false;
+            });
+
+
+            $(selector).on('click', '#btn-join-form', function () {
+                that.loadJoinGameUI(selector);
+                return false;
+            })
         };
 
         return Controller
