@@ -37,6 +37,18 @@ var controllers = (function () {
             }, displayErrorMessage);
         }
 
+        function tryToCreateGame(context, selector) {
+            var requestData = {
+                title: $('#tb-create-game-title').val(),
+                number: parseInt($('#tb-secret-number').val()),
+                password: $('#tb-game-password').val()
+            };
+
+            context.persister.game.createGame(requestData, function () {
+                alert('Game Created');
+            }, displayErrorMessage);
+        }
+
         function Controller() {
             this.persister = DataPersister.getPersister(serverUrl);
         }
@@ -53,11 +65,27 @@ var controllers = (function () {
 
         Controller.prototype.loadGameUI = function (selector) {
             clearContent(selector);
-            var $gameUI = $('<form />')
-                .append($('<label for="tb-login-username">' + this.persister.getNickname() + ' </label>'))
+            var $userRelatedStuff = $('<form />').addClass('ui-form')
+                .append($('<label for="lb-login-username">' + this.persister.getNickname() + ' </label>'))
                 .append($('<button id="btn-logout"/>').text('Logout'))
-                .append($('<button id="btn-highscores"/>').text('highscore'));
-            $(selector).append($gameUI);
+                .append($('<button id="btn-highscores"/>').text('Show high scores'))
+                .append($('<button id="btn-open-creation-form"/>').text('Create Game'));
+            $(selector).append($userRelatedStuff);
+
+        };
+
+        Controller.prototype.createGameUI = function (selector) {
+            clearContent(selector);
+            var $gameRelatedStuff = $('<form />').addClass('ui-form')
+                .append($('<label for="tb-create-game-title">Game Title: </label>'))
+                .append($('<input type="text" id="tb-create-game-title" />'))
+                .append($('<label for="tb-secret-number">Number: </label>'))
+                .append($('<input type="number" id="tb-secret-number" pattern="/d{4}" />'))
+                .append($('<label for="tb-game-password">Game Password (optional):</label>'))
+                .append($('<input type="password" id="tb-game-password" />'))
+                .append($('<button id="btn-create-game"/>').text('Create Game'))
+                .append($('<button id="btn-cancel"/>').text('Cancel'));
+            $(selector).append($gameRelatedStuff);
         };
 
         Controller.prototype.loadLoginFormUI = function (selector) {
@@ -82,10 +110,10 @@ var controllers = (function () {
         };
 
         Controller.prototype.printHighScores = function (data, selector) {
-            var $highScoreList = $('<ul>');
-            data.forEach(function (item) {
-                $highScoreList.append($('<li><p>' + item.nickname +
-                    ' - ' + item.score + '</p></li>'));
+            var $highScoreList = $('<ul id="high-scores">');
+            data.forEach(function (item, index) {
+                $highScoreList.append($('<li><p class="p-score-item">' + (index + 1) + '. ' +
+                    item.nickname + ' - ' + item.score + '</p></li>'));
             });
 
             $(selector).append($highScoreList);
@@ -115,6 +143,11 @@ var controllers = (function () {
                 return false;
             });
 
+            $(selector).on('click', '#btn-open-creation-form', function () {
+                that.createGameUI(selector);
+                return false;
+            });
+
             $(selector).on('click', '#btn-registration', function () {
                 that.loadRegisterFormUI();
                 return false;
@@ -122,6 +155,11 @@ var controllers = (function () {
 
             $(selector).on('click', '#btn-register', function () {
                 tryToRegister(that, selector);
+                return false;
+            });
+
+            $(selector).on('click', '#btn-create-game', function () {
+                tryToCreateGame(that, selector);
                 return false;
             });
         };

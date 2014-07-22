@@ -1,8 +1,10 @@
-﻿body,
+body,
 header,
 h1,
 h2 {
   margin: 0;
   padding: 0;
 }
-/*# sourceMappingURL=bulls-and-cows.css.map */
+#wrapper #high-scores {
+  list-style-type: none;
+}
