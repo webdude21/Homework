@@ -77,15 +77,15 @@ var controllers = (function () {
                 .after($('<input type="text" id="tb-login-nickname" />'))
                 .after($('<label for="tb-login-nickname">Nickname: </label>'));
             $('#btn-registration').detach();
-            $('#btn-login').detach();
-            $('#tb-login-password')
-                .after($('<button id="btn-register"/>').text('Register'));
+            $('#btn-login')
+                .after($('<button id="btn-register"/>').text('Register'))
         };
 
         Controller.prototype.printHighScores = function (data, selector) {
             var $highScoreList = $('<ul>');
             data.forEach(function (item) {
-                $highScoreList.append($('<li><p>' + item.nickname + ' - ' + item.score + '</p></li>'));
+                $highScoreList.append($('<li><p>' + item.nickname +
+                    ' - ' + item.score + '</p></li>'));
             });
 
             $(selector).append($highScoreList);
