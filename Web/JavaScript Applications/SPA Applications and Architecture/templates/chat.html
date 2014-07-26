@@ -1,0 +1,43 @@
+<div ng-controller="ChatController">
+    <h1>Crowd chat</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form name="newMessage" class="form-horizontal">
+                <fieldset>
+                    <legend>Send a message</legend>
+                    <div class="form-group">
+                        <label for="name" class="col-lg-3 control-label">Username</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control validity" id="name" placeholder="your name goes here" required ng-pattern="/^[\w]{3,40}$/" ng-model="message.user">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-date" class="col-lg-3 control-label">Message</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control validity" id="birth-date" placeholder="type your message to the world here" required ng-model="message.text">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="pull-right">
+                    <button class="btn btn-default" ng-disabled="newMessage.$invalid" ng-click="sendNewMessage(message, newMessage)">Send message</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Chat room</legend>
+                    <div class="well well-lg" id="chat-container">
+                    </div>
+                </fieldset>
+                <hr>
+                <div class="pull-right">
+                    <button class="btn btn-default" ng-click="getMessages()">Refresh</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div id="message-box"></div>
+</div>

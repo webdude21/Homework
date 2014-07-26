@@ -33,7 +33,6 @@
 
     return {
         getJson: promiseAjaxRequestGet,
-
         postJson: promiseAjaxRequestPost
     }
 }());

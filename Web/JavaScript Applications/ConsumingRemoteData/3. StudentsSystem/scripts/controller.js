@@ -1,9 +1,8 @@
 var Controllers = (function () {
 
     var StudentController = (function () {
-        function StudentController(dataFetcher, selector) {
+        function StudentController(dataFetcher) {
             this.dataFetcher = dataFetcher;
-            this.selector = selector;
         }
 
         StudentController.prototype.displayStudents = function (selector) {
@@ -11,8 +10,8 @@ var Controllers = (function () {
                 var stringResult = '';
 
                 data.students.forEach(function (student) {
-                    stringResult += student.id.toString() + '. '
-                        student.name + student.grade.toString() + '\r\n';
+                    stringResult += student.id + '. ' +
+                        student.name + ' - ' + student.grade + '\r\n';
                 });
 
                 $(selector).append(stringResult);
@@ -22,11 +21,24 @@ var Controllers = (function () {
             });
         };
 
-        StudentController.prototype.addStudent = function (student) {
-            this.dataFetcher.postStudent(student, function (data) {
-                console.log('yea');
+        StudentController.prototype.addStudent = function () {
+            var student = {
+                name: $('#tb-student-name').val(),
+                grade: $('#tb-student-grade').val()
+            };
+
+            this.dataFetcher.postStudent(student, function () {
+                alert('Successfully added the student!');
             }, function (err) {
-                console.log('nope');
+                alert(err);
+            });
+        };
+
+        StudentController.prototype.deleteStudent = function () {
+            this.dataFetcher.deleteStudent($('#ta-student-id').val(), function (data) {
+                alert(data.message);
+            }, function (data) {
+                alert(data.message);
             });
         };
 

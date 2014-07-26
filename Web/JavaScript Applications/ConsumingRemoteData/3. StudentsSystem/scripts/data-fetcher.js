@@ -6,12 +6,17 @@ var DataFetcher = (function () {
             this.rootUrl = rootUrl;
         }
 
-        DataFetcher.prototype.getAllStudents = function(success, error){
+        DataFetcher.prototype.getAllStudents = function (success, error) {
             httpRequester.getJSON(this.rootUrl, success, error);
         };
 
-        DataFetcher.prototype.postStudent = function (student ,success, error){
+        DataFetcher.prototype.postStudent = function (student, success, error) {
             httpRequester.postJSON(this.rootUrl, student, success, error);
+        };
+
+        DataFetcher.prototype.deleteStudent = function (studentId, success, error) {
+            var url = this.rootUrl + '/' + studentId;
+            httpRequester.detelteRequest(url, success, error);
         };
 
         return DataFetcher;

@@ -9,13 +9,27 @@
 
     <form>
         <fieldset>
-            <legend>Edit student information</legend>
+            <legend>Add student information</legend>
             <label for="tb-student-name">Student Name: </label>
             <input type="text" id="tb-student-name">
+            <label for="tb-student-grade">Student Name: </label>
+            <input type=number id="tb-student-grade">
+            <button id="btn-add-student">Add student</button>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend>Retrieve Students</legend>
             <label for="ta-all-students">All Students: </label>
             <textarea id="ta-all-students"></textarea>
+            <button id="btn-get-students">Retrieve all students</button>
         </fieldset>
-        <button id="btn-get-students">Retrieve all students</button>
+        <hr>
+        <fieldset>
+            <legend>Delete Students</legend>
+            <label for="ta-student-id">Student ID: </label>
+            <input type="number" id="ta-student-id"/>
+            <button id="btn-delete-student">Delete Student</button>
+        </fieldset>
     </form>
 </div>
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
