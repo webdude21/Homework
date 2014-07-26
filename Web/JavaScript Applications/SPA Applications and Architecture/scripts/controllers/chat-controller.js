@@ -9,10 +9,10 @@ crowdChat.controller('ChatController',
         var FETCH_MESSAGES_FROM_SERVER_ERROR_MESSAGE = "There was an error while " +
             "retrieving the chat messages from the server!";
         var MESSAGE_BOX_SELECTOR = '#message-box';
-        var CHAT_CONTAINER = '#chat-container';
         var MESSAGE_SEND_ERROR_MESSAGE = 'An error occured while ' +
             'sending the message to the server!';
         var MESSAGE_SEND_SUCCESS_MESSAGE = 'Message was successfully sent to the server!';
+        var $chatContainer = $('#chat-container');
 
         $scope.sendNewMessage = function (message, newMessage) {
             if (newMessage.$valid) {
@@ -27,10 +27,6 @@ crowdChat.controller('ChatController',
             }
         };
 
-        function clearChatWindow(){
-            $(CHAT_CONTAINER).empty();
-        }
-
         function generateMessagesList(messages){
             var $list = $('<ul>');
             messages.forEach(function (message){
@@ -38,12 +34,13 @@ crowdChat.controller('ChatController',
                     '</span><span class="message-text">' + message.text + '</span></li>').appendTo($list)
             });
 
-            $(CHAT_CONTAINER).append($list);
+            $chatContainer.append($list);
+            $chatContainer.scrollTop(99999999999);
         }
 
         $scope.getMessages = function () {
             dataProvider.retrieveAllPosts(function (messages) {
-                clearChatWindow();
+                $chatContainer.empty();
                 generateMessagesList(messages);
             }, function () {
                 error(FETCH_MESSAGES_FROM_SERVER_ERROR_MESSAGE, MESSAGE_BOX_SELECTOR)
@@ -68,10 +65,11 @@ crowdChat.controller('ChatController',
         }
 
         $scope.reset = function () {
-            $scope.message = {};
+            $scope.message.text = '';
             $scope.newMessage.$setPristine();
             $scope.$apply();
         };
 
+        $scope.getMessages();
         setInterval($scope.getMessages, INTERVAL_FOR_MESSAGE_RETRIEVAL);
     });
