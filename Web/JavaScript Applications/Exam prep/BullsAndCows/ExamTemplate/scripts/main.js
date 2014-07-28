@@ -4,7 +4,7 @@ define(function () {
             'jquery': 'libs/jquery-2.1.1',
             'sammy': 'libs/sammy',
             'bootstrap': 'libs/bootstrap',
-            'handlebars': 'libs/handlebars-v1.3.0',
+            'mustache': 'libs/mustache',
             'underscore': 'libs/underscore',
             'q': 'libs/q.min',
             'crypto-js': 'libs/sha1',
@@ -20,13 +20,13 @@ define(function () {
         function ($, Sammy, controller, dataProvider) {
             var ROOT_URL = 'http://localhost:40643/api';
             var APPLICATION_NAME = 'BullsAndCows';
-            var partialViewSelector = '#wrapper';
+            var partialViewSelector = '#partial-html-container';
 
             var appDataProvider = dataProvider.getDataProvider(ROOT_URL, APPLICATION_NAME);
             var appController = controller.getController(appDataProvider, partialViewSelector);
             appController.attachEventHandlers();
 
-            var bullsAndCowsApp = Sammy(partialViewSelector, function () {
+            var myApp = Sammy(partialViewSelector, function () {
                 this.get("#/login", function () {
                     if (appDataProvider.isUserLoggedIn()) {
                         window.location = '#/home';
@@ -46,6 +46,6 @@ define(function () {
                 });
             });
 
-            bullsAndCowsApp.run('#/home');
+            myApp.run('#/home');
         });
 });
