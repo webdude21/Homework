@@ -1,0 +1,36 @@
+<div id="userLoginTemplate">
+    <h1>Login</h1>
+    <hr/>
+    <div class="row">
+        <div class="col-md-4">
+            <form name="userLoginForm" class="form-horizontal">
+                <fieldset>
+                    <legend>Please enter your credentials</legend>
+                    <div class="form-group">
+                        <label for="tb-username" class="col-lg-3 control-label">Username</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control validity" id="tb-username"
+                                   placeholder="your user name goes here"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tb-password" class="col-lg-3 control-label">Message</label>
+
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control validity" id="tb-password"
+                                   placeholder="type your password here"
+                                   required>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="pull-right">
+                    <button class="btn btn-default" id="btn-login">Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div id="message-box"></div>
+</div>

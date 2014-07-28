@@ -25,8 +25,20 @@
         });
     }
 
+    function deleteRequest(url, success, error) {
+        $.ajax({
+            url: url,
+            type: "POST",
+            timeout: requestTimeout,
+            success: success,
+            error: error,
+            data: {_method: 'DELETE'}
+        });
+    }
+
     return {
         getJSON: getJSON,
-        postJSON: postJSON
+        postJSON: postJSON,
+        deleteRequest: deleteRequest
     };
 }());

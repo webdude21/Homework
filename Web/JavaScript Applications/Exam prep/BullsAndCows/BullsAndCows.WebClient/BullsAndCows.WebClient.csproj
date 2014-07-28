@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="packages.config" />
+    <Content Include="scripts\controller.js" />
     <Content Include="scripts\data-persister.js" />
     <Content Include="scripts\http-requester.js" />
     <Content Include="scripts\main.js" />

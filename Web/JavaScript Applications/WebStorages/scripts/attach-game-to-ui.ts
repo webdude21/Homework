@@ -1,7 +1,7 @@
 /// <reference path="sheep-and-rams.ts"/>
 /// <reference path="high-score.ts"/>
 
-module GameInit{
+module GameInit {
     export function start() {
         var HIGH_SCORE_HEADER = '----------- These are the champions -----------';
         var localStorageName = 'SheepAndRamsGame';

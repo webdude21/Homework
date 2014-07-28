@@ -1,0 +1,44 @@
+@valid: #8fbc8f;
+@invalid: #ffc0cb;
+
+@imagePreviewMaxWidth: 600px;
+
+body {
+  padding-top: 50px;
+
+  #chat-container {
+    overflow-wrap: break-word;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+
+    ul {
+      list-style-type: none;
+      padding: 15px;
+
+      li {
+        span.message-author {
+          color: gold;
+        }
+      }
+    }
+
+    span.message-author {
+      font-weight: bolder;
+      text-decoration-color: crimson;
+    }
+  }
+
+  input {
+    &.ng-dirty {
+      &.ng-valid {
+        background-color: @valid !important;
+      }
+      &.ng-invalid {
+        background-color: @invalid !important;
+      }
+    }
+  }
+}

@@ -134,7 +134,7 @@ var controllers = (function () {
                 .after($('<label for="tb-login-nickname">Nickname: </label>'));
             $('#btn-registration').detach();
             $('#btn-login')
-                .after($('<button id="btn-register"/>').text('Register'))
+                .after($('<button id="btn-register"/>').text('Register'));
         };
 
         Controller.prototype.printHighScores = function (data, selector) {
@@ -200,15 +200,15 @@ var controllers = (function () {
             $(selector).on('click', '#btn-join-form', function () {
                 that.loadJoinGameUI(selector);
                 return false;
-            })
+            });
         };
 
-        return Controller
+        return Controller;
     }());
 
     return {
         get: function () {
             return new Controller();
         }
-    }
+    };
 }());

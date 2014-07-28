@@ -85,7 +85,7 @@
 
         UserPersister.prototype.scores = function (success, error) {
             var url = this.rootUrl + 'scores/' + sessionKey;
-            httpRequester.getJSON(url, success, error)
+            httpRequester.getJSON(url, success, error);
         };
 
         return UserPersister;
