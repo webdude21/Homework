@@ -11,19 +11,16 @@ define(function () {
             'http-requester': 'helpers/http-requester-q',
             'message-box': 'helpers/message-box',
             'data-provider': 'model/data-provider',
-            'controller': 'controllers/controller'
+            'controller': 'controllers/controller',
+            'app-data': 'model/app-data'
         }
     });
 
-    require(['jquery', 'sammy', 'controller', 'data-provider', 'bootstrap', 'handlebars'],
+    require(['jquery', 'sammy', 'controller', 'data-provider', 'bootstrap'],
         function ($, Sammy, controller, dataProvider) {
             var ROOT_URL = 'http://localhost:40643/api';
             var APPLICATION_NAME = 'BullsAndCows';
             var partialViewSelector = '#wrapper';
-
-            var $indexSource = $('#index-template').html();
-            var indexTemplate = Handlebars.compile($indexSource);
-            $indexSource.html(indexTemplate);
 
             var appDataProvider = dataProvider.getDataProvider(ROOT_URL, APPLICATION_NAME);
             var appController = controller.getController(appDataProvider, partialViewSelector);
