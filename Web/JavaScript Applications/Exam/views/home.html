@@ -1,0 +1,28 @@
+<div id="userHomeTemplate">
+    <h1 id="home-title"></h1>
+    <hr/>
+    <form name="userHomeForm" class="form-horizontal">
+        <label for="tb-filter-by-username">Filter by username: </label>
+        <input id="tb-filter-by-username">
+        <label for="tb-filter-by-pattern">Filter by pattern: </label>
+        <input id="tb-filter-by-pattern">
+        <label for="sl-sort-by">Sort by: </label>
+        <select id="sl-sort-by">
+            <option value="date" selected>Date</option>
+            <option value="title">Title</option>
+        </select>
+        <label for="sl-sort-order">Order: </label>
+        <select id="sl-sort-order">
+            <option value="ascending" selected>Ascending</option>
+            <option value="descending">Descending</option>
+        </select>
+        <label for="tb-page-count">Records per page: </label>
+        <input type="number" id="tb-page-count">
+        <button class="btn btn-default" id="btn-filter">Filter
+        </button>
+    </form>
+    <div id="chat-container">
+    </div>
+    <hr>
+    <div id="message-box"></div>
+</div>

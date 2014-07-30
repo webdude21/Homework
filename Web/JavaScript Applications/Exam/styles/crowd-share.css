@@ -1,0 +1,28 @@
+body {
+  padding-top: 50px;
+}
+body #chat-container {
+  overflow-wrap: break-word;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+body #chat-container ul {
+  list-style-type: none;
+  padding: 15px;
+}
+body #chat-container ul li span.message-author {
+  color: gold;
+}
+body #chat-container ul li span.message-title {
+  color: red;
+}
+body #chat-container ul li span.message-text {
+  color: blue;
+}
+body #chat-container span.message-author {
+  font-weight: bolder;
+  text-decoration-color: crimson;
+}
