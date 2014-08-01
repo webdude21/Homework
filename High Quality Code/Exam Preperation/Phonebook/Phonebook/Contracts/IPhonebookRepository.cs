@@ -8,6 +8,6 @@
 
         int ChangePhone(string oldPhoneNumber, string newPhoneNumber);
 
-        PhoneContact[] ListEntries(int startIndex, int count);
+        IEnumerable<PhoneContact> ListEntries(int startIndex, int count);
     }
 }

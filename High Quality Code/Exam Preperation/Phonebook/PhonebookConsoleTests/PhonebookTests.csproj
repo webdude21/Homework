@@ -59,6 +59,14 @@
       <Name>PhonebookConsoleClient</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="textTests\expectedresult.txt" />
+    <Content Include="textTests\expectedresultAddCommands.txt" />
+    <Content Include="textTests\input.txt" />
+    <Content Include="textTests\inputAddCommands.txt" />
+    <Content Include="textTests\result.txt" />
+    <Content Include="textTests\resultAddCommands.txt" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

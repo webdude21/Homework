@@ -10,20 +10,39 @@
     [TestClass]
     public class PhonebookConsoleTests
     {
-        [TestMethod]
+        private const string TestPath = @"..\..\textTests\";
+         [TestMethod]
         public void ZeroTestMainMethod()
         {
-            var streamWriter = new StreamWriter(@"..\..\result.txt");
+            ConsoleTest(TestPath + "expectedresult.txt", TestPath + "input.txt", TestPath + "result.txt");
+        }
+
+        [TestMethod]
+        public void AddCommandTests()
+        {
+            ConsoleTest(
+                TestPath + "expectedresultAddCommands.txt",
+                TestPath + "inputAddCommands.txt",
+                TestPath + "resultAddCommands.txt");
+        }
+
+        [TestMethod]
+  
+        private static void ConsoleTest(string expectedResultFilePath, string inputTestFilePath, string actualResultFilePath)
+        {
+            var streamWriter = new StreamWriter(actualResultFilePath);
+
             using (streamWriter)
             {
-                Console.SetIn(new StreamReader(@"..\..\input.txt"));
+                Console.SetIn(new StreamReader(inputTestFilePath));
                 Console.SetOut(streamWriter);
                 PhonebookConsoleClient.Main();
             }
 
             Assert.AreEqual(
-                new StreamReader(@"..\..\expectedresult.txt").ReadToEnd(), 
-                new StreamReader(@"..\..\result.txt").ReadToEnd());
+                new StreamReader(expectedResultFilePath).ReadToEnd(),
+                new StreamReader(actualResultFilePath).ReadToEnd());
+
         }
     }
 }

@@ -7,11 +7,11 @@ namespace PhonebookConsoleClient
 
     public class PhonebookConsoleClient
     {
-        private const string BulgarianCountryCode = "+359";
+        private const string DefaultCountryCode = "+359";
 
         private static readonly IPhonebookRepository Phonebook = new PhonebookRepositorySlow();
 
-        private static readonly StringBuilder Input = new StringBuilder();
+        private static readonly StringBuilder Output = new StringBuilder();
 
         public static void Main()
         {
@@ -23,105 +23,88 @@ namespace PhonebookConsoleClient
                     break;
                 }
 
-                var startIndex = currentCommandLine.IndexOf('(');
-                if (startIndex == -1)
+                var indexOfFirstOpeningBracket = currentCommandLine.IndexOf('(');
+                if (indexOfFirstOpeningBracket == -1)
                 {
-                    Console.WriteLine("error!");
-                    Environment.Exit(0);
+                    throw new ArgumentException("Invalid command is used.");
                 }
 
-                var k = currentCommandLine.Substring(0, startIndex);
-                if (!currentCommandLine.EndsWith(")"))
-                {
-                    Main();
-                }
+                var commandString = currentCommandLine.Substring(0, indexOfFirstOpeningBracket);
 
-                var s = currentCommandLine.Substring(startIndex + 1, currentCommandLine.Length - startIndex - 2);
-                var strings = s.Split(',');
-                for (var j = 0; j < strings.Length; j++)
-                {
-                    strings[j] = strings[j].Trim();
-                }
+                var commandsAsString = currentCommandLine.Substring(indexOfFirstOpeningBracket + 1, currentCommandLine.Length - indexOfFirstOpeningBracket - 2);
 
-                if (k.StartsWith("AddPhone") && (strings.Length >= 2))
-                {
-                    Cmd("Cmd3", strings);
-                }
-                else if ((k == "Change–hone") && (strings.Length == 2))
-                {
-                    Cmd("Cmd2", strings);
-                }
-                else if ((k == "List") && (strings.Length == 2))
-                {
-                    Cmd("Cmd1", strings);
-                }
-                else
-                {
-                    throw new StackOverflowException();
-                }
+                var commandArguments = commandsAsString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                InterpretCommand(commandString, commandArguments);
             }
 
-            Console.Write(Input);
+            Console.Write(Output);
         }
 
-        private static void Cmd(string cmd, IList<string> strings)
+        private static void InterpretCommand(string commandString, IList<string> commandArguments)
         {
-            if (cmd == "Cmd1")
+            if (commandString.StartsWith("AddPhone") && (commandArguments.Count >= 2))
             {
-                // first command
-                var str0 = strings[0];
-                var str1 = strings.Skip(1).ToList();
-                for (var i = 0; i < str1.Count; i++)
-                {
-                    str1[i] = ConvertToCanonical(str1[i]);
-                }
-
-                var flag = Phonebook.AddPhone(str0, str1);
-
-                if (flag)
-                {
-                    Print("Phone entry created");
-                }
-                else
-                {
-                    Print("Phone entry merged");
-                }
+                CommandExecutor(Commands.AddPhone, commandArguments);
             }
-            else if (cmd == "Cmd2")
+            else if ((commandString == "ChangePhone") && (commandArguments.Count == 2))
             {
-                // second command
-                Print(string.Empty + Phonebook.ChangePhone(ConvertToCanonical(strings[0]), ConvertToCanonical(strings[1])) + " numbers changed");
+                CommandExecutor(Commands.Change–hone, commandArguments);
             }
-            else
+            else if ((commandString == "List") && (commandArguments.Count == 2))
             {
-                // third command
-                try
-                {
-                    IEnumerable<PhoneContact> entries = Phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
-                    foreach (var entry in entries)
+                CommandExecutor(Commands.List, commandArguments);
+            }
+        }
+
+        private static void CommandExecutor(Commands command, IList<string> strings)
+        {
+            switch (command)
+            {
+                case Commands.AddPhone:
                     {
-                        Print(entry.ToString());
+                        // first command
+                        var str0 = strings[0];
+                        var str1 = strings.Skip(1).ToList();
+                        for (var i = 0; i < str1.Count; i++)
+                        {
+                            str1[i] = ConvertToCanonical(str1[i]);
+                        }
+
+                        var flag = Phonebook.AddPhone(str0, str1);
+
+                        Print(flag ? "Phone entry created" : "Phone entry merged");
                     }
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    Print("Invalid range");
-                }
+                    break;
+                case Commands.Change–hone:
+                    Print(string.Empty + Phonebook.ChangePhone(ConvertToCanonical(strings[0]), ConvertToCanonical(strings[1])) + " numbers changed");
+                    break;
+                case Commands.List:
+                    try
+                    {
+                        IEnumerable<PhoneContact> entries = Phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
+                        foreach (var entry in entries)
+                        {
+                            Print(entry.ToString());
+                        }
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Print("Invalid range");
+                    }
+                    break;
             }
         }
 
         private static string ConvertToCanonical(string number)
         {
             var canonicalNumberBuilder = new StringBuilder();
-            for (var i = 0; i <= Input.Length; i++)
+            for (var i = 0; i <= Output.Length; i++)
             {
                 canonicalNumberBuilder.Clear();
-                foreach (var ch in number)
+                foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
                 {
-                    if (char.IsDigit(ch) || (ch == '+'))
-                    {
-                        canonicalNumberBuilder.Append(ch);
-                    }
+                    canonicalNumberBuilder.Append(ch);
                 }
 
                 if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
@@ -137,16 +120,13 @@ namespace PhonebookConsoleClient
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
                 }
 
                 canonicalNumberBuilder.Clear();
-                foreach (var ch in number)
+                foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
                 {
-                    if (char.IsDigit(ch) || (ch == '+'))
-                    {
-                        canonicalNumberBuilder.Append(ch);
-                    }
+                    canonicalNumberBuilder.Append(ch);
                 }
 
                 if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
@@ -162,16 +142,13 @@ namespace PhonebookConsoleClient
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
                 }
 
                 canonicalNumberBuilder.Clear();
-                foreach (var ch in number)
+                foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
                 {
-                    if (char.IsDigit(ch) || (ch == '+'))
-                    {
-                        canonicalNumberBuilder.Append(ch);
-                    }
+                    canonicalNumberBuilder.Append(ch);
                 }
 
                 if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
@@ -187,7 +164,7 @@ namespace PhonebookConsoleClient
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
                 }
             }
 
@@ -196,7 +173,7 @@ namespace PhonebookConsoleClient
 
         private static void Print(string text)
         {
-            Input.AppendLine(text);
+            Output.AppendLine(text);
         }
     }
 }

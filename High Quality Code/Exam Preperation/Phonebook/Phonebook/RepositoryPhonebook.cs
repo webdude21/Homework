@@ -1,8 +1,10 @@
-﻿namespace PhonebookConsoleClient
+﻿namespace Phonebook
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using PhonebookConsoleClient;
 
     using Wintellect.PowerCollections;
 
@@ -10,7 +12,8 @@
     {
         private readonly IDictionary<string, PhoneContact> entriesByName = new Dictionary<string, PhoneContact>();
 
-        private readonly MultiDictionary<string, PhoneContact> entriesByPhone = new MultiDictionary<string, PhoneContact>(false);
+        private readonly MultiDictionary<string, PhoneContact> entriesByPhone =
+            new MultiDictionary<string, PhoneContact>(false);
 
         private readonly OrderedSet<PhoneContact> sortedEntries = new OrderedSet<PhoneContact>();
 
@@ -50,23 +53,14 @@
             return found.Count;
         }
 
-        public PhoneContact[] ListEntries(int first, int num)
+        public IEnumerable<PhoneContact> ListEntries(int startingNumber, int phoneNumbersCount)
         {
-            if (first < 0 || first + num > this.entriesByName.Count)
+            if (startingNumber < 0 || startingNumber + phoneNumbersCount > this.entriesByName.Count)
             {
-                Console.WriteLine("Invalid start index or count.");
-                return null;
+                throw new ArgumentException("Invalid start index or count.");
             }
 
-            var list = new PhoneContact[num];
-
-            for (var i = first; i <= first + num - 1; i++)
-            {
-                var entry = this.sortedEntries[i];
-                list[i - first] = entry;
-            }
-
-            return list;
+            return this.sortedEntries.ToList().GetRange(startingNumber, phoneNumbersCount);
         }
     }
 }
