@@ -68,7 +68,7 @@ define(['http-requester', 'crypto-js'], function (httpRequester) {
                     if (userData.user) {
                         queryString += '&user=' + userData.user;
                     }
-                }else{
+                } else {
                     if (userData.user) {
                         queryString += '?user=' + userData.user;
                     }

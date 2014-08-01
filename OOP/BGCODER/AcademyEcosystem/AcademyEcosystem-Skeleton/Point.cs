@@ -2,8 +2,22 @@
 
 namespace AcademyEcosystem
 {
-    public struct Point
+    public struct Point : IEquatable<Point>
     {
+        public bool Equals(Point other)
+        {
+            return this.X == other.X && this.Y == other.Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            return obj is Point && Equals((Point)obj);
+        }
+
         public readonly int X;
 
         public readonly int Y;
@@ -22,7 +36,10 @@ namespace AcademyEcosystem
 
         public override int GetHashCode()
         {
-            return this.X * 7 + this.Y;
+            unchecked
+            {
+                return (this.X * 397) ^ this.Y;
+            }
         }
 
         public static bool operator ==(Point a, Point b)
