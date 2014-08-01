@@ -1,4 +1,4 @@
-namespace PhonebookConsoleClient.Problem_2
+namespace PhonebookConsoleClient
 {
     using System;
     using System.Collections.Generic;
@@ -104,7 +104,7 @@ namespace PhonebookConsoleClient.Problem_2
                         Print(entry.ToString());
                     }
                 }
-                catch (ArgumentOutOfRangeException)
+                catch (FormatException)
                 {
                     Print("Invalid range");
                 }

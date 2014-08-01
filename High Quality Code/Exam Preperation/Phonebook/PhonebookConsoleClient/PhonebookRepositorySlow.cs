@@ -1,4 +1,4 @@
-﻿namespace PhonebookConsoleClient.Problem_2
+﻿namespace PhonebookConsoleClient
 {
     using System;
     using System.Collections.Generic;

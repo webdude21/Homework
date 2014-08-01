@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using PhonebookConsoleClient.Problem_2;
-
     public interface IPhonebookRepository
     {
         bool AddPhone(string name, IEnumerable<string> phoneNumbers);
