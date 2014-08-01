@@ -17,27 +17,26 @@ namespace PhonebookConsoleClient
         {
             while (true)
             {
-                var data = Console.ReadLine();
-                if (data == "End" || data == null)
+                var currentCommandLine = Console.ReadLine();
+                if (currentCommandLine == "End" || currentCommandLine == null)
                 {
-                    // Error reading from console 
                     break;
                 }
 
-                var i = data.IndexOf('(');
-                if (i == -1)
+                var startIndex = currentCommandLine.IndexOf('(');
+                if (startIndex == -1)
                 {
                     Console.WriteLine("error!");
                     Environment.Exit(0);
                 }
 
-                var k = data.Substring(0, i);
-                if (!data.EndsWith(")"))
+                var k = currentCommandLine.Substring(0, startIndex);
+                if (!currentCommandLine.EndsWith(")"))
                 {
                     Main();
                 }
 
-                var s = data.Substring(i + 1, data.Length - i - 2);
+                var s = currentCommandLine.Substring(startIndex + 1, currentCommandLine.Length - startIndex - 2);
                 var strings = s.Split(',');
                 for (var j = 0; j < strings.Length; j++)
                 {
@@ -74,14 +73,14 @@ namespace PhonebookConsoleClient
                 var str1 = strings.Skip(1).ToList();
                 for (var i = 0; i < str1.Count; i++)
                 {
-                    str1[i] = ConvertCommand(str1[i]);
+                    str1[i] = ConvertToCanonical(str1[i]);
                 }
 
                 var flag = Phonebook.AddPhone(str0, str1);
 
                 if (flag)
                 {
-                    Print("Phone entry created.");
+                    Print("Phone entry created");
                 }
                 else
                 {
@@ -91,7 +90,7 @@ namespace PhonebookConsoleClient
             else if (cmd == "Cmd2")
             {
                 // second command
-                Print(string.Empty + Phonebook.ChangePhone(ConvertCommand(strings[0]), ConvertCommand(strings[1])) + " numbers changed");
+                Print(string.Empty + Phonebook.ChangePhone(ConvertToCanonical(strings[0]), ConvertToCanonical(strings[1])) + " numbers changed");
             }
             else
             {
@@ -104,95 +103,95 @@ namespace PhonebookConsoleClient
                         Print(entry.ToString());
                     }
                 }
-                catch (FormatException)
+                catch (ArgumentOutOfRangeException)
                 {
                     Print("Invalid range");
                 }
             }
         }
 
-        private static string ConvertCommand(string num)
+        private static string ConvertToCanonical(string number)
         {
-            var sb = new StringBuilder();
+            var canonicalNumberBuilder = new StringBuilder();
             for (var i = 0; i <= Input.Length; i++)
             {
-                sb.Clear();
-                foreach (var ch in num)
+                canonicalNumberBuilder.Clear();
+                foreach (var ch in number)
                 {
                     if (char.IsDigit(ch) || (ch == '+'))
                     {
-                        sb.Append(ch);
+                        canonicalNumberBuilder.Append(ch);
                     }
                 }
 
-                if (sb.Length >= 2 && sb[0] == '0' && sb[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
                 {
-                    sb.Remove(0, 1);
-                    sb[0] = '+';
+                    canonicalNumberBuilder.Remove(0, 1);
+                    canonicalNumberBuilder[0] = '+';
                 }
 
-                while (sb.Length > 0 && sb[0] == '0')
+                while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
                 {
-                    sb.Remove(0, 1);
+                    canonicalNumberBuilder.Remove(0, 1);
                 }
 
-                if (sb.Length > 0 && sb[0] != '+')
+                if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    sb.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
                 }
 
-                sb.Clear();
-                foreach (var ch in num)
+                canonicalNumberBuilder.Clear();
+                foreach (var ch in number)
                 {
                     if (char.IsDigit(ch) || (ch == '+'))
                     {
-                        sb.Append(ch);
+                        canonicalNumberBuilder.Append(ch);
                     }
                 }
 
-                if (sb.Length >= 2 && sb[0] == '0' && sb[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
                 {
-                    sb.Remove(0, 1);
-                    sb[0] = '+';
+                    canonicalNumberBuilder.Remove(0, 1);
+                    canonicalNumberBuilder[0] = '+';
                 }
 
-                while (sb.Length > 0 && sb[0] == '0')
+                while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
                 {
-                    sb.Remove(0, 1);
+                    canonicalNumberBuilder.Remove(0, 1);
                 }
 
-                if (sb.Length > 0 && sb[0] != '+')
+                if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    sb.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
                 }
 
-                sb.Clear();
-                foreach (var ch in num)
+                canonicalNumberBuilder.Clear();
+                foreach (var ch in number)
                 {
                     if (char.IsDigit(ch) || (ch == '+'))
                     {
-                        sb.Append(ch);
+                        canonicalNumberBuilder.Append(ch);
                     }
                 }
 
-                if (sb.Length >= 2 && sb[0] == '0' && sb[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
                 {
-                    sb.Remove(0, 1);
-                    sb[0] = '+';
+                    canonicalNumberBuilder.Remove(0, 1);
+                    canonicalNumberBuilder[0] = '+';
                 }
 
-                while (sb.Length > 0 && sb[0] == '0')
+                while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
                 {
-                    sb.Remove(0, 1);
+                    canonicalNumberBuilder.Remove(0, 1);
                 }
 
-                if (sb.Length > 0 && sb[0] != '+')
+                if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    sb.Insert(0, BulgarianCountryCode);
+                    canonicalNumberBuilder.Insert(0, BulgarianCountryCode);
                 }
             }
 
-            return sb.ToString();
+            return canonicalNumberBuilder.ToString();
         }
 
         private static void Print(string text)

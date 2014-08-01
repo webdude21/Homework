@@ -115,6 +115,61 @@
             Mock.Assert(this.carsData);
         }
 
+        [TestMethod]
+        public void SortByMakeShouldReturnView()
+        {
+            var sortedData = this.controller.Sort("make");
+            var models = (List<Car>)sortedData.Model;
+
+            Assert.AreEqual(1, models[0].Id);
+            Assert.AreEqual("Audi", models[0].Make);
+            Assert.AreEqual("A4", models[0].Model);
+            Assert.AreEqual(2005, models[0].Year);
+
+            Assert.AreEqual(2, models[1].Id);
+            Assert.AreEqual("BMW", models[1].Make);
+            Assert.AreEqual("325i", models[1].Model);
+            Assert.AreEqual(2008, models[1].Year);
+
+            Assert.AreEqual(3, models[2].Id);
+            Assert.AreEqual("BMW", models[2].Make);
+            Assert.AreEqual("330d", models[2].Model);
+            Assert.AreEqual(2007, models[2].Year);
+
+            Assert.AreEqual(4, models[3].Id);
+            Assert.AreEqual("Opel", models[3].Make);
+            Assert.AreEqual("Astra", models[3].Model);
+            Assert.AreEqual(2010, models[3].Year);
+        }
+
+        [TestMethod]
+        public void SortByYearShouldReturnView()
+        {
+            var sortedData = (IView)this.controller.Sort("year");
+            var models = (List<Car>)sortedData.Model;
+
+            Assert.AreEqual(1, models[0].Id);
+            Assert.AreEqual("Audi", models[0].Make);
+            Assert.AreEqual("A4", models[0].Model);
+            Assert.AreEqual(2005, models[0].Year);
+
+            Assert.AreEqual(3, models[1].Id);
+            Assert.AreEqual("BMW", models[1].Make);
+            Assert.AreEqual("330d", models[1].Model);
+            Assert.AreEqual(2007, models[1].Year);
+
+            Assert.AreEqual(2, models[2].Id);
+            Assert.AreEqual("BMW", models[2].Make);
+            Assert.AreEqual("325i", models[2].Model);
+            Assert.AreEqual(2008, models[2].Year);
+
+            Assert.AreEqual(4, models[3].Id);
+            Assert.AreEqual("Opel", models[3].Make);
+            Assert.AreEqual("Astra", models[3].Model);
+            Assert.AreEqual(2010, models[3].Year);
+        }
+
+
         private static object GetModel(Func<IView> funcView)
         {
             var view = funcView();

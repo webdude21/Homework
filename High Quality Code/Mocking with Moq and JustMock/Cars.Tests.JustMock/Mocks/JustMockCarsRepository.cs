@@ -18,6 +18,8 @@
             Mock.Arrange(() => this.CarsData.GetById(Arg.AnyInt)).Returns(this.FakeCarCollection.First());
             Mock.Arrange(() => this.CarsData.SortedByMake()).OccursOnce();
             Mock.Arrange(() => this.CarsData.SortedByYear()).OccursOnce();
+            Mock.Arrange(() => this.CarsData.SortedByMake()).Returns(this.FakeCarCollection.OrderBy(c => c.Make).ToList());
+            Mock.Arrange(() => this.CarsData.SortedByYear()).Returns(this.FakeCarCollection.OrderBy(c => c.Year).ToList());
         }
     }
 }

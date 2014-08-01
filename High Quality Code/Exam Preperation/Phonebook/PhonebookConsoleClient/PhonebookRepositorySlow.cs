@@ -15,9 +15,7 @@
             bool flag;
             if (old.Count() == 0)
             {
-                var obj = new PhoneContact();
-                obj.Name = name;
-                obj.PhoneEntries = new SortedSet<string>();
+                var obj = new PhoneContact(name);
 
                 foreach (var num in nums)
                 {

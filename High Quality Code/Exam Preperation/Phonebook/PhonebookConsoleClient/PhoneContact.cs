@@ -10,8 +10,13 @@
 
         private string name;
 
-        // TODO refactor this later
-        public SortedSet<string> PhoneEntries { get; set; }
+        public PhoneContact(string name)
+        {
+            this.Name = name;
+            this.PhoneEntries = new SortedSet<string>();
+        }
+
+        public SortedSet<string> PhoneEntries { get; private set; }
 
         public string Name
         {

@@ -8,46 +8,43 @@
 
     internal class RepositoryPhonebook : IPhonebookRepository
     {
-        private Dictionary<string, PhoneContact> dict = new Dictionary<string, PhoneContact>();
+        private readonly IDictionary<string, PhoneContact> entriesByName = new Dictionary<string, PhoneContact>();
 
-        private MultiDictionary<string, PhoneContact> multidict = new MultiDictionary<string, PhoneContact>(false);
+        private readonly MultiDictionary<string, PhoneContact> entriesByPhone = new MultiDictionary<string, PhoneContact>(false);
 
-        private OrderedSet<PhoneContact> sorted = new OrderedSet<PhoneContact>();
+        private readonly OrderedSet<PhoneContact> sortedEntries = new OrderedSet<PhoneContact>();
 
-        public bool AddPhone(string name, IEnumerable<string> nums)
+        public bool AddPhone(string name, IEnumerable<string> phoneNumbers)
         {
             var name2 = name.ToLowerInvariant();
             PhoneContact entry;
-            var flag = !this.dict.TryGetValue(name2, out entry);
+            var flag = !this.entriesByName.TryGetValue(name2, out entry);
             if (flag)
             {
-                entry = new PhoneContact();
-                entry.Name = name;
-                entry.PhoneEntries = new SortedSet<string>();
-                this.dict.Add(name2, entry);
-
-                this.sorted.Add(entry);
+                entry = new PhoneContact(name);
+                this.entriesByName.Add(name2, entry);
+                this.sortedEntries.Add(entry);
             }
 
-            foreach (var num in nums)
+            foreach (var num in phoneNumbers)
             {
-                this.multidict.Add(num, entry);
+                this.entriesByPhone.Add(num, entry);
             }
 
-            entry.PhoneEntries.UnionWith(nums);
+            entry.PhoneEntries.UnionWith(phoneNumbers);
             return flag;
         }
 
         public int ChangePhone(string oldent, string newent)
         {
-            var found = this.multidict[oldent].ToList();
+            var found = this.entriesByPhone[oldent].ToList();
             foreach (var entry in found)
             {
                 entry.PhoneEntries.Remove(oldent);
-                this.multidict.Remove(oldent, entry);
+                this.entriesByPhone.Remove(oldent, entry);
 
                 entry.PhoneEntries.Add(newent);
-                this.multidict.Add(newent, entry);
+                this.entriesByPhone.Add(newent, entry);
             }
 
             return found.Count;
@@ -55,7 +52,7 @@
 
         public PhoneContact[] ListEntries(int first, int num)
         {
-            if (first < 0 || first + num > this.dict.Count)
+            if (first < 0 || first + num > this.entriesByName.Count)
             {
                 Console.WriteLine("Invalid start index or count.");
                 return null;
@@ -65,7 +62,7 @@
 
             for (var i = first; i <= first + num - 1; i++)
             {
-                var entry = this.sorted[i];
+                var entry = this.sortedEntries[i];
                 list[i - first] = entry;
             }
 
