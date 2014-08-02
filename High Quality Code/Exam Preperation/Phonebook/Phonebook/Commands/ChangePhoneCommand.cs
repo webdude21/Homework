@@ -14,9 +14,6 @@
         {
         }
 
-        public ChangePhoneCommand()
-        {
-        }
 
         public override void Execute(IList<string> commandArguments)
         {

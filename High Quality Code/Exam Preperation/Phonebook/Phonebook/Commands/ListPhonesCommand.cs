@@ -15,10 +15,6 @@
         {
         }
 
-        public ListPhonesCommand()
-        {
-        }
-
         public override void Execute(IList<string> commandArguments)
         {
             try

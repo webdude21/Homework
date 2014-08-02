@@ -40,6 +40,7 @@
     <Compile Include="Commands\BasePhoneCommand.cs" />
     <Compile Include="Commands\ChangePhoneCommand.cs" />
     <Compile Include="Commands\ListPhonesCommand.cs" />
+    <Compile Include="Commands\RemovePhoneCommand.cs" />
     <Compile Include="Contracts\ICommandFactory.cs" />
     <Compile Include="Contracts\IPhonebookCommand.cs" />
     <Compile Include="Contracts\IPhonebookRepository.cs" />
