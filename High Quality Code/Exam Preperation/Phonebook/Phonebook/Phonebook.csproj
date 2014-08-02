@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Commands.cs" />
     <Compile Include="Contracts\IPhonebookRepository.cs" />
+    <Compile Include="PhonebookManager.cs" />
     <Compile Include="PhonebookRepositorySlow.cs" />
     <Compile Include="PhoneContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
