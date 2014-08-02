@@ -7,14 +7,16 @@
 
     public class AddPhoneCommand : BasePhoneCommand
     {
-        public AddPhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+        public AddPhoneCommand(
+            IOutputWritter outputWritter, 
+            ICanonicalPhoneConverter canonicalPhoneConverter, 
+            IPhonebookRepository phonebook)
             : base(outputWritter, canonicalPhoneConverter, phonebook)
         {
         }
 
         public AddPhoneCommand()
         {
-            
         }
 
         public override void Execute(IList<string> commandArguments)

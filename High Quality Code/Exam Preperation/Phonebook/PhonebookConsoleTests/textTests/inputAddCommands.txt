@@ -1,5 +1,0 @@
-AddPhone(Kalina, 0899 777 235, 02 / 981 11 11)
-AddPhone(kalina, +359899777235)
-AddPhone(KALINA, (+359) 899777236)
-AddPhone(Kalina (new), 0899 76 15 33)
-End

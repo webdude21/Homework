@@ -30,16 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PowerCollections">
-      <HintPath>..\packages\XAct.Wintellect.PowerCollections.0.0.1\lib\net20\PowerCollections.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CanonicalPhoneConverter.cs" />
@@ -55,10 +47,9 @@
     <Compile Include="Contracts\ICanonicalPhoneConverter.cs" />
     <Compile Include="OutputWritter.cs" />
     <Compile Include="PhonebookManager.cs" />
-    <Compile Include="Repositories\PhonebookRepositorySlow.cs" />
+    <Compile Include="Repositories\PhonebookRepository.cs" />
     <Compile Include="PhoneContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\PhonebookRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

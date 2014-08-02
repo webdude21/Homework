@@ -7,7 +7,10 @@
 
     public class ListPhonesCommand : BasePhoneCommand
     {
-        public ListPhonesCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+        public ListPhonesCommand(
+            IOutputWritter outputWritter, 
+            ICanonicalPhoneConverter canonicalPhoneConverter, 
+            IPhonebookRepository phonebook)
             : base(outputWritter, canonicalPhoneConverter, phonebook)
         {
         }
@@ -20,7 +23,9 @@
         {
             try
             {
-                var entries = this.PhonebookRepository.ListEntries(int.Parse(commandArguments[0]), int.Parse(commandArguments[1]));
+                var entries = this.PhonebookRepository.ListEntries(
+                    int.Parse(commandArguments[0]), 
+                    int.Parse(commandArguments[1]));
                 foreach (var entry in entries)
                 {
                     this.OutputWritter.WriteOutput(entry.ToString());

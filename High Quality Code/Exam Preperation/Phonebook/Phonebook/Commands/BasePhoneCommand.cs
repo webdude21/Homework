@@ -8,7 +8,10 @@
 
     public abstract class BasePhoneCommand : IPhonebookCommand
     {
-        protected BasePhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+        protected BasePhoneCommand(
+            IOutputWritter outputWritter, 
+            ICanonicalPhoneConverter canonicalPhoneConverter, 
+            IPhonebookRepository phonebook)
         {
             this.CanonicalPhoneConverter = canonicalPhoneConverter;
             this.OutputWritter = outputWritter;

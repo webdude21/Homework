@@ -6,61 +6,74 @@
 
     using Phonebook.Contracts;
 
-    using Wintellect.PowerCollections;
-
     public class PhonebookRepository : IPhonebookRepository
     {
-        private readonly IDictionary<string, PhoneContact> entriesByName = new Dictionary<string, PhoneContact>();
+        private readonly List<PhoneContact> phonebookEntries = new List<PhoneContact>();
 
-        private readonly MultiDictionary<string, PhoneContact> entriesByPhone =
-            new MultiDictionary<string, PhoneContact>(false);
-
-        private readonly OrderedSet<PhoneContact> sortedEntries = new OrderedSet<PhoneContact>();
-
-        public bool AddPhone(string name, IEnumerable<string> phoneNumbers)
+        public bool AddPhone(string contactName, IEnumerable<string> phoneNumbers)
         {
-            var name2 = name.ToLowerInvariant();
-            PhoneContact entry;
-            var flag = !this.entriesByName.TryGetValue(name2, out entry);
-            if (flag)
+            var phoneEntriesForThisContactName = this.GetAllPhoneEntriesByContactName(contactName);
+            var phoneContactEntry = phoneEntriesForThisContactName.FirstOrDefault();
+            var isNewEntry = phoneContactEntry == null;
+
+            if (isNewEntry)
             {
-                entry = new PhoneContact(name);
-                this.entriesByName.Add(name2, entry);
-                this.sortedEntries.Add(entry);
+                phoneContactEntry = new PhoneContact(contactName);
+                this.phonebookEntries.Add(phoneContactEntry);
             }
 
-            foreach (var num in phoneNumbers)
-            {
-                this.entriesByPhone.Add(num, entry);
-            }
+            AddPhoneNumbersToPhoneContact(phoneNumbers, phoneContactEntry);
 
-            entry.PhoneEntries.UnionWith(phoneNumbers);
-            return flag;
+            return isNewEntry;
         }
 
-        public int ChangePhone(string oldent, string newent)
+        public int ChangePhone(string oldNumber, string newNumber)
         {
-            var found = this.entriesByPhone[oldent].ToList();
-            foreach (var entry in found)
-            {
-                entry.PhoneEntries.Remove(oldent);
-                this.entriesByPhone.Remove(oldent, entry);
+            var phoneEntriesWithOldNumber = this.RetrievePhoneEntriesWith(oldNumber);
 
-                entry.PhoneEntries.Add(newent);
-                this.entriesByPhone.Add(newent, entry);
+            var entries = phoneEntriesWithOldNumber as IList<PhoneContact> ?? phoneEntriesWithOldNumber.ToList();
+            foreach (var entry in entries)
+            {
+                entry.PhoneEntries.Remove(oldNumber);
+                entry.PhoneEntries.Add(newNumber);
             }
 
-            return found.Count;
+            return entries.Count();
         }
 
         public IEnumerable<PhoneContact> ListEntries(int startingNumber, int phoneNumbersCount)
         {
-            if (startingNumber < 0 || startingNumber + phoneNumbersCount > this.entriesByName.Count)
+            var isOutsideTheValidRange = startingNumber < 0
+                                         || startingNumber + phoneNumbersCount > this.phonebookEntries.Count;
+
+            if (isOutsideTheValidRange)
             {
-                throw new ArgumentException("Invalid start index or count.");
+                throw new ArgumentOutOfRangeException("startingNumber", "Invalid start index or count.");
             }
 
-            return this.sortedEntries.ToList().GetRange(startingNumber, phoneNumbersCount);
+            this.phonebookEntries.Sort();
+
+            return this.phonebookEntries.GetRange(startingNumber, phoneNumbersCount);
+        }
+
+        private static void AddPhoneNumbersToPhoneContact(IEnumerable<string> phoneNumbers, PhoneContact phoneContact)
+        {
+            foreach (var phoneNumber in phoneNumbers)
+            {
+                phoneContact.PhoneEntries.Add(phoneNumber);
+            }
+        }
+
+        private IEnumerable<PhoneContact> RetrievePhoneEntriesWith(string oldNumber)
+        {
+            return from entry in this.phonebookEntries where entry.PhoneEntries.Contains(oldNumber) select entry;
+        }
+
+        private IEnumerable<PhoneContact> GetAllPhoneEntriesByContactName(string contactName)
+        {
+            return from phoneEntries in this.phonebookEntries
+                   where string.Equals(phoneEntries.Name, contactName, StringComparison.InvariantCultureIgnoreCase)
+                   select phoneEntries;
         }
     }
 }

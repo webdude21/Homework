@@ -7,92 +7,39 @@
 
     public class CanonicalPhoneConverter : ICanonicalPhoneConverter
     {
-        private readonly string countryCode = "+359";
+        private readonly string countryCode;
 
-        public CanonicalPhoneConverter(string countryCode)
+        public CanonicalPhoneConverter(string countryCode = "+359")
         {
             this.countryCode = countryCode;
         }
 
-        public CanonicalPhoneConverter()
-        {
-            
-        }
-
         public string ConvertToCanonical(string number)
         {
-            var canonicalNumberBuilder = new StringBuilder();
+            var canonicalNumber = new StringBuilder();
 
-            canonicalNumberBuilder.Clear();
             foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
             {
-                canonicalNumberBuilder.Append(ch);
+                canonicalNumber.Append(ch);
             }
 
-            if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
-                && canonicalNumberBuilder[1] == '0')
+            if (canonicalNumber.Length >= 2 && canonicalNumber[0] == '0' && canonicalNumber[1] == '0')
             {
-                canonicalNumberBuilder.Remove(0, 1);
-                canonicalNumberBuilder[0] = '+';
+                canonicalNumber.Remove(0, 1);
+                canonicalNumber[0] = '+';
             }
 
-            while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
+            while (canonicalNumber.Length > 0 && canonicalNumber[0] == '0')
             {
-                canonicalNumberBuilder.Remove(0, 1);
+                canonicalNumber.Remove(0, 1);
             }
 
-            if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
+            if (canonicalNumber.Length > 0 && canonicalNumber[0] != '+')
             {
-                canonicalNumberBuilder.Insert(0, this.countryCode);
+                canonicalNumber.Insert(0, this.countryCode);
             }
 
-            canonicalNumberBuilder.Clear();
-            foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
-            {
-                canonicalNumberBuilder.Append(ch);
-            }
-
-            if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
-                && canonicalNumberBuilder[1] == '0')
-            {
-                canonicalNumberBuilder.Remove(0, 1);
-                canonicalNumberBuilder[0] = '+';
-            }
-
-            while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
-            {
-                canonicalNumberBuilder.Remove(0, 1);
-            }
-
-            if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
-            {
-                canonicalNumberBuilder.Insert(0, this.countryCode);
-            }
-
-            canonicalNumberBuilder.Clear();
-            foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
-            {
-                canonicalNumberBuilder.Append(ch);
-            }
-
-            if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
-                && canonicalNumberBuilder[1] == '0')
-            {
-                canonicalNumberBuilder.Remove(0, 1);
-                canonicalNumberBuilder[0] = '+';
-            }
-
-            while (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] == '0')
-            {
-                canonicalNumberBuilder.Remove(0, 1);
-            }
-
-            if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
-            {
-                canonicalNumberBuilder.Insert(0, this.countryCode);
-            }
-
-            return canonicalNumberBuilder.ToString();
+            return canonicalNumber.ToString();
         }
     }
 }

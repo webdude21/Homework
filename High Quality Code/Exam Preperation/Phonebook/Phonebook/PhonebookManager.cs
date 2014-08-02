@@ -10,19 +10,16 @@
 
     public class PhonebookManager
     {
+        private readonly ICommandFactory commandFactory;
+
         private readonly string defaultCountryCode = "+359";
 
         private readonly IOutputWritter resultReporter;
 
-        private readonly ICommandFactory commandFactory;
-
-        /// <summary>
-        /// This is the Phonebook Manager Constructor with inversion of control implemented
-        /// </summary>
-        /// <param name="defaultCountryCode">Provide the default Country Code To be used by the class</param>
-        /// <param name="resultReporter"></param>
-        /// <param name="commandFactory"></param>
-        public PhonebookManager(string defaultCountryCode, IOutputWritter resultReporter, ICommandFactory commandFactory)
+        public PhonebookManager(
+            string defaultCountryCode, 
+            IOutputWritter resultReporter, 
+            ICommandFactory commandFactory)
         {
             this.defaultCountryCode = defaultCountryCode;
             this.resultReporter = resultReporter;
@@ -33,9 +30,9 @@
         {
             this.resultReporter = new OutputWritter(new StringBuilder());
             this.commandFactory = new CommandFactory(
-                this.resultReporter,
-                new CanonicalPhoneConverter(this.defaultCountryCode),
-                new PhonebookRepositorySlow());
+                this.resultReporter, 
+                new CanonicalPhoneConverter(this.defaultCountryCode), 
+                new PhonebookRepository());
         }
 
         public string ReportResult
@@ -62,7 +59,7 @@
             var commandString = currentCommandLine.Substring(0, indexOfFirstOpeningBracket);
 
             var commandsAsString = currentCommandLine.Substring(
-                indexOfFirstOpeningBracket + 1,
+                indexOfFirstOpeningBracket + 1, 
                 currentCommandLine.Length - indexOfFirstOpeningBracket - 2);
 
             var commandArguments = commandsAsString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

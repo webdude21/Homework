@@ -1,7 +1,6 @@
 ﻿namespace PhonebookConsoleTests
 {
     using System;
-    using System.Text;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,6 +24,7 @@
             var actualResultMessage = this.TestCommandRunner(TestCommand);
             Assert.AreEqual(expectedMessage, actualResultMessage);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void SendingInvalidCommandShouldThrowAnException()
