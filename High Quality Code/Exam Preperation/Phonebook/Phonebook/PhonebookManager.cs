@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    using PhonebookConsoleClient;
+    using Phonebook;
 
     public class PhonebookManager
     {

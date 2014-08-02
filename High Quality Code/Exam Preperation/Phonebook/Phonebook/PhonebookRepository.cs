@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using PhonebookConsoleClient;
-
     using Wintellect.PowerCollections;
 
     public class PhonebookRepository : IPhonebookRepository

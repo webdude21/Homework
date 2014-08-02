@@ -1,4 +1,4 @@
-﻿namespace PhonebookConsoleClient
+﻿namespace Phonebook
 {
     using System.Collections.Generic;
 

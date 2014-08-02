@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using PhonebookConsoleClient;
-
     public class PhonebookRepositorySlow : IPhonebookRepository
     {
         private readonly List<PhoneContact> phonebookEntries = new List<PhoneContact>();

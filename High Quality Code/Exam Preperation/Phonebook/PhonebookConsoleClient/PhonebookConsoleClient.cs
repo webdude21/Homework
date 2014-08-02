@@ -1,9 +1,7 @@
-namespace PhonebookConsoleClient
+namespace Phonebook
 {
     using System;
     using System.Text;
-
-    using Phonebook;
 
     public static class PhonebookConsoleClient
     {

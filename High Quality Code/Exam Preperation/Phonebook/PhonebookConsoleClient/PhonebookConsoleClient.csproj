@@ -7,7 +7,7 @@
     <ProjectGuid>{D60D857E-37F2-4205-BAB5-EE3C4B7B1911}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhonebookConsoleClient</RootNamespace>
+    <RootNamespace>Phonebook</RootNamespace>
     <AssemblyName>PhonebookConsoleClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

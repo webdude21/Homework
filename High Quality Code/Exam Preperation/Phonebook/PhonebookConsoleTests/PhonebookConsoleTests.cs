@@ -5,7 +5,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using PhonebookConsoleClient;
+    using Phonebook;
 
     [TestClass]
     public class PhonebookConsoleTests
