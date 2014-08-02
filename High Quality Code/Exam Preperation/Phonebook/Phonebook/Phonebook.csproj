@@ -48,7 +48,7 @@
     <Compile Include="PhonebookRepositorySlow.cs" />
     <Compile Include="PhoneContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryPhonebook.cs" />
+    <Compile Include="PhonebookRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

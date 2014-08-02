@@ -31,7 +31,6 @@
             Assert.AreEqual(
                 new StreamReader(expectedResultFilePath).ReadToEnd(),
                 new StreamReader(actualResultFilePath).ReadToEnd());
-
         }
     }
 }

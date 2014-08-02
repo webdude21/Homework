@@ -8,7 +8,7 @@
 
     using Wintellect.PowerCollections;
 
-    internal class RepositoryPhonebook : IPhonebookRepository
+    public class PhonebookRepository : IPhonebookRepository
     {
         private readonly IDictionary<string, PhoneContact> entriesByName = new Dictionary<string, PhoneContact>();
 

@@ -51,12 +51,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PhonebookConsoleTests.cs" />
+    <Compile Include="PhonebookManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhonebookConsoleClient\PhonebookConsoleClient.csproj">
       <Project>{d60d857e-37f2-4205-bab5-ee3c4b7b1911}</Project>
       <Name>PhonebookConsoleClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phonebook\Phonebook.csproj">
+      <Project>{50476c1f-3dcb-476d-b493-4f57a5bed2ae}</Project>
+      <Name>Phonebook</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

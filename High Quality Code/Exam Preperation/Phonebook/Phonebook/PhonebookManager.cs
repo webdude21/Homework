@@ -9,17 +9,36 @@
 
     public class PhonebookManager
     {
-        private const string DefaultCountryCode = "+359";
+        private readonly IPhonebookRepository phonebook;
 
-        private static readonly IPhonebookRepository Phonebook = new PhonebookRepositorySlow();
+        private readonly StringBuilder resultReporter;
 
-        private readonly StringBuilder reportData = new StringBuilder();
+        private readonly string countryCode = "+359";
 
-        public string ReportData
+        /// <summary>
+        /// This is the Phonebook Manager Constructor with inversion of control implemented
+        /// </summary>
+        /// <param name="defaultCountryCode">Provide the default Country Code To be used by the class</param>
+        /// <param name="phonebook"></param>
+        /// <param name="resultReporter"></param>
+        public PhonebookManager(string defaultCountryCode, IPhonebookRepository phonebook, StringBuilder resultReporter)
+        {
+            this.countryCode = defaultCountryCode;
+            this.phonebook = phonebook;
+            this.resultReporter = resultReporter;
+        }
+
+        public PhonebookManager()
+        {
+            this.phonebook = new PhonebookRepositorySlow();
+            this.resultReporter = new StringBuilder();
+        }
+
+        public string ReportResult
         {
             get
             {
-                return this.reportData.ToString();
+                return this.resultReporter.ToString();
             }
         }
 
@@ -71,7 +90,6 @@
             {
                 case Commands.AddPhone:
                     {
-                        // first command
                         var str0 = strings[0];
                         var str1 = strings.Skip(1).ToList();
                         for (var i = 0; i < str1.Count; i++)
@@ -79,7 +97,7 @@
                             str1[i] = this.ConvertToCanonical(str1[i]);
                         }
 
-                        var flag = Phonebook.AddPhone(str0, str1);
+                        var flag = this.phonebook.AddPhone(str0, str1);
 
                         this.WriteOutput(flag ? "Phone entry created" : "Phone entry merged");
                     }
@@ -88,14 +106,14 @@
                 case Commands.ChangeРhone:
                     this.WriteOutput(
                         string.Empty
-                        + Phonebook.ChangePhone(
+                        + this.phonebook.ChangePhone(
                             this.ConvertToCanonical(strings[0]), 
                             this.ConvertToCanonical(strings[1])) + " numbers changed");
                     break;
                 case Commands.List:
                     try
                     {
-                        var entries = Phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
+                        var entries = this.phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
                         foreach (var entry in entries)
                         {
                             this.WriteOutput(entry.ToString());
@@ -113,7 +131,7 @@
         private string ConvertToCanonical(string number)
         {
             var canonicalNumberBuilder = new StringBuilder();
-            for (var i = 0; i <= this.reportData.Length; i++)
+            for (var i = 0; i <= this.resultReporter.Length; i++)
             {
                 canonicalNumberBuilder.Clear();
                 foreach (var ch in number.Where(ch => char.IsDigit(ch) || (ch == '+')))
@@ -135,7 +153,7 @@
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
+                    canonicalNumberBuilder.Insert(0, this.countryCode);
                 }
 
                 canonicalNumberBuilder.Clear();
@@ -158,7 +176,7 @@
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
+                    canonicalNumberBuilder.Insert(0, this.countryCode);
                 }
 
                 canonicalNumberBuilder.Clear();
@@ -181,7 +199,7 @@
 
                 if (canonicalNumberBuilder.Length > 0 && canonicalNumberBuilder[0] != '+')
                 {
-                    canonicalNumberBuilder.Insert(0, DefaultCountryCode);
+                    canonicalNumberBuilder.Insert(0, this.countryCode);
                 }
             }
 
@@ -190,7 +208,7 @@
 
         private void WriteOutput(string text)
         {
-            this.reportData.AppendLine(text);
+            this.resultReporter.AppendLine(text);
         }
     }
 }

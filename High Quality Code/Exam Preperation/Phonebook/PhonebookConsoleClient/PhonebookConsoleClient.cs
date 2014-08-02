@@ -1,6 +1,7 @@
 namespace PhonebookConsoleClient
 {
     using System;
+    using System.Text;
 
     using Phonebook;
 
@@ -9,8 +10,7 @@ namespace PhonebookConsoleClient
         public static void Main()
         {
             var endCommandRecieved = false;
-
-            var phoneBookManager = new PhonebookManager();
+            var phoneBookManager = new PhonebookManager("+359", new PhonebookRepositorySlow(), new StringBuilder());
 
             while (!endCommandRecieved)
             {
@@ -18,7 +18,7 @@ namespace PhonebookConsoleClient
                 endCommandRecieved = phoneBookManager.ExecuteCommand(currentCommandLine);
             }
 
-            Console.Write(phoneBookManager.ReportData);
+            Console.Write(phoneBookManager.ReportResult);
         }
     }
 }
