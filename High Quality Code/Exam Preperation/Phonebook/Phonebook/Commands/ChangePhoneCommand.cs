@@ -4,11 +4,25 @@
 
     using Phonebook.Contracts;
 
-    public class ChangePhoneCommand : IPhonebookCommand
+    public class ChangePhoneCommand : BaseCommand
     {
-        public void Execute(IList<string> commandArguments)
+        public ChangePhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+            : base(outputWritter, canonicalPhoneConverter, phonebook)
         {
-          
+        }
+
+        public ChangePhoneCommand()
+        {
+
+        }
+
+        public override void Execute(IList<string> commandArguments)
+        {
+            this.OutputWritter.WriteOutput(
+         string.Empty
+         + this.PhonebookRepository.ChangePhone(
+             this.CanonicalPhoneConverter.ConvertToCanonical(commandArguments[0]),
+             this.CanonicalPhoneConverter.ConvertToCanonical(commandArguments[1])) + " numbers changed");
         }
     }
 }

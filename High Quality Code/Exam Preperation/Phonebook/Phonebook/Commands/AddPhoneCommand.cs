@@ -7,8 +7,8 @@
 
     public class AddPhoneCommand : BaseCommand
     {
-        public AddPhoneCommand(IOutputWritter outputWritter)
-            : base(outputWritter)
+        public AddPhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+            : base(outputWritter, canonicalPhoneConverter, phonebook)
         {
         }
 
@@ -24,10 +24,10 @@
 
             for (var index = 0; index < phoneNumbers.Count; index++)
             {
-                phoneNumbers[index] = this.ConvertToCanonical(phoneNumbers[index]);
+                phoneNumbers[index] = this.CanonicalPhoneConverter.ConvertToCanonical(phoneNumbers[index]);
             }
 
-            var isNewEntry = this.phonebook.AddPhone(contactName, phoneNumbers);
+            var isNewEntry = this.PhonebookRepository.AddPhone(contactName, phoneNumbers);
 
             this.OutputWritter.WriteOutput(isNewEntry ? "Phone entry created" : "Phone entry merged");
         }
