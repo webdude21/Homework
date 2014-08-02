@@ -5,7 +5,9 @@ namespace PhonebookConsoleClient
     using System.Linq;
     using System.Text;
 
-    public class PhonebookConsoleClient
+    using Phonebook;
+
+    public static class PhonebookConsoleClient
     {
         private const string DefaultCountryCode = "+359";
 
@@ -31,7 +33,9 @@ namespace PhonebookConsoleClient
 
                 var commandString = currentCommandLine.Substring(0, indexOfFirstOpeningBracket);
 
-                var commandsAsString = currentCommandLine.Substring(indexOfFirstOpeningBracket + 1, currentCommandLine.Length - indexOfFirstOpeningBracket - 2);
+                var commandsAsString = currentCommandLine.Substring(
+                    indexOfFirstOpeningBracket + 1, 
+                    currentCommandLine.Length - indexOfFirstOpeningBracket - 2);
 
                 var commandArguments = commandsAsString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -75,14 +79,18 @@ namespace PhonebookConsoleClient
 
                         Print(flag ? "Phone entry created" : "Phone entry merged");
                     }
+
                     break;
                 case Commands.Change–hone:
-                    Print(string.Empty + Phonebook.ChangePhone(ConvertToCanonical(strings[0]), ConvertToCanonical(strings[1])) + " numbers changed");
+                    Print(
+                        string.Empty
+                        + Phonebook.ChangePhone(ConvertToCanonical(strings[0]), ConvertToCanonical(strings[1]))
+                        + " numbers changed");
                     break;
                 case Commands.List:
                     try
                     {
-                        IEnumerable<PhoneContact> entries = Phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
+                        var entries = Phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
                         foreach (var entry in entries)
                         {
                             Print(entry.ToString());
@@ -92,6 +100,7 @@ namespace PhonebookConsoleClient
                     {
                         Print("Invalid range");
                     }
+
                     break;
             }
         }
@@ -107,7 +116,8 @@ namespace PhonebookConsoleClient
                     canonicalNumberBuilder.Append(ch);
                 }
 
-                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
+                    && canonicalNumberBuilder[1] == '0')
                 {
                     canonicalNumberBuilder.Remove(0, 1);
                     canonicalNumberBuilder[0] = '+';
@@ -129,7 +139,8 @@ namespace PhonebookConsoleClient
                     canonicalNumberBuilder.Append(ch);
                 }
 
-                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
+                    && canonicalNumberBuilder[1] == '0')
                 {
                     canonicalNumberBuilder.Remove(0, 1);
                     canonicalNumberBuilder[0] = '+';
@@ -151,7 +162,8 @@ namespace PhonebookConsoleClient
                     canonicalNumberBuilder.Append(ch);
                 }
 
-                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0' && canonicalNumberBuilder[1] == '0')
+                if (canonicalNumberBuilder.Length >= 2 && canonicalNumberBuilder[0] == '0'
+                    && canonicalNumberBuilder[1] == '0')
                 {
                     canonicalNumberBuilder.Remove(0, 1);
                     canonicalNumberBuilder[0] = '+';

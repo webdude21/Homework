@@ -1,8 +1,10 @@
-﻿namespace PhonebookConsoleClient
+﻿namespace Phonebook
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using PhonebookConsoleClient;
 
     public class PhonebookRepositorySlow : IPhonebookRepository
     {
@@ -10,33 +12,24 @@
 
         public bool AddPhone(string contactName, IEnumerable<string> phoneNumbers)
         {
-            var old = from e in this.phonebookEntries where string.Equals(e.Name, contactName, StringComparison.InvariantCultureIgnoreCase) select e;
-            var record = old.FirstOrDefault();
+            var phoneEntriesForThisContactName = this.GetAllPhoneEntriesByContactName(contactName);
+            var phoneContactEntry = phoneEntriesForThisContactName.FirstOrDefault();
+            var isNewEntry = phoneContactEntry == null;
 
-            if (record == null)
+            if (isNewEntry)
             {
-                var obj = new PhoneContact(contactName);
-
-                foreach (var phoneNumber in phoneNumbers)
-                {
-                    obj.PhoneEntries.Add(phoneNumber);
-                }
-
-                this.phonebookEntries.Add(obj);
-                return true;
+                phoneContactEntry = new PhoneContact(contactName);
+                this.phonebookEntries.Add(phoneContactEntry);
             }
 
-            foreach (var phoneNumber in phoneNumbers)
-            {
-                record.PhoneEntries.Add(phoneNumber);
-            }
+            AddPhoneNumbersToPhoneContact(phoneNumbers, phoneContactEntry);
 
-            return false;
+            return isNewEntry;
         }
 
         public int ChangePhone(string oldNumber, string newNumber)
         {
-            var phoneEntriesWithOldNumber = from entry in this.phonebookEntries where entry.PhoneEntries.Contains(oldNumber) select entry;
+            var phoneEntriesWithOldNumber = this.RetrievePhoneEntriesWith(oldNumber);
 
             var entries = phoneEntriesWithOldNumber as IList<PhoneContact> ?? phoneEntriesWithOldNumber.ToList();
             foreach (var entry in entries)
@@ -50,14 +43,36 @@
 
         public IEnumerable<PhoneContact> ListEntries(int startingNumber, int numbersCount)
         {
-            if (startingNumber < 0 || startingNumber + numbersCount > this.phonebookEntries.Count)
+            var isInTheValidRange = startingNumber < 0 || startingNumber + numbersCount > this.phonebookEntries.Count;
+
+            if (isInTheValidRange)
             {
                 throw new ArgumentOutOfRangeException("startingNumber", "Invalid start index or count.");
             }
 
             this.phonebookEntries.Sort();
-  
+
             return this.phonebookEntries.GetRange(startingNumber, numbersCount);
+        }
+
+        private static void AddPhoneNumbersToPhoneContact(IEnumerable<string> phoneNumbers, PhoneContact phoneContact)
+        {
+            foreach (var phoneNumber in phoneNumbers)
+            {
+                phoneContact.PhoneEntries.Add(phoneNumber);
+            }
+        }
+
+        private IEnumerable<PhoneContact> RetrievePhoneEntriesWith(string oldNumber)
+        {
+            return from entry in this.phonebookEntries where entry.PhoneEntries.Contains(oldNumber) select entry;
+        }
+
+        private IEnumerable<PhoneContact> GetAllPhoneEntriesByContactName(string contactName)
+        {
+            return from phoneEntries in this.phonebookEntries
+                   where string.Equals(phoneEntries.Name, contactName, StringComparison.InvariantCultureIgnoreCase)
+                   select phoneEntries;
         }
     }
 }

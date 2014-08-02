@@ -11,23 +11,12 @@
     public class PhonebookConsoleTests
     {
         private const string TestPath = @"..\..\textTests\";
-         [TestMethod]
+        [TestMethod]
         public void ZeroTestMainMethod()
         {
             ConsoleTest(TestPath + "expectedresult.txt", TestPath + "input.txt", TestPath + "result.txt");
         }
 
-        [TestMethod]
-        public void AddCommandTests()
-        {
-            ConsoleTest(
-                TestPath + "expectedresultAddCommands.txt",
-                TestPath + "inputAddCommands.txt",
-                TestPath + "resultAddCommands.txt");
-        }
-
-        [TestMethod]
-  
         private static void ConsoleTest(string expectedResultFilePath, string inputTestFilePath, string actualResultFilePath)
         {
             var streamWriter = new StreamWriter(actualResultFilePath);
