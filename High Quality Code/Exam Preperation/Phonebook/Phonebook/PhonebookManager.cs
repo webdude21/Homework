@@ -5,33 +5,34 @@
     using System.Linq;
     using System.Text;
 
-    using Phonebook;
+    using Phonebook.Commands;
+    using Phonebook.Contracts;
 
     public class PhonebookManager
     {
+        private readonly string countryCode = "+359";
+
         private readonly IPhonebookRepository phonebook;
 
-        private readonly StringBuilder resultReporter;
-
-        private readonly string countryCode = "+359";
+        private readonly IOutputWritter resultReporter;
 
         /// <summary>
         /// This is the Phonebook Manager Constructor with inversion of control implemented
         /// </summary>
         /// <param name="defaultCountryCode">Provide the default Country Code To be used by the class</param>
-        /// <param name="phonebook"></param>
+        /// <param name="phonebookRepository"></param>
         /// <param name="resultReporter"></param>
-        public PhonebookManager(string defaultCountryCode, IPhonebookRepository phonebook, StringBuilder resultReporter)
+        public PhonebookManager(string defaultCountryCode, IPhonebookRepository phonebookRepository, IOutputWritter resultReporter)
         {
             this.countryCode = defaultCountryCode;
-            this.phonebook = phonebook;
+            this.phonebook = phonebookRepository;
             this.resultReporter = resultReporter;
         }
 
         public PhonebookManager()
         {
             this.phonebook = new PhonebookRepositorySlow();
-            this.resultReporter = new StringBuilder();
+            this.resultReporter = new OutputWritter(new StringBuilder());
         }
 
         public string ReportResult
@@ -42,7 +43,7 @@
             }
         }
 
-        public bool ExecuteCommand(string currentCommandLine)
+        public bool ReadCommand(string currentCommandLine)
         {
             if (currentCommandLine == "End" || currentCommandLine == null)
             {
@@ -63,69 +64,72 @@
 
             var commandArguments = commandsAsString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            this.InterpretCommand(commandString, commandArguments);
+            this.ExecuteCommand(commandString, commandArguments);
 
             return false;
         }
 
-        private void InterpretCommand(string commandString, IList<string> commandArguments)
+        private void ExecuteCommand(string commandString, IList<string> commandArguments)
         {
+            IPhonebookCommand command = new ListPhonesCommand();
+
             if (commandString.StartsWith("AddPhone") && (commandArguments.Count >= 2))
             {
-                this.CommandExecutor(Commands.AddPhone, commandArguments);
+                command = new AddPhoneCommand();
+                this.AddPhone(commandArguments);
             }
             else if ((commandString == "ChangePhone") && (commandArguments.Count == 2))
             {
-                this.CommandExecutor(Commands.ChangeРhone, commandArguments);
+                command = new ChangePhoneCommand();
+                this.ChangePhone(commandArguments);
             }
             else if ((commandString == "List") && (commandArguments.Count == 2))
             {
-                this.CommandExecutor(Commands.List, commandArguments);
+                command = new ListPhonesCommand();
+                this.List(commandArguments);
+            }
+
+            command.Execute(commandArguments);
+        }
+
+        private void List(IList<string> commandArguments)
+        {
+            try
+            {
+                var entries = this.phonebook.ListEntries(int.Parse(commandArguments[0]), int.Parse(commandArguments[1]));
+                foreach (var entry in entries)
+                {
+                    this.resultReporter.WriteOutput(entry.ToString());
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                this.resultReporter.WriteOutput("Invalid range");
             }
         }
 
-        private void CommandExecutor(Commands command, IList<string> strings)
+        private void ChangePhone(IList<string> commandArguments)
         {
-            switch (command)
+            this.resultReporter.WriteOutput(
+                string.Empty
+                + this.phonebook.ChangePhone(
+                    this.ConvertToCanonical(commandArguments[0]), 
+                    this.ConvertToCanonical(commandArguments[1])) + " numbers changed");
+        }
+
+        private void AddPhone(IList<string> commandArguments)
+        {
+            var contactName = commandArguments[0];
+            var phoneNumbers = commandArguments.Skip(1).ToList();
+
+            for (var index = 0; index < phoneNumbers.Count; index++)
             {
-                case Commands.AddPhone:
-                    {
-                        var str0 = strings[0];
-                        var str1 = strings.Skip(1).ToList();
-                        for (var i = 0; i < str1.Count; i++)
-                        {
-                            str1[i] = this.ConvertToCanonical(str1[i]);
-                        }
-
-                        var flag = this.phonebook.AddPhone(str0, str1);
-
-                        this.WriteOutput(flag ? "Phone entry created" : "Phone entry merged");
-                    }
-
-                    break;
-                case Commands.ChangeРhone:
-                    this.WriteOutput(
-                        string.Empty
-                        + this.phonebook.ChangePhone(
-                            this.ConvertToCanonical(strings[0]), 
-                            this.ConvertToCanonical(strings[1])) + " numbers changed");
-                    break;
-                case Commands.List:
-                    try
-                    {
-                        var entries = this.phonebook.ListEntries(int.Parse(strings[0]), int.Parse(strings[1]));
-                        foreach (var entry in entries)
-                        {
-                            this.WriteOutput(entry.ToString());
-                        }
-                    }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        this.WriteOutput("Invalid range");
-                    }
-
-                    break;
+                phoneNumbers[index] = this.ConvertToCanonical(phoneNumbers[index]);
             }
+
+            var isNewEntry = this.phonebook.AddPhone(contactName, phoneNumbers);
+
+            this.resultReporter.WriteOutput(isNewEntry ? "Phone entry created" : "Phone entry merged");
         }
 
         private string ConvertToCanonical(string number)
@@ -204,11 +208,6 @@
             }
 
             return canonicalNumberBuilder.ToString();
-        }
-
-        private void WriteOutput(string text)
-        {
-            this.resultReporter.AppendLine(text);
         }
     }
 }

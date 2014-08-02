@@ -42,8 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands.cs" />
+    <Compile Include="Commands\AddPhoneCommand.cs" />
+    <Compile Include="Commands\ChangePhoneCommand.cs" />
+    <Compile Include="Commands\ListPhonesCommand.cs" />
+    <Compile Include="Contracts\IPhonebookCommand.cs" />
     <Compile Include="Contracts\IPhonebookRepository.cs" />
+    <Compile Include="Contracts\IOutputWritter.cs" />
+    <Compile Include="OutputWritter.cs" />
     <Compile Include="PhonebookManager.cs" />
     <Compile Include="PhonebookRepositorySlow.cs" />
     <Compile Include="PhoneContact.cs" />

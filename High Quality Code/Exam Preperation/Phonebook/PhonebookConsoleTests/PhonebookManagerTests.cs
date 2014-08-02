@@ -14,7 +14,7 @@
 
         public PhonebookManagerTests()
         {
-            this.phoneBookManager = new PhonebookManager("+359", new PhonebookRepositorySlow(), new StringBuilder());
+            this.phoneBookManager = new PhonebookManager();
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@
 
         public string TestCommandRunner(string currentCommandLine)
         {
-            this.phoneBookManager.ExecuteCommand(currentCommandLine);
+            this.phoneBookManager.ReadCommand(currentCommandLine);
             return this.phoneBookManager.ReportResult;
         }
     }
