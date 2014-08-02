@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddPhoneCommand.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\ChangePhoneCommand.cs" />
     <Compile Include="Commands\ListPhonesCommand.cs" />
     <Compile Include="Contracts\IPhonebookCommand.cs" />

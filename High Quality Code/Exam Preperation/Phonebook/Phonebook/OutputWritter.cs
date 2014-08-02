@@ -4,6 +4,9 @@
 
     using Phonebook.Contracts;
 
+    /// <summary>
+    /// Strategy Pattern
+    /// </summary>
     public class OutputWritter : IOutputWritter
     {
         private readonly StringBuilder stringBuilder;
