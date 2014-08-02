@@ -5,7 +5,7 @@
 
     using Phonebook.Contracts;
 
-    public class AddPhoneCommand : BaseCommand
+    public class AddPhoneCommand : BasePhoneCommand
     {
         public AddPhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
             : base(outputWritter, canonicalPhoneConverter, phonebook)

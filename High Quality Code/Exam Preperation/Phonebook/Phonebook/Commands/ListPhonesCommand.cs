@@ -2,11 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using Phonebook.Contracts;
 
-    public class ListPhonesCommand : BaseCommand
+    public class ListPhonesCommand : BasePhoneCommand
     {
         public ListPhonesCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
             : base(outputWritter, canonicalPhoneConverter, phonebook)
@@ -15,7 +14,6 @@
 
         public ListPhonesCommand()
         {
-
         }
 
         public override void Execute(IList<string> commandArguments)

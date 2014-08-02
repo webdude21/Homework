@@ -5,16 +5,16 @@
 
     using Phonebook.Contracts;
 
-    public abstract class BaseCommand : IPhonebookCommand
+    public abstract class BasePhoneCommand : IPhonebookCommand
     {
-        protected BaseCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+        protected BasePhoneCommand(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
         {
             this.CanonicalPhoneConverter = canonicalPhoneConverter;
             this.OutputWritter = outputWritter;
             this.PhonebookRepository = phonebook;
         }
 
-        protected BaseCommand()
+        protected BasePhoneCommand()
         {
             this.OutputWritter = new OutputWritter(new StringBuilder());
             this.CanonicalPhoneConverter = new CanonicalPhoneConverter();

@@ -2,17 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
 
-    using Phonebook.Commands;
     using Phonebook.Contracts;
 
     public class PhonebookManager
     {
         private readonly string defaultCountryCode = "+359";
-
-        private readonly IPhonebookRepository phonebookRepository;
 
         private readonly IOutputWritter resultReporter;
 
@@ -22,13 +18,11 @@
         /// This is the Phonebook Manager Constructor with inversion of control implemented
         /// </summary>
         /// <param name="defaultCountryCode">Provide the default Country Code To be used by the class</param>
-        /// <param name="phonebookRepository"></param>
         /// <param name="resultReporter"></param>
         /// <param name="commandFactory"></param>
-        public PhonebookManager(string defaultCountryCode, IPhonebookRepository phonebookRepository, IOutputWritter resultReporter, ICommandFactory commandFactory)
+        public PhonebookManager(string defaultCountryCode, IOutputWritter resultReporter, ICommandFactory commandFactory)
         {
             this.defaultCountryCode = defaultCountryCode;
-            this.phonebookRepository = phonebookRepository;
             this.resultReporter = resultReporter;
             this.commandFactory = commandFactory;
         }
