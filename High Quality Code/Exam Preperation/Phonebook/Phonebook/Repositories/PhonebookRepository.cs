@@ -1,8 +1,10 @@
-﻿namespace Phonebook
+﻿namespace Phonebook.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using Phonebook.Contracts;
 
     using Wintellect.PowerCollections;
 

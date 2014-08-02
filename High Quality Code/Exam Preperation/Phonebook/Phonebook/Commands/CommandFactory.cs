@@ -1,6 +1,5 @@
-﻿namespace Phonebook
+﻿namespace Phonebook.Commands
 {
-    using Phonebook.Commands;
     using Phonebook.Contracts;
 
     public class CommandFactory : ICommandFactory

@@ -3,6 +3,8 @@
     using System.Linq;
     using System.Text;
 
+    using Phonebook.Contracts;
+
     public class CanonicalPhoneConverter : ICanonicalPhoneConverter
     {
         private readonly string countryCode = "+359";

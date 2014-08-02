@@ -1,4 +1,4 @@
-﻿namespace Phonebook
+﻿namespace Phonebook.Contracts
 {
     public interface ICanonicalPhoneConverter
     {

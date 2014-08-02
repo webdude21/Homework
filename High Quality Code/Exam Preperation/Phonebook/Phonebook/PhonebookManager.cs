@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Text;
 
+    using Phonebook.Commands;
     using Phonebook.Contracts;
+    using Phonebook.Repositories;
 
     public class PhonebookManager
     {
