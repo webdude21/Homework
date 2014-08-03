@@ -12,7 +12,7 @@ namespace Phonebook
             while (!endCommandRecieved)
             {
                 var currentCommandLine = Console.ReadLine();
-                endCommandRecieved = phoneBookManager.ReadCommand(currentCommandLine);
+                endCommandRecieved = phoneBookManager.ExecuteCommand(currentCommandLine);
             }
 
             Console.Write(phoneBookManager.ReportResult);

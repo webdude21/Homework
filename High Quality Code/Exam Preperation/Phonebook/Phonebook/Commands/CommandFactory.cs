@@ -13,7 +13,10 @@
 
         private readonly IPhonebookRepository phonebookRepository;
 
-        public CommandFactory(IOutputWritter outputWritter, ICanonicalPhoneConverter canonicalPhoneConverter, IPhonebookRepository phonebook)
+        public CommandFactory(
+            IOutputWritter outputWritter, 
+            ICanonicalPhoneConverter canonicalPhoneConverter, 
+            IPhonebookRepository phonebook)
         {
             this.canonicalPhoneConverter = canonicalPhoneConverter;
             this.outputWritter = outputWritter;

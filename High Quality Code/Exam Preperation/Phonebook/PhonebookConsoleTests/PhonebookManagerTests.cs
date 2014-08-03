@@ -34,7 +34,7 @@
 
         public string TestCommandRunner(string currentCommandLine)
         {
-            this.phoneBookManager.ReadCommand(currentCommandLine);
+            this.phoneBookManager.ExecuteCommand(currentCommandLine);
             return this.phoneBookManager.ReportResult;
         }
     }

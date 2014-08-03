@@ -8,20 +8,20 @@
 
     public class PhonebookManager
     {
+        private readonly ICommandExecutor commandExecutor;
+
         private readonly string defaultCountryCode = "+359";
 
         private readonly IOutputWritter resultReporter;
 
-        private readonly ICommandExecutor commandExecutor;
-
         public PhonebookManager(
             string defaultCountryCode, 
             IOutputWritter resultReporter, 
-            ICommandExecutor commandReader)
+            ICommandExecutor commandExecutor)
         {
             this.defaultCountryCode = defaultCountryCode;
             this.resultReporter = resultReporter;
-            this.commandExecutor = commandReader;
+            this.commandExecutor = commandExecutor;
         }
 
         public PhonebookManager()
@@ -30,8 +30,8 @@
             this.commandExecutor =
                 new CommandExecutor(
                     new CommandFactory(
-                        this.resultReporter,
-                        new CanonicalPhoneConverter(this.defaultCountryCode),
+                        this.resultReporter, 
+                        new CanonicalPhoneConverter(this.defaultCountryCode), 
                         new PhonebookRepository()));
         }
 

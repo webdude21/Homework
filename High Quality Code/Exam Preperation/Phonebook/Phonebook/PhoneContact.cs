@@ -28,7 +28,6 @@
             set
             {
                 this.name = value;
-
                 this.lowerCaseName = value.ToLowerInvariant();
             }
         }

@@ -42,7 +42,7 @@
     <Compile Include="Commands\ChangePhoneCommand.cs" />
     <Compile Include="Commands\ListPhonesCommand.cs" />
     <Compile Include="Contracts\ICommandFactory.cs" />
-    <Compile Include="Contracts\ICommandReader.cs" />
+    <Compile Include="Contracts\ICommandExecutor.cs" />
     <Compile Include="Contracts\IPhonebookCommand.cs" />
     <Compile Include="Contracts\IPhonebookRepository.cs" />
     <Compile Include="Contracts\IOutputWritter.cs" />
