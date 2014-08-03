@@ -1,7 +1,6 @@
 ﻿namespace PhonebookConsoleTests
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -38,6 +37,25 @@
             this.phonebookRepository.AddPhone("Kalina", this.testPhoneNumbers);
             var isNewEntry = this.phonebookRepository.AddPhone("KALINA", this.testPhoneNumbers);
             Assert.AreEqual(isNewEntry, false);
+        }
+
+        [TestMethod]
+        public void ChangePhoneShouldChangeAllOccurencesInTheReposuitory()
+        {
+            var kalinaContactCollection = new[]
+                                              {
+                                                  new PhoneContact(TestName)
+                                                      {
+                                                          PhoneEntries =
+                                                              (SortedSet<string>)
+                                                              this.testPhoneNumbers
+                                                      }
+                                              };
+
+            this.phonebookRepository.AddPhone(TestName, this.testPhoneNumbers);
+            this.phonebookRepository.ChangePhone("(+359) 899 777236", "(0883 22 33 44)");
+            var firstEntry = this.phonebookRepository.ListEntries(0, 1).First().PhoneEntries;
+            CollectionAssert.AreEquivalent(kalinaContactCollection.First().PhoneEntries, firstEntry);
         }
 
         [TestMethod]

@@ -4,7 +4,6 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Phonebook;
     using Phonebook.Strategies;
 
     [TestClass]
