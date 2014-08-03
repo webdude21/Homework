@@ -1,7 +1,9 @@
 ﻿namespace PhonebookConsoleTests
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -11,11 +13,11 @@
     [TestClass]
     public class PhonebookRepositoryTests
     {
+        private const string TestName = "Kalina";
+
         private readonly IPhonebookRepository phonebookRepository;
 
         private readonly IEnumerable<string> testPhoneNumbers;
-
-        private const string TestName = "Kalina";
 
         public PhonebookRepositoryTests()
         {
@@ -48,11 +50,18 @@
         [TestMethod]
         public void CallingListWithValidRangeShouldReturnACorrectListOfPhoneRecords()
         {
-
-            var kalinaContact = new PhoneContact(TestName) { PhoneEntries = (SortedSet<string>)this.testPhoneNumbers };
+            var kalinaContactCollection = new[]
+                                              {
+                                                  new PhoneContact(TestName)
+                                                      {
+                                                          PhoneEntries =
+                                                              (SortedSet<string>)
+                                                              this.testPhoneNumbers
+                                                      }
+                                              };
             this.phonebookRepository.AddPhone(TestName, this.testPhoneNumbers);
-            var listResult = this.phonebookRepository.ListEntries(0, 1);
-            CollectionAssert.AreEquivalent(new[] { kalinaContact }, new[] { listResult });
+            var firstEntry = this.phonebookRepository.ListEntries(0, 1).First().PhoneEntries;
+            CollectionAssert.AreEqual(kalinaContactCollection.First().PhoneEntries, firstEntry);
         }
     }
 }
