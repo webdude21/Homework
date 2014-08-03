@@ -7,7 +7,6 @@
 
     public class AddPhoneCommand : BasePhoneCommand
     {
-
         public AddPhoneCommand(
             IOutputWritter outputWritter, 
             ICanonicalPhoneConverter canonicalPhoneConverter, 

@@ -1,11 +1,9 @@
 ﻿namespace Phonebook.Contracts
 {
+    using System.Collections.Generic;
+
     public interface ICommandFactory
     {
-        IPhonebookCommand GetAddPhoneCommand();
-
-        IPhonebookCommand GetChangePhoneCommand();
-
-        IPhonebookCommand GetListPhonesCommand();
+        IPhonebookCommand GetCommand(string commandName, IList<string> commandArguments);
     }
 }

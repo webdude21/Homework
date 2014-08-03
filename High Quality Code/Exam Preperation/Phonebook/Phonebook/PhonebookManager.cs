@@ -1,7 +1,5 @@
 ﻿namespace Phonebook
 {
-    using System;
-    using System.Collections.Generic;
     using System.Text;
 
     using Phonebook.Commands;
@@ -10,29 +8,31 @@
 
     public class PhonebookManager
     {
-        private readonly ICommandFactory commandFactory;
-
         private readonly string defaultCountryCode = "+359";
 
         private readonly IOutputWritter resultReporter;
 
+        private readonly ICommandExecutor commandExecutor;
+
         public PhonebookManager(
             string defaultCountryCode, 
             IOutputWritter resultReporter, 
-            ICommandFactory commandFactory)
+            ICommandExecutor commandReader)
         {
             this.defaultCountryCode = defaultCountryCode;
             this.resultReporter = resultReporter;
-            this.commandFactory = commandFactory;
+            this.commandExecutor = commandReader;
         }
 
         public PhonebookManager()
         {
             this.resultReporter = new OutputWritter(new StringBuilder());
-            this.commandFactory = new CommandFactory(
-                this.resultReporter, 
-                new CanonicalPhoneConverter(this.defaultCountryCode), 
-                new PhonebookRepository());
+            this.commandExecutor =
+                new CommandExecutor(
+                    new CommandFactory(
+                        this.resultReporter,
+                        new CanonicalPhoneConverter(this.defaultCountryCode),
+                        new PhonebookRepository()));
         }
 
         public string ReportResult
@@ -43,54 +43,9 @@
             }
         }
 
-        public bool ReadCommand(string currentCommandLine)
+        public bool ExecuteCommand(string currentCommandLine)
         {
-            if (currentCommandLine == "End" || currentCommandLine == null)
-            {
-                return true;
-            }
-
-            var indexOfFirstOpeningBracket = currentCommandLine.IndexOf('(');
-            if (indexOfFirstOpeningBracket == -1)
-            {
-                throw new ArgumentException("Invalid command is used.");
-            }
-
-            var commandString = currentCommandLine.Substring(0, indexOfFirstOpeningBracket);
-
-            var commandsAsString = currentCommandLine.Substring(
-                indexOfFirstOpeningBracket + 1, 
-                currentCommandLine.Length - indexOfFirstOpeningBracket - 2);
-
-            var commandArguments = commandsAsString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            this.ExecuteCommand(commandString, commandArguments);
-
-            return false;
-        }
-
-        private void ExecuteCommand(string commandString, IList<string> commandArguments)
-        {
-            IPhonebookCommand command;
-
-            if (commandString.StartsWith("AddPhone") && (commandArguments.Count >= 2))
-            {
-                command = this.commandFactory.GetAddPhoneCommand();
-            }
-            else if ((commandString == "ChangePhone") && (commandArguments.Count == 2))
-            {
-                command = this.commandFactory.GetChangePhoneCommand();
-            }
-            else if ((commandString == "List") && (commandArguments.Count == 2))
-            {
-                command = this.commandFactory.GetListPhonesCommand();
-            }
-            else
-            {
-                throw new ArgumentException("Invalid command");
-            }
-
-            command.Execute(commandArguments);
+            return this.commandExecutor.ExecuteCommand(currentCommandLine);
         }
     }
 }

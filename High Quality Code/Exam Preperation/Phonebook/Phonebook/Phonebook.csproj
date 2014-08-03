@@ -35,13 +35,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CanonicalPhoneConverter.cs" />
+    <Compile Include="CommandExecutor.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\AddPhoneCommand.cs" />
     <Compile Include="Commands\BasePhoneCommand.cs" />
     <Compile Include="Commands\ChangePhoneCommand.cs" />
     <Compile Include="Commands\ListPhonesCommand.cs" />
-    <Compile Include="Commands\RemovePhoneCommand.cs" />
     <Compile Include="Contracts\ICommandFactory.cs" />
+    <Compile Include="Contracts\ICommandReader.cs" />
     <Compile Include="Contracts\IPhonebookCommand.cs" />
     <Compile Include="Contracts\IPhonebookRepository.cs" />
     <Compile Include="Contracts\IOutputWritter.cs" />
