@@ -1,4 +1,4 @@
-﻿namespace Phonebook
+﻿namespace Phonebook.Repositories
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@
             this.PhoneEntries = new SortedSet<string>();
         }
 
-        public SortedSet<string> PhoneEntries { get; private set; }
+        public SortedSet<string> PhoneEntries { get; set; }
 
         public string Name
         {

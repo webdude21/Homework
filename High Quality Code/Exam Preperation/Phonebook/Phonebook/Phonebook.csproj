@@ -34,8 +34,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CanonicalPhoneConverter.cs" />
-    <Compile Include="CommandExecutor.cs" />
+    <Compile Include="Strategies\CanonicalPhoneConverter.cs" />
+    <Compile Include="Strategies\CommandExecutor.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\AddPhoneCommand.cs" />
     <Compile Include="Commands\BasePhoneCommand.cs" />
@@ -47,10 +47,10 @@
     <Compile Include="Contracts\IPhonebookRepository.cs" />
     <Compile Include="Contracts\IOutputWritter.cs" />
     <Compile Include="Contracts\ICanonicalPhoneConverter.cs" />
-    <Compile Include="OutputWritter.cs" />
-    <Compile Include="PhonebookManager.cs" />
+    <Compile Include="Strategies\OutputWritter.cs" />
+    <Compile Include="Strategies\PhonebookManager.cs" />
     <Compile Include="Repositories\PhonebookRepository.cs" />
-    <Compile Include="PhoneContact.cs" />
+    <Compile Include="Repositories\PhoneContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

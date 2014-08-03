@@ -5,6 +5,7 @@
 
     using Phonebook.Contracts;
     using Phonebook.Repositories;
+    using Phonebook.Strategies;
 
     public abstract class BasePhoneCommand : IPhonebookCommand
     {

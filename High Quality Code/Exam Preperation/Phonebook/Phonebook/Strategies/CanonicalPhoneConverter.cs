@@ -1,4 +1,4 @@
-﻿namespace Phonebook
+﻿namespace Phonebook.Strategies
 {
     using System.Linq;
     using System.Text;
