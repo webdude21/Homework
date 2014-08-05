@@ -3,26 +3,27 @@
     using System;
 
     using CalendarSystem;
+    using CalendarSystem.Strategies;
 
     public class CalendarSystemConsoleClient
     {
         public static void Main()
         {
             var eventManager = new EventsManager();
-            var proc = new CommandManager(eventManager);
+            var commandParser = new CommandParser();
+            var commandManager = new CommandManager(eventManager);
 
             while (true)
             {
-                var ct = Console.ReadLine();
-                if (ct == "End" || ct == null)
+                var commandLine = Console.ReadLine();
+                if (commandLine == "End" || commandLine == null)
                 {
                     break;
                 }
 
                 try
                 {
-                    // The sequence of commands is finished
-                    Console.WriteLine(proc.ProcessCommand(Command.Parse(ct)));
+                    Console.WriteLine(commandManager.ProcessCommand(commandParser.Parse(commandLine)));
                 }
                 catch (Exception ex)
                 {

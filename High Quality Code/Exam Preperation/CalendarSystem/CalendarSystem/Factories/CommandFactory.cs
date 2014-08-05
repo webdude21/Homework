@@ -1,4 +1,4 @@
-namespace CalendarSystem
+﻿namespace CalendarSystem
 {
     using System;
     using System.Globalization;
@@ -7,41 +7,33 @@ namespace CalendarSystem
 
     using CalendarSystem.Commands;
     using CalendarSystem.Contracts;
+    using CalendarSystem.Strategies;
 
-    public class CommandManager
+    public class CommandFactory : ICommandFactory
     {
+        private readonly ICommandParser commandParser;
+
         private readonly IEventsManager eventsManager;
 
-        public CommandManager(IEventsManager em)
+        public CommandFactory(ICommandParser commandParser, IEventsManager eventsManager)
         {
-            this.eventsManager = em;
+            this.commandParser = commandParser;
+            this.eventsManager = eventsManager;
         }
 
-        public IEventsManager EventsProcessor
+        public CommandFactory()
         {
-            get
-            {
-                return this.eventsManager;
-            }
+            this.commandParser = new CommandParser();
         }
 
-        public string ProcessCommand(Command com)
+        public ICommand GetCommand(string commandName)
         {
-            // First command
-            if ((com.CommandName == "AddEvent") && (com.Paramms.Length == 2))
+            var com = this.commandParser.Parse(commandName);
+
+            if (com.CommandName == "AddEvent")
             {
                 var commandToExecute = new AddEventCommand(this.eventsManager, com.Paramms);
-                return commandToExecute.Execute(com.Paramms);
-            }
-
-            if ((com.CommandName == "AddEvent") && (com.Paramms.Length == 3))
-            {
-                var date = DateTime.ParseExact(com.Paramms[0], "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
-                var e = new CalendarEvent(date, com.Paramms[1], com.Paramms[2]);
-
-                this.eventsManager.AddEvent(e);
-
-                return "Event added";
+                return commandToExecute;
             }
 
             // Second command

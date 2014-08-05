@@ -2,13 +2,22 @@ namespace CalendarSystem
 {
     using System;
 
-    public class CalendarEvent : IComparable<CalendarEvent>
+    using CalendarSystem.Contracts;
+
+    public class CalendarEvent : IComparable<CalendarEvent>, ICalendarEvent
     {
-        public string Location { get; set; }
+        public CalendarEvent(DateTime dateTime, string title, string location)
+        {
+            this.Title = title;
+            this.Location = location;
+            this.DateTime = dateTime;
+        }
 
-        public string Title { get; set; }
+        public string Location { get; private set; }
 
-        public DateTime DateTime { get; set; }
+        public string Title { get; private set; }
+
+        public DateTime DateTime { get; private set; }
 
         public int CompareTo(CalendarEvent otherEvent)
         {

@@ -1,14 +1,13 @@
-namespace CalendarSystem
+﻿namespace CalendarSystem.Strategies
 {
     using System;
 
-    public struct Command
+    using CalendarSystem.Commands;
+    using CalendarSystem.Contracts;
+
+    public class CommandParser : ICommandParser
     {
-        public string CommandName;
-
-        public string[] Paramms { get; set; }
-
-        public static Command Parse(string arguments)
+        public Command Parse(string arguments)
         {
             var j = arguments.IndexOf(' ');
             if (j == -1)
@@ -16,7 +15,7 @@ namespace CalendarSystem
                 throw new Exception("Invalid command: " + arguments);
             }
 
-            var nam = arguments.Substring(0, j);
+            var name = arguments.Substring(0, j);
             var arg = arguments.Substring(j + 1);
 
             var commandArguments = arg.Split('|');
@@ -26,7 +25,7 @@ namespace CalendarSystem
                 commandArguments[i] = arg.Trim();
             }
 
-            var command = new Command { CommandName = nam, Paramms = commandArguments };
+            var command = new Command { CommandName = name, Paramms = commandArguments };
 
             return command;
         }

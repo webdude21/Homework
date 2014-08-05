@@ -1,6 +1,9 @@
 ﻿namespace CalendarSystem.Contracts
 {
-    interface ICommand
+    using System.Collections.Generic;
+
+    public interface ICommand
     {
+        string Execute(IList<string> commandArguments);
     }
 }
