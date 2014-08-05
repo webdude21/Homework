@@ -8,7 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class PhonebookConsoleTests
+    public class CatalogConsoleTests
     {
         private const string TestPath = @"..\..\textTests\";
 

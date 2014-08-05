@@ -5,17 +5,16 @@ namespace CatalogOfFreeContent
 
     using Wintellect.PowerCollections;
 
-    internal class ca : ICatalog
+    internal class Catalog : ICatalog
     {
-        private OrderedMultiDictionary<string, IContent> title;
+        private readonly OrderedMultiDictionary<string, IContent> title;
 
-        private MultiDictionary<string, IContent> url;
+        private readonly MultiDictionary<string, IContent> url;
 
-        public ca()
+        public Catalog()
         {
-            var allowDuplicateValues = true;
-            this.title = new OrderedMultiDictionary<string, IContent>(allowDuplicateValues);
-            this.url = new MultiDictionary<string, IContent>(allowDuplicateValues);
+            this.title = new OrderedMultiDictionary<string, IContent>(true);
+            this.url = new MultiDictionary<string, IContent>(true);
         }
 
         public void Add(IContent content)
@@ -37,10 +36,10 @@ namespace CatalogOfFreeContent
 
             var contentToList = this.url[old].ToList();
 
-            foreach (co content in contentToList)
+            foreach (var content in contentToList.Cast<Content>())
             {
                 this.title.Remove(content.Title, content);
-                theElements++; // increase updatedElements
+                theElements++; 
             }
 
             this.url.Remove(old);
@@ -50,7 +49,6 @@ namespace CatalogOfFreeContent
                 content.URL = newUrl;
             }
 
-            // again
             foreach (var content in contentToList)
             {
                 this.title.Add(content.Title, content);

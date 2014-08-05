@@ -3,22 +3,22 @@ namespace CatalogOfFreeContent
     using System;
     using System.Linq;
 
-    public class com : ICommand
+    public class CommandParser : ICommandParser
     {
-        private readonly char commandEnd = ':';
+        private const char CommandEnd = ':';
 
         private readonly char[] paramsSeparators = { ';' };
 
         private int commandNameEndIndex;
 
-        public com(string input)
+        public CommandParser(string input)
         {
             this.OriginalForm = input.Trim();
 
             this.Parse();
         }
 
-        public comt Type { get; set; }
+        public Command Type { get; set; }
 
         public string OriginalForm { get; set; }
 
@@ -26,9 +26,9 @@ namespace CatalogOfFreeContent
 
         public string[] Parameters { get; set; }
 
-        public comt ParseCommandType(string commandName)
+        public Command ParseCommandType(string commandName)
         {
-            comt type;
+            Command type;
 
             if (commandName.Contains(':') || commandName.Contains(';'))
             {
@@ -39,42 +39,42 @@ namespace CatalogOfFreeContent
             {
                 case "Add book":
                     {
-                        type = comt.AddBook;
+                        type = Command.AddBook;
                     }
 
                     break;
 
                 case "Add movie":
                     {
-                        type = comt.AddMovie;
+                        type = Command.AddMovie;
                     }
 
                     break;
 
                 case "Add song ":
                     {
-                        type = comt.AddSong;
+                        type = Command.AddSong;
                     }
 
                     break;
 
                 case "Add application":
                     {
-                        type = comt.AddApplication;
+                        type = Command.AddApplication;
                     }
 
                     break;
 
                 case "Update":
                     {
-                        type = comt.Update;
+                        type = Command.Update;
                     }
 
                     break;
 
                 case "Find":
                     {
-                        type = comt.Find;
+                        type = Command.Find;
                     }
 
                     break;
@@ -107,9 +107,9 @@ namespace CatalogOfFreeContent
 
         public string[] ParseParameters()
         {
-            var paramsLength = this.OriginalForm.Length - (this.commandNameEndIndex + 3);
+            var paramsLength = this.OriginalForm.Length - this.commandNameEndIndex + 1;
 
-            var paramsOriginalForm = this.OriginalForm.Substring(this.commandNameEndIndex + 3, paramsLength);
+            var paramsOriginalForm = this.OriginalForm.Substring(this.commandNameEndIndex + 1, paramsLength);
 
             var parameters = paramsOriginalForm.Split(this.paramsSeparators, StringSplitOptions.RemoveEmptyEntries);
 
@@ -134,7 +134,7 @@ namespace CatalogOfFreeContent
 
         public int GetCommandNameEndIndex()
         {
-            var endIndex = this.OriginalForm.IndexOf(this.commandEnd) - 1;
+            var endIndex = this.OriginalForm.IndexOf(CommandEnd);
 
             return endIndex;
         }

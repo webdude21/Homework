@@ -1,6 +1,6 @@
 namespace CatalogOfFreeContent
 {
-    public enum acpi
+    public enum Acpi
     {
         Title = 0, 
 

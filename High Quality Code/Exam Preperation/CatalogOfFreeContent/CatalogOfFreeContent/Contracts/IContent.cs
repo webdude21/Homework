@@ -12,7 +12,7 @@ namespace CatalogOfFreeContent
 
         string URL { get; set; }
 
-        ct Type { get; set; }
+        CatalogType Type { get; set; }
 
         string TextRepresentation { get; set; }
     }

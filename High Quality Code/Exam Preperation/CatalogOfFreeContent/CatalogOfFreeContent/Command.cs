@@ -1,6 +1,6 @@
 ﻿namespace CatalogOfFreeContent
 {
-    public enum comt
+    public enum Command
     {
         AddBook, 
 

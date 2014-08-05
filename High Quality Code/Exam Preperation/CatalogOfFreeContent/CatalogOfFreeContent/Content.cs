@@ -1,38 +1,20 @@
 namespace CatalogOfFreeContent
 {
     using System;
+    using System.Collections.Generic;
 
-    public class co : IComparable, IContent
+    public class Content : IContent
     {
         private string url;
 
-        public co(ct type, string[] commandParams)
+        public Content(CatalogType type, IList<string> commandParams)
         {
             this.Type = type;
-            this.Title = commandParams[(int)acpi.Title];
-            this.Author = commandParams[(int)acpi.Author];
-            this.Size = long.Parse(commandParams[(int)acpi.Size]);
-            this.URL = commandParams[(int)acpi.Url];
+            this.Title = commandParams[(int)Acpi.Title];
+            this.Author = commandParams[(int)Acpi.Author];
+            this.Size = long.Parse(commandParams[(int)Acpi.Size]);
+            this.URL = commandParams[(int)Acpi.Url];
         }
-
-        public int CompareTo(object obj)
-        {
-            if (null == obj)
-            {
-                return 1;
-            }
-
-            var otherContent = obj as co;
-            if (otherContent != null)
-            {
-                var comparisonResul = this.TextRepresentation.CompareTo(otherContent.TextRepresentation);
-
-                return comparisonResul;
-            }
-
-            throw new ArgumentException("Object is not a Content");
-        }
-
         public string Title { get; set; }
 
         public string Author { get; set; }
@@ -53,9 +35,27 @@ namespace CatalogOfFreeContent
             }
         }
 
-        public ct Type { get; set; }
+        public CatalogType Type { get; set; }
 
         public string TextRepresentation { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            if (null == obj)
+            {
+                return 1;
+            }
+
+            var otherContent = obj as Content;
+            if (otherContent == null)
+            {
+                throw new ArgumentException("Object is not a Content");
+            }
+            var comparisonResul = String.Compare(this.TextRepresentation, otherContent.TextRepresentation, StringComparison.Ordinal);
+
+            return comparisonResul;
+        }
+
 
         public override string ToString()
         {

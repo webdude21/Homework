@@ -1,8 +1,8 @@
 namespace CatalogOfFreeContent
 {
-    public interface ICommand
+    public interface ICommandParser
     {
-        comt Type { get; set; }
+        Command Type { get; set; }
 
         string OriginalForm { get; set; }
 
@@ -10,7 +10,7 @@ namespace CatalogOfFreeContent
 
         string[] Parameters { get; set; }
 
-        comt ParseCommandType(string commandName);
+        Command ParseCommandType(string commandName);
 
         string ParseName();
 

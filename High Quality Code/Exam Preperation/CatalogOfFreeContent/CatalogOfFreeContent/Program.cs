@@ -9,35 +9,34 @@
         public static void Main()
         {
             var output = new StringBuilder();
-            var cat = new ca();
-            ICommandExecutor c = new ce();
+            var cat = new Catalog();
+            var commandExecutor = new CommandExecutor();
 
-            foreach (var item in parse())
+            foreach (var item in Parse())
             {
-                c.ExecuteCommand(cat, item, output); // this is how we do
+                commandExecutor.ExecuteCommand(cat, item, output);
             }
 
-            // Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.Write(output); // printing the output
+            Console.Write(output);
         }
 
-        private static List<ICommand> parse()
+        public static List<ICommandParser> Parse()
         {
-            var ins = new List<ICommand>();
-            var end = false;
+            var commandsList = new List<ICommandParser>();
+            bool end;
 
             do
             {
-                var l = Console.ReadLine();
-                end = l.Trim() == "End";
+                var commandLine = Console.ReadLine();
+                end = commandLine.Trim() == "End";
                 if (!end)
                 {
-                    ins.Add(new com(l));
+                    commandsList.Add(new CommandParser(commandLine));
                 }
             }
             while (!end);
 
-            return ins;
+            return commandsList;
         }
     }
 }
