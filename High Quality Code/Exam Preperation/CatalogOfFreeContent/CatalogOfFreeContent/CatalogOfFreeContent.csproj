@@ -36,18 +36,19 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enums.cs" />
-    <Compile Include="ICommandExecutor.cs" />
-    <Compile Include="ICatalog.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="IContent.cs" />
+    <Compile Include="acpi.cs" />
+    <Compile Include="ca.cs" />
+    <Compile Include="ce.cs" />
+    <Compile Include="co.cs" />
+    <Compile Include="com.cs" />
+    <Compile Include="ct.cs" />
+    <Compile Include="comt.cs" />
+    <Compile Include="Contracts\ICommandExecutor.cs" />
+    <Compile Include="Contracts\ICatalog.cs" />
+    <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\IContent.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
