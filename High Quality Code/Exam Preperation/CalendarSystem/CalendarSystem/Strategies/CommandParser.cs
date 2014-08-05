@@ -25,7 +25,7 @@
                 commandArguments[i] = arg.Trim();
             }
 
-            var command = new Command { CommandName = name, Paramms = commandArguments };
+            var command = new Command(name, commandArguments);
 
             return command;
         }

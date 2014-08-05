@@ -42,6 +42,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DeleteEventCommand.cs" />
+    <Compile Include="Commands\ListEventsCommand.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="Commands\AddEventCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
@@ -51,7 +53,7 @@
     <Compile Include="Contracts\IEventFactory.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandFactory.cs" />
-    <Compile Include="EventsManagerSlow.cs" />
+    <Compile Include="EventsManager.cs" />
     <Compile Include="Contracts\IEventsManager.cs" />
     <Compile Include="CommandManager.cs" />
     <Compile Include="Factories\EventFactory.cs" />

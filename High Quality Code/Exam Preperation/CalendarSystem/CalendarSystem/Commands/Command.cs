@@ -1,8 +1,15 @@
 namespace CalendarSystem.Commands
 {
-    public struct Command
+    public class Command
     {
-        public string CommandName;
+
+        public Command(string commandName, params string[] args)
+        {
+            this.CommandName = commandName;
+            this.Paramms = args;
+        }
+
+        public string CommandName { get; set; }
 
         public string[] Paramms { get; set; }
     }

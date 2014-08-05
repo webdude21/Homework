@@ -8,12 +8,9 @@
     {
         internal readonly IEventsManager EventsManager;
 
-        internal string[] commandParams;
-
-        protected BaseCommand(IEventsManager eventsManager, string[] paramms)
+        protected BaseCommand(IEventsManager eventsManager)
         {
             this.EventsManager = eventsManager;
-            this.commandParams = paramms;
         }
 
         public abstract string Execute(IList<string> commandArguments);

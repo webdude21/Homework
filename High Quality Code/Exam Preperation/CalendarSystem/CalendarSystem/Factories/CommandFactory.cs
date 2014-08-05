@@ -1,9 +1,6 @@
-﻿namespace CalendarSystem
+﻿namespace CalendarSystem.Factories
 {
     using System;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
 
     using CalendarSystem.Commands;
     using CalendarSystem.Contracts;
@@ -15,62 +12,45 @@
 
         private readonly IEventsManager eventsManager;
 
-        public CommandFactory(ICommandParser commandParser, IEventsManager eventsManager)
+        private readonly IEventFactory eventFactory;
+
+        public CommandFactory(ICommandParser commandParser, IEventsManager eventsManager, IEventFactory eventFactory)
         {
             this.commandParser = commandParser;
             this.eventsManager = eventsManager;
+            this.eventFactory = eventFactory;
         }
 
         public CommandFactory()
         {
             this.commandParser = new CommandParser();
+            this.eventsManager = new EventsManager();
+            this.eventFactory = new EventFactory();
         }
 
         public ICommand GetCommand(string commandName)
         {
-            var com = this.commandParser.Parse(commandName);
+            ICommand command;
 
-            if (com.CommandName == "AddEvent")
+            if (commandName == "AddEvent")
             {
-                var commandToExecute = new AddEventCommand(this.eventsManager, com.Paramms);
-                return commandToExecute;
+                command = new AddEventCommand(this.eventsManager, this.eventFactory);
+                return command;
             }
 
-            // Second command
-            if ((com.CommandName == "DeleteEvents") && (com.Paramms.Length == 1))
+            if (commandName == "DeleteEvents")
             {
-                var c = this.eventsManager.DeleteEventsByTitle(com.Paramms[0]);
-
-                if (c == 0)
-                {
-                    return "No events found";
-                }
-
-                return c + " events deleted";
+                command = new DeleteEventCommand(this.eventsManager);
+                return command;
             }
 
-            // Third command
-            if ((com.CommandName == "ListEvents") && (com.Paramms.Length == 2))
+            if (commandName == "ListEvents")
             {
-                var d = DateTime.ParseExact(com.Paramms[0], "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
-                var c = int.Parse(com.Paramms[1]);
-                var events = this.eventsManager.ListEvents(d, c).ToList();
-                var sb = new StringBuilder();
-
-                if (!events.Any())
-                {
-                    return "No events found";
-                }
-
-                foreach (var e in events)
-                {
-                    sb.AppendLine(e.ToString());
-                }
-
-                return sb.ToString().Trim();
+                command = new ListEventsCommand(this.eventsManager);
+                return command;
             }
 
-            throw new Exception("WTF " + com.CommandName + " is?");
+            throw new Exception("WTF " + commandName + " is?");
         }
     }
 }

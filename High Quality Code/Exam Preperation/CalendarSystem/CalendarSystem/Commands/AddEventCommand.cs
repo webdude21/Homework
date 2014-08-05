@@ -8,15 +8,16 @@
     {
         private readonly IEventFactory eventFactory;
 
-        public AddEventCommand(IEventsManager eventsManager, string[] arguments, IEventFactory eventFactory)
-            : base(eventsManager, arguments)
+        public AddEventCommand(IEventsManager eventsManager, IEventFactory eventFactory)
+            : base(eventsManager)
         {
             this.eventFactory = eventFactory;
         }
 
         public override string Execute(IList<string> commandArguments)
         {
-            this.EventsManager.AddEvent(this.eventFactory.GetCalendarEvent(commandArguments));
+            var calendaerEvent = this.eventFactory.GetCalendarEvent(commandArguments);
+            this.EventsManager.AddEvent(calendaerEvent);
             return "Event added";
         }
     }

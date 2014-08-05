@@ -1,4 +1,4 @@
-﻿namespace CalendarSystem.Commands
+﻿namespace CalendarSystem.Contracts
 {
     using System.Collections.Generic;
 
