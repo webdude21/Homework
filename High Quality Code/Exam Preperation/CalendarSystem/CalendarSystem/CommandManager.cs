@@ -7,6 +7,7 @@ namespace CalendarSystem
     public class CommandManager : ICommandManager
     {
         private readonly ICommandFactory commandFactory;
+
         private readonly ICommandParser commandParser;
 
         public CommandManager(ICommandFactory commandFactory, ICommandParser commandParser)

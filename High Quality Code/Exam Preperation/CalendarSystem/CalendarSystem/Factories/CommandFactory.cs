@@ -8,9 +8,9 @@
 
     public class CommandFactory : ICommandFactory
     {
-        private readonly IEventsManager eventsManager;
-
         private readonly IEventFactory eventFactory;
+
+        private readonly IEventsManager eventsManager;
 
         public CommandFactory(IEventsManager eventsManager, IEventFactory eventFactory)
         {

@@ -1,4 +1,4 @@
-﻿namespace CalendarSystem
+﻿namespace CalendarSystem.Contracts
 {
     public interface ICommandManager
     {

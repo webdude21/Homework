@@ -17,7 +17,9 @@
 
         public int DeleteEventsByTitle(string title)
         {
-            return this.calendarEventList.RemoveAll(e => string.Equals(e.Title, title, StringComparison.InvariantCultureIgnoreCase));
+            return
+                this.calendarEventList.RemoveAll(
+                    e => string.Equals(e.Title, title, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public IEnumerable<CalendarEvent> ListEvents(DateTime dateTime, int count)
