@@ -6,7 +6,7 @@ namespace CalendarSystem
 
     public class CalendarEvent : IComparable<CalendarEvent>, ICalendarEvent
     {
-        public CalendarEvent(DateTime dateTime, string title, string location)
+        public CalendarEvent(DateTime dateTime, string title, string location = null)
         {
             this.Title = title;
             this.Location = location;
