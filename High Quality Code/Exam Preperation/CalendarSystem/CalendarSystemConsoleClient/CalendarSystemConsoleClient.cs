@@ -3,18 +3,13 @@
     using System;
 
     using CalendarSystem;
-    using CalendarSystem.Factories;
-    using CalendarSystem.Strategies;
 
     public class CalendarSystemConsoleClient
     {
         public static void Main()
         {
-            var eventManager = new EventsManager();
-            var commandParser = new CommandParser();
-            var eventFactory = new EventFactory();
-            var commandFactory = new CommandFactory(commandParser, eventManager, eventFactory);
-            var commandManager = new CommandManager(commandFactory);
+
+            var commandManager = new CommandManager();
 
             while (true)
             {
@@ -23,15 +18,15 @@
                 {
                     break;
                 }
+
                 try
                 {
-                    var command = commandParser.Parse(commandLine);
-                    var responese = commandManager.ProcessCommand(command.CommandName, command.Paramms);
+                    var responese = commandManager.ProcessCommand(commandLine);
                     Console.WriteLine(responese);
                 }
-                catch (Exception ex)
+                catch (ArgumentException error)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(error.Message);
                 }
             }
         }

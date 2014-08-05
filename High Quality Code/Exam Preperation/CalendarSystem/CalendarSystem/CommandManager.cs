@@ -1,21 +1,32 @@
 namespace CalendarSystem
 {
-    using CalendarSystem.Commands;
     using CalendarSystem.Contracts;
+    using CalendarSystem.Factories;
+    using CalendarSystem.Strategies;
 
     public class CommandManager
     {
         private readonly ICommandFactory commandFactory;
 
-        public CommandManager(ICommandFactory commandFactory)
+        private readonly ICommandParser commandParser;
+
+        public CommandManager(ICommandFactory commandFactory, ICommandParser commandParser)
         {
             this.commandFactory = commandFactory;
+            this.commandParser = commandParser;
         }
 
-        public string ProcessCommand(string commandName, params string[] commandParams)
+        public CommandManager()
         {
-            var command = this.commandFactory.GetCommand(commandName);
-            return command.Execute(commandParams);
+            this.commandFactory = new CommandFactory();
+            this.commandParser = new CommandParser();
+        }
+
+        public string ProcessCommand(string commandLine)
+        {
+            var comd = this.commandParser.Parse(commandLine);
+            var command = this.commandFactory.GetCommand(comd.CommandName);
+            return command.Execute(comd.Paramms);
         }
     }
 }
