@@ -5,11 +5,13 @@ namespace CatalogOfFreeContent
 
     public class CommandParser : ICommandParser
     {
+        private const int CommandSeparatorLength = 2;
+
         private const char CommandEnd = ':';
 
-        private readonly char[] paramsSeparators = { ';' };
+        private const char ParametersSeparator = ';';
 
-        private int commandNameEndIndex;
+        private int commandNameLength;
 
         public CommandParser(string input)
         {
@@ -51,7 +53,7 @@ namespace CatalogOfFreeContent
 
                     break;
 
-                case "Add song ":
+                case "Add song":
                     {
                         type = Command.AddSong;
                     }
@@ -101,17 +103,21 @@ namespace CatalogOfFreeContent
 
         public string ParseName()
         {
-            var name = this.OriginalForm.Substring(0, this.commandNameEndIndex);
+            var name = this.OriginalForm.Substring(0, this.commandNameLength);
             return name;
         }
 
         public string[] ParseParameters()
         {
-            var paramsLength = this.OriginalForm.Length - this.commandNameEndIndex + 1;
+            var paramsLength = this.OriginalForm.Length - (this.commandNameLength + CommandSeparatorLength);
 
-            var paramsOriginalForm = this.OriginalForm.Substring(this.commandNameEndIndex + 1, paramsLength);
+            var paramsOriginalForm = this.OriginalForm.Substring(
+                this.commandNameLength + CommandSeparatorLength,
+                paramsLength);
 
-            var parameters = paramsOriginalForm.Split(this.paramsSeparators, StringSplitOptions.RemoveEmptyEntries);
+            var parameters = paramsOriginalForm.Split(
+                new[] { ParametersSeparator },
+                StringSplitOptions.RemoveEmptyEntries);
 
             for (var i = 0; i < parameters.Length; i++)
             {
@@ -121,22 +127,16 @@ namespace CatalogOfFreeContent
             return parameters;
         }
 
-        private void Parse()
-        {
-            this.commandNameEndIndex = this.GetCommandNameEndIndex();
-
-            this.Name = this.ParseName();
-            this.Parameters = this.ParseParameters();
-            this.TrimParams();
-
-            this.Type = this.ParseCommandType(this.Name);
-        }
-
         public int GetCommandNameEndIndex()
         {
-            var endIndex = this.OriginalForm.IndexOf(CommandEnd);
+            return this.OriginalForm.IndexOf(CommandEnd);
+        }
 
-            return endIndex;
+        public override string ToString()
+        {
+            var toString = string.Empty + this.Name + " ";
+
+            return this.Parameters.Aggregate(toString, (current, param) => current + (param + " "));
         }
 
         private void TrimParams()
@@ -152,16 +152,14 @@ namespace CatalogOfFreeContent
             }
         }
 
-        public override string ToString()
+        private void Parse()
         {
-            var toString = string.Empty + this.Name + " ";
+            this.commandNameLength = this.GetCommandNameEndIndex();
 
-            foreach (var param in this.Parameters)
-            {
-                toString += param + " ";
-            }
-
-            return toString;
+            this.Name = this.ParseName();
+            this.Parameters = this.ParseParameters();
+            this.TrimParams();
+            this.Type = this.ParseCommandType(this.Name);
         }
     }
 }

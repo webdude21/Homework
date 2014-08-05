@@ -6,22 +6,21 @@ namespace CatalogOfFreeContent
 
     public class CommandExecutor : ICommandExecutor
     {
-        public void ExecuteCommand(ICatalog contCat, ICommandParser commandParser, StringBuilder stringBuilder)
+        public void ExecuteCommand(ICatalog catalog, ICommandParser commandParser, StringBuilder stringBuilder)
         {
             switch (commandParser.Type)
             {
                 case Command.AddBook:
                     {
-                        contCat.Add(new Content(CatalogType.Book, commandParser.Parameters));
-                        stringBuilder.AppendLine("Books Added");
+                        catalog.Add(new Content(CatalogType.Book, commandParser.Parameters));
+                        stringBuilder.AppendLine("Book added");
                     }
 
                     break;
 
                 case Command.AddMovie:
                     {
-                        contCat.Add(new Content(CatalogType.Movie, commandParser.Parameters));
-
+                        catalog.Add(new Content(CatalogType.Movie, commandParser.Parameters));
                         stringBuilder.AppendLine("Movie added");
                     }
 
@@ -29,17 +28,15 @@ namespace CatalogOfFreeContent
 
                 case Command.AddSong:
                     {
-                        contCat.Add(new Content(CatalogType.Song, commandParser.Parameters));
-
-                        stringBuilder.Append("Song added");
+                        catalog.Add(new Content(CatalogType.Song, commandParser.Parameters));
+                        stringBuilder.AppendLine("Song added");
                     }
 
                     break;
 
                 case Command.AddApplication:
                     {
-                        contCat.Add(new Content(CatalogType.Application, commandParser.Parameters));
-
+                        catalog.Add(new Content(CatalogType.Application, commandParser.Parameters));
                         stringBuilder.AppendLine("Application added");
                     }
 
@@ -47,10 +44,7 @@ namespace CatalogOfFreeContent
 
                 case Command.Update:
                     {
-                        if (commandParser.Parameters.Length == 2)
-                        {
-                        }
-                        else
+                        if (commandParser.Parameters.Length != 2)
                         {
                             throw new FormatException("Invalid Parameters!");
                         }
@@ -58,7 +52,7 @@ namespace CatalogOfFreeContent
                         stringBuilder.AppendLine(
                             string.Format(
                                 "{0} items updated", 
-                                contCat.UpdateContent(commandParser.Parameters[0], commandParser.Parameters[1]) - 1));
+                                catalog.UpdateContent(commandParser.Parameters[0], commandParser.Parameters[1])));
                     }
 
                     break;
@@ -73,15 +67,16 @@ namespace CatalogOfFreeContent
 
                         var numberOfElementsToList = int.Parse(commandParser.Parameters[1]);
 
-                        var foundContent = contCat.GetListContent(commandParser.Parameters[0], numberOfElementsToList);
+                        var foundContent = catalog.GetListContent(commandParser.Parameters[0], numberOfElementsToList);
 
-                        if (foundContent.Count() == 0)
+                        var enumerable = foundContent as IContent[] ?? foundContent.ToArray();
+                        if (!enumerable.Any())
                         {
                             stringBuilder.AppendLine("No items found");
                         }
                         else
                         {
-                            foreach (var content in foundContent)
+                            foreach (var content in enumerable)
                             {
                                 stringBuilder.AppendLine(content.TextRepresentation);
                             }
