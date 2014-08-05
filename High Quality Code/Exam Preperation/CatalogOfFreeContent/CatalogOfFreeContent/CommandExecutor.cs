@@ -78,7 +78,7 @@ namespace CatalogOfFreeContent
                         {
                             foreach (var content in enumerable)
                             {
-                                stringBuilder.AppendLine(content.TextRepresentation);
+                                stringBuilder.AppendLine(content.ToString());
                             }
                         }
                     }

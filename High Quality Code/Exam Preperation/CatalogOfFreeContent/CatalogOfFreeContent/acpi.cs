@@ -2,7 +2,7 @@ namespace CatalogOfFreeContent
 {
     public enum Acpi
     {
-        Title = 0, 
+        Title, 
 
         Author, 
 

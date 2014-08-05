@@ -14,6 +14,5 @@ namespace CatalogOfFreeContent
 
         CatalogType Type { get; set; }
 
-        string TextRepresentation { get; set; }
     }
 }
