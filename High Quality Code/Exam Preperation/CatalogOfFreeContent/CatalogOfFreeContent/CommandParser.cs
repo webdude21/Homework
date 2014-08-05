@@ -3,6 +3,8 @@ namespace CatalogOfFreeContent
     using System;
     using System.Linq;
 
+    using CatalogOfFreeContent.Contracts;
+
     public class CommandParser : ICommandParser
     {
         private const int CommandSeparatorLength = 2;

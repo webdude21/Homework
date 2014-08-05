@@ -1,4 +1,4 @@
-namespace CatalogOfFreeContent
+namespace CatalogOfFreeContent.Contracts
 {
     using System;
 

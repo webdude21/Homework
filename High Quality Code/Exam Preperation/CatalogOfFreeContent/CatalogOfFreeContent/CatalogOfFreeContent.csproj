@@ -41,14 +41,16 @@
     <Compile Include="Acpi.cs" />
     <Compile Include="Catalog.cs" />
     <Compile Include="CommandExecutor.cs" />
+    <Compile Include="Commands\AddContent.cs" />
     <Compile Include="Commands\ICommandFactory.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="CatalogType.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="Contracts\ICommandExecutor.cs" />
     <Compile Include="Contracts\ICatalog.cs" />
-    <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Contracts\ICommandParser.cs" />
     <Compile Include="Contracts\IContent.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

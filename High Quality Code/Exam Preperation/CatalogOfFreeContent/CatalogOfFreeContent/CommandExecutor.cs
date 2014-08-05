@@ -4,6 +4,8 @@ namespace CatalogOfFreeContent
     using System.Linq;
     using System.Text;
 
+    using CatalogOfFreeContent.Contracts;
+
     public class CommandExecutor : ICommandExecutor
     {
         public void ExecuteCommand(ICatalog catalog, ICommandParser commandParser, StringBuilder stringBuilder)

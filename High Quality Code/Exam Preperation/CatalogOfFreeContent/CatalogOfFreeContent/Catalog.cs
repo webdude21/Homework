@@ -3,56 +3,53 @@ namespace CatalogOfFreeContent
     using System.Collections.Generic;
     using System.Linq;
 
+    using CatalogOfFreeContent.Contracts;
+
     using Wintellect.PowerCollections;
 
     internal class Catalog : ICatalog
     {
-        private readonly OrderedMultiDictionary<string, IContent> title;
+        private readonly OrderedMultiDictionary<string, IContent> contentByTitle;
 
-        private readonly MultiDictionary<string, IContent> url;
+        private readonly MultiDictionary<string, IContent> contentByUrl;
 
         public Catalog()
         {
-            this.title = new OrderedMultiDictionary<string, IContent>(true);
-            this.url = new MultiDictionary<string, IContent>(true);
+            this.contentByTitle = new OrderedMultiDictionary<string, IContent>(true);
+            this.contentByUrl = new MultiDictionary<string, IContent>(true);
         }
 
         public void Add(IContent content)
         {
-            this.title.Add(content.Title, content);
-            this.url.Add(content.URL, content);
+            this.contentByTitle.Add(content.Title, content);
+            this.contentByUrl.Add(content.URL, content);
         }
 
         public IEnumerable<IContent> GetListContent(string title, int numberOfContentElementsToList)
         {
-            var contentToList = from c in this.title[title] select c;
-
+            var contentToList = from contentItem in this.contentByTitle[title] select contentItem;
             return contentToList.Take(numberOfContentElementsToList);
         }
 
-        public int UpdateContent(string old, string newUrl)
+        public int UpdateContent(string oldUrl, string newUrl)
         {
             var theElements = 0;
 
-            var contentToList = this.url[old].ToList();
+            var contentToList = this.contentByUrl[oldUrl].ToList();
 
             foreach (var content in contentToList.Cast<Content>())
             {
-                this.title.Remove(content.Title, content);
+                this.contentByTitle.Remove(content.Title, content);
                 theElements++; 
             }
 
-            this.url.Remove(old);
+            this.contentByUrl.Remove(oldUrl);
 
             foreach (var content in contentToList)
             {
                 content.URL = newUrl;
-            }
-
-            foreach (var content in contentToList)
-            {
-                this.title.Add(content.Title, content);
-                this.url.Add(content.URL, content);
+                this.contentByTitle.Add(content.Title, content);
+                this.contentByUrl.Add(content.URL, content);
             }
 
             return theElements;

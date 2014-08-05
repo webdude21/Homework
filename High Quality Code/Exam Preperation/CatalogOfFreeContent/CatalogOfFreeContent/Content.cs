@@ -3,6 +3,8 @@ namespace CatalogOfFreeContent
     using System;
     using System.Collections.Generic;
 
+    using CatalogOfFreeContent.Contracts;
+
     public class Content : IContent
     {
         public Content(CatalogType type, IList<string> commandParams)

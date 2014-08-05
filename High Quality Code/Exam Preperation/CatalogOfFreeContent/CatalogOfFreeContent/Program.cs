@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Text;
 
+    using CatalogOfFreeContent.Contracts;
+
     public class Program
     {
         public static void Main()
