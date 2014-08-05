@@ -9,14 +9,14 @@
     {
         public Command Parse(string arguments)
         {
-            var j = arguments.IndexOf(' ');
-            if (j == -1)
+            var emptySpacesFound = arguments.IndexOf(' ');
+            if (emptySpacesFound == -1)
             {
                 throw new Exception("Invalid command: " + arguments);
             }
 
-            var name = arguments.Substring(0, j);
-            var arg = arguments.Substring(j + 1);
+            var name = arguments.Substring(0, emptySpacesFound);
+            var arg = arguments.Substring(emptySpacesFound + 1);
 
             var commandArguments = arg.Split('|');
             for (var i = 0; i < commandArguments.Length; i++)

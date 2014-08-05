@@ -4,10 +4,9 @@ namespace CalendarSystem
     using CalendarSystem.Factories;
     using CalendarSystem.Strategies;
 
-    public class CommandManager
+    public class CommandManager : ICommandManager
     {
         private readonly ICommandFactory commandFactory;
-
         private readonly ICommandParser commandParser;
 
         public CommandManager(ICommandFactory commandFactory, ICommandParser commandParser)
@@ -25,8 +24,8 @@ namespace CalendarSystem
         public string ProcessCommand(string commandLine)
         {
             var comd = this.commandParser.Parse(commandLine);
-            var command = this.commandFactory.GetCommand(comd.CommandName);
-            return command.Execute(comd.Paramms);
+            var command = this.commandFactory.GetCommand(comd.Name);
+            return command.Execute(comd.Arguments);
         }
     }
 }

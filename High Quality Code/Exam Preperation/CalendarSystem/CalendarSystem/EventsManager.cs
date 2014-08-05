@@ -8,21 +8,21 @@
 
     public class EventsManager : IEventsManager
     {
-        private readonly List<CalendarEvent> list = new List<CalendarEvent>();
+        private readonly List<CalendarEvent> calendarEventList = new List<CalendarEvent>();
 
         public void AddEvent(CalendarEvent calendarEvent)
         {
-            this.list.Add(calendarEvent);
+            this.calendarEventList.Add(calendarEvent);
         }
 
         public int DeleteEventsByTitle(string title)
         {
-            return this.list.RemoveAll(e => string.Equals(e.Title, title, StringComparison.InvariantCultureIgnoreCase));
+            return this.calendarEventList.RemoveAll(e => string.Equals(e.Title, title, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public IEnumerable<CalendarEvent> ListEvents(DateTime dateTime, int count)
         {
-            return (from calendarEvent in this.list
+            return (from calendarEvent in this.calendarEventList
                     where calendarEvent.DateTime >= dateTime
                     orderby calendarEvent.DateTime, calendarEvent.Title, calendarEvent.Location
                     select calendarEvent).Take(count);
