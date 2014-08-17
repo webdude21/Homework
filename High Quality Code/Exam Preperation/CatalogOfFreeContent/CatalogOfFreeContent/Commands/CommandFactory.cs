@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatalogOfFreeContent.Commands
+﻿namespace CatalogOfFreeContent.Commands
 {
-    class CommandFactory
+    public class CommandFactory
     {
     }
 }

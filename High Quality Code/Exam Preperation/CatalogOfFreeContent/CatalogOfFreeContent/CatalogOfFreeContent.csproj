@@ -42,6 +42,7 @@
     <Compile Include="Catalog.cs" />
     <Compile Include="CommandExecutor.cs" />
     <Compile Include="Commands\AddContent.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\ICommandFactory.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="CommandParser.cs" />

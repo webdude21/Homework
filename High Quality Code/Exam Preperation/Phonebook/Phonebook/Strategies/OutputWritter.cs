@@ -18,14 +18,6 @@
             this.stringBuilder = new StringBuilder();
         }
 
-        public int Length
-        {
-            get
-            {
-                return this.stringBuilder.Length;
-            }
-        }
-
         public void WriteOutput(string text)
         {
             this.stringBuilder.AppendLine(text);
