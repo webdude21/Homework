@@ -1,2 +1,0 @@
-1. What is SQL? What is DML? What is DDL? Recite the most important SQL commands.
- - Structured Query Language

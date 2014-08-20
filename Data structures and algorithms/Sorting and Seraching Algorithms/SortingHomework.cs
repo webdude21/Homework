@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class Program
+    internal class SortingHomework
     {
         internal static void Main(string[] args)
         {

@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="ISorter.cs" />
     <Compile Include="MergeSorter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="SortingHomework.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quicksorter.cs" />
     <Compile Include="SelectionSorter.cs" />

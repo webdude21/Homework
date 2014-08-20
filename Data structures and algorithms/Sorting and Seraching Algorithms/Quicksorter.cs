@@ -1,10 +1,11 @@
 ﻿namespace SortingHomework
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
 
-    public class Quicksorter<T> : ISorter<T> where T : IComparable<T>
+    public class Quicksorter<T> : ISorter<T>
+        where T : IComparable<T>
     {
         public void Sort(IList<T> collection)
         {
@@ -44,8 +45,7 @@
             return Combine(QuickSort(smallerThanPivot), pivot, QuickSort(greaterThanPivot));
         }
 
-        private static IEnumerable<T> Combine(IEnumerable<T> smallerThanPivot,
-            T pivot, IEnumerable<T> greaterThanPivot)
+        private static IEnumerable<T> Combine(IEnumerable<T> smallerThanPivot, T pivot, IEnumerable<T> greaterThanPivot)
         {
             IList<T> result = smallerThanPivot.ToList();
             result.Add(pivot);
@@ -60,37 +60,39 @@
 
         private static int GetPivotIndex(IList<T> collection)
         {
-            const int medianCandidatesCount = 3;
+            const int MedianCandidatesCount = 3;
 
-            if (collection.Count > medianCandidatesCount)
+            if (collection.Count <= MedianCandidatesCount)
             {
-                int swap;
-                var leftIndex = 0;
-                var middleIndex = (collection.Count - 1) / 2;
-                var rightIndex = collection.Count - 1;
+                return collection.Count - 1;
+            }
 
-                if (collection[leftIndex].CompareTo(collection[rightIndex]) > 0)
-                {
-                    swap = rightIndex;
-                    rightIndex = leftIndex;
-                    leftIndex = swap;
-                }
+            int swap;
+            var leftIndex = 0;
+            var middleIndex = (collection.Count - 1) / 2;
+            var rightIndex = collection.Count - 1;
 
-                if (collection[leftIndex].CompareTo(collection[middleIndex]) > 0)
-                {
-                    middleIndex = leftIndex;
-                }
+            if (collection[leftIndex].CompareTo(collection[rightIndex]) > 0)
+            {
+                swap = rightIndex;
+                rightIndex = leftIndex;
+                leftIndex = swap;
+            }
 
-                if (collection[middleIndex].CompareTo(collection[rightIndex]) > 0)
-                {
-                    swap = rightIndex;
-                    middleIndex = swap;
-                }
+            if (collection[leftIndex].CompareTo(collection[middleIndex]) > 0)
+            {
+                middleIndex = leftIndex;
+            }
 
+            if (collection[middleIndex].CompareTo(collection[rightIndex]) <= 0)
+            {
                 return middleIndex;
             }
 
-            return collection.Count - 1;
+            swap = rightIndex;
+            middleIndex = swap;
+
+            return middleIndex;
         }
     }
 }
