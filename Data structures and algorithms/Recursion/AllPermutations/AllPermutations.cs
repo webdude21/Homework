@@ -1,16 +1,16 @@
 ﻿/* Write a recursive program for generating and printing all permutations of the numbers 
  * 1, 2, ..., n for given integer number n. Example: 
  * n=3 => {1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2},{3, 2, 1} */
-
-using System;
-using System.Collections.Generic;
-
 namespace AllPermutations
 {
-    class AllPermutations
+    using System;
+    using System.Collections.Generic;
+
+    internal class AllPermutations
     {
-        static int recursiveCalls;
-        static void Main()
+        private static int recursiveCalls;
+
+        private static void Main()
         {
             Console.Write("n= ");
             var n = int.Parse(Console.ReadLine());
@@ -20,7 +20,7 @@ namespace AllPermutations
             Console.WriteLine("Number of recursive calls: {0} ", recursiveCalls);
         }
 
-        static void GeneratePermutations(int index, IList<int> array, IList<bool> usedNumbers)
+        private static void GeneratePermutations(int index, IList<int> array, IList<bool> usedNumbers)
         {
             if (index == array.Count)
             {
@@ -36,17 +36,18 @@ namespace AllPermutations
                     array[index] = i + 1;
                     usedNumbers[i] = true;
                     GeneratePermutations(index + 1, array, usedNumbers);
-                    usedNumbers[i] = false; 
+                    usedNumbers[i] = false;
                 }
             }
         }
 
-        static void PrintCombination(IEnumerable<int> arr)
+        private static void PrintCombination(IEnumerable<int> arr)
         {
             foreach (var number in arr)
             {
                 Console.Write(number);
             }
+
             Console.WriteLine();
         }
     }

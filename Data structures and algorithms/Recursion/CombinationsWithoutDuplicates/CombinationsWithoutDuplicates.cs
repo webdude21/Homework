@@ -1,15 +1,15 @@
 ﻿// Modify the previous program to skip duplicates:
 // n=4, k=2 >> (1 2), (1 3), (1 4), (2 3), (2 4), (3 4)
-
-using System;
-using System.Collections.Generic;
-
 namespace CombinationsWithoutDuplicates
 {
-    class CombinationsWithoutDuplicates
+    using System;
+    using System.Collections.Generic;
+
+    internal class CombinationsWithoutDuplicates
     {
-        static int recursiveCalls;
-        static void Main()
+        private static int recursiveCalls;
+
+        private static void Main()
         {
             Console.Write("n= ");
             var n = int.Parse(Console.ReadLine());
@@ -20,7 +20,7 @@ namespace CombinationsWithoutDuplicates
             Console.WriteLine("Number of recursive calls: {0} ", recursiveCalls);
         }
 
-        static void GenerateCombinations(int index, IList<int> arr, int n, int remainingElements)
+        private static void GenerateCombinations(int index, IList<int> arr, int n, int remainingElements)
         {
             recursiveCalls++;
             if (index == arr.Count)
@@ -28,6 +28,7 @@ namespace CombinationsWithoutDuplicates
                 PrintCombination(arr);
                 return;
             }
+
             for (var i = remainingElements; i < n; i++)
             {
                 arr[index] = i + 1;
@@ -35,12 +36,13 @@ namespace CombinationsWithoutDuplicates
             }
         }
 
-        static void PrintCombination(IEnumerable<int> arr)
+        private static void PrintCombination(IEnumerable<int> arr)
         {
             foreach (var number in arr)
             {
                 Console.Write(number);
             }
+
             Console.WriteLine();
         }
     }

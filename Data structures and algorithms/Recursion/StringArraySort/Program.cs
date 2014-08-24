@@ -18,7 +18,6 @@
                                       "Kifla accessory #7"
                                   };
 
-
             Array.Sort(testStrings);
 
             foreach (var item in testStrings)

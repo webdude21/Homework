@@ -1,20 +1,26 @@
-﻿using System;
-using System.Text;
-
-namespace EightQueenPuzzle
+﻿namespace EightQueenPuzzle
 {
-    class EightQueenPuzzle
+    using System;
+    using System.Text;
+
+    internal class EightQueenPuzzle
     {
         private const int BoardSize = 8;
+
         private const int FreeCell = 0;
+
         private const int Queen = 2000;
+
         private static readonly int[,] AttackablePosition = new int[BoardSize, BoardSize];
+
         private static int solutionCount;
-        static void Main()
+
+        private static void Main()
         {
             Solve(0, 0);
             Console.WriteLine("{0} solutions ware found", solutionCount);
         }
+
         private static void Solve(int queenCount, int col)
         {
             if (queenCount == BoardSize)
@@ -34,25 +40,34 @@ namespace EightQueenPuzzle
                 }
             }
         }
+
         private static void UpdatePositionsWith(int updateNumber, int row, int col)
         {
             for (var index = 0; index < BoardSize; index++)
             {
                 // check first diagonal after queen
                 if (row + index < BoardSize && col + index < BoardSize)
+                {
                     AttackablePosition[row + index, col + index] += updateNumber;
+                }
 
                 // check first diagonal before queen
                 if (row - index >= 0 && col - index >= 0)
+                {
                     AttackablePosition[row - index, col - index] += updateNumber;
+                }
 
                 // check second diagonal after queen
                 if (row - index >= 0 && col + index < BoardSize)
+                {
                     AttackablePosition[row - index, col + index] += updateNumber;
+                }
 
                 // check second diagonal before queen
                 if (row + index < BoardSize && col - index >= 0)
+                {
                     AttackablePosition[row + index, col - index] += updateNumber;
+                }
 
                 // Check rows and cols at the same time
                 AttackablePosition[index, col] += updateNumber;
@@ -60,10 +75,16 @@ namespace EightQueenPuzzle
             }
 
             if (updateNumber == 1)
+            {
                 AttackablePosition[row, col] = Queen;
+            }
+
             if (updateNumber == -1)
+            {
                 AttackablePosition[row, col] = FreeCell;
+            }
         }
+
         private static void PrintSolution()
         {
             var sb = new StringBuilder();
@@ -73,8 +94,10 @@ namespace EightQueenPuzzle
                 {
                     sb.Append(AttackablePosition[row, col] == Queen ? 'Q' : '-');
                 }
+
                 sb.Append(Environment.NewLine);
             }
+
             Console.WriteLine(sb);
         }
     }

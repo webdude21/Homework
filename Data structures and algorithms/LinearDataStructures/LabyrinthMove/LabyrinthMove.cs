@@ -1,6 +1,7 @@
 ﻿namespace LabyrinthMove
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
 
@@ -9,6 +10,7 @@
         private const string EntryPointToken = "*";
         private const string EmptyCell = "0";
         private const string Wall = "x";
+        private const string Unreacheble = "u";
         private static readonly Random RandomGen = new Random();
 
         private static void Main()
@@ -26,15 +28,15 @@
             PrintLabyrinth(generatedLabyrinth);
         }
 
-        private static void FillUnreachebaleCells(string[][] labyrinth)
+        private static void FillUnreachebaleCells(IEnumerable<string[]> labyrinth)
         {
-            for (var row = 0; row < labyrinth.Length; row++)
+            foreach (var cell in labyrinth)
             {
-                for (var col = 0; col < labyrinth[row].Length; col++)
+                for (var col = 0; col < cell.Length; col++)
                 {
-                    if (labyrinth[row][col] == EmptyCell)
+                    if (cell[col] == EmptyCell)
                     {
-                        labyrinth[row][col] = "u";
+                        cell[col] = Unreacheble;
                     }
                 }
             }
@@ -50,7 +52,7 @@
             return entryPoint;
         }
 
-        private static void TraverseLabyrinth(string[][] labyrinth, LabyrinthPosition labyrinthPosition, int steps)
+        private static void TraverseLabyrinth(IList<string[]> labyrinth, LabyrinthPosition labyrinthPosition, int steps)
         {
             if (OutsideTheBoundsOfTheLabyrinth(labyrinth, labyrinthPosition))
             {
@@ -90,19 +92,19 @@
             TraverseLabyrinth(labyrinth, new LabyrinthPosition(labyrinthPosition.Row + 1, labyrinthPosition.Col), steps + 1);
         }
 
-        private static bool OutsideTheBoundsOfTheLabyrinth(string[][] labyrinth, LabyrinthPosition labyrinthPosition)
+        private static bool OutsideTheBoundsOfTheLabyrinth(IList<string[]> labyrinth, LabyrinthPosition labyrinthPosition)
         {
-            var rowOutOfBounds = labyrinthPosition.Row < 0 || labyrinthPosition.Row >= labyrinth.Length;
+            var rowOutOfBounds = labyrinthPosition.Row < 0 || labyrinthPosition.Row >= labyrinth.Count;
             var colOutOfBounds = labyrinthPosition.Col < 0 || labyrinthPosition.Col >= labyrinth[0].Length;
 
             return rowOutOfBounds || colOutOfBounds;
         }
 
-        private static void PrintLabyrinth(string[][] labyrinth)
+        private static void PrintLabyrinth(IList<string[]> labyrinth)
         {
             var stringBuilder = new StringBuilder();
 
-            for (var row = 0; row < labyrinth.Length; row++)
+            for (var row = 0; row < labyrinth.Count; row++)
             {
                 for (var col = 0; col < labyrinth[row].Length; col++)
                 {
