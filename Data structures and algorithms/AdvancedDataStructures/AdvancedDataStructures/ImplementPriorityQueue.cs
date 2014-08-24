@@ -1,13 +1,12 @@
 ﻿// Implement a class PriorityQueue<T> based on the data structure "binary heap".
-
-using System;
-using System.Collections.Generic;
-
 namespace AdvancedDataStructures
 {
-    class ImplementPriorityQueue
+    using System;
+    using System.Collections.Generic;
+
+    internal class ImplementPriorityQueue
     {
-        static void Main()
+        private static void Main()
         {
             var priorityQueue = new PriorityQueue<int>();
 

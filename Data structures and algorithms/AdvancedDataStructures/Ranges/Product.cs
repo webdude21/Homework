@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Ranges
+﻿namespace Ranges
 {
-    class Product : IComparable<Product>
+    using System;
+
+    internal class Product : IComparable<Product>
     {
         public Product(string name, decimal price)
         {

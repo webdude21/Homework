@@ -1,15 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using Wintellect.PowerCollections;
-
-namespace Students
+﻿namespace Students
 {
-    class Students
+    using System;
+    using System.IO;
+    using System.Linq;
+
+    using Wintellect.PowerCollections;
+
+    internal class Students
     {
         private static OrderedMultiDictionary<string, Student> studentsColection;
 
-        static void Main()
+        private static void Main()
         {
             ReadInput();
             Console.WriteLine(PrintStudentsByCourse("C#"));
@@ -19,7 +20,7 @@ namespace Students
 
         private static void ReadInput()
         {
-            var input = "";
+            var input = string.Empty;
 
             if (File.Exists(@"..\..\students.txt"))
             {
@@ -29,18 +30,20 @@ namespace Students
             studentsColection = new OrderedMultiDictionary<string, Student>(true);
             var studentsStrings = input.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (var studentAsString in studentsStrings.Select(t => t.Split(new[] { '|' },
-                StringSplitOptions.RemoveEmptyEntries)))
+            foreach (
+                var studentAsString in
+                    studentsStrings.Select(t => t.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries)))
             {
-                studentsColection.Add(studentAsString[2].Trim(),
+                studentsColection.Add(
+                    studentAsString[2].Trim(), 
                     new Student(studentAsString[0].Trim(), studentAsString[1].Trim()));
             }
         }
-        static string PrintStudentsByCourse(string courseName)
+
+        private static string PrintStudentsByCourse(string courseName)
         {
             var result = studentsColection[courseName];
-            return !result.Any() ? "No students found" : 
-                string.Format("{0}: {1}", courseName, string.Join(", ", result));
+            return !result.Any() ? "No students found" : string.Format("{0}: {1}", courseName, string.Join(", ", result));
         }
     }
 }

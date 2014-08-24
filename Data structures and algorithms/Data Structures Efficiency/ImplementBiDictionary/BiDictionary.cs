@@ -2,13 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Wintellect.PowerCollections;
 
     public class BiDictionary<K1, K2, T>
     {
-        private readonly MultiDictionary<DoubleKey<K1, K2>, T> twoKeyStorage;
         private readonly MultiDictionary<K1, T> firstKeyStorage;
+
         private readonly MultiDictionary<K2, T> secondKeyStorage;
+
+        private readonly MultiDictionary<DoubleKey<K1, K2>, T> twoKeyStorage;
 
         public BiDictionary(bool allowDuplicateValues)
         {
@@ -89,23 +92,22 @@
 
             internal TK2 Secondkey { get; private set; }
 
-            public override int GetHashCode()
-            {
-                var hash = Math.Abs(this.FirstKey.GetHashCode() +
-                    this.Secondkey.GetHashCode());
-                return hash;
-            }
-
             public bool Equals(T otherObj)
             {
                 var other = otherObj as DoubleKey<TK1, TK2>;
-                return this.FirstKey.Equals(other.FirstKey) && this.Secondkey.Equals(other.Secondkey);
+                return other != null && (this.FirstKey.Equals(other.FirstKey) && this.Secondkey.Equals(other.Secondkey));
+            }
+
+            public override int GetHashCode()
+            {
+                var hash = Math.Abs(this.FirstKey.GetHashCode() + this.Secondkey.GetHashCode());
+                return hash;
             }
 
             public override bool Equals(object obj)
             {
                 var other = obj as DoubleKey<TK1, TK2>;
-                return this.FirstKey.Equals(other.FirstKey) && this.Secondkey.Equals(other.Secondkey);
+                return other != null && (this.FirstKey.Equals(other.FirstKey) && this.Secondkey.Equals(other.Secondkey));
             }
         }
     }

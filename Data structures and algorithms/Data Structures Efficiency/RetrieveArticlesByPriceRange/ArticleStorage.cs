@@ -1,8 +1,8 @@
-﻿using Wintellect.PowerCollections;
-
-namespace RetrieveArticlesByPriceRange
+﻿namespace RetrieveArticlesByPriceRange
 {
-    class ArticleStorage
+    using Wintellect.PowerCollections;
+
+    internal class ArticleStorage
     {
         private readonly OrderedMultiDictionary<decimal, Article> internalStorage;
 
@@ -21,8 +21,11 @@ namespace RetrieveArticlesByPriceRange
             this.internalStorage.Remove(item.Price, item);
         }
 
-        public OrderedMultiDictionary<decimal, Article>.View SelectRange(decimal from, 
-            bool fromInclusive, decimal to, bool toInclusive)
+        public OrderedMultiDictionary<decimal, Article>.View SelectRange(
+            decimal from, 
+            bool fromInclusive, 
+            decimal to, 
+            bool toInclusive)
         {
             return this.internalStorage.Range(from, fromInclusive, to, toInclusive);
         }

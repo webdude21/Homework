@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace ImplementBiDictionary
+﻿namespace ImplementBiDictionary
 {
-    class ImplementBiDictionary
+    using System;
+
+    internal class ImplementBiDictionary
     {
-        static void Main()
+        private static void Main()
         {
             var dict = new BiDictionary<string, int, string>(true);
 

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace rmandvikar.Trie
+﻿namespace Trie.rmandvikar.Trie
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Trie data structure.
     /// </summary>
@@ -37,7 +37,7 @@ namespace rmandvikar.Trie
         /// </summary>
         public void AddWord(string word)
         {
-            AddWord(rootTrieNode, word.ToCharArray());
+            this.AddWord(this.rootTrieNode, word.ToCharArray());
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace rmandvikar.Trie
         {
             var words = new List<string>();
             var buffer = new StringBuilder();
-            GetWords(rootTrieNode, words, buffer);
+            this.GetWords(this.rootTrieNode, words, buffer);
             return words;
         }
 
@@ -59,20 +59,22 @@ namespace rmandvikar.Trie
             ICollection<string> words;
             if (string.IsNullOrEmpty(prefix))
             {
-                words = GetWords();
+                words = this.GetWords();
             }
             else
             {
-                var trieNode = GetTrieNode(prefix);
+                var trieNode = this.GetTrieNode(prefix);
+
                 // Empty list if no prefix match
                 words = new List<string>();
                 if (trieNode != null)
                 {
                     var buffer = new StringBuilder();
                     buffer.Append(prefix);
-                    GetWords(trieNode, words, buffer);
+                    this.GetWords(trieNode, words, buffer);
                 }
             }
+
             return words;
         }
 
@@ -81,7 +83,7 @@ namespace rmandvikar.Trie
         /// </summary>
         public bool HasWord(string word)
         {
-            var trieNode = GetTrieNode(word);
+            var trieNode = this.GetTrieNode(word);
             return trieNode != null && trieNode.IsWord;
         }
 
@@ -90,8 +92,8 @@ namespace rmandvikar.Trie
         /// </summary>
         public int WordCount(string word)
         {
-            var trieNode = GetTrieNode(word);
-            return (trieNode == null ? 0 : trieNode.WordCount);
+            var trieNode = this.GetTrieNode(word);
+            return trieNode == null ? 0 : trieNode.WordCount;
         }
 
         #endregion
@@ -104,13 +106,16 @@ namespace rmandvikar.Trie
         /// </summary>
         private TrieNode GetTrieNode(string prefix)
         {
-            var trieNode = rootTrieNode;
+            var trieNode = this.rootTrieNode;
             foreach (var prefixChar in prefix.ToCharArray())
             {
                 trieNode.Children.TryGetValue(prefixChar, out trieNode);
                 if (trieNode == null)
+                {
                     break;
+                }
             }
+
             return trieNode;
         }
 
@@ -136,24 +141,27 @@ namespace rmandvikar.Trie
                     child = TrieFactory.GetTrieNode(c);
                     trieNode.Children[c] = child;
                 }
+
                 var cRemoved = Utilities.FirstCharRemoved(word);
-                AddWord(child, cRemoved);
+                this.AddWord(child, cRemoved);
             }
         }
 
         /// <summary>
         /// Recursive method to get all the words starting from given TrieNode.
         /// </summary>
-        private void GetWords(TrieNode trieNode, ICollection<string> words,
-            StringBuilder buffer)
+        private void GetWords(TrieNode trieNode, ICollection<string> words, StringBuilder buffer)
         {
             if (trieNode.IsWord)
+            {
                 words.Add(buffer.ToString());
+            }
 
             foreach (var child in trieNode.Children.Values)
             {
                 buffer.Append(child.Character);
-                GetWords(child, words, buffer);
+                this.GetWords(child, words, buffer);
+
                 // Remove recent character
                 buffer.Length--;
             }

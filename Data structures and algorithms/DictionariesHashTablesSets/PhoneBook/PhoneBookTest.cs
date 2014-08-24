@@ -1,16 +1,15 @@
-﻿using System.IO;
-using Wintellect.PowerCollections;
-
-namespace PhoneBook
+﻿namespace PhoneBook
 {
-    class PhoneBookTest
+    using System.IO;
+
+    internal class PhoneBookTest
     {
-        static void Main()
+        private static void Main()
         {
             const string filePath = @"..\..\phones.txt";
             if (File.Exists(filePath))
             {
-               var input = new StreamReader(filePath).ReadToEnd();
+                var input = new StreamReader(filePath).ReadToEnd();
             }
         }
     }

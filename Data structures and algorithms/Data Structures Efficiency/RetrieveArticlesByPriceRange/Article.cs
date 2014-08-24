@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace RetrieveArticlesByPriceRange
+﻿namespace RetrieveArticlesByPriceRange
 {
-    class Article : IComparable<Article>
+    using System;
+
+    internal class Article : IComparable<Article>
     {
         public Article(string title, string vendor, ulong barCode, decimal price)
         {
@@ -27,8 +27,12 @@ namespace RetrieveArticlesByPriceRange
 
         public override string ToString()
         {
-            return string.Format("Title: {0}, Vendor: {1}, Bar code: {2}, Price: {3} ",
-                this.Title, this.Vendor, this.BarCode, this.Price);
+            return string.Format(
+                "Title: {0}, Vendor: {1}, Bar code: {2}, Price: {3} ", 
+                this.Title, 
+                this.Vendor, 
+                this.BarCode, 
+                this.Price);
         }
     }
 }

@@ -1,26 +1,26 @@
 ﻿/* You are given a tree of N nodes represented as a set of N-1 pairs of nodes 
  * (parent node, child node), each in the range (0..N-1). Write a program to 
  * read the tree and find: */
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace TreeTraversal
 {
-    class TreeTraversal
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
+    internal class TreeTraversal
     {
         private static IList<Node<int>> nodeList;
+
         private static bool[] visited;
 
-        static void Main()
+        private static void Main()
         {
             nodeList = ReadInput();
 
             Console.WriteLine("The root is: {0}", FindRoot());
-            Console.WriteLine("The leaves are: {0}", String.Join(", ", FindLeaves()));
-            Console.WriteLine("The middle nodes are: {0}", String.Join(", ", FindMiddleNodes()));
+            Console.WriteLine("The leaves are: {0}", string.Join(", ", FindLeaves()));
+            Console.WriteLine("The middle nodes are: {0}", string.Join(", ", FindMiddleNodes()));
             Console.WriteLine("The longest path takes {0} steps.", FindLongestPath());
         }
 
@@ -33,6 +33,7 @@ namespace TreeTraversal
                 visited = new bool[nodeList.Count];
                 TryPath(leaf, 0, ref longestPath);
             }
+
             return longestPath;
         }
 
@@ -46,6 +47,7 @@ namespace TreeTraversal
                     {
                         maxPathCount = currentDepth;
                     }
+
                     return;
                 }
 
@@ -65,6 +67,7 @@ namespace TreeTraversal
                         TryPath(child, currentDepth + 1, ref maxPathCount);
                     }
                 }
+
                 break;
             }
         }
@@ -87,7 +90,9 @@ namespace TreeTraversal
         private static IList<Node<int>> ReadInput()
         {
             if (File.Exists(@"..\..\input.txt"))
+            {
                 Console.SetIn(new StreamReader(@"..\..\input.txt"));
+            }
 
             var n = int.Parse(Console.ReadLine());
             var nodes = new Node<int>[n];
@@ -105,6 +110,7 @@ namespace TreeTraversal
                 nodes[parentId].AddChild(nodes[childId]);
                 nodes[childId].AddPerent(nodes[parentId]);
             }
+
             return nodes;
         }
     }

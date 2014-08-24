@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AdvancedDataStructures
+﻿namespace AdvancedDataStructures
 {
-    class PriorityQueue<T> where T : IComparable<T>
+    using System;
+    using System.Collections.Generic;
+
+    internal class PriorityQueue<T>
+        where T : IComparable<T>
     {
         private readonly List<T> elements = new List<T>();
 
@@ -59,12 +60,12 @@ namespace AdvancedDataStructures
             while (this.HasLeftDescendant(index) && !correctOrder)
             {
                 var smallerChild = LeftIndex(index);
-                if (this.HasRightDescendant(index) && LeftBiggerThanRight(index) )
+                if (this.HasRightDescendant(index) && this.LeftBiggerThanRight(index))
                 {
                     smallerChild = RightIndex(index);
                 }
 
-                if (BiggerThanSmallerChild(index, smallerChild))
+                if (this.BiggerThanSmallerChild(index, smallerChild))
                 {
                     this.SwapElements(index, smallerChild);
                 }
@@ -72,6 +73,7 @@ namespace AdvancedDataStructures
                 {
                     correctOrder = true;
                 }
+
                 index = smallerChild;
             }
 

@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Students
+﻿namespace Students
 {
-    class Student : IComparable<Student>
+    using System;
+
+    internal class Student : IComparable<Student>
     {
         public Student(string firstName, string lastName)
         {
@@ -11,14 +11,13 @@ namespace Students
         }
 
         public string FirstName { get; private set; }
+
         public string LastName { get; private set; }
 
         public int CompareTo(Student other)
         {
-            var comparedByLastName = String.Compare(this.LastName, other.LastName,
-                StringComparison.Ordinal);
-            var comparedByFirstName = String.Compare(this.FirstName, other.FirstName,
-                StringComparison.Ordinal);
+            var comparedByLastName = string.Compare(this.LastName, other.LastName, StringComparison.Ordinal);
+            var comparedByFirstName = string.Compare(this.FirstName, other.FirstName, StringComparison.Ordinal);
 
             return comparedByLastName != 0 ? comparedByLastName : comparedByFirstName;
         }

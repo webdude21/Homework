@@ -1,16 +1,15 @@
 ﻿/* Implement the data structure "set" in a class HashedSet<T> using your class HashTable<K,T> to hold the elements. 
  * Implement all standard set operations like Add(T), Find(T), Remove(T), Count, Clear(), union and intersect. */
-
-using System;
-using System.Diagnostics;
-
 namespace ImplementHashedSet
 {
-    class ImplementHashedSet
+    using System;
+    using System.Diagnostics;
+
+    internal class ImplementHashedSet
     {
-        static void Main()
+        private static void Main()
         {
-            const int elementsCount = 300000;
+            const int ElementsCount = 300000;
             var rand = new Random();
             var beforeHash = GC.GetTotalMemory(true);
 
@@ -19,7 +18,7 @@ namespace ImplementHashedSet
 
             stopWatch.Start();
 
-            for (var i = 0; i < elementsCount; i++)
+            for (var i = 0; i < ElementsCount; i++)
             {
                 hashTest.Add(rand.Next());
             }
@@ -27,7 +26,8 @@ namespace ImplementHashedSet
             stopWatch.Stop();
             var afterHash = GC.GetTotalMemory(true);
 
-            Console.WriteLine("The time needed to add {0} items in the HashedSet was {1}", elementsCount, stopWatch.Elapsed);
+            Console.WriteLine("The time needed to add {0} items in the HashedSet was {1}",
+                ElementsCount, stopWatch.Elapsed);
             Console.WriteLine("{0} kb used", (afterHash - beforeHash) / 1024);
         }
     }

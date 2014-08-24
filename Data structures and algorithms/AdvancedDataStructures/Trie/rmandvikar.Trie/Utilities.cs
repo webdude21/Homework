@@ -1,5 +1,4 @@
-﻿
-namespace rmandvikar.Trie
+﻿namespace Trie.rmandvikar.Trie
 {
     /// <summary>
     /// Helper methods.
@@ -20,6 +19,7 @@ namespace rmandvikar.Trie
                     cRemoved[i - 1] = word[i];
                 }
             }
+
             return cRemoved;
         }
 

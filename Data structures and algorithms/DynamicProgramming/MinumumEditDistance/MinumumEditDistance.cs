@@ -8,35 +8,44 @@ delete ‘d’:  "developer" > "eveloper", cost = 0.9
 insert ‘n’:  "eveloper" > "enveloper", cost = 0.8
 replace ‘r’ > ‘d’:  "enveloper"  "enveloped", cost = 1
 */
-
-using System;
-
 namespace MinumumEditDistance
 {
-    class MinumumEditDistance
+    using System;
+
+    internal class MinumumEditDistance
     {
-        const decimal DeletionCost = 0.9m;
-        const decimal InsertionCost = 0.8m;
-        const decimal SubstitutionCost = 1m;
+        private const decimal DeletionCost = 0.9m;
 
-        static void Main()
+        private const decimal InsertionCost = 0.8m;
+
+        private const decimal SubstitutionCost = 1m;
+
+        private static void Main()
         {
-            const string firstWord = "developer";
-            const string secondWord = "enveloped";
+            const string FirstWord = "developer";
+            const string SecondWord = "enveloped";
 
-            Console.WriteLine("The minimum edit distance between the words '{0}' and '{1}' is {2}",
-                firstWord, secondWord, GetMinimumEditDistance(firstWord, secondWord));
+            Console.WriteLine(
+                "The minimum edit distance between the words '{0}' and '{1}' is {2}", 
+                FirstWord, 
+                SecondWord, 
+                GetMinimumEditDistance(FirstWord, SecondWord));
         }
+
         private static decimal GetMinimumEditDistance(string firstWord, string secondWord)
         {
             var medArray = new decimal[firstWord.Length + 1, secondWord.Length + 1];
 
             // Cover base cases for both words
             for (var row = 1; row < medArray.GetLength(0); row++)
+            {
                 medArray[row, 0] = row * DeletionCost;
+            }
 
             for (var col = 1; col < medArray.GetLength(1); col++)
+            {
                 medArray[0, col] = col * InsertionCost;
+            }
 
             // Fill table
             for (var row = 1; row < medArray.GetLength(0); row++)
@@ -44,18 +53,23 @@ namespace MinumumEditDistance
                 for (var col = 1; col < medArray.GetLength(1); col++)
                 {
                     /* if the letters are the same get previous result since
-                     * we dont't need to add to the edit distance. If they're 
+                     * we don't need to add to the edit distance. If they're 
                      * not then look for the best possible way to get to this
                      * position */
-
                     if (firstWord[row - 1] == secondWord[col - 1])
+                    {
                         medArray[row, col] = medArray[row - 1, col - 1];
+                    }
                     else
+                    {
                         medArray[row, col] = PickMinimumEditDistance(medArray, row, col);
+                    }
                 }
             }
-            return medArray[firstWord.Length,secondWord.Length];
+
+            return medArray[firstWord.Length, secondWord.Length];
         }
+
         private static decimal PickMinimumEditDistance(decimal[,] medArray, int row, int col)
         {
             var deletion = medArray[row - 1, col] + DeletionCost;
@@ -65,10 +79,14 @@ namespace MinumumEditDistance
             var bestCase = deletion;
 
             if (bestCase > insertion)
+            {
                 bestCase = insertion;
+            }
 
             if (bestCase > substitution)
+            {
                 bestCase = substitution;
+            }
 
             return bestCase;
         }

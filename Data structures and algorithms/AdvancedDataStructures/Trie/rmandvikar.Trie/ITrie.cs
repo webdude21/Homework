@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace rmandvikar.Trie
+﻿namespace Trie.rmandvikar.Trie
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Interface for Trie data structure.
     /// </summary>

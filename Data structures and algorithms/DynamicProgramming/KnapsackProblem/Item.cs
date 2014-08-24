@@ -1,23 +1,26 @@
-﻿using System;
-using System.Linq;
-
-namespace KnapsackProblem
+﻿namespace KnapsackProblem
 {
-    class Item
+    using System;
+    using System.Linq;
+
+    internal class Item
     {
         private static readonly string[] CostSplitString = { "cost=" };
-        private static readonly string[] WeightSplitString = { "weight=", ", " };
 
-        public string Name { get; private set; }
-        public int Weight { get; private set; }
-        public int Price { get; private set; }
+        private static readonly string[] WeightSplitString = { "weight=", ", " };
 
         public Item(string stringInfo)
         {
             this.Name = GetNameFromString(stringInfo);
-            this.Weight = GetWeightFromString(stringInfo);
-            this.Price = GetpriceFromString(stringInfo);
+            this.Weight = this.GetWeightFromString(stringInfo);
+            this.Price = this.GetpriceFromString(stringInfo);
         }
+
+        public string Name { get; private set; }
+
+        public int Weight { get; private set; }
+
+        public int Price { get; private set; }
 
         private int GetpriceFromString(string stringInfo)
         {

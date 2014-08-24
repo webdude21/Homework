@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    public class SortableCollection<T> where T : IComparable<T>
+    public class SortableCollection<T>
+        where T : IComparable<T>
     {
         private static readonly Random RandomGenerator = new Random();
+
         private readonly IList<T> items;
 
         public SortableCollection()
