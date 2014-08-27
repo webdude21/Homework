@@ -1,4 +1,5 @@
-﻿namespace NorthwindDbContext
+﻿// 1. Using the Visual Studio Entity Framework designer create a DbContext for the Northwind database
+namespace NorthwindDbContext
 {
     using System;
     using System.Linq;
