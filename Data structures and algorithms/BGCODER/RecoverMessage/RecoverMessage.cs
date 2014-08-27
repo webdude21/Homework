@@ -1,8 +1,8 @@
 ﻿namespace RecoverMessage
 {
-    class RecoverMessage
+    internal class RecoverMessage
     {
-        static void Main()
+        private static void Main()
         {
         }
     }

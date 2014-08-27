@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Numerics;
-
-namespace MoveForJoy
+﻿namespace MoveForJoy
 {
-    class MoveForJoy
-    {
-        static void Main()
-        {
+    using System;
+    using System.Linq;
+    using System.Numerics;
 
+    internal class MoveForJoy
+    {
+        private static void Main()
+        {
             var input = Console.ReadLine().Split().Select(int.Parse).ToArray();
             var fX = input[0];
             var fY = input[1];
@@ -21,7 +20,6 @@ namespace MoveForJoy
             {
                 for (var y = 0; y < fY; y++)
                 {
-                    
                 }
             }
         }

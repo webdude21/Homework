@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Food
+﻿namespace Food
 {
-    class Food
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    internal class Food
     {
         private static int maxWeight;
 
-        static void Main()
+        private static void Main()
         {
             var itemList = ReadInput();
             var keepArray = Solve(itemList);
@@ -25,19 +25,22 @@ namespace Food
                 for (var col = 1; col <= maxWeight; col++)
                 {
                     var remainingSpace = col - itemList[row - 1].Weight;
-                    if (remainingSpace >= 0 && valueArray[row - 1, remainingSpace] +
-                        itemList[row - 1].Price >= valueArray[row - 1, col])
+                    if (remainingSpace >= 0
+                        && valueArray[row - 1, remainingSpace] + itemList[row - 1].Price >= valueArray[row - 1, col])
                     {
                         valueArray[row, col] = itemList[row - 1].Price + valueArray[row - 1, remainingSpace];
                         keepArray[row, col] = 1;
                     }
                     else
+                    {
                         valueArray[row, col] = valueArray[row - 1, col];
+                    }
                 }
             }
 
             return keepArray;
         }
+
         private static void PrintResult(IList<Item> getResult)
         {
             Console.WriteLine(getResult.Sum(x => x.Price));
@@ -47,6 +50,7 @@ namespace Food
                 Console.WriteLine(item);
             }
         }
+
         private static IList<Item> GetResult(IList<Item> itemList, int[,] keepArray)
         {
             var weightLeft = maxWeight;
@@ -54,7 +58,11 @@ namespace Food
 
             for (var i = itemList.Count - 1; i >= 0; i--)
             {
-                if (itemList[i].Weight > maxWeight) continue;
+                if (itemList[i].Weight > maxWeight)
+                {
+                    continue;
+                }
+
                 if (keepArray[i + 1, weightLeft] == 1 && itemList[i].Weight <= weightLeft)
                 {
                     finelItemList.Add(itemList[i]);
@@ -64,6 +72,7 @@ namespace Food
 
             return finelItemList;
         }
+
         private static IList<Item> ReadInput()
         {
             maxWeight = int.Parse(Console.ReadLine());
@@ -74,21 +83,25 @@ namespace Food
             {
                 itemList.Add(new Item(Console.ReadLine()));
             }
+
             return itemList;
         }
     }
-    class Item
-    {
-        public string Name { get; private set; }
-        public int Weight { get; private set; }
-        public int Price { get; private set; }
 
+    internal class Item
+    {
         public Item(string stringInfo)
         {
             this.Name = GetNameFromString(stringInfo);
-            this.Weight = GetWeightFromString(stringInfo);
-            this.Price = GetpriceFromString(stringInfo);
+            this.Weight = this.GetWeightFromString(stringInfo);
+            this.Price = this.GetpriceFromString(stringInfo);
         }
+
+        public string Name { get; private set; }
+
+        public int Weight { get; private set; }
+
+        public int Price { get; private set; }
 
         private int GetpriceFromString(string stringInfo)
         {
