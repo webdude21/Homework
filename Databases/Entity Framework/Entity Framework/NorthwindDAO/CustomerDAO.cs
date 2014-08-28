@@ -22,20 +22,6 @@
                     });
         }
 
-        public static void UpdateCustumer(Customer customer)
-        {
-            ExecuteCommandSafely(
-                databaseContext =>
-                {
-                    if (CustomerExists(databaseContext, customer.CustomerID))
-                    {
-                        throw new ArgumentException(
-                            "Unable to add the customer with this ID because there's already a customer with this ID.");
-                    }
-
-                    databaseContext.Customers.Add(customer);
-                });
-        }
 
         public static void DeleteCustumer(string custumerId)
         {

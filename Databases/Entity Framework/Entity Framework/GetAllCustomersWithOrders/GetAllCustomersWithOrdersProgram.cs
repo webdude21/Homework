@@ -1,6 +1,5 @@
 ﻿// 3. Write a method that finds all customers who have orders made in 1997 and shipped to Canada.
 // 4. Implement previous by using native SQL query and executing it through the DbContext.
-
 namespace GetAllCustomersWithOrders
 {
     using System;
@@ -54,7 +53,7 @@ namespace GetAllCustomersWithOrders
                                 select clients.ContactName;
 
                 Console.WriteLine("Using entity framework ...");
-                
+
                 foreach (var custumer in custumers)
                 {
                     Console.WriteLine(custumer);
