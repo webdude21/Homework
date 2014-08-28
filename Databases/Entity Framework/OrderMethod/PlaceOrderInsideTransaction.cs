@@ -24,21 +24,14 @@
                                 ShipCity = "My City"
                             };
 
+            for (var i = 1; i < 5; i++)
+            {
+                order.Order_Details.Add(
+                    new Order_Detail { Discount = (float)i / 10, ProductID = i, Quantity = (short)i, UnitPrice = i, });
+            }
 
-            var orderDetail = new Order_Detail
-                                  {
-                                      Discount = 1.2f,
-                                      Order = order,
-                                      ProductID = 11,
-                                      Quantity = 12,
-                                      UnitPrice = 1m,
-                                  };
-
-
-            order.Order_Details.Add(orderDetail);
             northwindEntities.Orders.Add(order);
             northwindEntities.SaveChanges();
-
         }
 
         private static void ExecuteMethodInsideTransaction(
