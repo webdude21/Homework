@@ -27,7 +27,7 @@
             for (var i = 1; i < 5; i++)
             {
                 order.Order_Details.Add(
-                    new Order_Detail { Discount = (float)i / 10, ProductID = i, Quantity = (short)i, UnitPrice = i, });
+                    new Order_Detail { Discount = (float)i / 10, ProductID = i, Quantity = (short)i, UnitPrice = i });
             }
 
             northwindEntities.Orders.Add(order);

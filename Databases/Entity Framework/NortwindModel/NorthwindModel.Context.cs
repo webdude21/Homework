@@ -124,5 +124,22 @@ namespace NortwindModel
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Ten_Most_Expensive_Products_Result>("Ten_Most_Expensive_Products");
         }
+    
+        public virtual int FindSupplierIncome(string name, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, ObjectParameter result)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FindSupplierIncome", nameParameter, startDateParameter, endDateParameter, result);
+        }
     }
 }
