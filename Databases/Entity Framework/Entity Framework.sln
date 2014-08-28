@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7.CuncurreningChanges", "Cu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8.EmployeeExtension", "EmployeeExtension\8.EmployeeExtension.csproj", "{B86A5494-B429-4C00-9287-D84333885868}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.OrderMethod", "9.OrderMethod\9.OrderMethod.csproj", "{2F095A1C-FE76-4B30-A616-232B103CA8D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.OrderMethod", "OrderMethod\9.OrderMethod.csproj", "{2F095A1C-FE76-4B30-A616-232B103CA8D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
