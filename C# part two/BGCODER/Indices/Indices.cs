@@ -1,31 +1,34 @@
-﻿    using System;
+﻿namespace Indices
+{
+    using System;
     using System.Text;
 
-class Indices
-{
-    static void Main()
+    internal class Indices
     {
-        long n = long.Parse(Console.ReadLine());
-        string[] input = Console.ReadLine().Split();
-        long index = 0;
-        bool[] visited = new bool[n];
-        bool cycleExists = false;
-        StringBuilder output = new StringBuilder();
-
-        while (index < input.Length && index >= 0)
+        private static void Main()
         {
-            if (visited[index])
+            var n = long.Parse(Console.ReadLine());
+            var input = Console.ReadLine().Split();
+            long index = 0;
+            var visited = new bool[n];
+            var cycleExists = false;
+            var output = new StringBuilder();
+
+            while (index < input.Length && index >= 0)
             {
-                cycleExists = true;
-                break;
+                if (visited[index])
+                {
+                    cycleExists = true;
+                    break;
+                }
+
+                output.Append(index);
+                output.Append(' ');
+                visited[index] = true;
+                index = long.Parse(input[index]);
             }
 
-            output.Append(index);
-            output.Append(' ');
-            visited[index] = true;
-            index = long.Parse(input[index]);
+            Console.WriteLine(output.ToString().Trim());
         }
-
-        Console.WriteLine(output.ToString().Trim());
     }
 }

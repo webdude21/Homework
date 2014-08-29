@@ -1,121 +1,133 @@
-﻿using System;
-using System.Collections.Generic;
-
-class ThreeInOne
+﻿namespace ThreeinOne
 {
-    static void Main()
-    {
-        Console.WriteLine(TaskOne());
-        Console.WriteLine(TaskTwo());
-        Console.WriteLine(TaskThree());
-    }
+    using System;
+    using System.Collections.Generic;
 
-    static int TaskThree()
+    internal class ThreeInOne
     {
-        string[] taskThreeInput = (Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-        int G1 = int.Parse(taskThreeInput[0]);
-        int S1 = int.Parse(taskThreeInput[1]);
-        int B1 = int.Parse(taskThreeInput[2]);
-        int G2 = int.Parse(taskThreeInput[3]);
-        int S2 = int.Parse(taskThreeInput[4]);
-        int B2 = int.Parse(taskThreeInput[5]);
-
-        int operations = 0;
-        while (G2 > G1)
+        private static void Main()
         {
-            --G2;
-            S2 += 11;
-            operations++;
+            Console.WriteLine(TaskOne());
+            Console.WriteLine(TaskTwo());
+            Console.WriteLine(TaskThree());
         }
-        while (S2 > S1)
+
+        private static int TaskThree()
         {
-            if (G1 > G2)
+            var taskThreeInput = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var G1 = int.Parse(taskThreeInput[0]);
+            var S1 = int.Parse(taskThreeInput[1]);
+            var B1 = int.Parse(taskThreeInput[2]);
+            var G2 = int.Parse(taskThreeInput[3]);
+            var S2 = int.Parse(taskThreeInput[4]);
+            var B2 = int.Parse(taskThreeInput[5]);
+
+            var operations = 0;
+            while (G2 > G1)
             {
-                --G1;
-                S1 += 9;
+                --G2;
+                S2 += 11;
                 operations++;
             }
-            else
+
+            while (S2 > S1)
             {
-                --S2;
-                B2 += 11;
-                operations++;
+                if (G1 > G2)
+                {
+                    --G1;
+                    S1 += 9;
+                    operations++;
+                }
+                else
+                {
+                    --S2;
+                    B2 += 11;
+                    operations++;
+                }
             }
+
+            while (B2 > B1)
+            {
+                if (S1 > S2)
+                {
+                    --S1;
+                    B1 += 9;
+                    operations++;
+                }
+                else if (G1 > G2)
+                {
+                    --G1;
+                    S1 += 9;
+                    operations++;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+
+            return operations;
         }
-        while (B2 > B1)
+
+        private static int TaskTwo()
         {
-            if (S1 > S2)
+            var taskTwoInput = Console.ReadLine().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var cakes = new List<int>(taskTwoInput.Length);
+            var friends = int.Parse(Console.ReadLine());
+            var result = 0;
+            var currentFriend = 0;
+
+            for (var i = 0; i < taskTwoInput.Length; i++)
             {
-                --S1;
-                B1 += 9;
-                operations++;
+                cakes.Add(int.Parse(taskTwoInput[i]));
             }
-            else if (G1 > G2)
+
+            cakes.Sort();
+            cakes.Reverse();
+
+            for (var c = 0; c < cakes.Count; c++)
             {
-                --G1;
-                S1 += 9;
-                operations++;
+                if (currentFriend == 0)
+                {
+                    result = result + cakes[c];
+                }
+
+                currentFriend++;
+
+                if (currentFriend > friends)
+                {
+                    currentFriend = 0;
+                }
             }
-            else
-            {
-                return -1;
-            }
+
+            return result;
         }
-        return operations; 
-    }
 
-    static int TaskTwo()
-    {
-        string[] taskTwoInput = (Console.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
-        List<int> cakes = new List<int>(taskTwoInput.Length);
-        int friends = int.Parse(Console.ReadLine());
-        int result = 0;
-        int currentFriend = 0;
-
-        for (int i = 0; i < taskTwoInput.Length; i++)
+        private static int TaskOne()
         {
-            cakes.Add(int.Parse(taskTwoInput[i]));
-        }
-        cakes.Sort();
-        cakes.Reverse();
+            var taskOneInput = Console.ReadLine().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var score = new List<int>(taskOneInput.Length);
 
-        for (int c = 0; c < cakes.Count; c++)
-        {
-            if (currentFriend == 0)
+            for (var i = 0; i < taskOneInput.Length; i++)
             {
-                result = result + cakes[c];
+                score.Add(int.Parse(taskOneInput[i]));
             }
-            currentFriend++;
 
-            if (currentFriend > friends)
+            for (var i = 21; i >= 0; i--)
             {
-                currentFriend = 0;
-            }
-        }
-        return result;
-    }
-    static int TaskOne()
-    {
-        string[] taskOneInput = (Console.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
-        List<int> score = new List<int>(taskOneInput.Length);
+                var winners = score.FindAll(x => x == i);
+                if (winners.Count > 1)
+                {
+                    return -1;
+                }
 
-        for (int i = 0; i < taskOneInput.Length; i++)
-        {
-            score.Add(int.Parse(taskOneInput[i]));
-        }
+                if (winners.Count == 1)
+                {
+                    return score.IndexOf(winners[0]);
+                }
+            }
 
-        for (int i = 21; i >= 0; i--)
-        {
-            List<int> winners = score.FindAll(x => x == i);
-            if (winners.Count > 1)
-            {
-                return -1;
-            }
-            else if (winners.Count == 1)
-            {
-                return score.IndexOf(winners[0]);
-            }
+            return -1;
         }
-        return -1;
     }
 }

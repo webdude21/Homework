@@ -1,78 +1,85 @@
-﻿using System;
-using System.Text;
-
-class GenomeDecoder
+﻿namespace GenomeDecoder
 {
-    static void Main()
-    {   
-        string[] nAndM = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        int n = int.Parse(nAndM[0]);
-        int m = int.Parse(nAndM[1]);
-        int currentN = 0;
-        int currentM = 0;
-        int currentLine = 1;
-        StringBuilder decodedInput = Decode(Console.ReadLine());
-        StringBuilder result = new StringBuilder(decodedInput.Length);
-        string indent = CalculateIndent(n, decodedInput.Length);
+    using System;
+    using System.Text;
 
-        result.Append(string.Format(indent, currentLine));
-        for (int ch = 0; ch < decodedInput.Length; ch++)
-        {
-            currentM++;
-            currentN++;
-            result.Append(decodedInput[ch]);
-            if (currentN == n && ch != decodedInput.Length - 1)
-            {
-                currentLine++;
-                result.AppendLine();
-                result.Append(string.Format(indent, currentLine));
-                currentN = 0;
-                currentM = 0;
-            }
-            if (currentM == m && ch != decodedInput.Length - 1)
-            {
-                result.Append(' ');
-                currentM = 0;
-            }
-        }
-
-        Console.WriteLine(result);
-    }
-
-    static string CalculateIndent(int n, int decodedInput)
+    internal class GenomeDecoder
     {
-        int numberOfLines = (decodedInput / n);
-        if (decodedInput % n != 0)
+        private static void Main()
         {
-            numberOfLines++;
-        }
-        return "{0," + numberOfLines.ToString().Length + "} ";
-    }
-    static StringBuilder Decode(string input)
-    {
-        StringBuilder result = new StringBuilder();
-        int currNum = 0;
+            var nAndM = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var n = int.Parse(nAndM[0]);
+            var m = int.Parse(nAndM[1]);
+            var currentN = 0;
+            var currentM = 0;
+            var currentLine = 1;
+            var decodedInput = Decode(Console.ReadLine());
+            var result = new StringBuilder(decodedInput.Length);
+            var indent = CalculateIndent(n, decodedInput.Length);
 
-        for (int ch = 0; ch < input.Length; ch++)
-        {
-            if (Char.IsDigit(input[ch]))
+            result.Append(string.Format(indent, currentLine));
+            for (var ch = 0; ch < decodedInput.Length; ch++)
             {
-                currNum = (input[ch] - '0') + (currNum * 10);
-            }
-            else
-            {
-                char currChar = input[ch];
-                if (currNum > 0)
+                currentM++;
+                currentN++;
+                result.Append(decodedInput[ch]);
+                if (currentN == n && ch != decodedInput.Length - 1)
                 {
-                    result.Append(currChar, currNum);
-                    currNum = 0;
+                    currentLine++;
+                    result.AppendLine();
+                    result.Append(string.Format(indent, currentLine));
+                    currentN = 0;
+                    currentM = 0;
+                }
+
+                if (currentM == m && ch != decodedInput.Length - 1)
+                {
+                    result.Append(' ');
+                    currentM = 0;
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+
+        private static string CalculateIndent(int n, int decodedInput)
+        {
+            var numberOfLines = decodedInput / n;
+            if (decodedInput % n != 0)
+            {
+                numberOfLines++;
+            }
+
+            return "{0," + numberOfLines.ToString().Length + "} ";
+        }
+
+        private static StringBuilder Decode(string input)
+        {
+            var result = new StringBuilder();
+            var currNum = 0;
+
+            for (var ch = 0; ch < input.Length; ch++)
+            {
+                if (char.IsDigit(input[ch]))
+                {
+                    currNum = (input[ch] - '0') + (currNum * 10);
                 }
                 else
                 {
-                    result.Append(currChar);
+                    var currChar = input[ch];
+                    if (currNum > 0)
+                    {
+                        result.Append(currChar, currNum);
+                        currNum = 0;
+                    }
+                    else
+                    {
+                        result.Append(currChar);
+                    }
                 }
             }
+
+            return result;
         }
-        return result;
     }
 }

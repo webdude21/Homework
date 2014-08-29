@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-
-class PHPVariables
+﻿namespace PHPVariables
 {
-    static void Main()
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+
+    internal class PHPVariables
     {
-        string currentLine = null;
-        var variables = new List<string>();
-        var input = new StringBuilder();
-
-        while (currentLine != "?>")
+        private static void Main()
         {
-            currentLine = Console.ReadLine();
-            input.AppendLine(currentLine);
-        }
+            string currentLine = null;
+            var variables = new List<string>();
+            var input = new StringBuilder();
 
-        const string vars = @"(?<!\\\$)(?<=\$)\w+|(?<=\\\\\$)(?<=\$)\w+";
-        const string comments = @"//.*|(?<![""']+)#.*|/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*/";
-        var output = Regex.Replace(input.ToString(), comments, "", RegexOptions.IgnoreCase);
-        var matches = Regex.Matches(output, vars, RegexOptions.IgnorePatternWhitespace);
+            while (currentLine != "?>")
+            {
+                currentLine = Console.ReadLine();
+                input.AppendLine(currentLine);
+            }
 
-        foreach (var match in matches.Cast<Match>().Where(match => !variables.Contains(match.ToString())))
-        {
-            variables.Add(match.ToString());
-        }
+            const string vars = @"(?<!\\\$)(?<=\$)\w+|(?<=\\\\\$)(?<=\$)\w+";
+            const string comments = @"//.*|(?<![""']+)#.*|/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*/";
+            var output = Regex.Replace(input.ToString(), comments, string.Empty, RegexOptions.IgnoreCase);
+            var matches = Regex.Matches(output, vars, RegexOptions.IgnorePatternWhitespace);
 
-        Console.WriteLine(variables.Count);
-        foreach (var variable in variables)
-        {
-            Console.WriteLine(variable);
+            foreach (var match in matches.Cast<Match>().Where(match => !variables.Contains(match.ToString())))
+            {
+                variables.Add(match.ToString());
+            }
+
+            Console.WriteLine(variables.Count);
+            foreach (var variable in variables)
+            {
+                Console.WriteLine(variable);
+            }
         }
     }
 }

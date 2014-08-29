@@ -1,51 +1,54 @@
-﻿using System;
-
-class Guitar
+﻿namespace Guitar
 {
-    static void Main()
+    using System;
+
+    internal class Guitar
     {
-        string[] songsAsStrings = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
-        int[] songs = new int[songsAsStrings.Length];
-        int start = int.Parse(Console.ReadLine());
-        int maxVolume = int.Parse(Console.ReadLine());
-
-        for (int i = 0; i < songs.Length; i++)
+        private static void Main()
         {
-            songs[i] = int.Parse(songsAsStrings[i]);
-        }
+            var songsAsStrings = Console.ReadLine().Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+            var songs = new int[songsAsStrings.Length];
+            var start = int.Parse(Console.ReadLine());
+            var maxVolume = int.Parse(Console.ReadLine());
 
-        int[,] solutions = new int[songs.Length + 1, maxVolume +1];
-        solutions[0, start] = 1;
-
-        for (int i = 1; i < solutions.GetLength(0); i++)
-        {
-            int interval = songs[i - 1];
-            for (int j = 0; j < solutions.GetLength(1); j++)
+            for (var i = 0; i < songs.Length; i++)
             {
-                if (solutions[i - 1, j] == 1)
-                {
-                    if (j - interval >= 0)
-                    {
-                        solutions[i, j - interval] = 1;
-                    }
+                songs[i] = int.Parse(songsAsStrings[i]);
+            }
 
-                    if (j + interval <= maxVolume)
+            var solutions = new int[songs.Length + 1, maxVolume + 1];
+            solutions[0, start] = 1;
+
+            for (var i = 1; i < solutions.GetLength(0); i++)
+            {
+                var interval = songs[i - 1];
+                for (var j = 0; j < solutions.GetLength(1); j++)
+                {
+                    if (solutions[i - 1, j] == 1)
                     {
-                        solutions[i, j + interval] = 1;
+                        if (j - interval >= 0)
+                        {
+                            solutions[i, j - interval] = 1;
+                        }
+
+                        if (j + interval <= maxVolume)
+                        {
+                            solutions[i, j + interval] = 1;
+                        }
                     }
                 }
             }
-        }
 
-        for (int i = maxVolume; i >= 0; i--)
-        {
-            if (solutions[songs.Length, i] == 1)
+            for (var i = maxVolume; i >= 0; i--)
             {
-                Console.WriteLine(i);
-                return;
+                if (solutions[songs.Length, i] == 1)
+                {
+                    Console.WriteLine(i);
+                    return;
+                }
             }
-        }
 
-        Console.WriteLine(-1);
+            Console.WriteLine(-1);
+        }
     }
 }

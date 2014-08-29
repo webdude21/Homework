@@ -1,97 +1,105 @@
-﻿using System;
-using System.IO;
-using System.Text;
-
-class CSharpBrackets
+﻿namespace CSharpBrackets
 {
-    static string indent;
-    static int indentCount;
-    static void Main()
-    {
-        if (File.Exists(@"..\..\input.txt"))
-        {
-            Console.SetIn(new StreamReader(@"..\..\input.txt"));
-        }
-        // not working
-        int linesOfInput = int.Parse(Console.ReadLine()); // N
-        indent = Console.ReadLine(); // S
-        ReadInput(linesOfInput);
-    }
+    using System;
+    using System.IO;
+    using System.Text;
 
-    static void ReadInput(int linesOfInput)
+    internal class CSharpBrackets
     {
-        StringBuilder sb = new StringBuilder();
-        for (int currLine = 0; currLine < linesOfInput; currLine++)
-        {
-            sb.Append(GenIndent());
-            string trimmedLine = TrimLine(Console.ReadLine());
+        private static string indent;
 
-            foreach (char ch in trimmedLine)
+        private static int indentCount;
+
+        private static void Main()
+        {
+            if (File.Exists(@"..\..\input.txt"))
             {
-                if (ch == '{')
+                Console.SetIn(new StreamReader(@"..\..\input.txt"));
+            }
+
+            // not working
+            var linesOfInput = int.Parse(Console.ReadLine()); // N
+            indent = Console.ReadLine(); // S
+            ReadInput(linesOfInput);
+        }
+
+        private static void ReadInput(int linesOfInput)
+        {
+            var sb = new StringBuilder();
+            for (var currLine = 0; currLine < linesOfInput; currLine++)
+            {
+                sb.Append(GenIndent());
+                var trimmedLine = TrimLine(Console.ReadLine());
+
+                foreach (var ch in trimmedLine)
                 {
-                    sb.Append(GenIndent());
-                    indentCount++;
-                    sb.Append(ch);
+                    if (ch == '{')
+                    {
+                        sb.Append(GenIndent());
+                        indentCount++;
+                        sb.Append(ch);
+                    }
+                    else if (ch == '}')
+                    {
+                        indentCount--;
+                        sb.Append(ch);
+                    }
+                    else
+                    {
+                        sb.Append(ch);
+                    }
                 }
-                else if (ch == '}')
+
+                sb.AppendLine();
+            }
+
+            Console.WriteLine(sb);
+        }
+
+        private static string GenIndent()
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < indentCount; i++)
+            {
+                sb.Append(indent);
+            }
+
+            return sb.ToString();
+        }
+
+        private static string TrimLine(string line)
+        {
+            var sb = new StringBuilder();
+            var whiteSpace = false;
+            var comment = false;
+            for (var ch = 0; ch < line.Length - 1; ch++)
+            {
+                if (line[ch] == '"')
                 {
-                    indentCount--;
-                    sb.Append(ch);
+                    comment = !comment;
+                }
+
+                if ((line[ch] == ' ' && line[ch + 1] == ' ') && !comment)
+                {
+                    whiteSpace = true;
                 }
                 else
                 {
-                    sb.Append(ch);
+                    whiteSpace = false;
+                }
+
+                if (!whiteSpace)
+                {
+                    sb.Append(line[ch]);
                 }
             }
 
-            sb.AppendLine();
-        }
-        Console.WriteLine(sb);
-    }
-
-    static String GenIndent()
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < indentCount; i++)
-        {
-            sb.Append(indent);
-        }
-        return sb.ToString();
-    }
-
-    static string TrimLine(string line)
-    {
-        StringBuilder sb = new StringBuilder();
-        bool whiteSpace = false;
-        bool comment = false;
-        for (int ch = 0; ch < line.Length - 1; ch++)
-        {
-            if (line[ch] == '"')
+            if (line[line.Length - 1] != ' ')
             {
-                comment = !comment;
+                sb.Append(line[line.Length - 1]);
             }
 
-            if ((line[ch] == ' ' && line[ch + 1] == ' ') && !comment)
-            {
-                whiteSpace = true;
-            }
-            else
-            {
-                whiteSpace = false;
-            }
-
-            if (!whiteSpace)
-            {
-                sb.Append(line[ch]);
-            }
+            return sb.ToString();
         }
-
-        if (line[line.Length - 1] != ' ')
-        {
-            sb.Append(line[line.Length - 1]);
-        }
-
-        return sb.ToString();
     }
 }

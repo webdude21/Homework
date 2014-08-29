@@ -1,90 +1,101 @@
-﻿using System;
-
-class TheyAreGreen
+﻿namespace TheyAreGreen
 {
-    static int[] letters = new int[26];
-    static int[] output;
-    static int inputLenght;
-    static int wordCount;
+    using System;
 
-    static void Main()
+    internal class TheyAreGreen
     {
-        ReadInput();
-        if (OnlyUniqueLetters())
-        {
-            wordCount = FactCalc(inputLenght);
-        }
-        else
-        {
-            Permutate(0);
-        }
-        Console.WriteLine(wordCount);
-    }
+        private static int[] letters = new int[26];
 
-    static int FactCalc(int n)
-    {
-        int currFact = 1;
-        for (int i = 2; i <= n; i++)
+        private static int[] output;
+
+        private static int inputLenght;
+
+        private static int wordCount;
+
+        private static void Main()
         {
-            currFact = currFact * i;
-        }
-        return currFact;
-    }
-    static bool OnlyUniqueLetters()
-    {
-        for (int i = 0; i < letters.Length; i++)
-        {
-            if (letters[i] > 1)
+            ReadInput();
+            if (OnlyUniqueLetters())
             {
-                return false;
+                wordCount = FactCalc(inputLenght);
             }
-        }
-        return true;
-    }
-
-    static bool IsWord()
-    {
-        for (int i = 0; i < output.Length - 1; i++)
-        {
-            if (output[i] == output[i + 1])
+            else
             {
-                return false;
+                Permutate(0);
             }
-        }
-        return true;
-    }
 
-    static void Permutate(int index)
-    {
-        if (index == inputLenght)
-        {
-            if (IsWord())
-            {
-                wordCount++;
-            }
+            Console.WriteLine(wordCount);
         }
-        else
+
+        private static int FactCalc(int n)
         {
-            for (int i = 0; i < letters.Length; i++)
+            var currFact = 1;
+            for (var i = 2; i <= n; i++)
             {
-                if (letters[i] > 0)
+                currFact = currFact * i;
+            }
+
+            return currFact;
+        }
+
+        private static bool OnlyUniqueLetters()
+        {
+            for (var i = 0; i < letters.Length; i++)
+            {
+                if (letters[i] > 1)
                 {
-                    letters[i]--;
-                    output[index] = i;
-                    Permutate(index + 1);
-                    letters[i]++;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsWord()
+        {
+            for (var i = 0; i < output.Length - 1; i++)
+            {
+                if (output[i] == output[i + 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static void Permutate(int index)
+        {
+            if (index == inputLenght)
+            {
+                if (IsWord())
+                {
+                    wordCount++;
+                }
+            }
+            else
+            {
+                for (var i = 0; i < letters.Length; i++)
+                {
+                    if (letters[i] > 0)
+                    {
+                        letters[i]--;
+                        output[index] = i;
+                        Permutate(index + 1);
+                        letters[i]++;
+                    }
                 }
             }
         }
-    }
 
-    static void ReadInput()
-    {
-        inputLenght = int.Parse(Console.ReadLine());
-        output = new int[inputLenght];
-        for (int ch = 0; ch < inputLenght; ch++)
+        private static void ReadInput()
         {
-            letters[char.Parse(Console.ReadLine()) - 97]++;
+            inputLenght = int.Parse(Console.ReadLine());
+            output = new int[inputLenght];
+            for (var ch = 0; ch < inputLenght; ch++)
+            {
+                letters[char.Parse(Console.ReadLine()) - 97]++;
+            }
         }
     }
 }

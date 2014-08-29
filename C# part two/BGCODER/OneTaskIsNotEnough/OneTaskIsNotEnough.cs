@@ -1,57 +1,66 @@
-﻿using System;
-using System.IO;
-
-class OneTaskIsNotEnough
+﻿namespace OneTaskIsNotEnough
 {
-    static bool[] lamps;
-    static string instructionsOne;
-    static string instructionsTwo;
+    using System;
+    using System.IO;
 
-    static void Main()
+    internal class OneTaskIsNotEnough
     {
-        GetInput();
-        Console.WriteLine(SolveTaskOne());
-        // Not finished
-    }
+        private static bool[] lamps;
 
-    static int SolveTaskOne()
-    {
-        int jumps = 1;
-        int lastLamp = 0;
-        while (!AllLampsAreLit())
+        private static string instructionsOne;
+
+        private static string instructionsTwo;
+
+        private static void Main()
         {
-            jumps++;
-            int currentLamp = Array.IndexOf(lamps, false);
-            while (currentLamp < lamps.Length)
+            GetInput();
+            Console.WriteLine(SolveTaskOne());
+
+            // Not finished
+        }
+
+        private static int SolveTaskOne()
+        {
+            var jumps = 1;
+            var lastLamp = 0;
+            while (!AllLampsAreLit())
             {
-                lamps[currentLamp] = true;
-                lastLamp = currentLamp + 1;
-                currentLamp += jumps;
+                jumps++;
+                var currentLamp = Array.IndexOf(lamps, false);
+                while (currentLamp < lamps.Length)
+                {
+                    lamps[currentLamp] = true;
+                    lastLamp = currentLamp + 1;
+                    currentLamp += jumps;
+                }
             }
-        }
-        return lastLamp;
-    }
 
-    static bool AllLampsAreLit()
-    {
-        foreach (bool lamp in lamps)
+            return lastLamp;
+        }
+
+        private static bool AllLampsAreLit()
         {
-            if (!lamp)
+            foreach (var lamp in lamps)
             {
-                return false;
+                if (!lamp)
+                {
+                    return false;
+                }
             }
-        }
-        return true;
-    }
 
-    static void GetInput()
-    {
-        if (File.Exists(@"..\..\input.txt"))
-        {
-            Console.SetIn(new StreamReader(@"..\..\input.txt"));
+            return true;
         }
-        lamps = new bool[int.Parse(Console.ReadLine())];
-        instructionsOne = Console.ReadLine();
-        instructionsTwo = Console.ReadLine();
+
+        private static void GetInput()
+        {
+            if (File.Exists(@"..\..\input.txt"))
+            {
+                Console.SetIn(new StreamReader(@"..\..\input.txt"));
+            }
+
+            lamps = new bool[int.Parse(Console.ReadLine())];
+            instructionsOne = Console.ReadLine();
+            instructionsTwo = Console.ReadLine();
+        }
     }
 }

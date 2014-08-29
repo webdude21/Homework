@@ -1,69 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-class MessagesInABottle
+﻿namespace MessagesInABottle
 {
-    static string secretMessage;
-    static string cipher;
-    static Dictionary<string, char> cipherBook = new Dictionary<string, char>();
-    static SortedSet<string> result = new SortedSet<string>();
-    static StringBuilder sb = new StringBuilder();
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
-    static void Main()
+    internal class MessagesInABottle
     {
-        GetInput();
-        GenerateMessage(0);
-        
-        Console.WriteLine(result.Count);
-        foreach (string message in result)
-        {
-            Console.WriteLine(message);
-        }
-    }
+        private static string secretMessage;
 
-    static void GenerateMessage(int index)
-    {
-        if (index == secretMessage.Length)
-        {
-            result.Add(sb.ToString());
-            return;
-        }
+        private static string cipher;
 
-        for (int i = 0; i + index <= secretMessage.Length; i++)
+        private static Dictionary<string, char> cipherBook = new Dictionary<string, char>();
+
+        private static SortedSet<string> result = new SortedSet<string>();
+
+        private static StringBuilder sb = new StringBuilder();
+
+        private static void Main()
         {
-            if (cipherBook.ContainsKey(secretMessage.Substring(index, i)))
+            GetInput();
+            GenerateMessage(0);
+
+            Console.WriteLine(result.Count);
+            foreach (var message in result)
             {
-                sb.Append(cipherBook[secretMessage.Substring(index, i)]);
-                GenerateMessage(index + i);
-                sb.Remove(sb.Length - 1, 1);
+                Console.WriteLine(message);
             }
         }
-    }
 
-    private static void GetInput()
-    {
-        secretMessage = Console.ReadLine();
-        cipher = Console.ReadLine();
-        int index = 0;
-
-        while (index < cipher.Length)
+        private static void GenerateMessage(int index)
         {
-            if (char.IsLetter(cipher[index]))
+            if (index == secretMessage.Length)
             {
-                char value = cipher[index];
-                index++;
-                while (index < cipher.Length && char.IsDigit(cipher[index]))
-                {
-                    sb.Append(cipher[index]);
-                    index++;
-                }
+                result.Add(sb.ToString());
+                return;
+            }
 
-                if (!cipherBook.ContainsValue(value))
+            for (var i = 0; i + index <= secretMessage.Length; i++)
+            {
+                if (cipherBook.ContainsKey(secretMessage.Substring(index, i)))
                 {
-                    cipherBook.Add(sb.ToString(), value);
+                    sb.Append(cipherBook[secretMessage.Substring(index, i)]);
+                    GenerateMessage(index + i);
+                    sb.Remove(sb.Length - 1, 1);
                 }
-                sb.Clear();
+            }
+        }
+
+        private static void GetInput()
+        {
+            secretMessage = Console.ReadLine();
+            cipher = Console.ReadLine();
+            var index = 0;
+
+            while (index < cipher.Length)
+            {
+                if (char.IsLetter(cipher[index]))
+                {
+                    var value = cipher[index];
+                    index++;
+                    while (index < cipher.Length && char.IsDigit(cipher[index]))
+                    {
+                        sb.Append(cipher[index]);
+                        index++;
+                    }
+
+                    if (!cipherBook.ContainsValue(value))
+                    {
+                        cipherBook.Add(sb.ToString(), value);
+                    }
+
+                    sb.Clear();
+                }
             }
         }
     }

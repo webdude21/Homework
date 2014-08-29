@@ -1,100 +1,108 @@
-﻿using System;
-using System.Text;
-
-class TwoIsBetterThanOne
+﻿namespace TwoIsBetterThanOne
 {
-    static ulong luckyNumbers; // store the lucky numbers here
-    static int e; // this is the E element as defined by the task description
-    static int[] magicDigits = { 3, 5 }; // this array holds the magic digits
-    static int[] currentNumber; // this is used to store the current generated number
-    static ulong a; // this is A as defined by the task description
-    static ulong b; // this is B as defined by the task description
+    using System;
+    using System.Text;
 
-    static void Main()
+    internal class TwoIsBetterThanOne
     {
-        TaskOne(); // Complate task one
-        SecondTask(); // Comple task two
-        Console.WriteLine(luckyNumbers); // Print result from task one
-        Console.WriteLine(e); // Print result from task two
-    }
+        private static readonly int[] MagicDigits = { 3, 5 }; 
+        
+        private static ulong luckyNumbers; 
 
-    static void SecondTask()
-    {
-        string[] numbers = Console.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        int percentile = int.Parse(Console.ReadLine());
-        int[] numberArray = new int[numbers.Length];
+        private static int e; 
 
-        for (int i = 0; i < numbers.Length; i++)
+        private static int[] currentNumber; 
+
+        private static ulong a; 
+
+        private static ulong b; 
+
+        private static void Main()
         {
-            numberArray[i] = int.Parse(numbers[i]);
-        }
-        // Read the Input
-        Array.Sort(numberArray); // Sort the array (duh)
-        e = numberArray[(percentile * numbers.Length - 1) / 100]; // Solve the task
-    }
-
-    static void TaskOne()
-    {
-        string[] input = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        a = ulong.Parse(input[0]); // get the input
-        b = ulong.Parse(input[1]); // get the input
-
-        int maxDigits = Math.Max(input[0].Length, input[1].Length); // find the maximum ammount of digits
-        int minDigits = Math.Min(input[0].Length, input[1].Length); // find the minimum ammount of digits
-
-        if (a > b)  // Ensure that "a" is always the biggest number (to avoid checking everytime)
-        {
-            ulong temp = b;
-            b = a;
-            a = temp;
+            TaskOne(); // Complete task one
+            SecondTask(); // Complete task two
+            Console.WriteLine(luckyNumbers); // Print result from task one
+            Console.WriteLine(e); // Print result from task two
         }
 
-        for (int digitCount = minDigits; digitCount <= maxDigits; digitCount++)
+        private static void SecondTask()
         {
-            currentNumber = new int[digitCount];
-            GenerateNumbers(0, digitCount); // Generate all the numbers with the current this digit count
-        }
-    }
+            var numbers = Console.ReadLine().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var percentile = int.Parse(Console.ReadLine());
+            var numberArray = new int[numbers.Length];
 
-    static void GenerateNumbers(int index, int digits)
-    {
-        if (index == digits)
-        {
-            if (IsLuckyNumber())
+            for (var i = 0; i < numbers.Length; i++)
             {
-                luckyNumbers++;
+                numberArray[i] = int.Parse(numbers[i]);
             }
-            // This is the bottom of the recursion
-            return;
+
+
+            Array.Sort(numberArray); 
+            e = numberArray[((percentile * numbers.Length) - 1) / 100]; // Solve the task
         }
 
-        for (int i = 0; i < magicDigits.Length; i++)
+        private static void TaskOne()
         {
-            currentNumber[index] = magicDigits[i];
-            GenerateNumbers(index + 1, digits);
-        }
-        // This Generates numbers using the digits in the magicDigits array
-    }
+            var input = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            a = ulong.Parse(input[0]); // get the input
+            b = ulong.Parse(input[1]); // get the input
 
-    static bool IsLuckyNumber()
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < currentNumber.Length; i++)
-        {
-            if (currentNumber[i] != currentNumber[currentNumber.Length - 1 - i])
+            var maxDigits = Math.Max(input[0].Length, input[1].Length); // find the maximum amount of digits
+            var minDigits = Math.Min(input[0].Length, input[1].Length); // find the minimum amount of digits
+
+            // Ensure that "a" is always the biggest number (to avoid checking every time)
+            if (a > b)
             {
-                return false; // check the array representation of the number is a palindrome
+                var temp = b;
+                b = a;
+                a = temp;
             }
-            sb.Append(currentNumber[i]); // Generate string from the individual digits in the array
+
+            for (var digitCount = minDigits; digitCount <= maxDigits; digitCount++)
+            {
+                currentNumber = new int[digitCount];
+                GenerateNumbers(0, digitCount); // Generate all the numbers with the current this digit count
+            }
         }
 
-        ulong palindrome = ulong.Parse(sb.ToString()); // Convert the string to number
-
-        if (palindrome > b || palindrome < a) // Check if the number is outside the bounds between A and B
+        private static void GenerateNumbers(int index, int digits)
         {
-            return false; // If it is then the number is not Lucky
+            if (index == digits)
+            {
+                if (IsLuckyNumber())
+                {
+                    luckyNumbers++;
+                }
+
+                // This is the bottom of the recursion
+                return;
+            }
+
+            foreach (var digit in MagicDigits)
+            {
+                currentNumber[index] = digit;
+                GenerateNumbers(index + 1, digits);
+            }
+
+            // This Generates numbers using the digits in the magicDigits array
         }
 
-        return true; // If both checks succeed then return true
+        private static bool IsLuckyNumber()
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < currentNumber.Length; i++)
+            {
+                if (currentNumber[i] != currentNumber[currentNumber.Length - 1 - i])
+                {
+                    return false; // check the array representation of the number is a palindrome
+                }
+
+                sb.Append(currentNumber[i]); // Generate string from the individual digits in the array
+            }
+
+            var palindrome = ulong.Parse(sb.ToString()); // Convert the string to number
+
+            return palindrome <= b && palindrome >= a;
+        }
     }
 }

@@ -1,92 +1,97 @@
-﻿using System;
-
-class SpecialValue
+﻿namespace SpecialValue
 {
-    static int[][] field;
-    static int maxSpecialValue = int.MinValue;
+    using System;
 
-    static void Main()
+    internal class SpecialValue
     {
-        // The official music of Dot Net Perls.
-        for (int i = 500; i <= 32767; i++)
+        private static int[][] field;
+
+        private static int maxSpecialValue = int.MinValue;
+
+        private static void Main()
         {
-            Console.Beep(i, 100);
-        }
-        ReadInput();
-        TravelAllPaths();
-        Console.WriteLine(maxSpecialValue);
-
-    }
-    static void ReadInput()
-    {
-        int lines = int.Parse(Console.ReadLine());
-        field = new int[lines][];
-
-        for (int row = 0; row < field.Length; row++)
-        {
-            string[] currentLine = (Console.ReadLine().Split(new string[] { ", " },
-            StringSplitOptions.RemoveEmptyEntries));
-
-            field[row] = new int[currentLine.Length];
-            for (int col = 0; col < field[row].Length; col++)
+            // The official music of Dot Net Perls.
+            for (var i = 500; i <= 32767; i++)
             {
-                field[row][col] = int.Parse(currentLine[col]);
-            }
-        }
-    }
-    static void TravelAllPaths()
-    {
-        int currentmax = int.MinValue;
-
-        for (int col = 0; col < field[0].Length; col++)
-        {
-            currentmax = TravelPathFrom(col);
-            // start all of the patsh from each column on the first row
-            if (currentmax > maxSpecialValue)
-            {
-                maxSpecialValue = currentmax;
-            }
-        }
-    }
-
-    static int TravelPathFrom(int startCol)
-    {
-        int row = 0;
-        int currentValue = startCol; // holds the current value
-        // either the location of the next cell or the special value
-        int steps = 0; // steps taken
-
-        bool[][] isVisited = new bool[field.Length][];
-        for (int i = 0; i < field.Length; i++)
-        {
-            isVisited[i] = new bool[field[i].Length];
-        }
-        // create a bool array (a mirror array of the original one)
-
-        while (currentValue > -1)
-        {
-            if (row >= field.Length)
-            {
-                row = 0;
+                Console.Beep(i, 100);
             }
 
-            if (isVisited[row][currentValue])
+            ReadInput();
+            TravelAllPaths();
+            Console.WriteLine(maxSpecialValue);
+        }
+
+        private static void ReadInput()
+        {
+            var lines = int.Parse(Console.ReadLine());
+            field = new int[lines][];
+
+            for (var row = 0; row < field.Length; row++)
             {
-                break;
+                var currentLine = Console.ReadLine().Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+
+                field[row] = new int[currentLine.Length];
+                for (var col = 0; col < field[row].Length; col++)
+                {
+                    field[row][col] = int.Parse(currentLine[col]);
+                }
+            }
+        }
+
+        private static void TravelAllPaths()
+        {
+            var currentmax = int.MinValue;
+
+            for (var col = 0; col < field[0].Length; col++)
+            {
+                currentmax = TravelPathFrom(col);
+
+                // start all of the patsh from each column on the first row
+                if (currentmax > maxSpecialValue)
+                {
+                    maxSpecialValue = currentmax;
+                }
+            }
+        }
+
+        private static int TravelPathFrom(int startCol)
+        {
+            var row = 0;
+            var currentValue = startCol; // holds the current value
+
+            // either the location of the next cell or the special value
+            var steps = 0; // steps taken
+
+            var isVisited = new bool[field.Length][];
+            for (var i = 0; i < field.Length; i++)
+            {
+                isVisited[i] = new bool[field[i].Length];
             }
 
-            isVisited[row][currentValue] = true; // mark cell as visited
-            currentValue = field[row][currentValue];
-            steps++;
-            row++;
-        }
+            // create a bool array (a mirror array of the original one)
+            while (currentValue > -1)
+            {
+                if (row >= field.Length)
+                {
+                    row = 0;
+                }
 
-        if (currentValue < 0)
-        {
-            return (steps + (-currentValue));
-        }
-        else
-        {
+                if (isVisited[row][currentValue])
+                {
+                    break;
+                }
+
+                isVisited[row][currentValue] = true; // mark cell as visited
+                currentValue = field[row][currentValue];
+                steps++;
+                row++;
+            }
+
+            if (currentValue < 0)
+            {
+                return steps + (-currentValue);
+            }
+
             return -1;
         }
     }

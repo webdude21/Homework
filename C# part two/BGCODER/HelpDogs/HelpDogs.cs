@@ -1,18 +1,22 @@
-﻿using System;
-using System.Linq;
-using System.Numerics;
-
-namespace HelpDogs
+﻿namespace HelpDogs
 {
-    class HelpDogs
+    using System;
+    using System.Linq;
+    using System.Numerics;
+
+    internal class HelpDogs
     {
         private const int Enemy = -1;
+
         private const int Food = -2;
+
         private static BigInteger[,] labyrinth;
+
         private static int n;
+
         private static int m;
 
-        static void Main()
+        private static void Main()
         {
             ReadInput();
             Solve();
@@ -45,12 +49,21 @@ namespace HelpDogs
         {
             for (var index = 1; index <= n; index++)
             {
-                if (labyrinth[index, 1] == Enemy) break;
+                if (labyrinth[index, 1] == Enemy)
+                {
+                    break;
+                }
+
                 labyrinth[index, 1] = 1;
             }
+
             for (var index = 1; index <= m; index++)
             {
-                if (labyrinth[1, index] == Enemy) break;
+                if (labyrinth[1, index] == Enemy)
+                {
+                    break;
+                }
+
                 labyrinth[1, index] = 1;
             }
 
@@ -64,6 +77,7 @@ namespace HelpDogs
                         Console.WriteLine(labyrinth[row, col]);
                         Environment.Exit(10);
                     }
+
                     if (labyrinth[row, col] == 0)
                     {
                         labyrinth[row, col] = labyrinth[row - 1, col] + labyrinth[row, col - 1];
@@ -74,6 +88,7 @@ namespace HelpDogs
                     }
                 }
             }
+
             Console.WriteLine(1);
         }
     }
