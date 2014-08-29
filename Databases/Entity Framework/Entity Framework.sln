@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.OrderMethod", "OrderMetho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.ExecuteStoredProcedure", "ExecuteStoredProcedure\10.ExecuteStoredProcedure.csproj", "{FE6C18AD-2C66-4BD4-B3CB-4DF718874B4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.UsersAndRoles", "UsersAndRoles\11.UsersAndRoles.csproj", "{B8CA2756-9AD3-4E4A-878B-A7E37A18A8FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{FE6C18AD-2C66-4BD4-B3CB-4DF718874B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE6C18AD-2C66-4BD4-B3CB-4DF718874B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE6C18AD-2C66-4BD4-B3CB-4DF718874B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CA2756-9AD3-4E4A-878B-A7E37A18A8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CA2756-9AD3-4E4A-878B-A7E37A18A8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CA2756-9AD3-4E4A-878B-A7E37A18A8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CA2756-9AD3-4E4A-878B-A7E37A18A8FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
