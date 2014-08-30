@@ -6,7 +6,7 @@
 
     internal class MySqlConn
     {
-        private const string ConnectionString = "Server=localhost; Port=3306; Database=bookStores; Uid=root; Pwd=1234; pooling=true";
+        private const string ConnectionString = "Server=.; Port=3306; Database=bookStores; Uid=root; Pwd=1234; pooling=true";
 
         private static void Main()
         {

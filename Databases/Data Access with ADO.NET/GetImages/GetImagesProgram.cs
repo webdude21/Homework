@@ -16,7 +16,7 @@
 
         private static void ExtractImageFromDb()
         {
-            using (var sqlConnection = new SqlConnection("Server=localhost; " + "Database=Northwind; Integrated Security=true"))
+            using (var sqlConnection = new SqlConnection("Server=.; Database=Northwind; Integrated Security=true"))
             {
                 sqlConnection.Open();
 
