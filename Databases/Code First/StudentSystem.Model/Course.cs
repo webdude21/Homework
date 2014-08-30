@@ -24,16 +24,16 @@
         [MaxLength(150)]
         public string Description { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
 
         public virtual ICollection<Teacher> Teachers { get; set; }
 
         [NotMapped]
-        public TimeSpan CourseLenght
+        public TimeSpan? CourseLenght
         {
             get
             {

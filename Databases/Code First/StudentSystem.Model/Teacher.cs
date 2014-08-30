@@ -1,7 +1,6 @@
 ﻿namespace StudentSystem.Model
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,14 +11,14 @@
             this.Courses = new HashSet<Course>();
         }
 
-        public TimeSpan TotalExpirience { get; set; }
+        public TimeSpan? TotalExpirience { get; set; }
 
-        public DateTime HireDate { get; set; }
+        public DateTime? HireDate { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
 
         [NotMapped]
-        public TimeSpan ExpirienceInThisSchool
+        public TimeSpan? ExpirienceInThisSchool
         {
             get
             {

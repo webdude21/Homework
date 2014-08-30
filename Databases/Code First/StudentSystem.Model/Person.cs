@@ -16,7 +16,6 @@
         [Required]
         public string LastName { get; set; }
 
-        public int Age { get; set; }
 
         [MinLength(3)]
         [MaxLength(50)]
