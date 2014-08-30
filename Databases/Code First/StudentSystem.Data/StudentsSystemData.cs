@@ -24,27 +24,27 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IGenericRepository<Course> Courses
+        public GenericRepository<Course> Courses
         {
             get
             {
-                return this.GetRepository<Course>();
+                return (GenericRepository<Course>)this.GetRepository<Course>();
             }
         }
 
-        public IGenericRepository<Student> Students
+        public GenericRepository<Student> Students
         {
             get
             {
-                return this.GetRepository<Student>();
+                return (GenericRepository<Student>)this.GetRepository<Student>();
             }
         } 
 
-        public IGenericRepository<Teacher> Teachers
+        public GenericRepository<Teacher> Teachers
         {
             get
             {
-                return this.GetRepository<Teacher>();
+                return (GenericRepository<Teacher>)this.GetRepository<Teacher>();
             }
         } 
        

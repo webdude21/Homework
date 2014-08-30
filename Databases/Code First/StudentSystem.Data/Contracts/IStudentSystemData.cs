@@ -1,13 +1,14 @@
 ﻿namespace StudentSystem.Data.Contracts
 {
+    using StudentSystem.Data.Repositories;
     using StudentSystem.Model;
 
     public interface IStudentSystemData
     {
-        IGenericRepository<Course> Courses { get; }
+        GenericRepository<Course> Courses { get; }
 
-        IGenericRepository<Student> Students { get; }
+        GenericRepository<Student> Students { get; }
 
-        IGenericRepository<Teacher> Teachers { get; } 
+        GenericRepository<Teacher> Teachers { get; } 
     }
 }

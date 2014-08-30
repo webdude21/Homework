@@ -1,6 +1,8 @@
 ﻿namespace StudentSystem.Data.Repositories
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
@@ -8,7 +10,7 @@
 
     using StudentSystem.Data.Contracts;
 
-    public class GenericRepository<T> : IGenericRepository<T>
+    public class GenericRepository<T> : IGenericRepository<T>, IQueryable<T>
         where T : class
     {
         private readonly IStudentSystemDbContext context;
@@ -24,11 +26,6 @@
         public IQueryable<T> All()
         {
             return this.set.AsQueryable();
-        }
-
-        public IQueryable<T> SearchFor(Expression<Func<T, bool>> conditions)
-        {
-            return this.All().Where(conditions);
         }
 
         public void Add(T entity)
@@ -55,14 +52,38 @@
             entry.State = EntityState.Detached;
         }
 
-        public T First(Expression<Func<T, bool>> conditions)
+        public IEnumerator<T> GetEnumerator()
         {
-            return this.set.First(conditions);
+            return this.set.GetEnumerator();
         }
 
-        public T First()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.set.First();
+            return ((IEnumerable)this.set).GetEnumerator();
+        }
+
+        public Expression Expression
+        {
+            get
+            {
+                return this.set.Expression;
+            }
+        }
+
+        public Type ElementType
+        {
+            get
+            {
+                return this.set.ElementType;
+            }
+        }
+
+        public IQueryProvider Provider
+        {
+            get
+            {
+                return this.set.Provider;
+            }
         }
 
         private DbEntityEntry AttachIfDetached(T entity)
