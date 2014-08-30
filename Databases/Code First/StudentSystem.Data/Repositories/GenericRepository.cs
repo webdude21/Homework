@@ -55,6 +55,16 @@
             entry.State = EntityState.Detached;
         }
 
+        public T First(Expression<Func<T, bool>> conditions)
+        {
+            return this.set.First(conditions);
+        }
+
+        public T First()
+        {
+            return this.set.First();
+        }
+
         private DbEntityEntry AttachIfDetached(T entity)
         {
             var entry = this.context.Entry(entity);

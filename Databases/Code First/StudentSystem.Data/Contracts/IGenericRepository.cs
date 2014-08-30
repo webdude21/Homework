@@ -18,5 +18,9 @@
         void Delete(T entity);
 
         void Detach(T entity);
+
+        T First(Expression<Func<T, bool>> conditions);
+
+        T First();
     }
 }
