@@ -32,14 +32,22 @@
             }
         }
 
-        public StudentsRepository Students
+        public IGenericRepository<Student> Students
         {
             get
             {
-                return (StudentsRepository)this.GetRepository<Student>();
+                return this.GetRepository<Student>();
             }
-        }
+        } 
 
+        public IGenericRepository<Teacher> Teachers
+        {
+            get
+            {
+                return this.GetRepository<Teacher>();
+            }
+        } 
+       
         public void SaveChanges()
         {
             this.context.SaveChanges();
