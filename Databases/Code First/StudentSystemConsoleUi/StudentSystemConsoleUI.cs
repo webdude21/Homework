@@ -1,7 +1,8 @@
 ﻿namespace StudentSystemConsoleUi
 {
+    using System;
+
     using StudentSystem.Data;
-    using StudentSystem.Model;
 
     internal class StudentSystemConsoleUi
     {
@@ -9,13 +10,10 @@
         {
             var studentsSystemData = new StudentsSystemData();
 
-            studentsSystemData.Students.Add(new Student
-                                                {
-                                                    FirstName = "Dimo",
-                                                    LastName = "Petrov"
-                                                });
-
-            studentsSystemData.SaveChanges();
+            foreach (var teacher in studentsSystemData.Teachers.All())
+            {
+                Console.WriteLine(teacher);
+            }
         }
     }
 }

@@ -64,11 +64,6 @@
             
             var type = typeof(GenericRepository<T>);
 
-            if (typeOfModel.IsAssignableFrom(typeof(Student)))
-            {
-                type = typeof(StudentsRepository);
-            }
-
             this.repositories.Add(typeOfModel, Activator.CreateInstance(type, this.context));
 
             return (IGenericRepository<T>)this.repositories[typeOfModel];

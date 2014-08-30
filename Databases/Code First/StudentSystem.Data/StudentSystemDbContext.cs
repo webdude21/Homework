@@ -22,6 +22,8 @@
 
         public IDbSet<Student> Students { get; set; }
 
+        public IDbSet<Homework> Homeworks { get; set; }
+
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
