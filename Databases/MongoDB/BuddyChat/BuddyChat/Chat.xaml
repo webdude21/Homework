@@ -1,0 +1,117 @@
+﻿<Window x:Class="BuddyChat.Chat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:BuddyChat.Model;assembly=BuddyChat.Model"
+        mc:Ignorable="d"
+        Title="BuddyChat" Height="600" Width="800" MinHeight="300" MinWidth="00">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF465774" Offset="0" />
+            <GradientStop Color="#FF456499" Offset="0.314" />
+            <GradientStop Color="#FF6281B6" Offset="0.69" />
+            <GradientStop Color="#FF8AAFEE" Offset="0.981" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="25" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <ListView Grid.ColumnSpan="26" Grid.RowSpan="18" Grid.Row="3" Name="PostListView"
+                  DataContext="ChatController.PostCollection" Grid.Column="1" Opacity="0.7">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="model:Post">
+                    <WrapPanel>
+                        <TextBlock Text="[" Foreground="Salmon" />
+                        <TextBlock Text="{Binding PostedOn, Mode=OneWay, StringFormat=\{0:dd MMM yyyy HH:mm:ss\}}"
+                                   Foreground="Salmon" />
+                        <TextBlock Text="] " Foreground="Salmon" />
+                        <TextBlock Text="{Binding PostedBy}" Foreground="SteelBlue" FontWeight="ExtraBold" />
+                        <TextBlock Text=": " Foreground="SteelBlue" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Content}" TextAlignment="Right" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox Grid.ColumnSpan="21"
+                 Name="MessageTextBox"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Disabled"
+                 Grid.Column="1"
+                 Grid.Row="22"
+                 TextWrapping="Wrap" FontSize="14" Opacity="0.7" />
+        <Button Grid.ColumnSpan="4"
+                Content="Send Post"
+                Grid.Column="23"
+                Grid.Row="22"
+                Click="OnSendPostButtonClick"
+                IsDefault="True" />
+        <DatePicker Text="Show posts since"
+                    Name="DatePicker"
+                    Grid.Column="1"
+                    Opacity="0.7"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="26"
+                    SelectedDateChanged="NewDataPicked" FirstDayOfWeek="Monday" SelectedDateFormat="Long"
+                    Margin="1,0,0.462,0" />
+        <Label Grid.ColumnSpan="26"
+               Content="Show posts since: "
+               Grid.Column="1"
+               FontWeight="ExtraBold"
+               Foreground="Azure" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+    </Grid>
+</Window>

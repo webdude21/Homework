@@ -1,0 +1,32 @@
+﻿<Window x:Class="BuddyChat.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BuddyChat - Login"
+        Height="160"
+        Width="250"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF465774" Offset="0" />
+            <GradientStop Color="#FF456499" Offset="0.314" />
+            <GradientStop Color="#FF6281B6" Offset="0.69" />
+            <GradientStop Color="#FF8AAFEE" Offset="0.981" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <TextBox Margin="25,25,25,65"
+                 Name="UserNameTextBox"
+                 Focusable="true"
+                 TextWrapping="Wrap"
+                 Padding="6"
+                 MaxLength="15"
+                 Grid.ColumnSpan="2" Grid.RowSpan="2" Opacity="0.7" />
+        <Button Content="Sign in as"
+                Margin="25,75,25,0"
+                VerticalAlignment="Top"
+                Height="26"
+                IsDefault="True" Grid.ColumnSpan="2" Click="ButtonClick" />
+    </Grid>
+</Window>
