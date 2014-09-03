@@ -108,7 +108,7 @@
                     Grid.ColumnSpan="26"
                     SelectedDateChanged="NewDataPicked" FirstDayOfWeek="Monday" SelectedDateFormat="Long"
                     Margin="1,0,0.462,0" />
-        <Label Grid.ColumnSpan="26"
+        <Label Grid.Row="0" Grid.ColumnSpan="26"
                Content="Show posts since: "
                Grid.Column="1"
                FontWeight="ExtraBold"
