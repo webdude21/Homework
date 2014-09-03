@@ -54,8 +54,8 @@
 
         public IList<Post> GetPostsSince(DateTime time)
         {
-            var findBugsQuery = Query<Post>.Where(log => log.PostedOn > time);
-            return this.GetMongoCollection<Post>().Find(findBugsQuery).ToList();
+            var postSinceQuery = Query<Post>.Where(log => log.PostedOn > time);
+            return this.GetMongoCollection<Post>().Find(postSinceQuery).ToList();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
@@ -54,10 +55,10 @@
 
         private async void UpdatePosts(DateTime time)
         {
+            this.lastUpdatDateTime = time.AddMinutes(-30);
             var getPostsSince = await ChatController.GetPostsSince(this.lastUpdatDateTime);
-            this.lastUpdatDateTime = time;
 
-            foreach (var post in getPostsSince)
+            foreach (var post in getPostsSince.Where(post => !this.posts.Contains(post)))
             {
                 this.posts.Add(post);
             }

@@ -15,5 +15,11 @@
         public DateTime PostedOn { get; set; }
 
         public string PostedBy { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Post;
+            return other != null && this.Id.Equals(other.Id);
+        }
     }
 }
