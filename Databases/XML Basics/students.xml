@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<students
+  xmlns="urn:students"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:students students.xsd"
+  name="List Of Students">
+  <student>
+    <name>Dimo Petrov</name>
+    <sex>Male</sex>
+    <birthdate>17/04/1984</birthdate>
+    <phone>08886022377</phone>
+    <email>dimo.petrov@telerik.com</email>
+    <course>JS Applications</course>
+    <speciality>IT</speciality>
+    <facultyNumber>123456</facultyNumber>
+    <takenExams>
+      <exam>
+        <name>JS Applications</name>
+        <tutor>DonchoMinkov</tutor>
+        <score>64</score>
+      </exam>
+      <exam>
+        <name>JS DOM and UI</name>
+        <tutor>DonchoMinkov</tutor>
+        <score>189</score>
+      </exam>
+    </takenExams>
+  </student>
+</students>

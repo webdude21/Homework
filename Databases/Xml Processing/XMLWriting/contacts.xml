@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contacts xmlns="http://personalinformation.com">
+  <contact>
+    <name>Dimo Petrov</name>
+    <address>Bulgaria, Sofia, bul. Aleksandar Malinov 5</address>
+    <phone>+3591122141212</phone>
+  </contact>
+  <contact>
+    <name>Georgi Gankov</name>
+    <address>Bulgaria, Yambol, bul. Evropa 42</address>
+    <phone>+3591122141212</phone>
+  </contact>
+</contacts>
