@@ -14,18 +14,22 @@ namespace ToyStore.Data
     
     public partial class Toy
     {
+        public Toy()
+        {
+            this.Categories = new HashSet<Category>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public Nullable<int> AgeRanges_Id { get; set; }
-        public Nullable<int> Categories_Id { get; set; }
-        public int Manufacturers_Id { get; set; }
+        public Nullable<int> AgeRangesId { get; set; }
+        public Nullable<int> CategoriesId { get; set; }
         public decimal Price { get; set; }
         public string Color { get; set; }
         public int Manufacturer_Id { get; set; }
     
         public virtual AgeRanx AgeRanx { get; set; }
-        public virtual Category Category { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

@@ -35,12 +35,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
-          <Property Name="AgeRanges_Id" Type="int" />
-          <Property Name="Categories_Id" Type="int" />
-          <Property Name="Manufacturers_Id" Type="int" Nullable="false" />
+          <Property Name="AgeRangesId" Type="int" />
+          <Property Name="CategoriesId" Type="int" />
           <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Manufacturer_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToysCategories">
+          <Key>
+            <PropertyRef Name="ToysId" />
+            <PropertyRef Name="CategoriesId" />
+          </Key>
+          <Property Name="ToysId" Type="int" Nullable="false" />
+          <Property Name="CategoriesId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_ManufacturerToy">
           <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
@@ -62,19 +69,31 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Toys">
-              <PropertyRef Name="AgeRanges_Id" />
+              <PropertyRef Name="AgeRangesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Toys_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
-          <End Role="Toys" Type="Self.Toys" Multiplicity="*" />
+        <Association Name="FK_ToysCategories_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="ToysCategories" Type="Self.ToysCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Toys">
-              <PropertyRef Name="Categories_Id" />
+            <Dependent Role="ToysCategories">
+              <PropertyRef Name="CategoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToysCategories_Toys">
+          <End Role="Toys" Type="Self.Toys" Multiplicity="1" />
+          <End Role="ToysCategories" Type="Self.ToysCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ToysCategories">
+              <PropertyRef Name="ToysId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -83,6 +102,7 @@
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Toys" EntityType="Self.Toys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToysCategories" EntityType="Self.ToysCategories" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ManufacturerToy" Association="Self.FK_ManufacturerToy">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Toys" EntitySet="Toys" />
@@ -91,9 +111,13 @@
             <End Role="AgeRanges" EntitySet="AgeRanges" />
             <End Role="Toys" EntitySet="Toys" />
           </AssociationSet>
-          <AssociationSet Name="FK_Toys_Categories" Association="Self.FK_Toys_Categories">
+          <AssociationSet Name="FK_ToysCategories_Categories" Association="Self.FK_ToysCategories_Categories">
             <End Role="Categories" EntitySet="Categories" />
+            <End Role="ToysCategories" EntitySet="ToysCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToysCategories_Toys" Association="Self.FK_ToysCategories_Toys">
             <End Role="Toys" EntitySet="Toys" />
+            <End Role="ToysCategories" EntitySet="ToysCategories" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -116,7 +140,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Toys" Relationship="Self.FK_Toys_Categories" FromRole="Categories" ToRole="Toys" />
+          <NavigationProperty Name="Toys" Relationship="Self.ToysCategories" FromRole="Categories" ToRole="Toys" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -134,15 +158,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AgeRanges_Id" Type="Int32" />
-          <Property Name="Categories_Id" Type="Int32" />
-          <Property Name="Manufacturers_Id" Type="Int32" Nullable="false" />
+          <Property Name="AgeRangesId" Type="Int32" />
+          <Property Name="CategoriesId" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Manufacturer_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRanx" Relationship="Self.FK_Toys_AgeRanges" FromRole="Toys" ToRole="AgeRanges" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Toys_Categories" FromRole="Toys" ToRole="Categories" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_ManufacturerToy" FromRole="Toys" ToRole="Manufacturers" />
+          <NavigationProperty Name="Categories" Relationship="Self.ToysCategories" FromRole="Toys" ToRole="Categories" />
         </EntityType>
         <Association Name="FK_Toys_AgeRanges">
           <End Role="AgeRanges" Type="Self.AgeRanx" Multiplicity="0..1" />
@@ -152,19 +175,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Toys">
-              <PropertyRef Name="AgeRanges_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Toys_Categories">
-          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Toys">
-              <PropertyRef Name="Categories_Id" />
+              <PropertyRef Name="AgeRangesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -180,6 +191,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ToysCategories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+          <End Role="Toys" Type="Self.Toy" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="ToyStoreEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgeRanges" EntityType="Self.AgeRanx" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -189,12 +204,12 @@
             <End Role="AgeRanges" EntitySet="AgeRanges" />
             <End Role="Toys" EntitySet="Toys" />
           </AssociationSet>
-          <AssociationSet Name="FK_Toys_Categories" Association="Self.FK_Toys_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Toys" EntitySet="Toys" />
-          </AssociationSet>
           <AssociationSet Name="FK_ManufacturerToy" Association="Self.FK_ManufacturerToy">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Toys" EntitySet="Toys" />
+          </AssociationSet>
+          <AssociationSet Name="ToysCategories" Association="Self.ToysCategories">
+            <End Role="Categories" EntitySet="Categories" />
             <End Role="Toys" EntitySet="Toys" />
           </AssociationSet>
         </EntityContainer>
@@ -236,15 +251,22 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="AgeRanges_Id" ColumnName="AgeRanges_Id" />
-                <ScalarProperty Name="Categories_Id" ColumnName="Categories_Id" />
-                <ScalarProperty Name="Manufacturers_Id" ColumnName="Manufacturers_Id" />
+                <ScalarProperty Name="AgeRangesId" ColumnName="AgeRangesId" />
+                <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Manufacturer_Id" ColumnName="Manufacturer_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ToysCategories" TypeName="ToyStoreModel.ToysCategories" StoreEntitySet="ToysCategories">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="Id" ColumnName="CategoriesId" />
+            </EndProperty>
+            <EndProperty Name="Toys">
+              <ScalarProperty Name="Id" ColumnName="ToysId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C475119E-32EF-4960-AEFC-C67A51672F97}</ProjectGuid>
+    <ProjectGuid>{2D15B048-38A1-4BCE-83F5-C18CBE0C00A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ToyStore.Data</RootNamespace>
