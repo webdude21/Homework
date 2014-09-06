@@ -1,8 +1,8 @@
-﻿namespace ToyStore.RandomDataGenerator
+﻿namespace RandomDataGenerator
 {
     using System;
 
-    using ToyStore.RandomDataGenerator.Contracts;
+    using global::RandomDataGenerator.Contracts;
 
     public class RandomDataGenerator : IRandomDataGenerator
     {
@@ -29,7 +29,7 @@
             }
         }
 
-        public string GetStringExact(int length, string charsToUse = AllLeters)
+        public string GetStringExact(int length, string charsToUse)
         {
             var result = new char[length];
 
@@ -41,7 +41,17 @@
             return new string(result);
         }
 
-        public string GetString(int min, int max, string charsToUse = AllLeters)
+        public string GetStringExact(int length)
+        {
+            return this.GetStringExact(length, AllLeters);
+        }
+
+        public string GetString(int min, int max)
+        {
+            return this.GetStringExact(this.random.Next(min, max + 1), AllLeters);
+        }
+
+        public string GetString(int min, int max, string charsToUse)
         {
             return this.GetStringExact(this.random.Next(min, max + 1), charsToUse);
         }
