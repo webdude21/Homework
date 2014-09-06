@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD6788D0-6E32-4D7A-A6CD-B94A27689248}</ProjectGuid>
+    <ProjectGuid>{7D8FA16E-A202-49C3-A25A-F8987F158BDA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookstoreXmlImport</RootNamespace>
-    <AssemblyName>BookstoreXmlImport</AssemblyName>
+    <RootNamespace>ToyStore.GenerateSampleData</RootNamespace>
+    <AssemblyName>ToyStore.GenerateSampleData</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,25 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XmlImport.cs" />
+    <Compile Include="GenerateSampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomDataGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bookstore.Data\Bookstore.Data.csproj">
-      <Project>{6D982FF2-CD5D-4200-BF4E-4832062A8A2C}</Project>
-      <Name>Bookstore.Data</Name>
+    <ProjectReference Include="..\ToyStore.Data\ToyStore.Data.csproj">
+      <Project>{C475119E-32EF-4960-AEFC-C67A51672F97}</Project>
+      <Name>ToyStore.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bookstore.Model\Bookstore.Model.csproj">
-      <Project>{B61C6722-2A5C-49A4-BD4C-87BB31D5E009}</Project>
-      <Name>Bookstore.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="complex-books.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

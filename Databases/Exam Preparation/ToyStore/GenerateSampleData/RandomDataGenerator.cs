@@ -1,4 +1,4 @@
-﻿namespace GenerateSampleData
+﻿namespace ToyStore.GenerateSampleData
 {
     using System;
 

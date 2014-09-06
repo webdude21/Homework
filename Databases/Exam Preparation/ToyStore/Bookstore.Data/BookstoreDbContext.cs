@@ -1,8 +1,9 @@
-﻿namespace Bookstore.Model
+﻿namespace Bookstore.Data
 {
     using System.Data.Entity;
 
     using Bookstore.Data.Migrations;
+    using Bookstore.Model;
 
     public class BookstoreDbContext : DbContext
     {

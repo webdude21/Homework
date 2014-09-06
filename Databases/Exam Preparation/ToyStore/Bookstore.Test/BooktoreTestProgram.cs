@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Bookstore.Model;
+    using Bookstore.Data;
 
     internal class BooktoreTestProgram
     {

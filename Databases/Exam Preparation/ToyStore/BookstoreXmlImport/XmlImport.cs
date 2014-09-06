@@ -1,12 +1,12 @@
-﻿namespace BookstoreXmlImport
+﻿namespace Bookstore.XmlImport
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Transactions;
     using System.Xml.Linq;
 
+    using Bookstore.Data;
     using Bookstore.Model;
 
     internal class XmlImport
@@ -132,7 +132,6 @@
                 {
                     author = bookstoreDbContext.Authors.FirstOrDefault(auth => auth.Name == authorAtrrib.Value);
                 }
-
 
                 bookstoreDbContext.Reviews.Add(new Review { Text = review.Value, Author = author, CreateDate = reviewDateTime });
             }

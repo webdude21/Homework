@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateSampleData", "GenerateSampleData\GenerateSampleData.csproj", "{7D8FA16E-A202-49C3-A25A-F8987F158BDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyStore.GenerateSampleData", "GenerateSampleData\ToyStore.GenerateSampleData.csproj", "{7D8FA16E-A202-49C3-A25A-F8987F158BDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyStore.Data", "ToyStore.Data\ToyStore.Data.csproj", "{C475119E-32EF-4960-AEFC-C67A51672F97}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Data", "Bookstore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Test", "Bookstore.Test\Bookstore.Test.csproj", "{DDE32947-35A1-47BD-B49A-59F1C8F7F43B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreXmlImport", "BookstoreXmlImport\BookstoreXmlImport.csproj", "{DD6788D0-6E32-4D7A-A6CD-B94A27689248}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.XmlImport", "BookstoreXmlImport\Bookstore.XmlImport.csproj", "{DD6788D0-6E32-4D7A-A6CD-B94A27689248}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
