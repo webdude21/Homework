@@ -36,10 +36,9 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="AgeRangesId" Type="int" />
-          <Property Name="CategoriesId" Type="int" />
           <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Manufacturer_Id" Type="int" Nullable="false" />
+          <Property Name="ManufacturerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ToysCategories">
           <Key>
@@ -57,7 +56,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Toys">
-              <PropertyRef Name="Manufacturer_Id" />
+              <PropertyRef Name="ManufacturerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -159,10 +158,9 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AgeRangesId" Type="Int32" />
-          <Property Name="CategoriesId" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Manufacturer_Id" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRanx" Relationship="Self.FK_Toys_AgeRanges" FromRole="Toys" ToRole="AgeRanges" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_ManufacturerToy" FromRole="Toys" ToRole="Manufacturers" />
           <NavigationProperty Name="Categories" Relationship="Self.ToysCategories" FromRole="Toys" ToRole="Categories" />
@@ -187,7 +185,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Toys">
-              <PropertyRef Name="Manufacturer_Id" />
+              <PropertyRef Name="ManufacturerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -252,10 +250,9 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="AgeRangesId" ColumnName="AgeRangesId" />
-                <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Manufacturer_Id" ColumnName="Manufacturer_Id" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="717374f4953e41fcb6464ab5539af2c4" Name="Diagram1">
-        <EntityTypeShape EntityType="ToyStoreModel.AgeRanx" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToyStoreModel.Category" Width="1.5" PointX="5.375" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToyStoreModel.Manufacturer" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ToyStoreModel.Toy" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="8c3295a5d85c494ab5a6b4fb25dd2302" Name="Diagram1">
+        <EntityTypeShape EntityType="ToyStoreModel.AgeRanx" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyStoreModel.Category" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyStoreModel.Manufacturer" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyStoreModel.Toy" Width="1.5" PointX="6.375" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="ToyStoreModel.FK_Toys_AgeRanges" ManuallyRouted="false" />
         <AssociationConnector Association="ToyStoreModel.FK_ManufacturerToy" ManuallyRouted="false" />
         <AssociationConnector Association="ToyStoreModel.ToysCategories" ManuallyRouted="false" />

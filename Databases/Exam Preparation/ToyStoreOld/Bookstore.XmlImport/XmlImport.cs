@@ -21,18 +21,20 @@
 
             var books = document.Descendants("book");
 
-            foreach (var book in books)
+            try
             {
-                try
+                foreach (var book in books)
                 {
                     ParseBook(bookstoreDbContext, book);
                     bookstoreDbContext.SaveChanges();
                 }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.Message);
-                }
             }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+
         }
 
         private static void ParseBook(BookstoreDbContext bookstoreDbContext, XElement book)

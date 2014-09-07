@@ -23,10 +23,9 @@ namespace ToyStore.Data
         public string Name { get; set; }
         public string Type { get; set; }
         public Nullable<int> AgeRangesId { get; set; }
-        public Nullable<int> CategoriesId { get; set; }
         public decimal Price { get; set; }
         public string Color { get; set; }
-        public int Manufacturer_Id { get; set; }
+        public int ManufacturerId { get; set; }
     
         public virtual AgeRanx AgeRanx { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
