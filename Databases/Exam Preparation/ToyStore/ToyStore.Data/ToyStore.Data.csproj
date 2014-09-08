@@ -64,6 +64,8 @@
     <Compile Include="Toy.cs">
       <DependentUpon>ToyStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="ToyGenerator.cs" />
+    <Compile Include="ToyGeneratorsFactory.cs" />
     <Compile Include="ToyStore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -18,10 +18,10 @@
             this.databaseContext.Manufacturers.Add(new Manufacturer { Name = this.Random.GetString(5, 45), Country = this.Random.GetString(5, 45) });
         }
 
-        protected override void CheckPoint(int countSofar)
+        protected override void CheckPoint()
         {
             this.databaseContext.SaveChanges();
-            base.CheckPoint(countSofar);
+            base.CheckPoint();
         }
     }
 }

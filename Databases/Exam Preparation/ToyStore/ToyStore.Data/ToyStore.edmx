@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ToyStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ToyStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AgeRanges">
           <Key>
             <PropertyRef Name="Id" />
@@ -37,7 +37,7 @@
           <Property Name="Type" Type="varchar" MaxLength="50" />
           <Property Name="AgeRangesId" Type="int" />
           <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ToysCategories">
@@ -119,8 +119,7 @@
             <End Role="ToysCategories" EntitySet="ToysCategories" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ToyStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -159,7 +158,7 @@
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AgeRangesId" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRanx" Relationship="Self.FK_Toys_AgeRanges" FromRole="Toys" ToRole="AgeRanges" />
           <NavigationProperty Name="Manufacturer" Relationship="Self.FK_ManufacturerToy" FromRole="Toys" ToRole="Manufacturers" />

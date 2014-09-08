@@ -4,17 +4,18 @@
 
     public abstract class DataGenerator : IDataGenerator
     {
-        private readonly int count;
-
-        private readonly int checkPointFrequency;
 
         protected DataGenerator(int count, IRandomDataGenerator random, ILogger logger, int checkPointFrequency = 1000)
         {
-            this.checkPointFrequency = checkPointFrequency;
-            this.count = count;
+            this.CheckPointFrequency = checkPointFrequency;
+            this.Count = count;
             this.Logger = logger;
             this.Random = random;
         }
+
+        protected int Count { get; private set; }
+
+        protected int CheckPointFrequency { get; private set; }
 
         protected IRandomDataGenerator Random { get; private set; }
 
@@ -22,23 +23,26 @@
 
         public virtual void Generate()
         {
-            for (var index = 0; index < this.count; index++)
+            this.Logger.LogLine(string.Format("Generating entities"));
+
+            for (var index = 0; index < this.Count; index++)
             {
                 this.GenerateEntity();
 
-                if (index % this.checkPointFrequency == 0)
+                if (index % this.CheckPointFrequency == 0)
                 {
-                    this.CheckPoint(index);
+                    this.CheckPoint();
                 }
             }
+
+            this.CheckPoint();
         }
 
         protected abstract void GenerateEntity();
 
-        protected virtual void CheckPoint(int countSofar)
+        protected virtual void CheckPoint()
         {
-            this.Logger.LogLine("============================");
-            this.Logger.LogLine(string.Format("Generated {0} so far", countSofar));
+            this.Logger.Log(".");
         }
     }
 }

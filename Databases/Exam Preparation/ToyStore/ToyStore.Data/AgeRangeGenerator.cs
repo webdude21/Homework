@@ -19,5 +19,11 @@
             var lowerBound = Random.GetInt(0, upperBound);
             this.databaseContext.AgeRanges.Add(new AgeRanx { MinAge = (byte)lowerBound, MaxAge = (byte)upperBound });
         }
+
+        protected override void CheckPoint()
+        {
+            this.databaseContext.SaveChanges();
+            base.CheckPoint();
+        }
     }
 }

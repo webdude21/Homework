@@ -18,10 +18,10 @@
             this.databaseContext.Categories.Add(new Category { Name = Random.GetString(5, 45) });
         }
 
-        protected override void CheckPoint(int countSofar)
+        protected override void CheckPoint()
         {
             this.databaseContext.SaveChanges();
-            base.CheckPoint(countSofar);
+            base.CheckPoint();
         }
     }
 }

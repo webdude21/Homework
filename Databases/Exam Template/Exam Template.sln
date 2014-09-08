@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomDataGenerator", "RandomDataGenerator\RandomDataGenerator.csproj", "{139E70F5-3A75-4926-84B2-2885BDB628DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{8880363C-328B-4C2D-B0C7-93DC1367169D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{139E70F5-3A75-4926-84B2-2885BDB628DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{139E70F5-3A75-4926-84B2-2885BDB628DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{139E70F5-3A75-4926-84B2-2885BDB628DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8880363C-328B-4C2D-B0C7-93DC1367169D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8880363C-328B-4C2D-B0C7-93DC1367169D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8880363C-328B-4C2D-B0C7-93DC1367169D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8880363C-328B-4C2D-B0C7-93DC1367169D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
