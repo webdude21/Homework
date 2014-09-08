@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.Model", "Cars.Model\Cars.Model.csproj", "{D0BBF57E-63A0-47F4-B25D-297E1CCE5E21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.Data", "Cars.Data\Cars.Data.csproj", "{AB4178EE-9441-491D-9D1B-AED485FF12DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.Import.JSON", "Cars.Import.JSON\Cars.Import.JSON.csproj", "{74264D79-83A9-4167-B874-878B23A79FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.Search", "Cars.Search\Cars.Search.csproj", "{622D4324-D127-4BA6-B708-B226169BA4EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.Search.ConsoleClient", "Cars.Search.ConsoleClient\Cars.Search.ConsoleClient.csproj", "{30985C19-17C0-4497-AC4B-89B2413F8E3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96FAACA3-8781-4949-AAB4-2D2A3C7A2DF3}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0BBF57E-63A0-47F4-B25D-297E1CCE5E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BBF57E-63A0-47F4-B25D-297E1CCE5E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BBF57E-63A0-47F4-B25D-297E1CCE5E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BBF57E-63A0-47F4-B25D-297E1CCE5E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB4178EE-9441-491D-9D1B-AED485FF12DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4178EE-9441-491D-9D1B-AED485FF12DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4178EE-9441-491D-9D1B-AED485FF12DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4178EE-9441-491D-9D1B-AED485FF12DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74264D79-83A9-4167-B874-878B23A79FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74264D79-83A9-4167-B874-878B23A79FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74264D79-83A9-4167-B874-878B23A79FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74264D79-83A9-4167-B874-878B23A79FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622D4324-D127-4BA6-B708-B226169BA4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622D4324-D127-4BA6-B708-B226169BA4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622D4324-D127-4BA6-B708-B226169BA4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622D4324-D127-4BA6-B708-B226169BA4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30985C19-17C0-4497-AC4B-89B2413F8E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30985C19-17C0-4497-AC4B-89B2413F8E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30985C19-17C0-4497-AC4B-89B2413F8E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30985C19-17C0-4497-AC4B-89B2413F8E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
