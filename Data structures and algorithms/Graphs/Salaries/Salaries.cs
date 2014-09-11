@@ -38,7 +38,7 @@
 
         public class Employee : IEquatable<Employee>
         {
-            private ulong? calculatedSalary;
+            private ulong salary;
 
             public Employee(int id)
             {
@@ -54,22 +54,20 @@
             {
                 get
                 {
-                    if (this.calculatedSalary.HasValue)
+                    if (this.salary > 0)
                     {
-                        return this.calculatedSalary.Value;
+                        return this.salary;
                     }
-
-                    ulong salary = 0;
 
                     if (this.Employees.Count == 0)
                     {
-                        salary = 1;
+                        this.salary = 1;
+                        return this.salary;
                     }
 
-                    salary = this.Employees.Aggregate(salary, (current, employee) => current + employee.Salary);
+                    this.salary = this.Employees.Aggregate(this.salary, (current, employee) => current + employee.Salary);
 
-                    this.calculatedSalary = salary;
-                    return salary;
+                    return this.salary;
                 }
             }
 
