@@ -1,120 +1,123 @@
 ﻿using System;
 
-internal class Sudoku
+namespace BGCODER
 {
-    private const int GridSize = 9;
-
-    private const int TileSize = 3;
-
-    private static readonly int[,] Grid = new int[GridSize, GridSize];
-
-    private static void Main()
+    internal class Sudoku
     {
-        var firstRow = GridSize;
-        var firstCol = GridSize;
-        ReadInput(ref firstRow, ref firstCol);
-        Solve(firstRow, firstCol);
-        PrintResultOnConsole();
-    }
+        private const int GridSize = 9;
 
-    private static void PrintResultOnConsole()
-    {
-        for (var row = 0; row < GridSize; row++)
+        private const int TileSize = 3;
+
+        private static readonly int[,] Grid = new int[GridSize, GridSize];
+
+        private static void Main()
         {
-            for (var col = 0; col < GridSize; col++)
-            {
-                Console.Write(Grid[row, col]);
-            }
-
-            Console.WriteLine();
+            var firstRow = GridSize;
+            var firstCol = GridSize;
+            ReadInput(ref firstRow, ref firstCol);
+            Solve(firstRow, firstCol);
+            PrintResultOnConsole();
         }
-    }
 
-    private static void ReadInput(ref int firstRow, ref int firstCol)
-    {
-        for (var row = 0; row < GridSize; row++)
+        private static void PrintResultOnConsole()
         {
-            var line = Console.ReadLine();
-            for (var col = 0; col < GridSize; col++)
+            for (var row = 0; row < GridSize; row++)
             {
-                if (line[col] - '0' > 0 && line[col] - '0' < 10)
+                for (var col = 0; col < GridSize; col++)
                 {
-                    Grid[row, col] = line[col] - '0';
+                    Console.Write(Grid[row, col]);
                 }
-                else
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void ReadInput(ref int firstRow, ref int firstCol)
+        {
+            for (var row = 0; row < GridSize; row++)
+            {
+                var line = Console.ReadLine();
+                for (var col = 0; col < GridSize; col++)
                 {
-                    if (firstRow >= row && firstCol > col)
+                    if (line[col] - '0' > 0 && line[col] - '0' < 10)
                     {
-                        firstRow = row;
-                        firstCol = col;
+                        Grid[row, col] = line[col] - '0';
+                    }
+                    else
+                    {
+                        if (firstRow >= row && firstCol > col)
+                        {
+                            firstRow = row;
+                            firstCol = col;
+                        }
                     }
                 }
             }
         }
-    }
 
-    private static bool Solve(int row, int col)
-    {
-        var usedDigits = GetUsedDigits(row, col);
-        for (var digit = 1; digit < GridSize + 1; digit++)
+        private static bool Solve(int row, int col)
         {
-            if (!usedDigits[digit - 1])
+            var usedDigits = GetUsedDigits(row, col);
+            for (var digit = 1; digit < GridSize + 1; digit++)
             {
-                Grid[row, col] = digit;
-                var nextRow = row;
-                var nextCol = col;
-                GetNextCell(ref nextRow, ref nextCol);
-                if (nextRow == GridSize)
+                if (!usedDigits[digit - 1])
                 {
-                    return true;
+                    Grid[row, col] = digit;
+                    var nextRow = row;
+                    var nextCol = col;
+                    GetNextCell(ref nextRow, ref nextCol);
+                    if (nextRow == GridSize)
+                    {
+                        return true;
+                    }
+
+                    if (Solve(nextRow, nextCol))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            Grid[row, col] = 0;
+            return false;
+        }
+
+        private static void GetNextCell(ref int nextRow, ref int nextCol)
+        {
+            while (nextRow < GridSize && Grid[nextRow, nextCol] > 0)
+            {
+                if (++nextCol > 8)
+                {
+                    nextCol = 0;
+                    nextRow++;
+                }
+            }
+        }
+
+        private static bool[] GetUsedDigits(int row, int col)
+        {
+            var usedDigits = new bool[GridSize];
+            for (var index = 0; index < GridSize; index++)
+            {
+                if (Grid[row, index] > 0)
+                {
+                    usedDigits[Grid[row, index] - 1] = true;
                 }
 
-                if (Solve(nextRow, nextCol))
+                if (Grid[index, col] > 0)
                 {
-                    return true;
+                    usedDigits[Grid[index, col] - 1] = true;
+                }
+
+                if (Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize] > 0)
+                {
+                    usedDigits[
+                        Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize]
+                        - 1] = true;
                 }
             }
+
+            return usedDigits;
         }
-
-        Grid[row, col] = 0;
-        return false;
-    }
-
-    private static void GetNextCell(ref int nextRow, ref int nextCol)
-    {
-        while (nextRow < GridSize && Grid[nextRow, nextCol] > 0)
-        {
-            if (++nextCol > 8)
-            {
-                nextCol = 0;
-                nextRow++;
-            }
-        }
-    }
-
-    private static bool[] GetUsedDigits(int row, int col)
-    {
-        var usedDigits = new bool[GridSize];
-        for (var index = 0; index < GridSize; index++)
-        {
-            if (Grid[row, index] > 0)
-            {
-                usedDigits[Grid[row, index] - 1] = true;
-            }
-
-            if (Grid[index, col] > 0)
-            {
-                usedDigits[Grid[index, col] - 1] = true;
-            }
-
-            if (Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize] > 0)
-            {
-                usedDigits[
-                    Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize]
-                    - 1] = true;
-            }
-        }
-
-        return usedDigits;
     }
 }

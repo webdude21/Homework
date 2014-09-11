@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class PriorityQueue<T>
-        where T : IComparable<T>
+    internal class PriorityQueue<T> where T : IComparable<T>
     {
         private readonly List<T> elements = new List<T>();
 
@@ -16,22 +15,49 @@
             }
         }
 
+        public void Clear()
+        {
+            this.elements.Clear();
+        }
+
         public T Peek()
         {
             return this.elements[0];
-        }
-
-        private void SwapElements(int elementIndex, int otherElementIndex)
-        {
-            var previousElement = this.elements[elementIndex];
-            this.elements[elementIndex] = this.elements[otherElementIndex];
-            this.elements[otherElementIndex] = previousElement;
         }
 
         public void Enqueue(T value)
         {
             this.elements.Add(value);
             var index = this.Count - 1;
+            var correctOrder = false;
+
+            while (HasParent(index) && !correctOrder)
+            {
+                if (this.elements[ParentIndex(index)].CompareTo(this.elements[index]) > 0)
+                {
+                    this.SwapElements(index, ParentIndex(index));
+                    index = ParentIndex(index);
+                }
+                else
+                {
+                    correctOrder = true;
+                }
+            }
+        }
+
+        public void Update(T value)
+        {
+            var index = 0;
+
+            for (var i = 0; i < this.elements.Count; i++)
+            {
+                if (this.elements[i].Equals(value))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            
             var correctOrder = false;
 
             while (HasParent(index) && !correctOrder)
@@ -120,9 +146,12 @@
             return RightIndex(currentIndex) < this.Count;
         }
 
-        public void Clear()
+
+        private void SwapElements(int elementIndex, int otherElementIndex)
         {
-            this.elements.Clear();
+            var previousElement = this.elements[elementIndex];
+            this.elements[elementIndex] = this.elements[otherElementIndex];
+            this.elements[otherElementIndex] = previousElement;
         }
     }
 }
