@@ -43,10 +43,10 @@
             public Employee(int id)
             {
                 this.Id = id;
-                this.Employees = new HashSet<Employee>();
+                this.Employees = new List<Employee>();
             }
 
-            public HashSet<Employee> Employees { get; set; }
+            public IList<Employee> Employees { get; set; }
 
             public int Id { get; set; }
 

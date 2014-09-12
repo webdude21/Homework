@@ -1,6 +1,6 @@
-﻿namespace _3DLabirynth
+﻿namespace LinkedOut
 {
-    internal class Program
+    internal class LinkedOut
     {
         private static void Main()
         {

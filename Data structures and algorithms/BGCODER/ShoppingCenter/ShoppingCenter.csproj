@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B4775F85-9876-450F-B3F2-A423B8DDA4EF}</ProjectGuid>
+    <ProjectGuid>{59E6A1C0-A261-457B-8845-955CA20B8CC5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_3DLabirynth</RootNamespace>
-    <AssemblyName>3DLabirynth</AssemblyName>
+    <RootNamespace>ShoppingCenter</RootNamespace>
+    <AssemblyName>ShoppingCenter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PowerCollections">
+      <HintPath>..\packages\XAct.Wintellect.PowerCollections.0.0.1\lib\net20\PowerCollections.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,17 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Labirynth.cs" />
+    <Compile Include="ShoppingCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GraphLibrary\GraphLibrary.csproj">
-      <Project>{d32b8fe6-5b98-4b37-971b-c210a6e30456}</Project>
-      <Name>GraphLibrary</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
