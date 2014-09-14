@@ -111,9 +111,7 @@ namespace BGCODER
 
                 if (Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize] > 0)
                 {
-                    usedDigits[
-                        Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize]
-                        - 1] = true;
+                    usedDigits[Grid[(row / TileSize) * TileSize + index / TileSize, (col / TileSize) * TileSize + index % TileSize] - 1] = true;
                 }
             }
 
