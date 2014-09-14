@@ -30,11 +30,16 @@
         private static IEnumerable<char> DoTopologicalSort()
         {
             var result = new List<char>();
-            var nodesWithoutIncomingEdges = Nodes.Select(charNode => charNode.Value).Where(node => node.Parents.Count == 0).ToList();
+            var nodesWithoutIncomingEdges = new SortedSet<CharNode>();
+            foreach (var node in Nodes.Where(node => node.Value.Parents.Count == 0))
+            {
+                nodesWithoutIncomingEdges.Add(node.Value);
+            }
+
 
             while (nodesWithoutIncomingEdges.Count > 0)
             {
-                var currentNode = nodesWithoutIncomingEdges.Min();
+                var currentNode = nodesWithoutIncomingEdges.First();
                 nodesWithoutIncomingEdges.Remove(currentNode);
                 result.Add(currentNode.Letter);
 
