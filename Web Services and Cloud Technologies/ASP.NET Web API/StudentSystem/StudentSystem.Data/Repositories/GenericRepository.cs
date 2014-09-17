@@ -52,6 +52,11 @@
             entry.State = EntityState.Detached;
         }
 
+        public void SaveChanges()
+        {
+            this.context.SaveChanges();
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             return this.set.GetEnumerator();

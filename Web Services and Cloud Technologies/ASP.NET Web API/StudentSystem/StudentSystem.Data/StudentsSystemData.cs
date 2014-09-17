@@ -46,8 +46,16 @@
             {
                 return (GenericRepository<Teacher>)this.GetRepository<Teacher>();
             }
-        } 
-       
+        }
+
+        public GenericRepository<Homework> Homeworks
+        {
+            get
+            {
+                return (GenericRepository<Homework>)this.GetRepository<Homework>();
+            }
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();

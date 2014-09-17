@@ -9,6 +9,10 @@
 
         GenericRepository<Student> Students { get; }
 
-        GenericRepository<Teacher> Teachers { get; } 
+        GenericRepository<Teacher> Teachers { get; }
+
+        GenericRepository<Homework> Homeworks { get; } 
+
+        void SaveChanges();
     }
 }

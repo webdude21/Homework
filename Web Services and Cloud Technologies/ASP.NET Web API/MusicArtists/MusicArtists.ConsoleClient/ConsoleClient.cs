@@ -15,10 +15,6 @@
         {
             var client = InitializeHttpClient("http://localhost:7416/");
             DisplayAllSongs(client);
-
-            var newSong = new SongOutputModel { Title = "Smash" };
-
-            var response = client.PostAsync("api/Songs");
         }
 
         private static HttpClient InitializeHttpClient(string baseUrl)
