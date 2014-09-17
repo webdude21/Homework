@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorfulBunnies", "Colorful
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecoverMessage", "RecoverMessage\RecoverMessage.csproj", "{5E02E144-748C-4148-8734-14C9F307322D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagesInABottle", "MessagesInABottle\MessagesInABottle.csproj", "{B7E9ED57-FDBC-4916-A68E-DEB1F802E8E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{5E02E144-748C-4148-8734-14C9F307322D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E02E144-748C-4148-8734-14C9F307322D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E02E144-748C-4148-8734-14C9F307322D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E9ED57-FDBC-4916-A68E-DEB1F802E8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E9ED57-FDBC-4916-A68E-DEB1F802E8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E9ED57-FDBC-4916-A68E-DEB1F802E8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E9ED57-FDBC-4916-A68E-DEB1F802E8E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
