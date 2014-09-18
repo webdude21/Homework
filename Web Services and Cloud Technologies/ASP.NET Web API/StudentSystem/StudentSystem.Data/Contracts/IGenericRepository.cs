@@ -1,11 +1,7 @@
 ﻿namespace StudentSystem.Data.Contracts
 {
-    using System.Linq;
-
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<in T> where T : class
     {
-        IQueryable<T> All();
-
         void Add(T entity);
 
         void Update(T entity);

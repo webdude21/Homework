@@ -10,8 +10,7 @@
 
     using StudentSystem.Data.Contracts;
 
-    public class GenericRepository<T> : IGenericRepository<T>, IQueryable<T>
-        where T : class
+    public class GenericRepository<T> : IGenericRepository<T>, IQueryable<T> where T : class
     {
         private readonly IStudentSystemDbContext context;
 
@@ -45,11 +44,6 @@
             {
                 return this.set.Provider;
             }
-        }
-
-        public IQueryable<T> All()
-        {
-            return this.set.AsQueryable();
         }
 
         public void Add(T entity)

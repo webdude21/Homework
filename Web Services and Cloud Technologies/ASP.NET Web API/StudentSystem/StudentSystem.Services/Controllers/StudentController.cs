@@ -33,7 +33,7 @@
         [HttpGet]
         public IQueryable<StudentsOutputModel> All()
         {
-            return this.studentData.Students.All().Select(StudentsOutputModel.FromStudent).AsQueryable();
+            return this.studentData.Students.Select(StudentsOutputModel.FromStudent);
         }
 
         [HttpGet]
