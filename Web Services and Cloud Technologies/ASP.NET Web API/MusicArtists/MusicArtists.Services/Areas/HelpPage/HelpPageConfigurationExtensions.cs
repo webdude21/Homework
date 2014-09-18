@@ -16,6 +16,8 @@ using MusicArtists.Services.Areas.HelpPage.Models;
 
 namespace MusicArtists.Services.Areas.HelpPage
 {
+    using MusicArtists.Services.Areas.HelpPage.SampleGeneration;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";

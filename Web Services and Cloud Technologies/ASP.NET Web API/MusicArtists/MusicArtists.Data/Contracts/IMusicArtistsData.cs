@@ -1,14 +1,15 @@
 ﻿namespace MusicArtists.Data.Contracts
 {
+    using MusicArtists.Data.Repositories;
     using MusicArtists.Models;
 
     public interface IMusicArtistsData
     {
-        GenericRepository<Album> Albums { get; }
+        EfRepository<Album> Albums { get; }
 
-        GenericRepository<Artist> Artists { get; }
+        EfRepository<Artist> Artists { get; }
 
-        GenericRepository<Song> Songs { get; }
+        EfRepository<Song> Songs { get; }
 
         void SaveChanges();
     }

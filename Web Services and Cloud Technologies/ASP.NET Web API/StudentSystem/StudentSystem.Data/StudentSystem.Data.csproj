@@ -54,7 +54,7 @@
     <Compile Include="Contracts\IStudentSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\EfRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>

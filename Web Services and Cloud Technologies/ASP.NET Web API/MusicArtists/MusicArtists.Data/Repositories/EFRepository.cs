@@ -1,4 +1,4 @@
-﻿namespace MusicArtists.Data
+﻿namespace MusicArtists.Data.Repositories
 {
     using System;
     using System.Collections;
@@ -10,19 +10,19 @@
 
     using MusicArtists.Data.Contracts;
 
-    public class GenericRepository<T> : IGenericRepository<T>, IQueryable<T> where T : class
+    public class EfRepository<T> : IGenericRepository<T>, IQueryable<T> where T : class
     {
         private readonly IDbContext context;
 
         private readonly IDbSet<T> set;
 
-        public GenericRepository(IDbContext context)
+        public EfRepository(IDbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();
         }
 
-        public GenericRepository()
+        public EfRepository()
             : this(new MusicArtistsDbContext())
         {
         }

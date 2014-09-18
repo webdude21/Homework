@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using MusicArtists.Data.Contracts;
+    using MusicArtists.Data.Repositories;
     using MusicArtists.Models;
 
     public class MusicArtistsData : IMusicArtistsData
@@ -23,7 +24,7 @@
         {
         }
 
-        public GenericRepository<Album> Albums
+        public EfRepository<Album> Albums
         {
             get
             {
@@ -31,7 +32,7 @@
             }
         }
 
-        public GenericRepository<Artist> Artists
+        public EfRepository<Artist> Artists
         {
             get
             {
@@ -39,7 +40,7 @@
             }
         }
 
-        public GenericRepository<Song> Songs
+        public EfRepository<Song> Songs
         {
             get
             {
@@ -52,9 +53,9 @@
             this.context.SaveChanges();
         }
 
-        public GenericRepository<T> GetGenericRepository<T>() where T : class
+        public EfRepository<T> GetGenericRepository<T>() where T : class
         {
-            return (GenericRepository<T>)this.GetRepository<T>();
+            return (EfRepository<T>)this.GetRepository<T>();
         }
 
         private IGenericRepository<T> GetRepository<T>() where T : class
@@ -66,7 +67,7 @@
                 return (IGenericRepository<T>)this.repositories[typeOfModel];
             }
 
-            var type = typeof(GenericRepository<T>);
+            var type = typeof(EfRepository<T>);
 
             this.repositories.Add(typeOfModel, Activator.CreateInstance(type, this.context));
 

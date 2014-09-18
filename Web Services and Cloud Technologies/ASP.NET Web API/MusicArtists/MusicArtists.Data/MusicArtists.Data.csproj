@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IMusicArtistsData.cs" />

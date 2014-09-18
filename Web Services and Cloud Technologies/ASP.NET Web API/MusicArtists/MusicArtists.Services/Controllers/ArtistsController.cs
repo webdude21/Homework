@@ -28,7 +28,7 @@
         [HttpGet]
         public IQueryable<ArtistOutputModel> All()
         {
-            return this.musicArtistsData.Artists.All().Select(ArtistOutputModel.FromArtist).AsQueryable();
+            return this.musicArtistsData.Artists.Select(ArtistOutputModel.FromArtist).AsQueryable();
         }
 
 
@@ -52,7 +52,7 @@
         public IHttpActionResult BySongId(int songId)
         {
             var artists =
-                this.musicArtistsData.Artists.All()
+                this.musicArtistsData.Artists
                     .Where(art => art.Songs.Any(sng => sng.Id == songId))
                     .Select(ArtistOutputModel.FromArtist);
 
@@ -63,7 +63,7 @@
         public IHttpActionResult ByAlbumId(int albumId)
         {
             var artists =
-                this.musicArtistsData.Artists.All()
+                this.musicArtistsData.Artists
                     .Where(art => art.Albums.Any(alb => alb.Id == albumId))
                     .Select(ArtistOutputModel.FromArtist);
 
@@ -78,8 +78,8 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            this.CreateArtistFromModel(artist);
-
+            var newArtist = this.CreateArtistFromModel(artist);
+            artist.Id = newArtist.Id;
             return this.Ok(artist);
         }
 
@@ -121,10 +121,10 @@
 
         private void UpdateArtist(ArtistOutputModel artistUpdate, Artist artist)
         {
-            artist.DateOfBirth = artistUpdate.DateOfBirth;
-            artist.Nickname = artistUpdate.Nickname;
             artist.Name = artistUpdate.Name;
             artist.Country = artistUpdate.Country;
+            artist.Nickname = artistUpdate.Nickname;
+            artist.DateOfBirth = artistUpdate.DateOfBirth;
 
             this.musicArtistsData.SaveChanges();
         }
@@ -134,19 +134,21 @@
             return this.musicArtistsData.Artists.FirstOrDefault(art => art.Id == id);
         }
 
-        private void CreateArtistFromModel(ArtistOutputModel artist)
+        private Artist CreateArtistFromModel(ArtistOutputModel artist)
         {
-            this.musicArtistsData.Artists.Add(
-                new Artist
+            var newArtist = new Artist
                 {
                     Id = artist.Id,
+                    Name = artist.Name,
+                    Country = artist.Country,
                     Nickname = artist.Nickname,
                     DateOfBirth = artist.DateOfBirth,
-                    Country = artist.Country,
-                    Name = artist.Name
-                });
+                };
 
+
+            this.musicArtistsData.Artists.Add(newArtist);
             this.musicArtistsData.SaveChanges();
+            return newArtist;
         }
     }
 }

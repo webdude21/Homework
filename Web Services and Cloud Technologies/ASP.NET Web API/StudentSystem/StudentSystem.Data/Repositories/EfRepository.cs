@@ -23,6 +23,30 @@
             this.set = context.Set<T>();
         }
 
+        public Expression Expression
+        {
+            get
+            {
+                return this.set.Expression;
+            }
+        }
+
+        public Type ElementType
+        {
+            get
+            {
+                return this.set.ElementType;
+            }
+        }
+
+        public IQueryProvider Provider
+        {
+            get
+            {
+                return this.set.Provider;
+            }
+        }
+
         public IQueryable<T> All()
         {
             return this.set.AsQueryable();
@@ -65,30 +89,6 @@
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this.set).GetEnumerator();
-        }
-
-        public Expression Expression
-        {
-            get
-            {
-                return this.set.Expression;
-            }
-        }
-
-        public Type ElementType
-        {
-            get
-            {
-                return this.set.ElementType;
-            }
-        }
-
-        public IQueryProvider Provider
-        {
-            get
-            {
-                return this.set.Provider;
-            }
         }
 
         private DbEntityEntry AttachIfDetached(T entity)

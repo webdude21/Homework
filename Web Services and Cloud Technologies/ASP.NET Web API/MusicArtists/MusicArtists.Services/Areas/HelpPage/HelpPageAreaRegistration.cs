@@ -3,6 +3,8 @@ using System.Web.Mvc;
 
 namespace MusicArtists.Services.Areas.HelpPage
 {
+    using MusicArtists.Services.Areas.HelpPage.App_Start;
+
     public class HelpPageAreaRegistration : AreaRegistration
     {
         public override string AreaName
