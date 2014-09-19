@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5DE76431-9035-4965-A821-072DD8694FE5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.Model", "BugTracker.Model\BugTracker.Model.csproj", "{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.Data", "BugTracker.Data\BugTracker.Data.csproj", "{8AFEF881-7122-4CCE-AD1F-5107A63FD056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.WebServices", "BugTracker.WebServices\BugTracker.WebServices.csproj", "{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.WebServices.Tests", "BugTracker.WebServices.Tests\BugTracker.WebServices.Tests.csproj", "{2B4DC091-CF46-4C28-97BA-5F06A69BD10D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker.Repository.Tests", "BugTracker.Repository.Tests\BugTracker.Repository.Tests.csproj", "{4B4C081B-927A-4782-A3E7-683BE6667A15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFEF881-7122-4CCE-AD1F-5107A63FD056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFEF881-7122-4CCE-AD1F-5107A63FD056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFEF881-7122-4CCE-AD1F-5107A63FD056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFEF881-7122-4CCE-AD1F-5107A63FD056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B4DC091-CF46-4C28-97BA-5F06A69BD10D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B4DC091-CF46-4C28-97BA-5F06A69BD10D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B4DC091-CF46-4C28-97BA-5F06A69BD10D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B4DC091-CF46-4C28-97BA-5F06A69BD10D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4C081B-927A-4782-A3E7-683BE6667A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4C081B-927A-4782-A3E7-683BE6667A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4C081B-927A-4782-A3E7-683BE6667A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4C081B-927A-4782-A3E7-683BE6667A15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -11,14 +11,14 @@
         {
             get
             {
-                return hm => new HomeworksOutputModel()
-                                 {
-                                     FilePath = hm.FilePath,
-                                     Id = hm.Id,
-                                     SentDateTime = hm.SentDateTime
-                                 };
+                return hm => new HomeworksOutputModel
+                                {
+                                    FilePath = hm.FilePath,
+                                    Id = hm.Id,
+                                    SentDateTime = hm.SentDateTime
+                                };
             }
-        } 
+        }
 
         public int Id { get; set; }
 

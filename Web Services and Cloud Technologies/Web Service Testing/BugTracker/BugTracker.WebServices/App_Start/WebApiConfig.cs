@@ -1,9 +1,7 @@
-﻿namespace StudentSystem.Services
+﻿namespace BugTracker.WebServices
 {
     using System.Web.Http;
     using System.Web.OData.Extensions;
-
-    using Newtonsoft.Json;
 
     public static class WebApiConfig
     {
@@ -14,9 +12,6 @@
             config.AddODataQueryFilter();
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{action}/{id}", new { id = RouteParameter.Optional });
-
-            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

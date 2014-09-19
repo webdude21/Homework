@@ -8,7 +8,7 @@
     using StudentSystem.Model;
     using StudentSystem.Services.Models;
 
-    public class StudentController : ApiController
+    public class StudentsController : ApiController
     {
         private const string NoSuchCourse = "There is no such course!";
 
@@ -20,12 +20,12 @@
 
         private readonly IStudentSystemData studentData;
 
-        public StudentController()
+        public StudentsController()
             : this(new StudentsSystemData())
         {
         }
 
-        public StudentController(IStudentSystemData studentData)
+        public StudentsController(IStudentSystemData studentData)
         {
             this.studentData = studentData;
         }

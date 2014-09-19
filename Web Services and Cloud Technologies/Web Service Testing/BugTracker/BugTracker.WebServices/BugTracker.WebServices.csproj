@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7E803A7C-93D5-4450-95DE-C87A76D383EE}</ProjectGuid>
+    <ProjectGuid>{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StudentSystem.Services</RootNamespace>
-    <AssemblyName>StudentSystem.Services</AssemblyName>
+    <RootNamespace>BugTracker.WebServices</RootNamespace>
+    <AssemblyName>BugTracker.WebServices</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -177,18 +177,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\BugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HomeworksController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CoursesOutputModel.cs" />
-    <Compile Include="Models\HomeworksOutputModel.cs" />
-    <Compile Include="Models\StudentsOutputModel.cs" />
-    <Compile Include="Models\TeachersOutputModel.cs" />
+    <Compile Include="Models\BugOutputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +213,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -243,13 +237,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudentSystem.Data\StudentSystem.Data.csproj">
-      <Project>{C44FAB49-F4E3-4180-81D7-155AF90DB68C}</Project>
-      <Name>StudentSystem.Data</Name>
+    <ProjectReference Include="..\BugTracker.Data\BugTracker.Data.csproj">
+      <Project>{8AFEF881-7122-4CCE-AD1F-5107A63FD056}</Project>
+      <Name>BugTracker.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StudentSystem.Model\StudentSystem.Model.csproj">
-      <Project>{AC8FE69D-0750-4E5A-B10B-1B39309C3FA8}</Project>
-      <Name>StudentSystem.Model</Name>
+    <ProjectReference Include="..\BugTracker.Model\BugTracker.Model.csproj">
+      <Project>{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}</Project>
+      <Name>BugTracker.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +269,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59021</DevelopmentServerPort>
+          <DevelopmentServerPort>8035</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59021/</IISUrl>
+          <IISUrl>http://localhost:8035/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

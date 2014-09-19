@@ -8,18 +8,18 @@
     using StudentSystem.Model;
     using StudentSystem.Services.Models;
 
-    public class TeacherController : ApiController
+    public class TeachersController : ApiController
     {
         private const string NoSuchTeacher = "There is no such teacher!";
 
         private readonly IStudentSystemData studentData;
 
-        public TeacherController()
+        public TeachersController()
             : this(new StudentsSystemData())
         {
         }
 
-        public TeacherController(IStudentSystemData studentData)
+        public TeachersController(IStudentSystemData studentData)
         {
             this.studentData = studentData;
         }

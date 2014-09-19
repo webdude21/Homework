@@ -8,18 +8,18 @@
     using StudentSystem.Model;
     using StudentSystem.Services.Models;
 
-    public class HomeworkController : ApiController
+    public class HomeworksController : ApiController
     {
         private const string NoSuchHomeWork = "There is no such homework!";
 
         private readonly IStudentSystemData studentData;
 
-        public HomeworkController()
+        public HomeworksController()
             : this(new StudentsSystemData())
         {
         }
 
-        public HomeworkController(IStudentSystemData studentData)
+        public HomeworksController(IStudentSystemData studentData)
         {
             this.studentData = studentData;
         }
