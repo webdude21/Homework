@@ -33,10 +33,10 @@
 
             if (this.repositories.ContainsKey(typeOfModel))
             {
-                return (EfRepository<T>)this.repositories[typeOfModel];
+                return (IRepository<T>)this.repositories[typeOfModel];
             }
 
-            var type = typeof(EfRepository<T>);
+            var type = typeof(IRepository<T>);
 
             this.repositories.Add(typeOfModel, Activator.CreateInstance(type, this.context));
 

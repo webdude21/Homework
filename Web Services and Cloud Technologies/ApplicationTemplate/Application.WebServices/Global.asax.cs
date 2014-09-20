@@ -18,9 +18,9 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-            Response.Headers.Add("Access-Control-Allow-Origin", "*");
-        }
+        //protected void Application_BeginRequest(object sender, EventArgs e)
+        //{
+        //    Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        //}
     }
 }
