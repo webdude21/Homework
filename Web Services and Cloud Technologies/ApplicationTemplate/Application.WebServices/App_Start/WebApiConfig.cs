@@ -1,6 +1,7 @@
 ﻿namespace Application.WebServices
 {
     using System.Web.Http;
+    using System.Web.Http.Cors;
     using System.Web.OData.Extensions;
 
     using Microsoft.Owin.Security.OAuth;
@@ -9,12 +10,10 @@
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors();
             config.AddODataQueryFilter();
-
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
