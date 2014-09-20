@@ -24,9 +24,9 @@
         }
 
         [HttpGet]
-        public IQueryable<BugOutputModel> All()
+        public IHttpActionResult All()
         {
-            return this.bugData.Bugs.Select(BugOutputModel.FromBug);
+            return this.Ok(this.bugData.Bugs.Select(BugOutputModel.FromBug));
         }
 
         [HttpGet]

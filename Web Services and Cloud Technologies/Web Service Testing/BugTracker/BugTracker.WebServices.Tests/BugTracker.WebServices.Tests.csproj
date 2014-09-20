@@ -97,6 +97,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.JustMock">
+      <HintPath>..\packages\JustMock.2014.2.811.1\lib\Net35\Telerik.JustMock.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +112,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BugTracker.Data\BugTracker.Data.csproj">
+      <Project>{8AFEF881-7122-4CCE-AD1F-5107A63FD056}</Project>
+      <Name>BugTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BugTracker.Model\BugTracker.Model.csproj">
+      <Project>{9BFF8F99-FB45-4026-B10D-4AFE7274B0D9}</Project>
+      <Name>BugTracker.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BugTracker.WebServices\BugTracker.WebServices.csproj">
       <Project>{9D5D0E9D-E284-45FC-AD43-39EF5EABD6E8}</Project>
       <Name>BugTracker.WebServices</Name>

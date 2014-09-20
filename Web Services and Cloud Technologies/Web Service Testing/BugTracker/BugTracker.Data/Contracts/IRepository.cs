@@ -1,9 +1,12 @@
 ﻿namespace BugTracker.Data.Contracts
 {
-    public interface IRepository<in T>
-        where T : class
+    using System.Linq;
+
+    public interface IRepository<T> : IQueryable<T> where T : class
     {
-        void Add(T entity);
+        T Add(T entity);
+
+        T Find(int id);
 
         void Update(T entity);
 

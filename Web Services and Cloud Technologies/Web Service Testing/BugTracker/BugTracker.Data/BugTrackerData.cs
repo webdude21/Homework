@@ -13,8 +13,7 @@
 
         private readonly IDictionary<Type, object> repositories;
 
-        public BugTrackerData()
-            : this(new BugTrackerDbContext())
+        public BugTrackerData()  : this(new BugTrackerDbContext())
         {
         }
 
@@ -24,7 +23,7 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public EfRepository<Bug> Bugs
+        public IRepository<Bug> Bugs
         {
             get
             {

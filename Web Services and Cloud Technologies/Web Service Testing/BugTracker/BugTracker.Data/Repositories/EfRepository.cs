@@ -56,15 +56,10 @@
         {
             return ((IEnumerable)this.set).GetEnumerator();
         }
+
         public T Find(int id)
         {
-            return this.context.Set<T>().Find(id);
-        }
-
-        public void Add(T entity)
-        {
-            var entry = this.AttachIfDetached(entity);
-            entry.State = EntityState.Added;
+            return this.set.Find(id);
         }
 
         public void Update(T entity)
@@ -90,6 +85,14 @@
             this.context.SaveChanges();
         }
 
+
+        public T Add(T entity)
+        {
+            var entry = this.AttachIfDetached(entity);
+            entry.State = EntityState.Added;
+            return entity;
+        }
+
         private DbEntityEntry AttachIfDetached(T entity)
         {
             var entry = this.context.Entry(entity);
@@ -100,6 +103,5 @@
 
             return entry;
         }
-
     }
 }

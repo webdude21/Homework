@@ -29,16 +29,19 @@
         [TestMethod]
         public void FindWhenObjectIsInDbShouldReturnObject()
         {
+            // Arrange
             var bug = GetValidTestBug();
 
             var databaseContext = new BugTrackerDbContext();
             var repo = new EfRepository<Bug>(databaseContext);
 
+            // Act
             databaseContext.Bugs.Add(bug);
             databaseContext.SaveChanges();
 
             var bugInDb = repo.Find(bug.Id);
-
+            
+            // Assert
             Assert.IsNotNull(bugInDb);
             Assert.AreEqual(bug.Text, bugInDb.Text);
         }
@@ -46,16 +49,18 @@
         [TestMethod]
         public void AddBugWhenBugIsValidShouldAddToDatabase()
         {
+            // Arrange
             var bug = GetValidTestBug();
 
             var databaseContext = new BugTrackerDbContext();
-            var repo = new EfRepository<Bug>(databaseContext);
+            var repo = new EfRepository<Bug>(databaseContext) { bug };
 
-            repo.Add(bug);
+            // Act
             repo.SaveChanges();
 
             var bugInDb = databaseContext.Bugs.Find(bug.Id);
 
+            // Assert
             Assert.IsNotNull(bugInDb);
             Assert.AreEqual(bug.Text, bugInDb.Text);
         }
