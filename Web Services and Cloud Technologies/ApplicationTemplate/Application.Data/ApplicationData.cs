@@ -5,6 +5,7 @@
 
     using Application.Data.Contracts;
     using Application.Data.Repositories;
+    using Application.Models;
 
     public class ApplicationData : IApplicationData
     {
@@ -22,6 +23,46 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public IRepository<Article> Articles
+        {
+            get
+            {
+                return this.GetRepository<Article>();
+            }
+        }
+
+        public IRepository<Tag> Tags
+        {
+            get
+            {
+                return this.GetRepository<Tag>();
+            }
+        }
+
+        public IRepository<Like> Likes
+        {
+            get
+            {
+                return this.GetRepository<Like>();
+            }
+        }
+
+        public IRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetRepository<Comment>();
+            }
+        }
+
+        public IRepository<Category> Categories
+        {
+            get
+            {
+                return this.GetRepository<Category>();
+            }
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();
@@ -33,10 +74,10 @@
 
             if (this.repositories.ContainsKey(typeOfModel))
             {
-                return (IRepository<T>)this.repositories[typeOfModel];
+                return (EfRepository<T>)this.repositories[typeOfModel];
             }
 
-            var type = typeof(IRepository<T>);
+            var type = typeof(EfRepository<T>);
 
             this.repositories.Add(typeOfModel, Activator.CreateInstance(type, this.context));
 
