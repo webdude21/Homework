@@ -5,13 +5,13 @@
 
     using Application.Data.Contracts;
 
-    public class EfRepository<T> : IRepository<T>  where T : class
+    public class EfRepository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext context;
+        private readonly IDbContext context;
 
         private readonly IDbSet<T> set;
 
-        public EfRepository(DbContext context)
+        public EfRepository(IDbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();
