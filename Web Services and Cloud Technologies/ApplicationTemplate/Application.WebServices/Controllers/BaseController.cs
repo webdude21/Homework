@@ -7,16 +7,16 @@
 
     public class BaseController : ApiController
     {
-        private IApplicationData applicationData;
-
         public BaseController(IApplicationData applicationData)
         {
-            this.applicationData = applicationData;
+            this.ApplicationData = applicationData;
         }
 
         public BaseController()
             : this(new ApplicationData())
         {
         }
+
+        protected IApplicationData ApplicationData { get; set; }
     }
 }

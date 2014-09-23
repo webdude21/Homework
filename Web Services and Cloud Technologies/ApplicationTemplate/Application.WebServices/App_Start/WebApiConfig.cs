@@ -16,14 +16,14 @@
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config.AddODataQueryFilter();
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.Routes.MapHttpRoute("Users", "api/users/{action}", new { Controller = "Account" });
+            config.Routes.MapHttpRoute("Users", "api/users/", new { Controller = "Account" });
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
-            
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
     }
 }

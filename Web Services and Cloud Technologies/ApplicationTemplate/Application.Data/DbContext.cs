@@ -10,8 +10,7 @@
 
     public class DbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
-        public DbContext()
-            : base("DefaultConnection", false)
+        public DbContext() : base("DefaultConnection", false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DbContext, Configuration>());
         }
@@ -25,6 +24,8 @@
         public IDbSet<Tag> Tags { get; set; }
 
         public IDbSet<Article> Articles { get; set; }
+
+        public IDbSet<Alert> Alerts { get; set; } 
 
         public static DbContext Create()
         {

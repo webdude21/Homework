@@ -13,8 +13,7 @@
 
         private readonly IDictionary<Type, object> repositories;
 
-        public ApplicationData()
-            : this(new DbContext())
+        public ApplicationData() : this(new DbContext())
         {
         }
 

@@ -13,7 +13,6 @@
             this.Comments = new HashSet<Comment>();
         }
 
-        [Key]
         public int Id { get; set; }
 
         public string AuthorId { get; set; }

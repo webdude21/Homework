@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertData.cs" />
     <Compile Include="ApplicationData.cs" />
+    <Compile Include="Contracts\IAlertData.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IApplicationData.cs" />
     <Compile Include="DbContext.cs" />
