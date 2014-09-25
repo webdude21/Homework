@@ -34,6 +34,7 @@ ticTacToeApp.factory('auth', function($http, $q, identity, authorization, UsersR
             { headers: {'Content-Type': 'application/x-www-form-urlencoded'} }).success(function(response) {
             if (response["access_token"]) {
                 identity.currentUser = response;
+                console.dir(response);
                 deferred.resolve(true);
             }
             else {
