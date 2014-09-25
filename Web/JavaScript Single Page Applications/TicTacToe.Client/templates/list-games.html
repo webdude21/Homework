@@ -17,6 +17,9 @@
                     <th class="text-center vcenter">
                         <a href="#" >Game link</a>
                     </th>
+                    <th class="text-center vcenter">
+                        <a href="#" >Join Game</a>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,16 +29,14 @@
                     <td>{{game.SecondPlayerName}}</td>
                     <td>{{game.GameState}}</td>
                     <td>
-                        <a href="#/game/{{game.Id}}">Join</a>
+                        <a href="#/game/{{game.Id}}">Play</a>
+                    </td>
+                    <td>
+                        <a href="#" ng-click="joinCurrentGame(game.id)">Join</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <hr/>
-            <div class="pull-right">
-                <button class="btn btn-default" ng-click="logout()">Изход</button>
-            </div>
         </div>
-        <hr/>
     </div>
 </div>

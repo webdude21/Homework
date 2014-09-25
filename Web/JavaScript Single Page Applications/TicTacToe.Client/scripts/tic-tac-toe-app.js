@@ -13,9 +13,6 @@ var ticTacToeApp = angular
             .when('/signup', {
                 templateUrl: 'templates/signup.html'
             })
-            .when('/join', {
-                templateUrl: 'templates/game.html'
-            })
             .when('/create', {
                 templateUrl: 'templates/create.html'
             })
@@ -24,6 +21,9 @@ var ticTacToeApp = angular
             })
             .when('/game/:id', {
                 templateUrl: 'templates/game.html'
+            })
+            .when('/join/:id', {
+                templateUrl: 'templates/join.html'
             })
             .otherwise({redirectTo: '/home'});
     })

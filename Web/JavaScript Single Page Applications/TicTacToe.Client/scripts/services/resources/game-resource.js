@@ -15,7 +15,7 @@ ticTacToeApp.factory('GameResource', function ($http, baseUrl, authorization) {
     }
 
     function getGameStatus(gameid){
-        return $http.get(gameStatusEndPoint + gameid, {}, {headers: authorization.getAuthorizationHeader()})
+        return $http.get(gameStatusEndPoint + gameid, {headers: authorization.getAuthorizationHeader()})
     }
 
     function getAllGames(){

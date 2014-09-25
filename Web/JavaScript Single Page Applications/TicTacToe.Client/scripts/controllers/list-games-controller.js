@@ -15,4 +15,12 @@ ticTacToeApp.controller('ListGamesController',
             $scope.gameList = games;
         });
 
+        $scope.joinCurrentGame = function (gameId){
+            GameResource.joinGame(gameId).success(function (currentGame) {
+                $scope.currentGame = currentGame;
+            }).error(function(err){
+                messageBox.error(err.Message, MESSAGE_BOX_SELECTOR);
+                $location.path('/list-games');
+            });
+        };
     });

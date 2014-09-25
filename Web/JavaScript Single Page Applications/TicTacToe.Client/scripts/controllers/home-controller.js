@@ -2,6 +2,5 @@
 
 ticTacToeApp.controller('HomeController',
     function HomeController($scope) {
-
     }
 );
