@@ -11,8 +11,10 @@ ticTacToeApp.controller('CreateGameController',
             return;
         }
 
-        GameResource.createGame().success(function (currentGame) {
-            $scope.currentGame = currentGame;
-            console.dir(currentGame);
-        });
+        GameResource.createGame().then(function (response) {
+            $scope.currentGame = response.data;
+            $location.path('/game/' + JSON.parse())
+        }, (function (err) {
+            messageBox.error(err.data.Message, MESSAGE_BOX_SELECTOR);
+        }));
     });

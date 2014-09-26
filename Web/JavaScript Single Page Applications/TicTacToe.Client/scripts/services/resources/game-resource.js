@@ -5,6 +5,7 @@ ticTacToeApp.factory('GameResource', function ($http, baseUrl, authorization) {
     var createGameEndPoint = gamesApi + "/create";
     var joinGameEndPoint = gamesApi + "/join?gameId=";
     var gameStatusEndPoint = gamesApi + "?gameId=";
+    var playGameEndPoint = gamesApi + '/play';
 
     function createGame() {
         return $http.post(createGameEndPoint, {}, {headers: authorization.getAuthorizationHeader()})
@@ -22,10 +23,15 @@ ticTacToeApp.factory('GameResource', function ($http, baseUrl, authorization) {
         return $http.get(gamesApi, {headers: authorization.getAuthorizationHeader()});
     }
 
+    function playTurn(gameData){
+        return $http.post(playGameEndPoint, gameData, {headers: authorization.getAuthorizationHeader()});
+    }
+
     return{
         createGame: createGame,
         joinGame: joinGame,
         getGameStatus: getGameStatus,
-        getAllGames: getAllGames
+        getAllGames: getAllGames,
+        playTurn: playTurn
     }
 });

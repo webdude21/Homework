@@ -4,9 +4,6 @@ var ticTacToeApp = angular
     .module('ticTacToeApp', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
     .config(function($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/home', {
-                templateUrl: 'templates/home.html'
-            })
             .when('/login', {
                 templateUrl: 'templates/login.html'
             })
@@ -22,7 +19,7 @@ var ticTacToeApp = angular
             .when('/game/:id', {
                 templateUrl: 'templates/game.html'
             })
-            .otherwise({redirectTo: '/home'});
+            .otherwise({redirectTo: '/list-games'});
     })
     .constant('baseUrl', 'http://localhost:33257')
     .constant('author', 'Webdude')

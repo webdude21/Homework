@@ -3,12 +3,12 @@ ticTacToeApp.factory('auth', function ($http, $q, identity, authorization, appNa
     var loginRoute = baseUrl + '/token';
 
     function logout() {
+        _clearCookies();
         var deferred = $q.defer();
 
         var headers = authorization.getAuthorizationHeader();
         $http.post(logoutRoute, {}, { headers: headers }).success(function () {
             identity.currentUser = undefined;
-            _clearCookies();
             deferred.resolve();
         });
 
