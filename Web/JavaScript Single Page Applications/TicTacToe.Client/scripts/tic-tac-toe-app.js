@@ -2,7 +2,7 @@
 
 var ticTacToeApp = angular
     .module('ticTacToeApp', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
-    .config(function($routeProvider, $httpProvider) {
+    .config(function($routeProvider) {
         $routeProvider
             .when('/login', {
                 templateUrl: 'templates/login.html'
