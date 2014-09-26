@@ -1,0 +1,36 @@
+* {
+  font-family: 'Open Sans', Verdana, sans-serif !important;
+}
+body {
+  padding-top: 70px;
+}
+body input.ng-dirty.ng-valid {
+  background-color: #8fbc8f !important;
+}
+body input.ng-dirty.ng-invalid {
+  background-color: #ffc0cb !important;
+}
+body .tic-tac-toe-table-container {
+  text-align: center;
+}
+body .tic-tac-toe-table,
+body .tic-tac-toe-table tr,
+body .tic-tac-toe-table td {
+  margin: 0 auto;
+  border: 1px solid white;
+}
+body .tic-tac-toe-table.notAllowed td {
+  cursor: not-allowed;
+}
+body .tic-tac-toe-table.allowed td {
+  cursor: crosshair;
+}
+body .tic-tac-toe-table td {
+  font-size: 1.8em;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+}
+body .tic-tac-toe-table td:hover {
+  background-color: slategray;
+}

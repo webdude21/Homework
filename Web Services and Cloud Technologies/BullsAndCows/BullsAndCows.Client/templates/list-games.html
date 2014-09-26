@@ -1,0 +1,41 @@
+<div class="container clearfix" ng-controller="ListGamesController">
+    <div class="row">
+        <table class="table table-striped text-center table-hover">
+            <thead>
+            <tr class="info">
+                <th class="text-center vcenter">#</th>
+                <th class="text-center vcenter">
+                    <a href="" ng-click="predicate = 'FirstPlayerName'; reverse=!reverse">You (X)</a>
+                </th>
+                <th class="text-center vcenter">
+                    <a href="" ng-click="predicate = 'SecondPlayerName'; reverse=!reverse">Opponent (O)</a>
+                </th>
+                <th class="text-center vcenter">
+                    <a href="" ng-click="predicate = 'GameState'; reverse=!reverse">Game State</a>
+                </th>
+                <th class="text-center vcenter">
+                    <a href="#">Game link</a>
+                </th>
+                <th class="text-center vcenter">
+                    <a href="#">Join Game</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="game in gameList | orderBy:predicate:reverse">
+                <td>{{$index + 1}}</td>
+                <td>{{game.FirstPlayerName}}</td>
+                <td>{{game.SecondPlayerName}}</td>
+                <td>{{game.State}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="playCurrentGame(game.Id)">Play</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="joinCurrentGame(game.Id)">Join</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

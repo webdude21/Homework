@@ -1,0 +1,29 @@
+<div class="container" ng-controller="GameController">
+    <div class="well">
+        <form name="articleForm" class="form-horizontal">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 big-text tic-tac-toe-table-container">
+                    <table class="tic-tac-toe-table" ng-class="cursorClass">
+                        <tr>
+                            <td ng-click="tryToPlay(0, 0)">{{ currentGame.Board[0] }}</td>
+                            <td ng-click="tryToPlay(0, 1)">{{ currentGame.Board[1] }}</td>
+                            <td ng-click="tryToPlay(0, 2)">{{ currentGame.Board[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td ng-click="tryToPlay(1, 0)">{{ currentGame.Board[3] }}</td>
+                            <td ng-click="tryToPlay(1, 1)">{{ currentGame.Board[4] }}</td>
+                            <td ng-click="tryToPlay(1, 2)">{{ currentGame.Board[5] }}</td>
+                        </tr>
+                        <tr>
+                            <td ng-click="tryToPlay(2, 0)">{{ currentGame.Board[6] }}</td>
+                            <td ng-click="tryToPlay(2, 1)">{{ currentGame.Board[7] }}</td>
+                            <td ng-click="tryToPlay(2, 2)">{{ currentGame.Board[8] }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+        <a href="#/list-games" class="btn btn-primary pull-right">Back</a>
+    </div>
+</div>
