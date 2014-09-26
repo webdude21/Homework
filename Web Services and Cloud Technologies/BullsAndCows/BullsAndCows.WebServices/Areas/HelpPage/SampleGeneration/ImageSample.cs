@@ -1,7 +1,7 @@
-namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
-{
-    using System;
+using System;
 
+namespace BullsAndCows.WebServices.Areas.HelpPage
+{
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
     /// </summary>
@@ -17,26 +17,25 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
             {
                 throw new ArgumentNullException("src");
             }
-
-            this.Src = src;
+            Src = src;
         }
 
         public string Src { get; private set; }
 
         public override bool Equals(object obj)
         {
-            var other = obj as ImageSample;
-            return other != null && this.Src == other.Src;
+            ImageSample other = obj as ImageSample;
+            return other != null && Src == other.Src;
         }
 
         public override int GetHashCode()
         {
-            return this.Src.GetHashCode();
+            return Src.GetHashCode();
         }
 
         public override string ToString()
         {
-            return this.Src;
+            return Src;
         }
     }
 }

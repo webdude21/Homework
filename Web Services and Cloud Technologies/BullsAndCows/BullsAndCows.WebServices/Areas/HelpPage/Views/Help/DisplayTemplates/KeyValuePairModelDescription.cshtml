@@ -1,3 +1,4 @@
-@model BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions.KeyValuePairModelDescription
+@using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions
+@model KeyValuePairModelDescription
 Pair of @Html.DisplayFor(m => Model.KeyModelDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.KeyModelDescription }) [key]
 and @Html.DisplayFor(m => Model.ValueModelDescription.ModelType, "ModelDescriptionLink", new { modelDescription = Model.ValueModelDescription }) [value]

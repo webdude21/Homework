@@ -1,60 +1,40 @@
-ticTacToeApp.factory('auth', function ($http, $q, identity, authorization, appName, UsersResource, baseUrl, $cookieStore) {
+ticTacToeApp.factory('auth', function ($http, $q, identity, authorization, baseUrl) {
     var logoutRoute = baseUrl + '/api/account/logout';
     var loginRoute = baseUrl + '/token';
+    var registerRout = baseUrl + '/api/account/register';
 
     function logout() {
-        _clearCookies();
         var deferred = $q.defer();
-
+        identity.setCurrentUser(undefined);
         var headers = authorization.getAuthorizationHeader();
         $http.post(logoutRoute, {}, { headers: headers }).success(function () {
-            identity.currentUser = undefined;
             deferred.resolve();
         });
 
         return deferred.promise;
     }
 
-    function signup(user) {
+    function register(user) {
         var deferred = $q.defer();
 
-        var user = new UsersResource.register(user);
-        user.$save().then(function () {
-            deferred.resolve();
-        }, function (response) {
-            deferred.reject(response);
-        });
+        $http.post(registerRout, user)
+            .success(function () {
+                deferred.resolve();
+            }, function (response) {
+                deferred.reject(response);
+            });
 
         return deferred.promise;
-    }
-
-    function _saveIdentityCookie(currentUser) {
-        $cookieStore.put(appName, {
-            identityStore: currentUser
-        });
-    }
-
-    function _getIdentityFromCookie() {
-        var cookieContent = $cookieStore.get(appName);
-        if (cookieContent) {
-            identity.currentUser = cookieContent.identityStore;
-        }
-
-        return cookieContent
-    }
-
-    function _clearCookies(){
-        $cookieStore.remove(appName);
     }
 
     function login(user) {
         var deferred = $q.defer();
         user['grant_type'] = 'password';
-        $http.post(loginRoute, 'username=' + user.username + '&password=' + user.password + '&grant_type=' + user.grant_type,
-            { headers: {'Content-Type': 'application/x-www-form-urlencoded'} }).success(function (response) {
+        $http.post(loginRoute, 'username=' + user.username + '&password=' + user.password +
+            '&grant_type=password', { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
+            .success(function (response) {
                 if (response["access_token"]) {
-                    identity.currentUser = response;
-                    _saveIdentityCookie(identity.currentUser);
+                    identity.setCurrentUser(response);
                     deferred.resolve(true);
                 }
                 else {
@@ -70,10 +50,7 @@ ticTacToeApp.factory('auth', function ($http, $q, identity, authorization, appNa
             return true;
         }
         else {
-            _getIdentityFromCookie();
-            if (!identity.isAuthenticated()){
-                return $q.reject('not authorized');
-            }
+            return $q.reject('not authorized');
         }
     }
 
@@ -81,6 +58,6 @@ ticTacToeApp.factory('auth', function ($http, $q, identity, authorization, appNa
         logout: logout,
         login: login,
         isAuthenticated: isAuthenticated,
-        signup: signup
+        register: register
     }
 });

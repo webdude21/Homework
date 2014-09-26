@@ -1,4 +1,4 @@
-<div class="container" ng-controller="SignUpController">
+<div class="container" ng-controller="RegisterController">
     <div class="well">
         <form name="signUpForm" class="form-horizontal">
             <fieldset>
@@ -22,7 +22,7 @@
                                                   required="required" class="form-control"/></div>
                 </div>
                 <div class="pull-right">
-                    <button ng-click="signup(user)" ng-disabled="signUpForm.$invalid" class="btn btn-primary">
+                    <button ng-click="register(user)" ng-disabled="signUpForm.$invalid" class="btn btn-primary">
                         Create
                     </button>
                     <a href="#/" class="btn btn-primary">Cancel</a>

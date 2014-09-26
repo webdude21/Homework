@@ -1,10 +1,10 @@
-namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.Http.Headers;
 
+namespace BullsAndCows.WebServices.Areas.HelpPage
+{
     /// <summary>
     /// This is used to identify the place where the sample should be applied.
     /// </summary>
@@ -21,10 +21,10 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
                 throw new ArgumentNullException("mediaType");
             }
 
-            this.ActionName = string.Empty;
-            this.ControllerName = string.Empty;
-            this.MediaType = mediaType;
-            this.ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            ActionName = String.Empty;
+            ControllerName = String.Empty;
+            MediaType = mediaType;
+            ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
                 throw new ArgumentNullException("type");
             }
 
-            this.ParameterType = type;
+            ParameterType = type;
         }
 
         /// <summary>
@@ -50,36 +50,29 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public HelpPageSampleKey(
-            SampleDirection sampleDirection, 
-            string controllerName, 
-            string actionName, 
-            IEnumerable<string> parameterNames)
+        public HelpPageSampleKey(SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
         {
             if (!Enum.IsDefined(typeof(SampleDirection), sampleDirection))
             {
                 throw new InvalidEnumArgumentException("sampleDirection", (int)sampleDirection, typeof(SampleDirection));
             }
-
             if (controllerName == null)
             {
                 throw new ArgumentNullException("controllerName");
             }
-
             if (actionName == null)
             {
                 throw new ArgumentNullException("actionName");
             }
-
             if (parameterNames == null)
             {
                 throw new ArgumentNullException("parameterNames");
             }
 
-            this.ControllerName = controllerName;
-            this.ActionName = actionName;
-            this.ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
-            this.SampleDirection = sampleDirection;
+            ControllerName = controllerName;
+            ActionName = actionName;
+            ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
+            SampleDirection = sampleDirection;
         }
 
         /// <summary>
@@ -90,12 +83,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public HelpPageSampleKey(
-            MediaTypeHeaderValue mediaType, 
-            SampleDirection sampleDirection, 
-            string controllerName, 
-            string actionName, 
-            IEnumerable<string> parameterNames)
+        public HelpPageSampleKey(MediaTypeHeaderValue mediaType, SampleDirection sampleDirection, string controllerName, string actionName, IEnumerable<string> parameterNames)
             : this(sampleDirection, controllerName, actionName, parameterNames)
         {
             if (mediaType == null)
@@ -103,7 +91,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
                 throw new ArgumentNullException("mediaType");
             }
 
-            this.MediaType = mediaType;
+            MediaType = mediaType;
         }
 
         /// <summary>
@@ -144,40 +132,36 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
 
         public override bool Equals(object obj)
         {
-            var otherKey = obj as HelpPageSampleKey;
+            HelpPageSampleKey otherKey = obj as HelpPageSampleKey;
             if (otherKey == null)
             {
                 return false;
             }
 
-            return string.Equals(this.ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase)
-                   && string.Equals(this.ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase)
-                   && (this.MediaType == otherKey.MediaType
-                       || (this.MediaType != null && this.MediaType.Equals(otherKey.MediaType)))
-                   && this.ParameterType == otherKey.ParameterType && this.SampleDirection == otherKey.SampleDirection
-                   && this.ParameterNames.SetEquals(otherKey.ParameterNames);
+            return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
+                String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
+                (MediaType == otherKey.MediaType || (MediaType != null && MediaType.Equals(otherKey.MediaType))) &&
+                ParameterType == otherKey.ParameterType &&
+                SampleDirection == otherKey.SampleDirection &&
+                ParameterNames.SetEquals(otherKey.ParameterNames);
         }
 
         public override int GetHashCode()
         {
-            var hashCode = this.ControllerName.ToUpperInvariant().GetHashCode()
-                           ^ this.ActionName.ToUpperInvariant().GetHashCode();
-            if (this.MediaType != null)
+            int hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();
+            if (MediaType != null)
             {
-                hashCode ^= this.MediaType.GetHashCode();
+                hashCode ^= MediaType.GetHashCode();
             }
-
-            if (this.SampleDirection != null)
+            if (SampleDirection != null)
             {
-                hashCode ^= this.SampleDirection.GetHashCode();
+                hashCode ^= SampleDirection.GetHashCode();
             }
-
-            if (this.ParameterType != null)
+            if (ParameterType != null)
             {
-                hashCode ^= this.ParameterType.GetHashCode();
+                hashCode ^= ParameterType.GetHashCode();
             }
-
-            foreach (var parameterName in this.ParameterNames)
+            foreach (string parameterName in ParameterNames)
             {
                 hashCode ^= parameterName.ToUpperInvariant().GetHashCode();
             }

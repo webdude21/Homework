@@ -1,21 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Description;
+using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
+using BullsAndCows.WebServices.Areas.HelpPage.Models;
+
 namespace BullsAndCows.WebServices.Areas.HelpPage
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Web.Http;
-    using System.Web.Http.Description;
-
-    using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
-    using BullsAndCows.WebServices.Areas.HelpPage.Models;
-    using BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration;
-
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";
@@ -25,9 +25,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="documentationProvider">The documentation provider.</param>
-        public static void SetDocumentationProvider(
-            this HttpConfiguration config, 
-            IDocumentationProvider documentationProvider)
+        public static void SetDocumentationProvider(this HttpConfiguration config, IDocumentationProvider documentationProvider)
         {
             config.Services.Replace(typeof(IDocumentationProvider), documentationProvider);
         }
@@ -50,17 +48,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetSampleRequest(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType, 
-            string controllerName, 
-            string actionName)
+        public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActionSamples.Add(
-                    new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, new[] { "*" }), 
-                    sample);
+            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, new[] { "*" }), sample);
         }
 
         /// <summary>
@@ -72,23 +62,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleRequest(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType, 
-            string controllerName, 
-            string actionName, 
-            params string[] parameterNames)
+        public static void SetSampleRequest(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActionSamples.Add(
-                    new HelpPageSampleKey(
-                        mediaType, 
-                        SampleDirection.Request, 
-                        controllerName, 
-                        actionName, 
-                        parameterNames), 
-                    sample);
+            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Request, controllerName, actionName, parameterNames), sample);
         }
 
         /// <summary>
@@ -99,22 +75,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetSampleResponse(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType, 
-            string controllerName, 
-            string actionName)
+        public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActionSamples.Add(
-                    new HelpPageSampleKey(
-                        mediaType, 
-                        SampleDirection.Response, 
-                        controllerName, 
-                        actionName, 
-                        new[] { "*" }), 
-                    sample);
+            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, new[] { "*" }), sample);
         }
 
         /// <summary>
@@ -126,23 +89,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetSampleResponse(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType, 
-            string controllerName, 
-            string actionName, 
-            params string[] parameterNames)
+        public static void SetSampleResponse(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActionSamples.Add(
-                    new HelpPageSampleKey(
-                        mediaType, 
-                        SampleDirection.Response, 
-                        controllerName, 
-                        actionName, 
-                        parameterNames), 
-                    sample);
+            config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, SampleDirection.Response, controllerName, actionName, parameterNames), sample);
         }
 
         /// <summary>
@@ -151,10 +100,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="sample">The sample.</param>
         /// <param name="mediaType">The media type.</param>
-        public static void SetSampleForMediaType(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType)
+        public static void SetSampleForMediaType(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType)
         {
             config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType), sample);
         }
@@ -166,11 +112,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="sample">The sample.</param>
         /// <param name="mediaType">The media type.</param>
         /// <param name="type">The parameter type or return type of an action.</param>
-        public static void SetSampleForType(
-            this HttpConfiguration config, 
-            object sample, 
-            MediaTypeHeaderValue mediaType, 
-            Type type)
+        public static void SetSampleForType(this HttpConfiguration config, object sample, MediaTypeHeaderValue mediaType, Type type)
         {
             config.GetHelpPageSampleGenerator().ActionSamples.Add(new HelpPageSampleKey(mediaType, type), sample);
         }
@@ -183,16 +125,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="type">The type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetActualRequestType(
-            this HttpConfiguration config, 
-            Type type, 
-            string controllerName, 
-            string actionName)
+        public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActualHttpMessageTypes.Add(
-                    new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, new[] { "*" }), 
-                    type);
+            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, new[] { "*" }), type);
         }
 
         /// <summary>
@@ -204,17 +139,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetActualRequestType(
-            this HttpConfiguration config, 
-            Type type, 
-            string controllerName, 
-            string actionName, 
-            params string[] parameterNames)
+        public static void SetActualRequestType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActualHttpMessageTypes.Add(
-                    new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), 
-                    type);
+            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Request, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -225,16 +152,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="type">The type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
-        public static void SetActualResponseType(
-            this HttpConfiguration config, 
-            Type type, 
-            string controllerName, 
-            string actionName)
+        public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActualHttpMessageTypes.Add(
-                    new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, new[] { "*" }), 
-                    type);
+            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, new[] { "*" }), type);
         }
 
         /// <summary>
@@ -246,17 +166,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        public static void SetActualResponseType(
-            this HttpConfiguration config, 
-            Type type, 
-            string controllerName, 
-            string actionName, 
-            params string[] parameterNames)
+        public static void SetActualResponseType(this HttpConfiguration config, Type type, string controllerName, string actionName, params string[] parameterNames)
         {
-            config.GetHelpPageSampleGenerator()
-                .ActualHttpMessageTypes.Add(
-                    new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), 
-                    type);
+            config.GetHelpPageSampleGenerator().ActualHttpMessageTypes.Add(new HelpPageSampleKey(SampleDirection.Response, controllerName, actionName, parameterNames), type);
         }
 
         /// <summary>
@@ -266,9 +178,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <returns>The help page sample generator.</returns>
         public static HelpPageSampleGenerator GetHelpPageSampleGenerator(this HttpConfiguration config)
         {
-            return
-                (HelpPageSampleGenerator)
-                config.Properties.GetOrAdd(typeof(HelpPageSampleGenerator), k => new HelpPageSampleGenerator());
+            return (HelpPageSampleGenerator)config.Properties.GetOrAdd(
+                typeof(HelpPageSampleGenerator),
+                k => new HelpPageSampleGenerator());
         }
 
         /// <summary>
@@ -276,13 +188,11 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="sampleGenerator">The help page sample generator.</param>
-        public static void SetHelpPageSampleGenerator(
-            this HttpConfiguration config, 
-            HelpPageSampleGenerator sampleGenerator)
+        public static void SetHelpPageSampleGenerator(this HttpConfiguration config, HelpPageSampleGenerator sampleGenerator)
         {
             config.Properties.AddOrUpdate(
-                typeof(HelpPageSampleGenerator), 
-                k => sampleGenerator, 
+                typeof(HelpPageSampleGenerator),
+                k => sampleGenerator,
                 (k, o) => sampleGenerator);
         }
 
@@ -293,11 +203,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         /// <returns>The <see cref="ModelDescriptionGenerator"/></returns>
         public static ModelDescriptionGenerator GetModelDescriptionGenerator(this HttpConfiguration config)
         {
-            return
-                (ModelDescriptionGenerator)
-                config.Properties.GetOrAdd(
-                    typeof(ModelDescriptionGenerator), 
-                    k => InitializeModelDescriptionGenerator(config));
+            return (ModelDescriptionGenerator)config.Properties.GetOrAdd(
+                typeof(ModelDescriptionGenerator),
+                k => InitializeModelDescriptionGenerator(config));
         }
 
         /// <summary>
@@ -311,13 +219,11 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
         public static HelpPageApiModel GetHelpPageApiModel(this HttpConfiguration config, string apiDescriptionId)
         {
             object model;
-            var modelId = ApiModelPrefix + apiDescriptionId;
+            string modelId = ApiModelPrefix + apiDescriptionId;
             if (!config.Properties.TryGetValue(modelId, out model))
             {
-                var apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                var apiDescription =
-                    apiDescriptions.FirstOrDefault(
-                        api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
+                Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
+                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => String.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
                     model = GenerateApiModel(apiDescription, config);
@@ -330,10 +236,13 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
 
         private static HelpPageApiModel GenerateApiModel(ApiDescription apiDescription, HttpConfiguration config)
         {
-            var apiModel = new HelpPageApiModel { ApiDescription = apiDescription, };
+            HelpPageApiModel apiModel = new HelpPageApiModel()
+            {
+                ApiDescription = apiDescription,
+            };
 
-            var modelGenerator = config.GetModelDescriptionGenerator();
-            var sampleGenerator = config.GetHelpPageSampleGenerator();
+            ModelDescriptionGenerator modelGenerator = config.GetModelDescriptionGenerator();
+            HelpPageSampleGenerator sampleGenerator = config.GetHelpPageSampleGenerator();
             GenerateUriParameters(apiModel, modelGenerator);
             GenerateRequestModelDescription(apiModel, modelGenerator, sampleGenerator);
             GenerateResourceDescription(apiModel, modelGenerator);
@@ -344,12 +253,12 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
 
         private static void GenerateUriParameters(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
         {
-            var apiDescription = apiModel.ApiDescription;
-            foreach (var apiParameter in apiDescription.ParameterDescriptions)
+            ApiDescription apiDescription = apiModel.ApiDescription;
+            foreach (ApiParameterDescription apiParameter in apiDescription.ParameterDescriptions)
             {
                 if (apiParameter.Source == ApiParameterSource.FromUri)
                 {
-                    var parameterDescriptor = apiParameter.ParameterDescriptor;
+                    HttpParameterDescriptor parameterDescriptor = apiParameter.ParameterDescriptor;
                     Type parameterType = null;
                     ModelDescription typeDescription = null;
                     ComplexTypeModelDescription complexTypeDescription = null;
@@ -364,49 +273,44 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
                     // [TypeConverter(typeof(PointConverter))]
                     // public class Point
                     // {
-                    // public Point(int x, int y)
-                    // {
-                    // X = x;
-                    // Y = y;
-                    // }
-                    // public int X { get; set; }
-                    // public int Y { get; set; }
+                    //     public Point(int x, int y)
+                    //     {
+                    //         X = x;
+                    //         Y = y;
+                    //     }
+                    //     public int X { get; set; }
+                    //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
+                    // 
                     // public class Point
                     // {
-                    // public int X { get; set; }
-                    // public int Y { get; set; }
+                    //     public int X { get; set; }
+                    //     public int Y { get; set; }
                     // }
                     // Regular complex class Point will have properties X and Y added to UriParameters collection.
-                    if (complexTypeDescription != null && !IsBindableWithTypeConverter(parameterType))
+                    if (complexTypeDescription != null
+                        && !IsBindableWithTypeConverter(parameterType))
                     {
-                        foreach (var uriParameter in complexTypeDescription.Properties)
+                        foreach (ParameterDescription uriParameter in complexTypeDescription.Properties)
                         {
                             apiModel.UriParameters.Add(uriParameter);
                         }
                     }
                     else if (parameterDescriptor != null)
                     {
-                        var uriParameter = AddParameterDescription(apiModel, apiParameter, typeDescription);
+                        ParameterDescription uriParameter =
+                            AddParameterDescription(apiModel, apiParameter, typeDescription);
 
                         if (!parameterDescriptor.IsOptional)
                         {
-                            uriParameter.Annotations.Add(new ParameterAnnotation { Documentation = "Required" });
+                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Required" });
                         }
 
-                        var defaultValue = parameterDescriptor.DefaultValue;
+                        object defaultValue = parameterDescriptor.DefaultValue;
                         if (defaultValue != null)
                         {
-                            uriParameter.Annotations.Add(
-                                new ParameterAnnotation
-                                    {
-                                        Documentation =
-                                            "Default value is "
-                                            + Convert.ToString(
-                                                defaultValue, 
-                                                CultureInfo.InvariantCulture)
-                                    });
+                            uriParameter.Annotations.Add(new ParameterAnnotation() { Documentation = "Default value is " + Convert.ToString(defaultValue, CultureInfo.InvariantCulture) });
                         }
                     }
                     else
@@ -416,7 +320,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
                         // If parameterDescriptor is null, this is an undeclared route parameter which only occurs
                         // when source is FromUri. Ignored in request model and among resource parameters but listed
                         // as a simple string here.
-                        var modelDescription = modelGenerator.GetOrCreateModelDescription(typeof(string));
+                        ModelDescription modelDescription = modelGenerator.GetOrCreateModelDescription(typeof(string));
                         AddParameterDescription(apiModel, apiParameter, modelDescription);
                     }
                 }
@@ -433,40 +337,35 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
             return TypeDescriptor.GetConverter(parameterType).CanConvertFrom(typeof(string));
         }
 
-        private static ParameterDescription AddParameterDescription(
-            HelpPageApiModel apiModel, 
-            ApiParameterDescription apiParameter, 
-            ModelDescription typeDescription)
+        private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel,
+            ApiParameterDescription apiParameter, ModelDescription typeDescription)
         {
-            var parameterDescription = new ParameterDescription
-                                           {
-                                               Name = apiParameter.Name, 
-                                               Documentation = apiParameter.Documentation, 
-                                               TypeDescription = typeDescription, 
-                                           };
+            ParameterDescription parameterDescription = new ParameterDescription
+            {
+                Name = apiParameter.Name,
+                Documentation = apiParameter.Documentation,
+                TypeDescription = typeDescription,
+            };
 
             apiModel.UriParameters.Add(parameterDescription);
             return parameterDescription;
         }
 
-        private static void GenerateRequestModelDescription(
-            HelpPageApiModel apiModel, 
-            ModelDescriptionGenerator modelGenerator, 
-            HelpPageSampleGenerator sampleGenerator)
+        private static void GenerateRequestModelDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator, HelpPageSampleGenerator sampleGenerator)
         {
-            var apiDescription = apiModel.ApiDescription;
-            foreach (var apiParameter in apiDescription.ParameterDescriptions)
+            ApiDescription apiDescription = apiModel.ApiDescription;
+            foreach (ApiParameterDescription apiParameter in apiDescription.ParameterDescriptions)
             {
                 if (apiParameter.Source == ApiParameterSource.FromBody)
                 {
-                    var parameterType = apiParameter.ParameterDescriptor.ParameterType;
+                    Type parameterType = apiParameter.ParameterDescriptor.ParameterType;
                     apiModel.RequestModelDescription = modelGenerator.GetOrCreateModelDescription(parameterType);
                     apiModel.RequestDocumentation = apiParameter.Documentation;
                 }
-                else if (apiParameter.ParameterDescriptor != null
-                         && apiParameter.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage))
+                else if (apiParameter.ParameterDescriptor != null &&
+                    apiParameter.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage))
                 {
-                    var parameterType = sampleGenerator.ResolveHttpRequestMessageType(apiDescription);
+                    Type parameterType = sampleGenerator.ResolveHttpRequestMessageType(apiDescription);
 
                     if (parameterType != null)
                     {
@@ -476,20 +375,17 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
             }
         }
 
-        private static void GenerateResourceDescription(
-            HelpPageApiModel apiModel, 
-            ModelDescriptionGenerator modelGenerator)
+        private static void GenerateResourceDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
         {
-            var response = apiModel.ApiDescription.ResponseDescription;
-            var responseType = response.ResponseType ?? response.DeclaredType;
+            ResponseDescription response = apiModel.ApiDescription.ResponseDescription;
+            Type responseType = response.ResponseType ?? response.DeclaredType;
             if (responseType != null && responseType != typeof(void))
             {
                 apiModel.ResourceDescription = modelGenerator.GetOrCreateModelDescription(responseType);
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", 
-            Justification = "The exception is recorded as ErrorMessages.")]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is recorded as ErrorMessages.")]
         private static void GenerateSamples(HelpPageApiModel apiModel, HelpPageSampleGenerator sampleGenerator)
         {
             try
@@ -508,26 +404,17 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
             }
             catch (Exception e)
             {
-                apiModel.ErrorMessages.Add(
-                    string.Format(
-                        CultureInfo.CurrentCulture, 
-                        "An exception has occurred while generating the sample. Exception message: {0}", 
-                        HelpPageSampleGenerator.UnwrapException(e).Message));
+                apiModel.ErrorMessages.Add(String.Format(CultureInfo.CurrentCulture,
+                    "An exception has occurred while generating the sample. Exception message: {0}",
+                    HelpPageSampleGenerator.UnwrapException(e).Message));
             }
         }
 
-        private static bool TryGetResourceParameter(
-            ApiDescription apiDescription, 
-            HttpConfiguration config, 
-            out ApiParameterDescription parameterDescription, 
-            out Type resourceType)
+        private static bool TryGetResourceParameter(ApiDescription apiDescription, HttpConfiguration config, out ApiParameterDescription parameterDescription, out Type resourceType)
         {
-            parameterDescription =
-                apiDescription.ParameterDescriptions.FirstOrDefault(
-                    p =>
-                    p.Source == ApiParameterSource.FromBody
-                    || (p.ParameterDescriptor != null
-                        && p.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage)));
+            parameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(
+                p => p.Source == ApiParameterSource.FromBody ||
+                    (p.ParameterDescriptor != null && p.ParameterDescriptor.ParameterType == typeof(HttpRequestMessage)));
 
             if (parameterDescription == null)
             {
@@ -539,7 +426,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
 
             if (resourceType == typeof(HttpRequestMessage))
             {
-                var sampleGenerator = config.GetHelpPageSampleGenerator();
+                HelpPageSampleGenerator sampleGenerator = config.GetHelpPageSampleGenerator();
                 resourceType = sampleGenerator.ResolveHttpRequestMessageType(apiDescription);
             }
 
@@ -554,9 +441,9 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
 
         private static ModelDescriptionGenerator InitializeModelDescriptionGenerator(HttpConfiguration config)
         {
-            var modelGenerator = new ModelDescriptionGenerator(config);
-            var apis = config.Services.GetApiExplorer().ApiDescriptions;
-            foreach (var api in apis)
+            ModelDescriptionGenerator modelGenerator = new ModelDescriptionGenerator(config);
+            Collection<ApiDescription> apis = config.Services.GetApiExplorer().ApiDescriptions;
+            foreach (ApiDescription api in apis)
             {
                 ApiParameterDescription parameterDescription;
                 Type parameterType;
@@ -565,13 +452,12 @@ namespace BullsAndCows.WebServices.Areas.HelpPage
                     modelGenerator.GetOrCreateModelDescription(parameterType);
                 }
             }
-
             return modelGenerator;
         }
 
         private static void LogInvalidSampleAsError(HelpPageApiModel apiModel, object sample)
         {
-            var invalidSample = sample as InvalidSample;
+            InvalidSample invalidSample = sample as InvalidSample;
             if (invalidSample != null)
             {
                 apiModel.ErrorMessages.Add(invalidSample.ErrorMessage);

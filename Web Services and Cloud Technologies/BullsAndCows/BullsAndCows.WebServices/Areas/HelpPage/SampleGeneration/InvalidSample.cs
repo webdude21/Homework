@@ -1,7 +1,7 @@
-namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
-{
-    using System;
+using System;
 
+namespace BullsAndCows.WebServices.Areas.HelpPage
+{
     /// <summary>
     /// This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
     /// </summary>
@@ -13,26 +13,25 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.SampleGeneration
             {
                 throw new ArgumentNullException("errorMessage");
             }
-
-            this.ErrorMessage = errorMessage;
+            ErrorMessage = errorMessage;
         }
 
         public string ErrorMessage { get; private set; }
 
         public override bool Equals(object obj)
         {
-            var other = obj as InvalidSample;
-            return other != null && this.ErrorMessage == other.ErrorMessage;
+            InvalidSample other = obj as InvalidSample;
+            return other != null && ErrorMessage == other.ErrorMessage;
         }
 
         public override int GetHashCode()
         {
-            return this.ErrorMessage.GetHashCode();
+            return ErrorMessage.GetHashCode();
         }
 
         public override string ToString()
         {
-            return this.ErrorMessage;
+            return ErrorMessage;
         }
     }
 }

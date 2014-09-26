@@ -1,13 +1,12 @@
 'use strict';
 
 ticTacToeApp.controller('ListGamesController',
-    function ListGamesController($scope, identity, auth, messageBox, $location, GameResource) {
-        var MESSAGE_BOX_SELECTOR = '#message-box';
+    function ListGamesController($scope, identity, notifier, auth, $location, GameResource) {
         var LOGIN_BEFORE_GETTING_THE_LIST = 'You must login in to view the available games!';
 
         if (!identity.isAuthenticated()) {
-            $location.path('/signup');
-            messageBox.error(LOGIN_BEFORE_GETTING_THE_LIST, MESSAGE_BOX_SELECTOR);
+            $location.path('/register');
+            notifier.error(LOGIN_BEFORE_GETTING_THE_LIST);
             return;
         }
 
@@ -17,7 +16,7 @@ ticTacToeApp.controller('ListGamesController',
                     $scope.currentGame = response.data;
                     $location.path('/game/' + gameId);
                 }, (function (err) {
-                    messageBox.error(err.data.Message, MESSAGE_BOX_SELECTOR);
+                    notifier.error(err.data.Message);
                     $location.path('/list-games');
                 }));
         };
@@ -28,7 +27,7 @@ ticTacToeApp.controller('ListGamesController',
                     $scope.currentGame = response.data;
                     $location.path('/game/' + gameId);
                 }, (function (err) {
-                    messageBox.error(err.data.Message, MESSAGE_BOX_SELECTOR);
+                    notifier.error(err.data.Message);
                     $location.path('/list-games');
                 }));
         };

@@ -1,17 +1,30 @@
 'use strict';
 
-ticTacToeApp.factory('identity', function($window, UsersResource, appName, $cookieStore) {
-    var user;
+ticTacToeApp.factory('identity', function (appName, $cookieStore) {
+    var cookieStorageUserKey = appName;
 
-    if ($window.bootstrappedUserObject) {
-        user = new UsersResource();
-        angular.extend(user, $window.bootstrappedUserObject);
-    }
-
+    var currentUser;
     return {
-        currentUser: user,
-        isAuthenticated: function() {
-            return !!this.currentUser;
+        getCurrentUser: function () {
+            var savedUser = $cookieStore.get(cookieStorageUserKey);
+            if (savedUser) {
+                return savedUser;
+            }
+
+            return currentUser;
+        },
+        setCurrentUser: function (user) {
+            if (user) {
+                $cookieStore.put(cookieStorageUserKey, user);
+            }
+            else {
+                $cookieStore.remove(cookieStorageUserKey);
+            }
+
+            currentUser = user;
+        },
+        isAuthenticated: function () {
+            return !!this.getCurrentUser();
         }
     }
 });

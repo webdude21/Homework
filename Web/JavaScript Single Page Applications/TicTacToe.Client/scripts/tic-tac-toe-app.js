@@ -7,8 +7,8 @@ var ticTacToeApp = angular
             .when('/login', {
                 templateUrl: 'templates/login.html'
             })
-            .when('/signup', {
-                templateUrl: 'templates/signup.html'
+            .when('/register', {
+                templateUrl: 'templates/register.html'
             })
             .when('/create', {
                 templateUrl: 'templates/create.html'
@@ -21,6 +21,7 @@ var ticTacToeApp = angular
             })
             .otherwise({redirectTo: '/list-games'});
     })
+    .value('toastr', toastr)
     .constant('baseUrl', 'http://localhost:33257')
     .constant('author', 'Webdude')
     .constant('appName', 'TicTacToe')

@@ -5,6 +5,7 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="styles/tic-tac-toe.css">
 </head>
 <body ng-app="ticTacToeApp" ng-controller="PageController" ng-cloak>
@@ -34,10 +35,10 @@
                         <input type="password" placeholder="Password" ng-model="user.password" class="form-control"/>
                     </div>
                     <button ng-click="login(user)" class="btn btn-primary">Login</button>
-                    <a href="#/signup" class="btn btn-primary">Register</a></form>
+                    <a href="#/register" class="btn btn-primary">Register</a></form>
                 <ul ng-show="identity.isAuthenticated()" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">{{identity.currentUser.userName }}
+                        <a href="" data-toggle="dropdown" class="dropdown-toggle">{{identity.getCurrentUser().userName }}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ng-click="logout()">Sign Out</a></li>
@@ -54,6 +55,7 @@
 <div class="center-block" id="message-box"></div>
 <div class="panel-footer text-center"><a href="{{authorLink}}" ng-cloak>Created by {{author}}</a></div>
 <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.min.js"></script>
@@ -63,14 +65,13 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>z
 <script src="scripts/tic-tac-toe-app.js"></script>
 <script src="scripts/services/resources/game-resource.js"></script>
-<script src="scripts/services/resources/users-resource.js"></script>
 <script src="scripts/services/account/auth.js"></script>
 <script src="scripts/services/account/authorization.js"></script>
 <script src="scripts/services/account/identity.js"></script>
-<script src="scripts/helpers/message-box-helper.js"></script>
+<script src="scripts/services/notifier.js"></script>
 <script src="scripts/controllers/page-controller.js"></script>
 <script src="scripts/controllers/login-controller.js"></script>
-<script src="scripts/controllers/sign-up-controller.js"></script>
+<script src="scripts/controllers/register-controller.js"></script>
 <script src="scripts/controllers/game-controller.js"></script>
 <script src="scripts/controllers/create-game-controller.js"></script>
 <script src="scripts/controllers/list-games-controller.js"></script>

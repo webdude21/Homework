@@ -1,12 +1,11 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
+using System.Web.Http.Description;
+using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
+
 namespace BullsAndCows.WebServices.Areas.HelpPage.Models
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Net.Http.Headers;
-    using System.Web.Http.Description;
-
-    using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
-
     /// <summary>
     /// The model that represents an API displayed on the help page.
     /// </summary>
@@ -17,10 +16,10 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.Models
         /// </summary>
         public HelpPageApiModel()
         {
-            this.UriParameters = new Collection<ParameterDescription>();
-            this.SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
-            this.SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
-            this.ErrorMessages = new Collection<string>();
+            UriParameters = new Collection<ParameterDescription>();
+            SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
+            SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
+            ErrorMessages = new Collection<string>();
         }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.Models
         {
             get
             {
-                return GetParameterDescriptions(this.RequestModelDescription);
+                return GetParameterDescriptions(RequestModelDescription);
             }
         }
 
@@ -66,7 +65,7 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.Models
         {
             get
             {
-                return GetParameterDescriptions(this.ResourceDescription);
+                return GetParameterDescriptions(ResourceDescription);
             }
         }
 
@@ -87,17 +86,16 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.Models
 
         private static IList<ParameterDescription> GetParameterDescriptions(ModelDescription modelDescription)
         {
-            var complexTypeModelDescription = modelDescription as ComplexTypeModelDescription;
+            ComplexTypeModelDescription complexTypeModelDescription = modelDescription as ComplexTypeModelDescription;
             if (complexTypeModelDescription != null)
             {
                 return complexTypeModelDescription.Properties;
             }
 
-            var collectionModelDescription = modelDescription as CollectionModelDescription;
+            CollectionModelDescription collectionModelDescription = modelDescription as CollectionModelDescription;
             if (collectionModelDescription != null)
             {
-                complexTypeModelDescription =
-                    collectionModelDescription.ElementDescription as ComplexTypeModelDescription;
+                complexTypeModelDescription = collectionModelDescription.ElementDescription as ComplexTypeModelDescription;
                 if (complexTypeModelDescription != null)
                 {
                     return complexTypeModelDescription.Properties;

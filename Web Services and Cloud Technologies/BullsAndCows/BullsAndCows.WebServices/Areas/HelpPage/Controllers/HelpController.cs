@@ -1,10 +1,11 @@
+using System;
+using System.Web.Http;
+using System.Web.Mvc;
+using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
+using BullsAndCows.WebServices.Areas.HelpPage.Models;
+
 namespace BullsAndCows.WebServices.Areas.HelpPage.Controllers
 {
-    using System.Web.Http;
-    using System.Web.Mvc;
-
-    using BullsAndCows.WebServices.Areas.HelpPage.ModelDescriptions;
-
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
@@ -19,44 +20,44 @@ namespace BullsAndCows.WebServices.Areas.HelpPage.Controllers
 
         public HelpController(HttpConfiguration config)
         {
-            this.Configuration = config;
+            Configuration = config;
         }
 
         public HttpConfiguration Configuration { get; private set; }
 
         public ActionResult Index()
         {
-            this.ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
-            return this.View(this.Configuration.Services.GetApiExplorer().ApiDescriptions);
+            ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
+            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
         public ActionResult Api(string apiId)
         {
-            if (!string.IsNullOrEmpty(apiId))
+            if (!String.IsNullOrEmpty(apiId))
             {
-                var apiModel = this.Configuration.GetHelpPageApiModel(apiId);
+                HelpPageApiModel apiModel = Configuration.GetHelpPageApiModel(apiId);
                 if (apiModel != null)
                 {
-                    return this.View(apiModel);
+                    return View(apiModel);
                 }
             }
 
-            return this.View(ErrorViewName);
+            return View(ErrorViewName);
         }
 
         public ActionResult ResourceModel(string modelName)
         {
-            if (!string.IsNullOrEmpty(modelName))
+            if (!String.IsNullOrEmpty(modelName))
             {
-                var modelDescriptionGenerator = this.Configuration.GetModelDescriptionGenerator();
+                ModelDescriptionGenerator modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
                 ModelDescription modelDescription;
                 if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
                 {
-                    return this.View(modelDescription);
+                    return View(modelDescription);
                 }
             }
 
-            return this.View(ErrorViewName);
+            return View(ErrorViewName);
         }
     }
 }
