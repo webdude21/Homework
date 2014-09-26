@@ -1,7 +1,7 @@
 'use strict';
 
 var ticTacToeApp = angular
-    .module('ticTacToeApp', ['ngResource', 'ngRoute'])
+    .module('ticTacToeApp', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
     .config(function($routeProvider, $httpProvider) {
         $routeProvider
             .when('/home', {
@@ -22,11 +22,9 @@ var ticTacToeApp = angular
             .when('/game/:id', {
                 templateUrl: 'templates/game.html'
             })
-            .when('/join/:id', {
-                templateUrl: 'templates/join.html'
-            })
             .otherwise({redirectTo: '/home'});
     })
     .constant('baseUrl', 'http://localhost:33257')
     .constant('author', 'Webdude')
+    .constant('appName', 'TicTacToe')
     .constant('authorLink', 'http://webdude.eu');

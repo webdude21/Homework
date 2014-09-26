@@ -70,7 +70,7 @@
             }
 
             if (game.State != GameState.WaitingForSecondPlayer){
-                return BadRequest("The game is has already began!");    
+                return BadRequest("The game has already began!");    
             }
 
             game.SecondPlayerId = currentUserId;

@@ -5,10 +5,12 @@
             <input type="password" placeholder="Password" ng-model="user.password" class="form-control"/>
         </div>
         <button ng-click="login(user)" class="btn btn-primary">Login</button>
-        <a href="#/signup" class="btn btn-primary">Sign Up</a></form>
+        <a href="#/signup" class="btn btn-primary">Sign Up</a>
+    </form>
     <ul ng-show="identity.isAuthenticated()" class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">{{ identity.currentUser.firstName
-            + ' ' + identity.currentUser.lastName }}<span class="caret"></span></a>
+        <li class="dropdown">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">{{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
+                <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li ng-show="identity.isAuthenticated()">
                 <li><a href="#" ng-click="logout()">Sign Out</a></li>

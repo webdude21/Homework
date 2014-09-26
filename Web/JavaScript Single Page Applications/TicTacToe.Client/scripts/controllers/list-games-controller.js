@@ -11,16 +11,28 @@ ticTacToeApp.controller('ListGamesController',
             return;
         }
 
-        GameResource.getAllGames().success(function (games) {
-            $scope.gameList = games;
-        });
-
         $scope.joinCurrentGame = function (gameId){
             GameResource.joinGame(gameId).success(function (currentGame) {
                 $scope.currentGame = currentGame;
+                $location.path('/game/:' + gameId);
             }).error(function(err){
                 messageBox.error(err.Message, MESSAGE_BOX_SELECTOR);
                 $location.path('/list-games');
             });
         };
+
+        $scope.playCurrentGame = function (gameId){
+            GameResource.getGameStatus(gameId).success(function (currentGame) {
+                $scope.currentGame = currentGame;
+                $location.path('/game/' + gameId);
+            }).error(function(err){
+                messageBox.error(err.Message, MESSAGE_BOX_SELECTOR);
+                $location.path('/list-games');
+            });
+        };
+
+        GameResource.getAllGames().success(function (games) {
+            $scope.gameList = games;
+        });
+
     });

@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/tic-tac-toe.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body ng-app="ticTacToeApp" ng-controller="PageController" ng-cloak>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -50,10 +48,10 @@
         </div>
     </div>
 </div>
-<div class="col-lg-6 pull-right" id="message-box"></div>
 <div ng-view class="container" ng-cloak>
 </div>
 <hr>
+<div class="center-block" id="message-box"></div>
 <div class="panel-footer text-center"><a href="{{authorLink}}" ng-cloak>Created by {{author}}</a></div>
 <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
@@ -77,6 +75,5 @@
 <script src="scripts/controllers/game-controller.js"></script>
 <script src="scripts/controllers/create-game-controller.js"></script>
 <script src="scripts/controllers/list-games-controller.js"></script>
-<script src="scripts/controllers/join-controller.js"></script>
 </body>
 </html>
