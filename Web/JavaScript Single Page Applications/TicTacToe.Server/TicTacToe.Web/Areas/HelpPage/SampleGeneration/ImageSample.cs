@@ -1,7 +1,7 @@
-using System;
-
-namespace TicTacToe.Web.Areas.HelpPage
+namespace TicTacToe.Web.Areas.HelpPage.SampleGeneration
 {
+    using System;
+
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
     /// </summary>
@@ -17,25 +17,26 @@ namespace TicTacToe.Web.Areas.HelpPage
             {
                 throw new ArgumentNullException("src");
             }
-            Src = src;
+
+            this.Src = src;
         }
 
         public string Src { get; private set; }
 
         public override bool Equals(object obj)
         {
-            ImageSample other = obj as ImageSample;
-            return other != null && Src == other.Src;
+            var other = obj as ImageSample;
+            return other != null && this.Src == other.Src;
         }
 
         public override int GetHashCode()
         {
-            return Src.GetHashCode();
+            return this.Src.GetHashCode();
         }
 
         public override string ToString()
         {
-            return Src;
+            return this.Src;
         }
     }
 }

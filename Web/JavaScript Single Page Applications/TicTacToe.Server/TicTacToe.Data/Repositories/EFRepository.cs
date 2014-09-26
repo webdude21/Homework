@@ -3,9 +3,11 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class EFRepository<T> : IRepository<T> where T : class
+    public class EFRepository<T> : IRepository<T>
+        where T : class
     {
         private DbContext context;
+
         private IDbSet<T> set;
 
         public EFRepository(DbContext context)

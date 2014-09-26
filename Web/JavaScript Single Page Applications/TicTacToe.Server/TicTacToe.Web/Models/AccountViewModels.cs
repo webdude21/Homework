@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TicTacToe.Web.Models
+﻿namespace TicTacToe.Web.Models
 {
-    // Models returned by AccountController actions.
+    using System.Collections.Generic;
 
+    // Models returned by AccountController actions.
     public class ExternalLoginViewModel
     {
         public string Name { get; set; }

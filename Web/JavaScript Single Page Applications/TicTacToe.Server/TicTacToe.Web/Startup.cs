@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
-using Owin;
-using System.Web.Http;
-using Ninject.Web.Common.OwinHost;
-using Ninject.Web.WebApi.OwinHost;
-using Ninject.Web.WebApi;
-using Ninject.Web;
-using Ninject;
-using System.Reflection;
-using TicTacToe.Data;
-using System.Data.Entity;
-using TicTacToe.GameLogic;
-using TicTacToe.Web.Infrastructure;
-[assembly: OwinStartup(typeof(TicTacToe.Web.Startup))]
+﻿using Microsoft.Owin;
+
+using TicTacToe.Web;
+
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace TicTacToe.Web
 {
+    using System.Reflection;
+    using System.Web.Http;
+
+    using Ninject;
+    using Ninject.Web.Common.OwinHost;
+    using Ninject.Web.WebApi.OwinHost;
+
+    using Owin;
+
+    using TicTacToe.Data;
+    using TicTacToe.GameLogic;
+    using TicTacToe.Web.Infrastructure;
+
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
             app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(GlobalConfiguration.Configuration);
         }
 
@@ -36,9 +37,9 @@ namespace TicTacToe.Web
 
         private static void RegisterMappings(StandardKernel kernel)
         {
-            kernel.Bind<ITicTacToeData>().To<TicTacToeData>()
-                .WithConstructorArgument("context",
-                    c => new TicTacToeDbContext());
+            kernel.Bind<ITicTacToeData>()
+                .To<TicTacToeData>()
+                .WithConstructorArgument("context", c => new TicTacToeDbContext());
 
             kernel.Bind<IGameResultValidator>().To<GameResultValidator>();
 

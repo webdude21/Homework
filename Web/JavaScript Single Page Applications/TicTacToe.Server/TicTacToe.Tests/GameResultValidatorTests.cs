@@ -1,9 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TicTacToe.GameLogic;
-
-namespace TicTacToe.Tests
+﻿namespace TicTacToe.Tests
 {
+    using System;
+
+    using TicTacToe.GameLogic;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+
     [TestClass]
     public class GameResultValidatorTests
     {
@@ -12,14 +15,9 @@ namespace TicTacToe.Tests
         [TestMethod]
         public void EmptyBoard_ShouldReturnNotFinished()
         {
-            string board = GetBoard(new[]
-            {
-                "---",
-                "---",
-                "---",
-            });
+            var board = this.GetBoard(new[] { "---", "---", "---" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
 
             Assert.AreEqual(GameResult.NotFinished, result);
         }
@@ -27,14 +25,9 @@ namespace TicTacToe.Tests
         [TestMethod]
         public void NoWinner_ShouldReturnDraw()
         {
-            string board = GetBoard(new[]
-            {
-                "XXO",
-                "OOX",
-                "XOX",
-            });
+            var board = this.GetBoard(new[] { "XXO", "OOX", "XOX" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
 
             Assert.AreEqual(GameResult.Draw, result);
         }
@@ -42,14 +35,9 @@ namespace TicTacToe.Tests
         [TestMethod]
         public void WinByX_ShouldReturnWonByX()
         {
-            string board = GetBoard(new[]
-            {
-                "XO-",
-                "OX-",
-                "--X",
-            });
+            var board = this.GetBoard(new[] { "XO-", "OX-", "--X" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
 
             Assert.AreEqual(GameResult.WonByX, result);
         }
@@ -57,16 +45,22 @@ namespace TicTacToe.Tests
         [TestMethod]
         public void WinByXFullBoard_ShouldReturnWonByX()
         {
-            string board = GetBoard(new[]
-            {
-                "XOO",
-                "OOX",
-                "XXX",
-            });
+            var board = this.GetBoard(new[] { "XOO", "OOX", "XXX" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
 
             Assert.AreEqual(GameResult.WonByX, result);
+        }
+
+        private string GetBoard(string[] matrix)
+        {
+            var board = string.Empty;
+            foreach (var item in matrix)
+            {
+                board += item;
+            }
+
+            return board;
         }
 
         #region Exceptions
@@ -75,21 +69,16 @@ namespace TicTacToe.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidBoardLength_ShouldThrowExeption()
         {
-            var result = validator.GetResult("-");
+            var result = this.validator.GetResult("-");
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void OtherSymbols_ShouldThrowExeption()
         {
-            string board = GetBoard(new[]
-            {
-                "---",
-                "-*-",
-                "---",
-            });
+            var board = this.GetBoard(new[] { "---", "-*-", "---" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
         }
 
         [TestMethod]
@@ -97,27 +86,11 @@ namespace TicTacToe.Tests
         public void MoreOThanX_ShouldThrowExeption()
         {
             // The board doesn't care whose turn is it!
-            string board = GetBoard(new[]
-            {
-                "XOX",
-                "OX-",
-                "-X-",
-            });
+            var board = this.GetBoard(new[] { "XOX", "OX-", "-X-" });
 
-            var result = validator.GetResult(board);
+            var result = this.validator.GetResult(board);
         }
 
         #endregion
-
-        private string GetBoard(string[] matrix)
-        {
-            var board = "";
-            foreach (var item in matrix)
-            {
-                board += item;
-            }
-
-            return board;
-        }
     }
 }

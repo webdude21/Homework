@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq.Expressions;
+
     using TicTacToe.Models;
 
     public class GameInfoDataModel
@@ -10,27 +11,29 @@
         {
             this.Id = game.Id;
             this.Board = game.Board;
-            this.FirstPlayerName = game.FirstPlayer != null ? game.FirstPlayer.Email : "";
-            this.SecondPlayerName = game.SecondPlayer != null ? game.SecondPlayer.Email : "";
+            this.FirstPlayerName = game.FirstPlayer != null ? game.FirstPlayer.Email : string.Empty;
+            this.SecondPlayerName = game.SecondPlayer != null ? game.SecondPlayer.Email : string.Empty;
             this.State = game.State.ToString();
         }
 
         public GameInfoDataModel()
-        { 
+        {
         }
 
         public static Expression<Func<Game, GameInfoDataModel>> FromGame
         {
             get
             {
-                return game => new GameInfoDataModel()
-                {
-                    Id = game.Id,
-                    Board = game.Board,
-                    FirstPlayerName = game.FirstPlayer.Email,
-                    SecondPlayerName = game.SecondPlayer.Email,
-                    State = game.State.ToString()
-                };
+                return
+                    game =>
+                    new GameInfoDataModel
+                        {
+                            Id = game.Id, 
+                            Board = game.Board, 
+                            FirstPlayerName = game.FirstPlayer.Email, 
+                            SecondPlayerName = game.SecondPlayer.Email, 
+                            State = game.State.ToString()
+                        };
             }
         }
 

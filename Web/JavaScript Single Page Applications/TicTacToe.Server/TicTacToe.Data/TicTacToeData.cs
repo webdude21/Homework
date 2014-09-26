@@ -10,6 +10,7 @@
     public class TicTacToeData : ITicTacToeData
     {
         private DbContext context;
+
         private IDictionary<Type, object> repositories;
 
         public TicTacToeData(DbContext context)
@@ -44,7 +45,7 @@
             var typeOfRepository = typeof(T);
             if (!this.repositories.ContainsKey(typeOfRepository))
             {
-                var newRepository = Activator.CreateInstance(typeof(EFRepository<T>), context);
+                var newRepository = Activator.CreateInstance(typeof(EFRepository<T>), this.context);
                 this.repositories.Add(typeOfRepository, newRepository);
             }
 

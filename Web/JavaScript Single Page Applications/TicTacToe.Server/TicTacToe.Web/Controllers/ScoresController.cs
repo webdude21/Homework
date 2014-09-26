@@ -1,21 +1,20 @@
 ﻿namespace TicTacToe.Web.Controllers
 {
     using System.Linq;
-    using System.Collections.Generic;
     using System.Web.Http;
 
     using TicTacToe.Data;
     using TicTacToe.GameLogic;
-    using TicTacToe.Web.Infrastructure;
     using TicTacToe.Models;
+    using TicTacToe.Web.Infrastructure;
 
     public class ScoresController : BaseApiController
     {
         private IUserIdProvider userIdProvider;
 
         public ScoresController(
-            ITicTacToeData data,
-            IGameResultValidator resultValidator,
+            ITicTacToeData data, 
+            IGameResultValidator resultValidator, 
             IUserIdProvider userIdProvider)
             : base(data)
         {
@@ -26,15 +25,12 @@
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var scores =  this.data.Users.All().OrderByDescending(CalcRank).Select(u => new
-            { 
-                User = u.Email,
-                Score = CalcRank(u),
-                Wins = u.Wins,
-                Losses = u.Losses
-            });
+            var scores =
+                this.data.Users.All()
+                    .OrderByDescending(CalcRank)
+                    .Select(u => new { User = u.Email, Score = CalcRank(u), u.Wins, u.Losses });
 
-            return Ok(scores);
+            return this.Ok(scores);
         }
 
         private static int CalcRank(User user)

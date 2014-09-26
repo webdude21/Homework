@@ -1,25 +1,27 @@
 ﻿namespace TicTacToe.Web.Controllers
 {
+    using System;
     using System.Linq;
+    using System.Text;
     using System.Web.Http;
 
-    using Microsoft.AspNet.Identity;
-
     using TicTacToe.Data;
-    using TicTacToe.Models;
-    using System;
-    using TicTacToe.Web.DataModels;
-    using System.Text;
     using TicTacToe.GameLogic;
+    using TicTacToe.Models;
+    using TicTacToe.Web.DataModels;
     using TicTacToe.Web.Infrastructure;
 
     [Authorize]
     public class GamesController : BaseApiController
     {
         private IGameResultValidator resultValidator;
+
         private IUserIdProvider userIdProvider;
 
-        public GamesController( ITicTacToeData data, IGameResultValidator resultValidator, IUserIdProvider userIdProvider)
+        public GamesController(
+            ITicTacToeData data, 
+            IGameResultValidator resultValidator, 
+            IUserIdProvider userIdProvider)
             : base(data)
         {
             this.resultValidator = resultValidator;
@@ -30,7 +32,7 @@
         public IHttpActionResult Get()
         {
             // new GameInfoDataModel()
-            return Ok(this.data.Games.All().Select(GameInfoDataModel.FromGame));
+            return this.Ok(this.data.Games.All().Select(GameInfoDataModel.FromGame));
         }
 
         [HttpPost]
@@ -38,15 +40,12 @@
         {
             var currentUserId = this.userIdProvider.GetUserId();
 
-            var newGame = new Game
-            {
-                FirstPlayerId = currentUserId,
-            };
+            var newGame = new Game { FirstPlayerId = currentUserId, };
 
             this.data.Games.Add(newGame);
             this.data.SaveChanges();
 
-            return Ok(newGame.Id);
+            return this.Ok(newGame.Id);
         }
 
         [HttpPost]
@@ -55,29 +54,28 @@
             var currentUserId = this.userIdProvider.GetUserId();
             var idAsGuid = new Guid(gameId);
 
-            var game = this.data.Games
-                .All()
-                .FirstOrDefault(g => g.Id == idAsGuid);
+            var game = this.data.Games.All().FirstOrDefault(g => g.Id == idAsGuid);
 
             if (game == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             if (game.FirstPlayerId == currentUserId)
             {
-                return BadRequest("You cannot join your own game!");
+                return this.BadRequest("You cannot join your own game!");
             }
 
-            if (game.State != GameState.WaitingForSecondPlayer){
-                return BadRequest("The game has already began!");    
+            if (game.State != GameState.WaitingForSecondPlayer)
+            {
+                return this.BadRequest("The game has already began!");
             }
 
             game.SecondPlayerId = currentUserId;
             game.State = GameState.TurnX;
             this.data.SaveChanges();
 
-            return Ok(game.Id);
+            return this.Ok(game.Id);
         }
 
         [HttpGet]
@@ -86,27 +84,25 @@
             var currentUserId = this.userIdProvider.GetUserId();
             var idAsGuid = new Guid(gameId);
 
-            var game = this.data.Games.All()
-                .Where(x => x.Id == idAsGuid)
-                .Select(x => new { x.FirstPlayerId, x.SecondPlayerId })
-                .FirstOrDefault();
+            var game =
+                this.data.Games.All()
+                    .Where(x => x.Id == idAsGuid)
+                    .Select(x => new { x.FirstPlayerId, x.SecondPlayerId })
+                    .FirstOrDefault();
             if (game == null)
             {
                 return this.NotFound();
             }
 
-            if (game.FirstPlayerId != currentUserId &&
-                game.SecondPlayerId != currentUserId)
+            if (game.FirstPlayerId != currentUserId && game.SecondPlayerId != currentUserId)
             {
                 return this.BadRequest("This is not your game!");
             }
 
-            var gameInfo = this.data.Games.All()
-                .Where(g => g.Id == idAsGuid)
-                .Select(GameInfoDataModel.FromGame)
-                .FirstOrDefault();
+            var gameInfo =
+                this.data.Games.All().Where(g => g.Id == idAsGuid).Select(GameInfoDataModel.FromGame).FirstOrDefault();
 
-            return Ok(gameInfo);
+            return this.Ok(gameInfo);
         }
 
         /// <param name="row">1,2 or 3</param>
@@ -116,9 +112,9 @@
         {
             var currentUserId = this.userIdProvider.GetUserId();
 
-            if (request == null || !ModelState.IsValid)
+            if (request == null || !this.ModelState.IsValid)
             {
-                return this.BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             var idAsGuid = new Guid(request.GameId);
@@ -129,24 +125,19 @@
                 return this.BadRequest("Invalid game id!");
             }
 
-            if (game.FirstPlayerId != currentUserId &&
-                game.SecondPlayerId != currentUserId)
+            if (game.FirstPlayerId != currentUserId && game.SecondPlayerId != currentUserId)
             {
                 return this.BadRequest("This is not your game!");
             }
 
-            if (game.State != GameState.TurnX &&
-                game.State != GameState.TurnO)
+            if (game.State != GameState.TurnX && game.State != GameState.TurnO)
             {
                 var message = string.Format("The game is not currently playing! Game state is '{0}'", game.State);
                 return this.BadRequest(message);
             }
 
-            if ((game.State == GameState.TurnX &&
-                game.FirstPlayerId != currentUserId)
-                ||
-                (game.State == GameState.TurnO &&
-                game.SecondPlayerId != currentUserId))
+            if ((game.State == GameState.TurnX && game.FirstPlayerId != currentUserId)
+                || (game.State == GameState.TurnO && game.SecondPlayerId != currentUserId))
             {
                 return this.BadRequest("It's not your turn!");
             }
@@ -164,7 +155,7 @@
 
             game.State = game.State == GameState.TurnX ? GameState.TurnO : GameState.TurnX;
 
-            var gameResult = resultValidator.GetResult(game.Board);
+            var gameResult = this.resultValidator.GetResult(game.Board);
             switch (gameResult)
             {
                 case GameResult.WonByX:

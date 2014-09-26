@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
-namespace TicTacToe.Web
+﻿namespace TicTacToe.Web
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    using System;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {

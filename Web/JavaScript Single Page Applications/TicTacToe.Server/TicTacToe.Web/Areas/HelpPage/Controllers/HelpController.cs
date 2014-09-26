@@ -1,11 +1,11 @@
-using System;
-using System.Web.Http;
-using System.Web.Mvc;
-using TicTacToe.Web.Areas.HelpPage.ModelDescriptions;
-using TicTacToe.Web.Areas.HelpPage.Models;
-
 namespace TicTacToe.Web.Areas.HelpPage.Controllers
 {
+    using System;
+    using System.Web.Http;
+    using System.Web.Mvc;
+
+    using TicTacToe.Web.Areas.HelpPage.ModelDescriptions;
+
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
@@ -20,36 +20,36 @@ namespace TicTacToe.Web.Areas.HelpPage.Controllers
 
         public HelpController(HttpConfiguration config)
         {
-            Configuration = config;
+            this.Configuration = config;
         }
 
         public HttpConfiguration Configuration { get; private set; }
 
         public ActionResult Index()
         {
-            ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
+            this.ViewBag.DocumentationProvider = this.Configuration.Services.GetDocumentationProvider();
+            return this.View(this.Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
         public ActionResult Api(string apiId)
         {
-            if (!String.IsNullOrEmpty(apiId))
+            if (!string.IsNullOrEmpty(apiId))
             {
-                HelpPageApiModel apiModel = Configuration.GetHelpPageApiModel(apiId);
+                var apiModel = this.Configuration.GetHelpPageApiModel(apiId);
                 if (apiModel != null)
                 {
                     return View(apiModel);
                 }
             }
 
-            return View(ErrorViewName);
+            return this.View(ErrorViewName);
         }
 
         public ActionResult ResourceModel(string modelName)
         {
-            if (!String.IsNullOrEmpty(modelName))
+            if (!string.IsNullOrEmpty(modelName))
             {
-                ModelDescriptionGenerator modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
+                var modelDescriptionGenerator = this.Configuration.GetModelDescriptionGenerator();
                 ModelDescription modelDescription;
                 if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
                 {
@@ -57,7 +57,7 @@ namespace TicTacToe.Web.Areas.HelpPage.Controllers
                 }
             }
 
-            return View(ErrorViewName);
+            return this.View(ErrorViewName);
         }
     }
 }

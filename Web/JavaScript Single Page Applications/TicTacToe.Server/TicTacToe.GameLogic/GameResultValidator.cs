@@ -9,17 +9,23 @@
 
         public GameResult GetResult(string board)
         {
-            ValidateBoard(board);
+            this.ValidateBoard(board);
 
-            var winner = GetWinner(board);
+            var winner = this.GetWinner(board);
 
             switch (winner)
             {
-                case 'X': return GameResult.WonByX;
-                case 'O': return GameResult.WonByO;
+                case 'X':
+                    return GameResult.WonByX;
+                case 'O':
+                    return GameResult.WonByO;
                 default:
-                    if (!board.Contains('-')) return GameResult.Draw;
-                    else return GameResult.NotFinished;
+                    if (!board.Contains('-'))
+                    {
+                        return GameResult.Draw;
+                    }
+
+                    return GameResult.NotFinished;
             }
         }
 
@@ -52,12 +58,13 @@
                 throw new InvalidOperationException("Board contains invalid characters!");
             }
 
-            int countX = board.Count(c => c == 'X');
-            int countO = board.Count(c => c == 'O');
+            var countX = board.Count(c => c == 'X');
+            var countO = board.Count(c => c == 'O');
 
             if (Math.Abs(countX - countO) > 1)
             {
-                throw new InvalidOperationException("Invalid board state - one player has made invalid number of turns!");
+                throw new InvalidOperationException(
+                    "Invalid board state - one player has made invalid number of turns!");
             }
         }
     }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace TicTacToe.Web.DataModels
+﻿namespace TicTacToe.Web.DataModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class PlayRequestDataModel
     {
         [Required]
