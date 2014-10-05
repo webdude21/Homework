@@ -33,19 +33,19 @@ module.exports = {
         var from;
         var to;
         User
-            .find({user: users.with})
+            .findOne({user: users.with})
             .exec(function (err, result) {
                 if (err) {
                     console.log('Cannot find the user');
                 }
-                from = result[0];
+                from = result;
                 User
-                    .find({user: users.and})
+                    .findOne({user: users.and})
                     .exec(function (err, result) {
                         if (err) {
                             console.log('Cannot find the user');
                         }
-                        to = result[0];
+                        to = result;
                         Message
                             .find({from: from, to: to })
                             .exec(function (err, result) {
