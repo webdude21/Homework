@@ -1,0 +1,16 @@
+extends ../includes/layout
+block main-content
+    .well
+        H2 Contestants List
+            for contestant in contestants
+                .all-contestants
+                    H3 Name: #{contestant.fullName}
+                    H4 Age: #{contestant.age}
+                    if contestant.comment
+                        H4 Comment: #{contestant.comment}
+                    H5 Images:
+                    div.participant-images
+                        for picture in contestant.pictures
+                            img(src="/files/" + picture.url)
+                        else
+                            h5 No pictures!

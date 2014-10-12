@@ -1,0 +1,10 @@
+body {
+  margin-top: 80px;
+  padding: 0;
+}
+body img {
+  max-width: 100%;
+}
+body #toast-container {
+  top: 10%;
+}

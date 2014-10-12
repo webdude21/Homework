@@ -1,0 +1,36 @@
+extends ../includes/layout
+
+block main-content
+    .container
+        .well
+            form.form-horizontal(name="signUpForm" method="post")
+                fieldset
+                    legend Register New User
+                    .form-group
+                        label.col-md-2.control-label(for="first-name") First Name
+                        .col-md-10
+                            input.form-control(type="text", placeholder="First Name", name="firstName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="last-name") Last Name
+                        .col-md-10
+                            input.form-control(type="text", placeholder="Last Name", name="lastName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="username") Username
+                        .col-md-10
+                            input.form-control(type="text", placeholder="Username", name="username", required)
+                    .form-group
+                        label.col-md-2.control-label(for="emailAddress") Email
+                        .col-md-10
+                            input.form-control(type="email", placeholder="your@email.com", name="email", required)
+                    .form-group
+                        label.col-md-2.control-label(for="password") Password
+                        .col-md-10
+                            input.form-control(type="password", placeholder="Password", name="password", required)
+                    .form-group
+                        label.col-md-2.control-label(for="password") Confirm Password
+                        .col-md-10
+                            input.form-control(type="password", placeholder="Password", name="confirmPassword", required)
+
+                    .pull-right
+                        input.btn.btn-primary(type="submit")
+                        a.btn.btn-primary(href="/") Cancel

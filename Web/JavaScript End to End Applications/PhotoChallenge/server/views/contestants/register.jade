@@ -1,0 +1,33 @@
+extends ../includes/layout
+
+block main-content
+    .container
+        .well
+            form.form-horizontal(name="signUpForm" method="post" enctype="multipart/form-data" id="sign-up-form")
+                fieldset
+                    legend Register New Contestant
+                    .form-group
+                        label.col-md-2.control-label(for="full-name") Full Name
+                        .col-md-10
+                            input.form-control(type="text", placeholder="Jonh Doe", name="fullName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="age") Age
+                        .col-md-10
+                            input.form-control(type="number", placeholder="12", name="age", required)
+                    .form-group
+                        label.col-md-2.control-label(for="comment") Comment
+                        .col-md-10
+                            input.form-control(type="text", placeholder="optional comment", name="comment")
+                    legend Upload pictures
+                    .form-group
+                        label.col-md-2.control-label(for="file-0") Picture
+                        .col-md-10
+                            input.form-control.upload-picture(id="file-0" type="file", name="file_0")
+                    #button-panel
+                        .pull-left
+                            button.btn.btn-primary(id="add-file") Add another picture
+                        .pull-right
+                            input.btn.btn-primary(type="submit")
+                            a.btn.btn-primary(href="/") Cancel
+block page-scripts
+    script(type="text/javascript" src="/scripts/upload.js")

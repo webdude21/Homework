@@ -1,0 +1,13 @@
+extends ../includes/layout
+block main-content
+    .well
+        H3 Name: #{fullName}
+        H4 Age: #{age}
+        if comment
+            H4 Comment: #{comment}
+        H5 Images:
+        div.participant-images
+            for picture in pictures
+                img(src="/files/" + picture.url)
+            else
+                h5 No pictures!

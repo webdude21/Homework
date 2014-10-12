@@ -1,0 +1,19 @@
+extends ../includes/layout
+
+block main-content
+    .container
+        .well
+            form.form-horizontal(name="loginForm" method="post")
+                fieldset
+                    legend Login
+                    .form-group
+                        label.col-md-2.control-label(for="username") Username
+                        .col-md-10
+                            input.form-control(type="text", placeholder="Username", name="username", required)
+                    .form-group
+                        label.col-md-2.control-label(for="password") Password
+                        .col-md-10
+                            input.form-control(type="password", placeholder="Password", name="password", required)
+                    .pull-right
+                        input.btn.btn-primary(type="submit")
+                        a.btn.btn-primary(href="/") Cancel

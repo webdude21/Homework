@@ -1,0 +1,49 @@
+doctype
+html
+    head
+        title Photo Challange
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/styles/bootstrap.min.css")
+        link(rel="stylesheet" href="/styles/app.css")
+    body
+        header.nav.navbar-inverse.navbar-fixed-top
+            .container
+                .navbar-header
+                    a.navbar-brand(href="/") Photo Challange
+                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .navbar-collapse.collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href="/") Home
+                            if !currentUser
+                                li
+                                    a(href="/register") Register
+                                li
+                                    a(href="/contestants/all") Contestants Gallery
+                                li
+                                    a(href="/login") Login
+                            else
+                                li
+                                    a(href="/profile") #{currentUser.username}
+                                li
+                                    a(href="/logout") Logout
+                                li
+                                    a(href="/contestants/register") Register Contestant
+
+        .container
+            br
+            if errorMessage
+                .alert.alert-danger(role="alert") #{errorMessage}
+
+            block main-content
+
+        footer
+            hr
+            p.text-center
+                span No copyright here :)
+
+        include scripts
