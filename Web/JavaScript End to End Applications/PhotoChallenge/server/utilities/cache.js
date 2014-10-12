@@ -10,19 +10,15 @@ module.exports = {
             if (err) {
                 error();
             } else {
-                if (value[key]){
+                if (value[key]) {
                     success(value);
-                }else{
+                } else {
                     error();
                 }
             }
         });
     },
     putInCache: function (key, obj) {
-        myCache.set(key, obj, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        myCache.set(key, obj, cacheTime);
     }
 };
