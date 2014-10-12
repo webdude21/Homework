@@ -6,6 +6,10 @@ module.exports = function (app) {
         .get(controllers.users.getRegister)
         .post(controllers.users.postRegister);
 
+    app.route('/profile')
+        .get(auth.isAuthenticated, controllers.users.getProfile)
+        .post(auth.isAuthenticated, controllers.users.postProfile);
+
     app.route('/login')
         .get(controllers.users.getLogin)
         .post(auth.login, controllers.users.postLogin);

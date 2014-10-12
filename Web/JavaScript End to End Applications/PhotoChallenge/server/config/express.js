@@ -5,6 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 var busboy = require('connect-busboy');
 var morgan = require('morgan');
+var cache = require('express-view-cache');
 var STATIC_DIRECTORY = '/public';
 var secretPassPhrase = 'XZASDIAJSuiasfjuuhasfuhSAFHuhasffaioASJF';
 

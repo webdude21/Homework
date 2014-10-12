@@ -3,7 +3,7 @@ block main-content
     .container
         H2 Contestants List
         hr
-        .row.participants
+        .row#participants
             for contestant in data
                 .col-sm-6.col-md-4.item
                     .panel.panel-default
@@ -44,3 +44,4 @@ block main-content
 
 block page-scripts
     script(type="text/javascript" src="/scripts/masonry.pkgd.min.js")
+    script(type="text/javascript" src="/scripts/responsive-images.js")

@@ -7,7 +7,7 @@ var CONTROLLER_NAME = 'contestants';
 var URL_DELIMITER = '___';
 var SALT = "FOSTATAKOVRI";
 var FS_DELIMITER = '/';
-var PAGE_SIZE = 3;
+var PAGE_SIZE = 10;
 
 function getDate() {
     var delimiter = '-';

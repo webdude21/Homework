@@ -1,15 +1,15 @@
 var passport = require('passport');
 
 module.exports = {
-    login: function(req, res, next) {
-        var auth = passport.authenticate('local', function(err, user) {
+    login: function (req, res, next) {
+        var auth = passport.authenticate('local', function (err, user) {
             if (err) return next(err);
             if (!user) {
-                req.session.errorMessage = 'User does not exist!';
+                req.session.errorMessage = 'Username/Password combination is not valid!';
                 next();
             }
 
-            req.logIn(user, function(err) {
+            req.logIn(user, function (err) {
                 if (err) return next(err);
                 next();
             })
@@ -17,11 +17,11 @@ module.exports = {
 
         auth(req, res, next);
     },
-    logout: function(req, res, next) {
+    logout: function (req, res, next) {
         req.logout();
         next();
     },
-    isAuthenticated: function(req, res, next) {
+    isAuthenticated: function (req, res, next) {
         if (!req.isAuthenticated()) {
             res.redirect('/login');
         }
