@@ -1,4 +1,5 @@
 var Contestant = require('mongoose').model('Contestant');
+var paging = require('../utilities/paging');
 
 module.exports = {
     addContestant: function (contestant) {
@@ -6,19 +7,24 @@ module.exports = {
         newContestant.save();
         return newContestant;
     },
+    getCount: function (error, success) {
+        Contestant.find().count(function (err, contestantsCount) {
+            if (err) {
+                error(err);
+            } else {
+                success(contestantsCount)
+            }
+        })
+    },
     getAll: function (error, success) {
         Contestant.find()
             .populate('pictures')
             .lean()
             .exec(function (err, contestants) {
                 if (err) {
-                    error();
+                    error(err);
                 } else {
-                    if (contestants) {
-                        success(contestants);
-                    } else {
-                        error()
-                    }
+                    success(contestants)
                 }
             });
     },
@@ -28,14 +34,13 @@ module.exports = {
             .lean()
             .exec(function (err, contestant) {
                 if (err) {
-                    error();
+                    error(err);
                 } else {
-                    if (contestant) {
-                        success(contestant);
-                    } else {
-                        error()
-                    }
+                    success(contestant)
                 }
             });
+    },
+    getQuery: function (err, success, queryObject, pageSize) {
+        paging.populateResponse(err, success, queryObject, Contestant, 'pictures', pageSize)
     }
 };

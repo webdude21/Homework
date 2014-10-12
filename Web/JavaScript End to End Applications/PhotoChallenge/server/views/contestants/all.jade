@@ -1,16 +1,46 @@
 extends ../includes/layout
 block main-content
-    .well
+    .container
         H2 Contestants List
-            for contestant in contestants
-                .all-contestants
-                    H3 Name: #{contestant.fullName}
-                    H4 Age: #{contestant.age}
-                    if contestant.comment
-                        H4 Comment: #{contestant.comment}
-                    H5 Images:
-                    div.participant-images
-                        for picture in contestant.pictures
-                            img(src="/files/" + picture.url)
-                        else
-                            h5 No pictures!
+        hr
+        .row.participants
+            for contestant in data
+                .col-sm-6.col-md-4.item
+                    .panel.panel-default
+                        .panel-heading.text-center
+                            span Name: #{contestant.fullName}
+                        div(class="panel-body image-container text-center")
+                            a(href="/contestants/" + contestant._id)
+                                if contestant.pictures
+                                    img(class="img-rounded img-thumbnail" src="/files/" + contestant.pictures[0].url)
+                                else
+                                    h5 No pictures!
+                        p.text-center Age: #{contestant.age}
+        ul.pagination.pagination-lg
+            - if (pager.currentPage > 1) {
+                li
+                     a(href='/contestants/all?page=' + (pager.currentPage - 1) ) «
+            - } else {
+                li.disabled
+                    a(href='/contestants/all?page=' + pager.currentPage ) «
+            - }
+            - for(var i = 1; i <= pager.totalPages; i++) {
+            - var url = '/contestants/all?page=' + i
+                - if (pager.currentPage === i){
+                    li.active
+                        a(href="#{url}") #{i}
+                - } else {
+                    li
+                        a(href="#{url}") #{i}
+                - }
+            - }
+            - if (pager.currentPage < pager.totalPages) {
+                li
+                    a(href='/contestants/all?page=' + (pager.currentPage + 1) ) »
+            - } else {
+                li.disabled
+                    a(href='/contestants/all?page=' + pager.currentPage ) »
+            - }
+
+block page-scripts
+    script(type="text/javascript" src="/scripts/masonry.pkgd.min.js")

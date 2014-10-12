@@ -10,7 +10,5 @@ module.exports = function (app) {
         .get(controllers.contestants.getAll);
 
     app.route('/contestants/:id')
-        .get(controllers.contestants.getContestant);
-
-
+        .get(controllers.contestants.getCount);
 };

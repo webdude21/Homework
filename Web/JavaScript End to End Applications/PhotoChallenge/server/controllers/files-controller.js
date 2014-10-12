@@ -16,7 +16,7 @@ module.exports = {
         var path = parts.join(FS_DELIMITER);
         res.download(__dirname + '/../../uploads/' + path   );
     },
-    getContestant: function (req, res, next) {
+    getCount: function (req, res, next) {
         data.contestants.getById(req.params.id
             , function (err) {
                 res.redirect('/not-found');

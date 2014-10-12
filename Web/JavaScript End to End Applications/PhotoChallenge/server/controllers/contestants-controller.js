@@ -7,6 +7,7 @@ var CONTROLLER_NAME = 'contestants';
 var URL_DELIMITER = '___';
 var SALT = "FOSTATAKOVRI";
 var FS_DELIMITER = '/';
+var PAGE_SIZE = 3;
 
 function getDate() {
     var delimiter = '-';
@@ -28,7 +29,7 @@ module.exports = {
     getRegister: function (req, res, next) {
         res.render(CONTROLLER_NAME + '/register');
     },
-    getContestant: function (req, res, next) {
+    getCount: function (req, res, next) {
         data.contestants.getById(req.params.id
             , function (err) {
                 res.redirect('/not-found');
@@ -37,11 +38,26 @@ module.exports = {
             })
     },
     getAll: function (req, res, next) {
-        data.contestants.getAll(function (err) {
+        var queryObject = req.query;
+
+        if (!queryObject.pager) {
+            queryObject.pager = {
+                currentPage: +queryObject.page || 1
+            };
+        }
+
+        if (!queryObject.sort) {
+            queryObject.sort = {
+                columnName: "registerDate",
+                order: "desc"
+            }
+        }
+
+        data.contestants.getQuery(function (err) {
             res.redirect('/not-found');
         }, function (contestants) {
-            res.render(CONTROLLER_NAME + '/all', {contestants: contestants});
-        })
+            res.render(CONTROLLER_NAME + '/all', contestants);
+        }, queryObject, PAGE_SIZE);
     },
     postRegister: function (req, res, next) {
         var newContestant = {};
