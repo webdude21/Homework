@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Add two numbers :</h1>
+<div class="row">
+    <form class="form-horizontal" action="/Home/AddTwoNumbers" method="post">
+        <fieldset>
+            <legend>Calculator</legend>
+            <div class="form-group">
+                <label for="first-number" class="col-lg-2 control-label">First Number:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="first-number" name="firstNumber" placeholder="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="second-number" class="col-lg-2 control-label">Second Number:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="second-number" name="secondNumber" placeholder="1">
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="result" class="col-lg-2 control-label">Result:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="result" name="result" placeholder="0" value="@ViewBag.Result">
+                </div>
+            </div>
+            <input type="submit" class="pull-right" />
+        </fieldset>
+    </form>
+</div>

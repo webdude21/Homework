@@ -5,6 +5,10 @@ body {
 body img {
   max-width: 100%;
 }
+body .break-word {
+  word-wrap: break-word;
+  word-break: break-word;
+}
 body #toast-container {
   top: 10%;
 }

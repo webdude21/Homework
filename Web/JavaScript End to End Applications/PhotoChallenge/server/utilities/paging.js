@@ -1,5 +1,3 @@
-var crypto = require('crypto');
-
 module.exports = {
     populateResponse: function (error, success, gridRequest, model, populateString, pageSize) {
         var query = model.find({});
@@ -73,15 +71,3 @@ function addFilters(columns, query) {
         });
     }
 }
-
-var gridResult = {
-    pager: {
-        currentPage: 1,
-        totalPages: 10
-    },
-    sort: {
-        columnName: "username",
-        order: "desc"
-    },
-    data: []
-};

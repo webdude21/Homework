@@ -6,6 +6,9 @@ module.exports = {
         dirName = dirName || '';
         fileSystem.mkdirSync(UPLOAD_DIR + path + dirName)
     },
+    createUserFolder: function (user) {
+        this.createDir(user.username);
+    },
     saveFile: function (file, fileName, path) {
         if (!fileSystem.existsSync(UPLOAD_DIR + path)) {
             this.createDir(path)

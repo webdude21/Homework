@@ -4,9 +4,10 @@ var rolesConfig = require('../config/roles');
 
 var userSchema = mongoose.Schema({
     username: { type: String, require: '{PATH} is required', unique: true },
-    firstName: { type: String, require: '{PATH} is required' },
-    lastName: { type: String, require: '{PATH} is required' },
+    firstName: String,
+    lastName: String,
     email: { type: String, require: '{PATH} is required', unique: true },
+    facebookId: {type: String, unique: true},
     registerDate: { type: Date, default: Date.now },
     salt: String,
     hashPass: String,

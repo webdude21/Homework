@@ -19,7 +19,6 @@ module.exports = {
     getAll: function (error, success) {
         Contestant.find()
             .populate('pictures')
-            .lean()
             .exec(function (err, contestants) {
                 if (err) {
                     error(err);
@@ -31,7 +30,6 @@ module.exports = {
     getById: function (id, error, success) {
         Contestant.findById(id)
             .populate('pictures')
-            .lean()
             .exec(function (err, contestant) {
                 if (err) {
                     error(err);

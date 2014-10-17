@@ -6,11 +6,11 @@ module.exports = {
     development: {
         rootPath: rootPath,
         db: localDatabase,
-        port: process.env.PORT || 1234
+        port: process.env.PORT || 3000
     },
     production: {
         rootPath: rootPath,
         db: process.env.MONGOLAB_URI,
-        port: process.env.PORT || 1234
+        port: process.env.PORT || 3000
     }
 };

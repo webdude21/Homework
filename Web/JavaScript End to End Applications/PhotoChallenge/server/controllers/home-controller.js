@@ -1,5 +1,4 @@
 var data = require('../data');
-var cache = require('../utilities/cache');
 
 module.exports = {
     getStatistics: function (req, res, next) {
@@ -22,10 +21,6 @@ module.exports = {
                 res.redirect('/not-found')
             }, function (userCount) {
                 usersCount = userCount;
-                cache.putInCache("stats", {
-                    usersCount: usersCount,
-                    contestantCount: contestantCount
-                });
                 renderResult()
             })
         };
@@ -38,9 +33,6 @@ module.exports = {
             });
         };
 
-        cache.getFromCache(getFromDb, function (data) {
-            contestantCount = data.contestantCount;
-            usersCount = data.usersCount;
-        }, "stats");
+        getFromDb();
     }
 };

@@ -1,8 +1,45 @@
 var passport = require('passport');
 var LocalPassport = require('passport-local');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('mongoose').model('User');
+var data = require('../data');
+var encryption = require('../utilities/encryption');
+var FACEBOOK_APP_ID = '134955213354516';
+var FACEBOOK_APP_SECRET = '73fc620a0e7efc6e5e1f2d8a78ad347f';
 
-module.exports = function () {
+module.exports = function (serverPort) {
+    passport.use(new FacebookStrategy({
+            clientID: FACEBOOK_APP_ID,
+            clientSecret: FACEBOOK_APP_SECRET,
+            callbackURL: "http://localhost:" + serverPort + "/auth/facebook/callback"
+        },
+        function (accessToken, refreshToken, profile, done) {
+            var fbUser = {
+                facebookId: profile.id,
+                firstName: profile._json.first_name,
+                lastName: profile._json.last_name,
+                username: profile.username,
+                email: profile.emails[0].value
+            };
+
+            fbUser.salt = encryption.generateSalt();
+            fbUser.hashPass = encryption.generateHashedText(fbUser.salt, encryption.generateSalt());
+
+            data.users.findOrCreate(fbUser,
+                function (err, user) {
+                    if (err) {
+                        console.log('Error loading user: ' + err);
+                        return;
+                    }
+
+                    if (user) {
+                        return done(err, user);
+                    } else {
+                        return done(null, false);
+                    }
+                });
+        }
+    ));
     passport.use(new LocalPassport(function (username, password, done) {
         User.findOne({ username: username }).exec(function (err, user) {
             if (err) {
@@ -18,15 +55,13 @@ module.exports = function () {
             }
         })
     }));
-
     passport.serializeUser(function (user, done) {
         if (user) {
-            return done(null, user._id);
+            return done(null, user.id);
         }
     });
-
     passport.deserializeUser(function (id, done) {
-        User.findOne({_id: id}).exec(function (err, user) {
+        User.findById(id).exec(function (err, user) {
             if (err) {
                 console.log('Error loading user: ' + err);
                 return;

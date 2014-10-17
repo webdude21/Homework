@@ -1,14 +1,17 @@
 .navbar-collapse.collapse
     ul.nav.navbar-nav
         li
-            a(href="/") Home
+            a(href="/") Начало
             li
-                a(href="/contestants/all") Contestants Gallery
+                a(href="/contestants/all") Участници
             if !currentUser
                 li
-                    a(href="/register") Register
+                    a(href="/register") Регистрация
                 li
-                    a(href="/login") Login
+                    a(href="/login") Вход
+                li
+                    a(href="/auth/facebook")
+                        img(src="/img/facebook.png")
             else
                 li.dropdown
                     a.dropdown-toggle(href="", data-toggle="dropdown")
@@ -16,8 +19,8 @@
                         span.caret
                     ul.dropdown-menu
                         li
-                            a(href="/profile") Profile
+                            a(href="/profile") Моят профил
                         li
-                            a(href="/contestants/register") Register Contestant
+                            a(href="/contestants/register") Регистриране на участник
                         li
-                            a(href="/logout") Logout
+                            a(href="/logout") Изход

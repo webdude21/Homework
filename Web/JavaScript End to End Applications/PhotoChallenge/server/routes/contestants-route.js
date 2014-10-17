@@ -9,6 +9,9 @@ module.exports = function (app) {
     app.route('/contestants/all')
         .get(controllers.contestants.getAll);
 
+    app.route('/contestants/:id/vote')
+        .get(auth.isAuthenticated, controllers.contestants.vote);
+
     app.route('/contestants/:id')
-        .get(controllers.contestants.getCount);
+        .get(controllers.contestants.getById);
 };

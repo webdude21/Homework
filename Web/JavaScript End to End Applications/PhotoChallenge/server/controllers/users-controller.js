@@ -44,10 +44,13 @@ module.exports = {
     },
     postRegister: function (req, res, next) {
         var newUserData = req.body;
-        User.findOne({username: newUserData.username})
-            .where('email')
-            .equals(newUserData.email)
-            .exec(function (err, user) {
+        data.users.getUser(newUserData, function (err) {
+                if (err) {
+                    req.session.errorMessage = err;
+                    res.redirect('/register');
+                }
+            },
+            function (user) {
                 if (user) {
                     req.session.errorMessage = "This username/email address is taken, please try another one!";
                     res.redirect('/register');
@@ -57,21 +60,19 @@ module.exports = {
                 } else {
                     newUserData.salt = encryption.generateSalt();
                     newUserData.hashPass = encryption.generateHashedText(newUserData.salt, newUserData.password);
-                    User.create(newUserData, function (err, user) {
+                    data.users.addUser(newUserData, function (err) {
                         if (err) {
                             req.session.errorMessage = err.message;
                             res.redirect('/register');
-                            return;
                         }
-
-                        fileUpload.createDir(user.username);
-
+                    }, function (user) {
                         req.logIn(user, function (err) {
                             if (err) {
                                 req.session.errorMessage = "A terrible error has occurred! " + err.toString();
                                 res.redirect('/error');
                             }
 
+                            fileUpload.createUserFolder(user);
                             res.redirect('/');
                         });
                     });

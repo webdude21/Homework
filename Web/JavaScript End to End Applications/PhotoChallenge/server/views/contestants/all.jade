@@ -1,21 +1,20 @@
 extends ../includes/layout
 block main-content
-    .container
-        H2 Contestants List
+        H4 Участници:
         hr
         .row#participants
             for contestant in data
                 .col-sm-6.col-md-4.item
                     .panel.panel-default
                         .panel-heading.text-center
-                            span Name: #{contestant.fullName}
+                            span Име: #{contestant.fullName}
                         div(class="panel-body image-container text-center")
                             a(href="/contestants/" + contestant._id)
                                 if contestant.pictures
                                     img(class="img-rounded img-thumbnail" src="/files/" + contestant.pictures[0].url)
                                 else
-                                    h5 No pictures!
-                        p.text-center Age: #{contestant.age}
+                                    h5 Няма снимки!
+                        p.text-center Възраст: #{contestant.age} години
         ul.pagination.pagination-lg
             - if (pager.currentPage > 1) {
                 li
