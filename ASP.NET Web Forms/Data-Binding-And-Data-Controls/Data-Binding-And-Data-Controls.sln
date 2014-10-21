@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile", "Mobile\Mobile.csproj", "{C60E0019-FAD4-45DB-B171-61C13BF1BEC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeesWithDetailsView", "Employees\EmployeesWithDetailsView.csproj", "{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthwindData", "NorthwindData\NorthwindData.csproj", "{A788B985-4076-4930-8D4E-BDD5FF06F689}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C60E0019-FAD4-45DB-B171-61C13BF1BEC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60E0019-FAD4-45DB-B171-61C13BF1BEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60E0019-FAD4-45DB-B171-61C13BF1BEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60E0019-FAD4-45DB-B171-61C13BF1BEC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A788B985-4076-4930-8D4E-BDD5FF06F689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A788B985-4076-4930-8D4E-BDD5FF06F689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A788B985-4076-4930-8D4E-BDD5FF06F689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A788B985-4076-4930-8D4E-BDD5FF06F689}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

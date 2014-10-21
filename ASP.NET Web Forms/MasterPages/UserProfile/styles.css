@@ -1,0 +1,37 @@
+﻿#header
+{
+    background: wheat;
+    text-align: center;
+}
+
+#sidebar
+{
+    float: left;
+    width: 120px;
+    background: yellowgreen;
+}
+
+#sidebar .sidebar-title
+{
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+#main-content
+{
+    float: left;
+    left: 160px;
+    padding: 10px;
+}
+
+#main-content h1
+{
+    color: purple;
+}
+
+#footer
+{
+    clear: both;
+    text-align:center;
+    background: wheat;
+}
