@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2E5F89A7-AAD6-4F5D-BAD3-F20144343A19}</ProjectGuid>
+    <ProjectGuid>{089DB11B-1C37-424B-954B-88682066F2C5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Employees</RootNamespace>
-    <AssemblyName>Employees</AssemblyName>
+    <RootNamespace>EmployeesWithRepeater</RootNamespace>
+    <AssemblyName>EmployeesWithRepeater</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -47,8 +47,6 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,24 +65,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmpDetails.aspx" />
-    <Content Include="Employees.aspx" />
+    <Content Include="EmployeesRepeater.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmpDetails.aspx.cs">
-      <DependentUpon>EmpDetails.aspx</DependentUpon>
+    <Compile Include="EmployeesRepeater.aspx.cs">
+      <DependentUpon>EmployeesRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmpDetails.aspx.designer.cs">
-      <DependentUpon>EmpDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Employees.aspx.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employees.aspx.designer.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
+    <Compile Include="EmployeesRepeater.aspx.designer.cs">
+      <DependentUpon>EmployeesRepeater.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,11 +88,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\NorthwindData\NorthwindData.csproj">
-      <Project>{a788b985-4076-4930-8d4e-bdd5ff06f689}</Project>
+      <Project>{A788B985-4076-4930-8D4E-BDD5FF06F689}</Project>
       <Name>NorthwindData</Name>
     </ProjectReference>
   </ItemGroup>
@@ -119,9 +106,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>34546</DevelopmentServerPort>
+          <DevelopmentServerPort>40666</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:34546/</IISUrl>
+          <IISUrl>http://localhost:40666/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
