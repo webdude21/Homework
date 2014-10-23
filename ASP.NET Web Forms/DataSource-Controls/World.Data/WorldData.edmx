@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WorldModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="35" Nullable="false" />
+          <Property Name="CountryCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="District" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Population" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="52" Nullable="false" />
+          <Property Name="ContinentId" Type="int" Nullable="false" />
+          <Property Name="Region" Type="char" MaxLength="26" Nullable="false" />
+          <Property Name="SurfaceArea" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IndepYear" Type="smallint" />
+          <Property Name="Population" Type="int" Nullable="false" />
+          <Property Name="LifeExpectancy" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="GNP" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GNPOld" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LocalName" Type="char" MaxLength="45" Nullable="false" />
+          <Property Name="GovernmentForm" Type="char" MaxLength="45" Nullable="false" />
+          <Property Name="HeadOfState" Type="char" MaxLength="60" />
+          <Property Name="Capital" Type="int" />
+          <Property Name="Code2" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countrylanguage">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="Language" />
+          </Key>
+          <Property Name="CountryCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Language" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="IsOfficial" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Percentage" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_city_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_country_continent">
+          <End Role="continent" Type="Self.continent" Multiplicity="1" />
+          <End Role="country" Type="Self.country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="country">
+              <PropertyRef Name="ContinentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorldModelStoreContainer">
+          <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="continent" EntityType="Self.continent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrylanguage" EntityType="Self.countrylanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_city_country" Association="Self.FK_city_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK_country_continent" Association="Self.FK_country_continent">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="country" EntitySet="country" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorldModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="35" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="District" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Population" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="WorldModel.FK_city_country" FromRole="city" ToRole="country" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="countries" Relationship="Self.FK_country_continent" FromRole="continent" ToRole="country" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="52" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ContinentId" Type="Int32" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="26" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SurfaceArea" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IndepYear" Type="Int16" />
+          <Property Name="Population" Type="Int32" Nullable="false" />
+          <Property Name="LifeExpectancy" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="GNP" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="GNPOld" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LocalName" Type="String" MaxLength="45" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GovernmentForm" Type="String" MaxLength="45" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HeadOfState" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="Capital" Type="Int32" />
+          <Property Name="Code2" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="continent" Relationship="Self.FK_country_continent" FromRole="country" ToRole="continent" />
+          <NavigationProperty Name="cities" Relationship="WorldModel.FK_city_country" FromRole="country" ToRole="city" />
+        </EntityType>
+        <EntityType Name="countrylanguage">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="Language" />
+          </Key>
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Language" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IsOfficial" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Percentage" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_country_continent">
+          <End Role="continent" Type="Self.continent" Multiplicity="1" />
+          <End Role="country" Type="Self.country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="country">
+              <PropertyRef Name="ContinentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorldEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="continents" EntityType="Self.continent" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="countrylanguages" EntityType="Self.countrylanguage" />
+          <AssociationSet Name="FK_country_continent" Association="Self.FK_country_continent">
+            <End Role="continent" EntitySet="continents" />
+            <End Role="country" EntitySet="countries" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="WorldModel.sysdiagram" />
+          <AssociationSet Name="FK_city_country" Association="WorldModel.FK_city_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_city_country">
+          <End Type="WorldModel.country" Role="country" Multiplicity="1" />
+          <End Type="WorldModel.city" Role="city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorldModelStoreContainer" CdmEntityContainer="WorldEntities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="WorldModel.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="continents">
+            <EntityTypeMapping TypeName="WorldModel.continent">
+              <MappingFragment StoreEntitySet="continent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="WorldModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="SurfaceArea" ColumnName="SurfaceArea" />
+                <ScalarProperty Name="IndepYear" ColumnName="IndepYear" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="LifeExpectancy" ColumnName="LifeExpectancy" />
+                <ScalarProperty Name="GNP" ColumnName="GNP" />
+                <ScalarProperty Name="GNPOld" ColumnName="GNPOld" />
+                <ScalarProperty Name="LocalName" ColumnName="LocalName" />
+                <ScalarProperty Name="GovernmentForm" ColumnName="GovernmentForm" />
+                <ScalarProperty Name="HeadOfState" ColumnName="HeadOfState" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+                <ScalarProperty Name="Code2" ColumnName="Code2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrylanguages">
+            <EntityTypeMapping TypeName="WorldModel.countrylanguage">
+              <MappingFragment StoreEntitySet="countrylanguage">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="IsOfficial" ColumnName="IsOfficial" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WorldModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
