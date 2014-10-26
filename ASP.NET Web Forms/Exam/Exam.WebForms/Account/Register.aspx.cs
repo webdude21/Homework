@@ -16,7 +16,7 @@
         {
             var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = new ApplicationUser { UserName = this.Email.Text, Email = this.Email.Text };
-            var result = manager.Create(user, this.Password.Text);
+                var result = manager.Create(user, this.Password.Text);
             if (result.Succeeded)
             {
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

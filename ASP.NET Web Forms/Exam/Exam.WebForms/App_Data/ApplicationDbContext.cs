@@ -20,5 +20,9 @@
         {
             return new ApplicationDbContext();
         }
+
+        public IDbSet<Category> Categories { get; set; }
+
+        public IDbSet<Book> Books { get; set; }
     }
 }
