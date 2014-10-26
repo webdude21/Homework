@@ -11,7 +11,7 @@ namespace Exam.WebForms
 {
 
 
-    public partial class Contact
+    public partial class Categories
     {
     }
 }
