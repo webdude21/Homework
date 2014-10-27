@@ -22,22 +22,22 @@
         <ItemTemplate>
             <div class="col-md-4">
                 <h2><%#: Item.Name %></h2>
-                <asp:Repeater runat="server" ID="RepeaterBooks"
-                    ItemType="Exam.WebForms.Models.Book" DataSource='<%# Item.Books %>'>
-                    <HeaderTemplate>
-                        <ul>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <li>
-                            <asp:HyperLink runat="server" NavigateUrl='<%#:"BookDetails.aspx?id=" + Item.ID %>'>
+                <ul>
+                    <asp:ListView runat="server" ID="RepeaterBooks"
+                        ItemType="Exam.WebForms.Models.Book" DataSource='<%# Item.Books %>'>
+                        <ItemTemplate>
+                            <li>
+                                <asp:HyperLink runat="server" NavigateUrl='<%#:"BookDetails.aspx?id=" + Item.ID %>'>
                                 <%#: Item.Title %>  <i> by<%#: Item.Author %></i>
-                            </asp:HyperLink> <%#: Item.Category.Name %>
-                        </li>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </ul>
-                    </FooterTemplate>
-                </asp:Repeater>
+                                </asp:HyperLink>
+                                <%#: Item.Category.Name %>
+                            </li>
+                        </ItemTemplate>
+                        <EmptyDataTemplate>
+                            <li>No books in this category</li>
+                        </EmptyDataTemplate>
+                    </asp:ListView>
+                </ul>
             </div>
         </ItemTemplate>
     </asp:ListView>

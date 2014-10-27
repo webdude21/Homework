@@ -1,6 +1,7 @@
 ﻿namespace Exam.WebForms
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.UI;
 
@@ -8,7 +9,6 @@
 
     public partial class Books : Page
     {
-
         public Books()
         {
             this.DbContext = new ApplicationDbContext();
@@ -18,12 +18,11 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         public IQueryable<Models.Category> ListViewCategories_GetData()
         {
-            return this.DbContext.Categories;
+            return this.DbContext.Categories.Include("Books");
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
