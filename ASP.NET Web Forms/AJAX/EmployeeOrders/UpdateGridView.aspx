@@ -36,7 +36,8 @@
                 </asp:EntityDataSource>
                 </div>
 
-                <asp:GridView ID="GridViewOrders" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnLoad="GridViewOrders_Load" DataKeyNames="OrderID" DataSourceID="OrdersDataSource">
+                <asp:GridView ID="GridViewOrders" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" 
+                    OnLoad="GridViewOrders_Load" DataKeyNames="OrderID" DataSourceID="OrdersDataSource">
                     <Columns>
                         <asp:CommandField ShowSelectButton="True" />
                         <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />

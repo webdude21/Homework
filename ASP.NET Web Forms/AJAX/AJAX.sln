@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatData", "ChatData\ChatData.csproj", "{3FE4C831-3C9F-4799-A777-28D2F253C430}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxPhotoAlbum", "AjaxPhotoAlbum\AjaxPhotoAlbum.csproj", "{CCA1E832-B8E0-4BC8-B30F-9E39CD337408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3FE4C831-3C9F-4799-A777-28D2F253C430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE4C831-3C9F-4799-A777-28D2F253C430}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE4C831-3C9F-4799-A777-28D2F253C430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA1E832-B8E0-4BC8-B30F-9E39CD337408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA1E832-B8E0-4BC8-B30F-9E39CD337408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA1E832-B8E0-4BC8-B30F-9E39CD337408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA1E832-B8E0-4BC8-B30F-9E39CD337408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

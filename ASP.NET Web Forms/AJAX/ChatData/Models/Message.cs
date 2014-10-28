@@ -16,6 +16,6 @@
         public string Body { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
     }
 }

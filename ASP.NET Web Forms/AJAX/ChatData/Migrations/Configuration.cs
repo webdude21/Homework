@@ -9,7 +9,7 @@ namespace ChatData.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -20,10 +20,10 @@ namespace ChatData.Migrations
                 return;
             }
 
-            context.Messages.Add(new Message { Author = "Pesho", "Ебасиму 1" });
-            context.Messages.Add(new Message { Author = "Гошо", "Ебасиму 2" });
-            context.Messages.Add(new Message { Author = "Иван", "Ебасиму 3" });
-            context.Messages.Add(new Message { Author = "Мариан", "Ебасиму 4" });
+            context.Messages.Add(new Message { Author = "Pesho", Body = "Ебасиму 1" });
+            context.Messages.Add(new Message { Author = "Гошо", Body = "Ебасиму 2" });
+            context.Messages.Add(new Message { Author = "Иван", Body = "Ебасиму 3" });
+            context.Messages.Add(new Message { Author = "Мариан", Body = "Ебасиму 4" });
             context.SaveChanges();
         }
     }

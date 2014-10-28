@@ -22,13 +22,49 @@ namespace Chat {
         protected global::System.Web.UI.HtmlControls.HtmlForm formChat;
         
         /// <summary>
-        /// UpdatePanelChat control.
+        /// UsernameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelChat;
+        protected global::System.Web.UI.WebControls.Label UsernameLabel;
+        
+        /// <summary>
+        /// TextBoxAuthor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxAuthor;
+        
+        /// <summary>
+        /// MessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLabel;
+        
+        /// <summary>
+        /// TextBoxBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxBody;
+        
+        /// <summary>
+        /// InsertButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton InsertButton;
         
         /// <summary>
         /// ListViewChat control.
@@ -38,5 +74,14 @@ namespace Chat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListViewChat;
+        
+        /// <summary>
+        /// TimerChatRefresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer TimerChatRefresh;
     }
 }
