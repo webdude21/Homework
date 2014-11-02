@@ -1,6 +1,7 @@
 ﻿namespace Exam.WebForms.Admin
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.UI;
 
@@ -18,7 +19,7 @@
 
         public IQueryable<Category> ListViewCategories_GetData()
         {
-            return this.DbContext.Categories.OrderBy(c => c.ID);
+            return this.DbContext.Categories.OrderBy(c => c.ID).Include("Category");
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

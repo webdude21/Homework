@@ -3,20 +3,11 @@
     using System;
     using System.Linq;
     using System.Web.ModelBinding;
-    using System.Web.UI;
 
-    using Exam.WebForms.App_Data;
     using Exam.WebForms.Models;
 
-    public partial class BookDetails : Page
+    public partial class BookDetails : BasePage
     {
-        public BookDetails()
-        {
-            this.LibraryDbContext = new ApplicationDbContext();
-        }
-
-        public ApplicationDbContext LibraryDbContext { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
         }

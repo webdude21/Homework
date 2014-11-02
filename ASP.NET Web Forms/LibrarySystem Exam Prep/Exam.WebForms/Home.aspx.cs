@@ -3,19 +3,11 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using System.Web.UI;
 
-    using Exam.WebForms.App_Data;
     using Exam.WebForms.Models;
 
-    public partial class Home : Page
+    public partial class Home : BasePage
     {
-        public Home()
-        {
-            this.LibraryDbContext = new ApplicationDbContext();
-        }
-
-        public ApplicationDbContext LibraryDbContext { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
