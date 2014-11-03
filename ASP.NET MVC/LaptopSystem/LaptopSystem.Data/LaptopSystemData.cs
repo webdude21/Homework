@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
 
-    using BullsAndCows.Data.Repositories;
-
     using LaptopSystem.Data.Contracts;
+    using LaptopSystem.Data.Repositories;
     using LaptopSystem.Model;
 
     public class LaptopSystemData : ILaptopSystemData
@@ -25,12 +24,43 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-
         public IRepository<ApplicationUser> Users
         {
             get
             {
                 return this.GetRepository<ApplicationUser>();
+            }
+        }
+
+        public IRepository<Laptop> Laptops
+        {
+            get
+            {
+                return this.GetRepository<Laptop>();
+            }
+        }
+
+        public IRepository<Manufacturer> Manufactures
+        {
+            get
+            {
+                return this.GetRepository<Manufacturer>();
+            }
+        }
+
+        public IRepository<Vote> Votes
+        {
+            get
+            {
+                return this.GetRepository<Vote>();
+            }
+        }
+
+        public IRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetRepository<Comment>();
             }
         }
 

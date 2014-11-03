@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace LaptopSystem.Web.Controllers
+﻿namespace LaptopSystem.Web.Controllers
 {
-    public class HomeController : Controller
+    using System;
+    using System.Linq;
+    using System.Web.Caching;
+    using System.Web.Mvc;
+
+    using LaptopSystem.Web.Models;
+
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            const string Homepagelaptops = "HomePageLaptops";
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            if (this.HttpContext.Cache[Homepagelaptops] == null)
+            {
+                var listOfLaptops =
+                                this.Data.Laptops.All()
+                                .OrderByDescending(laptop => laptop.Votes.Count)
+                                .Take(6)
+                                .Select(laptop =>
+                                   new LaptopViewModel
+                                   {
+                                       Id = laptop.Id,
+                                       Model = laptop.Model,
+                                       Price = laptop.Price,
+                                       Manufacturer = laptop.Manufacturer.Name,
+                                       ImageUrl = laptop.ImageUrl
+                                   }).ToList();
 
-            return View();
-        }
+                this.HttpContext.Cache.Add(Homepagelaptops, listOfLaptops, null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
+            }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var cachedLaptops = this.HttpContext.Cache[Homepagelaptops];
+            return this.View(cachedLaptops);
         }
     }
 }

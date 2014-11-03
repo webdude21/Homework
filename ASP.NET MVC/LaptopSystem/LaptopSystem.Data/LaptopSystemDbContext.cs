@@ -17,6 +17,18 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<LaptopSystemDbContext, Configuration>());
         }
 
+        public IDbSet<Laptop> Laptops { get; set; }
+
+        public IDbSet<Manufacturer> Manufacturers { get; set; }
+
+        public IDbSet<Vote> Votes { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
+        }
 
         public static LaptopSystemDbContext Create()
         {
@@ -28,9 +40,6 @@
             base.SaveChanges();
         }
 
-        public new IDbSet<T> Set<T>() where T : class
-        {
-            return base.Set<T>();
-        }
+        public System.Data.Entity.DbSet<LaptopSystem.Web.Models.LaptopViewModel> LaptopViewModels { get; set; }
     }
 }

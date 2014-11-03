@@ -1,0 +1,35 @@
+﻿@using Microsoft.Ajax.Utilities
+@model  LaptopSystem.Web.Models.LaptopDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div class="row">
+    <div class="col-lg-3 pull-left">
+        <p><b>Monitor: </b>@Model.Model"</p>
+        <p><b>RAM: </b>@Model.RamSize GB</p>
+        <p><b>Price: </b>$@Model.Price</p>
+
+    </div>
+    <div class="col-lg-3">
+        <img src="@Model.ImageUrl" class="img-responsive" alt="@Model.Model" />
+    </div>
+    <div class="col-lg-6 pull-right">
+        @if (Model.Weight.HasValue)
+        {
+            <p><b>Weight: </b>@Model.Weight kg</p>
+        }
+
+        @if (!Model.AdditionalParts.IsNullOrWhiteSpace())
+        {
+            <p><b>Additional Parts: </b>@Model.AdditionalParts</p>
+        }
+        <p><b>Description: </b>@Model.Description</p>
+    </div>
+</div>
+
+@foreach (var comment in Model.Comments)
+{
+    @Html.Partial("_CommentsPartial", comment);
+}

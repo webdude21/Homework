@@ -1,12 +1,11 @@
-﻿namespace BullsAndCows.Data.Repositories
+﻿namespace LaptopSystem.Data.Repositories
 {
     using System.Data.Entity;
     using System.Linq;
 
     using LaptopSystem.Data.Contracts;
 
-    public class EfRepository<T> : IRepository<T>
-        where T : class
+    public class EfRepository<T> : IRepository<T> where T : class
     {
         private readonly IDbContext context;
 

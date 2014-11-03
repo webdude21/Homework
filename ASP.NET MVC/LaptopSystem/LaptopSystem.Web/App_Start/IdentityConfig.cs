@@ -14,6 +14,7 @@ using LaptopSystem.Web.Models;
 
 namespace LaptopSystem.Web
 {
+    using LaptopSystem.Data;
     using LaptopSystem.Model;
 
     public class EmailService : IIdentityMessageService
@@ -44,7 +45,7 @@ namespace LaptopSystem.Web
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<DbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<LaptopSystemDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -55,11 +56,11 @@ namespace LaptopSystem.Web
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequiredLength = 3,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults
