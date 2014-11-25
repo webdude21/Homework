@@ -1,5 +1,4 @@
 var User = require('mongoose').model('User');
-var fileUpload = require('../utilities/file-upload');
 
 module.exports = {
     findOrCreate: function (userData, resolve) {
@@ -14,7 +13,6 @@ module.exports = {
                 } else {
                     var newUser = new User(userData);
                     newUser.save(function () {
-                        fileUpload.createUserFolder(newUser);
                         resolve(null, newUser);
                     });
                 }

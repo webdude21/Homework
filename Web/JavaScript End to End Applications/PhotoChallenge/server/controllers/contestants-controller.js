@@ -1,12 +1,12 @@
-var encryption = require('../utilities/encryption');
-var fileUpload = require('../utilities/file-upload');
+var cloudinary = require('cloudinary');
+var fs = require('fs');
+cloudinary.config(process.env.CLOUDINARY_URL);
 
 var data = require('../data');
 
 var CONTROLLER_NAME = 'contestants';
-var URL_DELIMITER = '___';
-var SALT = "FOSTATAKOVRI";
-var FS_DELIMITER = '/';
+var INVALID_IMAGE_ERROR = 'Моля уверете се, че сте избрали валидно ' +
+    'изображение от следните формати (gif, jpg, jpeg, tiff, png)!';
 var PAGE_SIZE = 10;
 
 module.exports = {
@@ -59,28 +59,24 @@ module.exports = {
         }, queryObject, PAGE_SIZE);
     },
     postRegister: function (req, res, next) {
-        var INVALID_IMAGE_ERROR = 'Моля уверете се, че сте избрали валидно ' +
-            'изображение от следните формати (gif, jpg, jpeg, tiff, png)!';
         var newContestant = {};
-        var uploadedFiles = [];
         var permittedFormats = ['gif', 'jpg', 'jpeg', 'tiff', 'png'];
+        var savedContestant;
 
-        var username = req.user.username;
         req.pipe(req.busboy);
 
-        req.busboy.on('file', function (fieldname, file, filename) {
-            var fileNameHashed = encryption.generateHashedText(encryption.generateSalt(), filename);
-            var currentDate = getDate();
-            var url = username + URL_DELIMITER + currentDate +
-                URL_DELIMITER + fileNameHashed;
-            var encryptedUrl = encryption.encrypt(url, SALT);
-            var filePath = username + FS_DELIMITER + currentDate + FS_DELIMITER;
-
+        req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
             if (filename && filename.indexOf('.') && permittedFormats.indexOf(filename.split('.')[1]) > -1) {
-                fileUpload.saveFile(file, fileNameHashed, filePath);
-                uploadedFiles.push({
-                    url: encryptedUrl,
-                    fileName: filename });
+                var stream = cloudinary.uploader.upload_stream(function (result) {
+                    savedContestant.pictures.push({
+                        url: result.secure_url,
+                        fileName: filename
+                    });
+                    savedContestant.save();
+                });
+
+                file.on('data', stream.write)
+                    .on('end', stream.end);
             }
         });
 
@@ -89,31 +85,8 @@ module.exports = {
         });
 
         req.busboy.on('finish', function () {
-            if (uploadedFiles.length > 0) {
-                newContestant.pictures = data.files.addFiles(uploadedFiles);
-                var savedContestant = data.contestants.addContestant(newContestant);
-                res.redirect(savedContestant._id);
-            }
-            else {
-                req.session.errorMessage = INVALID_IMAGE_ERROR;
-                res.redirect('/contestants/register');
-            }
+            savedContestant = data.contestants.addContestant(newContestant);
+            res.redirect(savedContestant._id);
         })
     }
 };
-
-function getDate() {
-    var delimiter = '-';
-    var today = new Date();
-    var day = today.getDate();
-    var month = today.getMonth() + 1;
-
-    var year = today.getFullYear();
-    if (day < 10) {
-        day = '0' + day
-    }
-    if (month < 10) {
-        month = '0' + month
-    }
-    return day + delimiter + month + delimiter + year;
-}

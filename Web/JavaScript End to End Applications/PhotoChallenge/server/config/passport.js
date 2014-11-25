@@ -4,13 +4,11 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('mongoose').model('User');
 var data = require('../data');
 var encryption = require('../utilities/encryption');
-var FACEBOOK_APP_ID = '134955213354516';
-var FACEBOOK_APP_SECRET = '73fc620a0e7efc6e5e1f2d8a78ad347f';
 
 module.exports = function (serverPort) {
     passport.use(new FacebookStrategy({
-            clientID: FACEBOOK_APP_ID,
-            clientSecret: FACEBOOK_APP_SECRET,
+            clientID: process.env.FACEBOOK_APP_ID,
+            clientSecret: process.env.FACEBOOK_APP_SECRET,
             callbackURL: "http://localhost:" + serverPort + "/auth/facebook/callback"
         },
         function (accessToken, refreshToken, profile, done) {

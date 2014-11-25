@@ -4,7 +4,7 @@ block main-content
         H2.text-center.break-word #{fullName}
         div.participant-images.panel-body.image-container.text-center
             for picture in pictures
-                img.img-rounded.img-thumbnail(src="/files/" + picture.url)
+                img.img-rounded.img-thumbnail(src=picture.url)
             else
                 h5 Няма снимки!
             hr

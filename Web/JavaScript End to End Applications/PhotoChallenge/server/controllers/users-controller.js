@@ -1,6 +1,5 @@
 var encryption = require('../utilities/encryption');
 var User = require('mongoose').model('User');
-var fileUpload = require('../utilities/file-upload');
 var data = require('../data');
 
 var CONTROLLER_NAME = 'users';
@@ -72,7 +71,6 @@ module.exports = {
                                 res.redirect('/error');
                             }
 
-                            fileUpload.createUserFolder(user);
                             res.redirect('/');
                         });
                     });
