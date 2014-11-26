@@ -55,6 +55,12 @@ module.exports = {
             req.session.errorMessage = err;
             res.redirect('/not-found');
         }, function (contestants) {
+            for (var i = 0; i < contestants.data.length; i++) {
+                contestants.data[i].pictures.forEach(function (picture) {
+                    picture.url = cloudinary.url(picture.serviceId, {transformation: 'thumbnail', secure: true});
+                });
+            }
+
             res.render(CONTROLLER_NAME + '/all', contestants);
         }, queryObject, PAGE_SIZE);
     },
@@ -69,8 +75,9 @@ module.exports = {
             if (filename && filename.indexOf('.') && permittedFormats.indexOf(filename.split('.')[1]) > -1) {
                 var stream = cloudinary.uploader.upload_stream(function (result) {
                     savedContestant.pictures.push({
-                        url: result.secure_url,
-                        fileName: filename
+                        serviceId: result.public_id,
+                        fileName: filename,
+                        url: cloudinary.url(result.public_id, {transformation: 'detail', secure: true})
                     });
                     savedContestant.save();
                 });

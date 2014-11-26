@@ -18,6 +18,7 @@ var contestantSchema = mongoose.Schema({
     comment: String,
     pictures: [
         {
+            serviceId: String,
             url: String,
             fileName: String
         }

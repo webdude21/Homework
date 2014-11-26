@@ -39,7 +39,7 @@ module.exports = function (serverPort) {
         }
     ));
     passport.use(new LocalPassport(function (username, password, done) {
-        User.findOne({ username: username }).exec(function (err, user) {
+        User.findOne({username: username}).exec(function (err, user) {
             if (err) {
                 console.log('Error loading user: ' + err);
                 return;
