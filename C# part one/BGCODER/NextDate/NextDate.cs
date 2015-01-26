@@ -1,15 +1,18 @@
-﻿using System;
-
-class NextDate
+﻿namespace NextDate
 {
-    static void Main(string[] args)
-    {
-        int day = int.Parse(Console.ReadLine());
-        int month = int.Parse(Console.ReadLine());
-        int year = int.Parse(Console.ReadLine());
+    using System;
 
-        DateTime now = new DateTime(year, month, day);
-        DateTime tommorow = now.AddDays(1);
-        Console.WriteLine(tommorow.ToString("d'.'M'.'yyyy"));
+    internal class NextDate
+    {
+        private static void Main()
+        {
+            var day = int.Parse(Console.ReadLine());
+            var month = int.Parse(Console.ReadLine());
+            var year = int.Parse(Console.ReadLine());
+
+            var today = new DateTime(year, month, day);
+            var tommorow = today.AddDays(1);
+            Console.WriteLine(tommorow.ToString("d.M.yyyy"));
+        }
     }
 }

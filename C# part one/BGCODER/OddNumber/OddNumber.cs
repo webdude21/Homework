@@ -1,15 +1,19 @@
-﻿using System;
- 
-class Program
+﻿namespace OddNumber
 {
-    static void Main()
+    using System;
+
+    public class Program
     {
-        int n = int.Parse(Console.ReadLine());
-        long number = long.Parse(Console.ReadLine());
-        for (int i = 0; i < n - 1; i++)
+        public static void Main()
         {
-            number = number ^ long.Parse(Console.ReadLine());
+            var n = int.Parse(Console.ReadLine());
+            var number = long.Parse(Console.ReadLine());
+
+            for (var i = 0; i < n - 1; i++)
+            {
+                number ^= long.Parse(Console.ReadLine());
+            }
+            Console.WriteLine(number);
         }
-        Console.WriteLine(number);
     }
-}
+}   

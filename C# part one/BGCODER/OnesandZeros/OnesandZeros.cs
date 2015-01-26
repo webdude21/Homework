@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Text;
 
-class OnesandZeros
+internal class OnesandZeros
 {
-    static void Main()
+    private static void Main()
     {
         var input = int.Parse(Console.ReadLine());
         string[] zero = { "###", "#.#", "#.#", "#.#", "###" };
@@ -19,8 +18,12 @@ class OnesandZeros
             for (var i = 0; i < 16; i++)
             {
                 Console.Write(bits[i] == '1' ? one[j] : zero[j]);
-                if (i < 15) Console.Write(".");
+                if (i < 15)
+                {
+                    Console.Write(".");
+                }
             }
+
             Console.WriteLine();
         }
     }

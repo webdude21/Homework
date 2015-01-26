@@ -1,36 +1,28 @@
-﻿using System;
-
-class Program
+﻿namespace TribonacciTriangle
 {
-    static void Main(string[] args)
+    using System;
+    using System.Collections.Generic;
+
+    internal class Program
     {
-        long firstT = int.Parse(Console.ReadLine());
-        long secondT = int.Parse(Console.ReadLine());
-        long thirdT = int.Parse(Console.ReadLine());
-        long currentTribonacci;
-        int numberOfLines = int.Parse(Console.ReadLine());
-        string currentLine = "";
-
-        Console.WriteLine("{0}\r\n{1} {2}", firstT, secondT, thirdT);
-
-        for (int k = 3; k <= numberOfLines; k++)
+        private static void Main(string[] args)
         {
-            for (int q = 0; q < k; q++)
+            long firstT = int.Parse(Console.ReadLine());
+            long secondT = int.Parse(Console.ReadLine());
+            long thirdT = int.Parse(Console.ReadLine());
+            long tribonacciLines = int.Parse(Console.ReadLine());
+            var currentNumber = 0;
+            var numbers = new List<long> { firstT, secondT, thirdT };
+
+            for (var line = 2; line < tribonacciLines * tribonacciLines; line++)
             {
-                currentTribonacci = firstT + secondT + thirdT;
-
-                if (q == k)
-                {
-                    currentLine = currentLine + currentTribonacci;
-                }
-                currentLine = currentLine + currentTribonacci + " ";
-
-                firstT = secondT;
-                secondT = thirdT;
-                thirdT = currentTribonacci;
+               numbers.Add(numbers[line - 2] + numbers[line - 1] + numbers[line]);
             }
-            Console.WriteLine(currentLine);
-            currentLine = "";
+
+            for (var i = 0; i < tribonacciLines; i++)
+            {
+                Console.WriteLine(string.Join(" ", numbers.GetRange(currentNumber += i, i + 1)));
+            }
         }
     }
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4CF0AAF-D6BA-40CC-94B4-15658DEB0493}</ProjectGuid>
+    <ProjectGuid>{78C630A3-B68D-4EB5-B60F-F8CE6845A8C2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BinaryDigitsCount</RootNamespace>
-    <AssemblyName>BinaryDigitsCount</AssemblyName>
+    <RootNamespace>Eggcelent</RootNamespace>
+    <AssemblyName>Eggcelent</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryDigitsCount.cs" />
+    <Compile Include="Eggcelent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

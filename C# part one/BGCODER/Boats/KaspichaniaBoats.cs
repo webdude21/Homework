@@ -1,79 +1,92 @@
-﻿using System;
-
-class KaspichaniaBoats
+﻿namespace Boats
 {
-    static void Main(string[] args)
+    using System;
+
+    internal class KaspichaniaBoats
     {
-        int n = int.Parse(Console.ReadLine());
-        int width = (n * 2) + 1;
-        int height = 6 + ((n - 3) / 2) * 3;
-        int basewidth = ((n - 3) / 2);
+        private const char Dot = '.';
 
-        for (int i = 0; i < n; i++)
+        private const char Asterik = '*';
+
+        private static void Main(string[] args)
         {
-            for (int j = 0; j < width; j++)
-            {
-                if (j == n)
-                {
-                    Console.Write("*");
-                }
-                else if (n - i == j)
-                {
-                    Console.Write("*");
-                }
-                else if (n + i == j)
-                {
-                    Console.Write("*");
-                }
-                else
-                {
-                    Console.Write(".");
-                }
-            }
-            Console.WriteLine();
+            var n = int.Parse(Console.ReadLine());
+            var baseWidth = (n * 2) + 1;
+            var height = 6 + (((n - 3) / 2) * 3);
+            var sailsHeight = (height / 3) * 2;
+            var hullHeight = height / 3;
+
+            DrawSails(baseWidth, sailsHeight);
+            DrawHull(baseWidth, hullHeight);
         }
 
-        for (int i = 0; i < width; i++)
+        private static void DrawHull(int baseWidth, int hullHeight)
         {
-            Console.Write("*");
-        }
-        Console.WriteLine();
+            var offset = 0;
+            for (var row = 0; row < hullHeight; row++)
+            {
+                for (var col = 0; col < baseWidth; col++)
+                {
+                    if (row == hullHeight - 1 && col - 1 > offset && baseWidth - col - 2 > offset)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (col - 1 == offset)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (baseWidth - col - 2 == offset)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (baseWidth / 2 == col)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else
+                    {
+                        Console.Write(Dot);
+                    }
+                }
 
-        for (int i = 0; i < height - n - 2; i++)
-        {
-            for (int j = 0; j < width; j++)
-            {
-                if (j == n)
-                {
-                    Console.Write("*");
-                }
-                else if (i + 1 == j)
-                {
-                    Console.Write("*");
-                }
-                else if (width - i - 2 == j)
-                {
-                    Console.Write("*");
-                }
-                else
-                {
-                    Console.Write(".");
-                }
+                offset++;
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
 
-        for (int i = 0; i < width; i++)
+        private static void DrawSails(int baseWidth, int sailsHeight)
         {
-            if (i - 1 > basewidth && i + 2 < width - basewidth)
+            var offset = 0;
+
+            for (var row = 0; row < sailsHeight; row++)
             {
-                Console.Write("*");
-            }
-            else
-            {
-                Console.Write(".");
+                for (var col = 0; col < baseWidth; col++)
+                {
+                    if (row == sailsHeight - 1)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (baseWidth / 2 == col + offset)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (baseWidth / 2 == col - offset)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else if (baseWidth / 2 == col)
+                    {
+                        Console.Write(Asterik);
+                    }
+                    else
+                    {
+                        Console.Write(Dot);
+                    }
+                }
+
+                offset++;
+                Console.WriteLine();
             }
         }
-        Console.WriteLine();
     }
 }

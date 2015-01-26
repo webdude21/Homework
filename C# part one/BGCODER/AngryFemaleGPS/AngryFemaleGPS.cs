@@ -1,30 +1,40 @@
-﻿using System;
-class AngryFemaleGPS
+﻿namespace AngryFemaleGPS
 {
-    static void Main()
-    {
-        var input = Console.ReadLine();
-        long oddSum = 0;
-        long evenSum = 0;
+    using System;
+    using System.Linq;
 
-        foreach (var chr in input)
+    internal class AngryFemaleGps
+    {
+        private static void Main()
         {
-            if (char.IsDigit(chr))
+            var input = Console.ReadLine();
+            long oddSum = 0;
+            long evenSum = 0;
+
+            foreach (var digit in input.Where(char.IsDigit))
             {
-                if (chr % 2 == 0)
+                if (digit % 2 == 0)
                 {
-                    evenSum += (chr - '0');
+                    evenSum += digit - '0';
                 }
                 else
                 {
-                    oddSum += (chr - '0');
+                    oddSum += digit - '0';
                 }
             }
-        }
 
-        if (oddSum > evenSum) Console.WriteLine("left {0}", oddSum);
-        else if (oddSum < evenSum) Console.WriteLine("right {0}", evenSum);
-        else Console.WriteLine("straight {0}", evenSum);
+            if (oddSum > evenSum)
+            {
+                Console.WriteLine("left {0}", oddSum);
+            }
+            else if (oddSum < evenSum)
+            {
+                Console.WriteLine("right {0}", evenSum);
+            }
+            else
+            {
+                Console.WriteLine("straight {0}", evenSum);
+            }
+        }
     }
 }
-
