@@ -1,348 +1,117 @@
-﻿using System;
-using System.Text;
-
-internal class GameOfPage
+﻿namespace PageCookies
 {
-    private static void Main(string[] args)
+    using System;
+
+    internal class GameOfPage
     {
-        // Init
-        const string WHAT_CMD = "what is";
-        const string PAGE = "page";
-        const string COOKIE = "cookie";
-        const string PAY = "paypal";
-        const string EMPTY = "smile";
-        const string BROKEN = "broken cookie";
-        const string CRUMB = "cookie crumb";
-        const int TRAY_WIDTH = 16;
-        const decimal COOKIE_COST = 1.79M;
+        private static int boughtCookies;
 
-        StringBuilder result = new StringBuilder();
-
-        int mask;
-        int soldCookiesCount = 0;
-        string currentCommand = string.Empty;
-
-        int currentX;
-        int currentY;
-
-        int currentRow = -1;
-        int upperRow = -1;
-        int lowerRow = -1;
-
-        bool isCookie = false;
-
-        // Input
-        int n0 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n1 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n2 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n3 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n4 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n5 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n6 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n7 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n8 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n9 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n10 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n11 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n12 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n13 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n14 = Convert.ToInt32(Console.ReadLine(), 2);
-        int n15 = Convert.ToInt32(Console.ReadLine(), 2);
-
-        // Reading commands
-        while (true)
+        private static void Main()
         {
-            currentCommand = Console.ReadLine();
+            const int TraySize = 16;
+            const int Offset = 2;
+            var cookieTray = new bool[TraySize + Offset, TraySize + Offset];
+            FillCookieTray(TraySize, cookieTray);
 
-            if (currentCommand == PAY)
+            var currentCommand = Console.ReadLine();
+
+            while (currentCommand != "paypal")
             {
-                decimal check = COOKIE_COST * soldCookiesCount;
-                result.AppendLine(check.ToString());
+                int row;
+                int col;
+                if (currentCommand == "what is")
+                {
+                    Console.WriteLine(CheckWhatAtLocation(cookieTray, out row, out col));
+                }
+                else if (currentCommand == "buy")
+                {
+                    var result = Buy(CheckWhatAtLocation(cookieTray, out row, out col), col, row, cookieTray);
+                    if (!string.IsNullOrWhiteSpace(result))
+                    {
+                        Console.WriteLine(result);
+                    }
+                }
 
-                break;
+                currentCommand = Console.ReadLine();
             }
-            else
+
+            Console.WriteLine("{0:F2}", boughtCookies * 1.79);
+        }
+
+        private static string Buy(string checkWhatAtLocation, int col, int row, bool[,] cookieTray)
+        {
+            switch (checkWhatAtLocation)
             {
-                // Read the requested position
-                currentY = int.Parse(Console.ReadLine());
-                currentX = TRAY_WIDTH - (int.Parse(Console.ReadLine()) + 1); // convert to bit position
-                mask = 1 << currentX;
+                case "broken cookie":
+                    return "page";
+                case "cookie crumb":
+                    return "page";
+                case "cookie":
+                    BuyCookie(row, col, cookieTray);
+                    return null;
+                default:
+                    return "smile";
+            }
+        }
 
-                switch (currentY) // assigning current row as well as upper and lower row
+        private static void BuyCookie(int row, int col, bool[,] cookieTray)
+        {
+            boughtCookies++;
+            cookieTray[row - 1, col - 1] = false;
+            cookieTray[row - 1, col] = false;
+            cookieTray[row - 1, col + 1] = false;
+            cookieTray[row, col - 1] = false;
+            cookieTray[row, col + 1] = false;
+            cookieTray[row, col] = false;
+            cookieTray[row + 1, col - 1] = false;
+            cookieTray[row + 1, col + 1] = false;
+        }
+
+        private static string CheckWhatAtLocation(bool[,] cookieTray, out int row, out int col)
+        {
+            row = int.Parse(Console.ReadLine()) + 1;
+            col = int.Parse(Console.ReadLine()) + 1;
+
+            var upLeft = cookieTray[row - 1, col - 1];
+            var up = cookieTray[row - 1, col];
+            var upRight = cookieTray[row - 1, col + 1];
+            var left = cookieTray[row, col - 1];
+            var right = cookieTray[row, col + 1];
+            var center = cookieTray[row, col];
+            var downLeft = cookieTray[row + 1, col - 1];
+            var downRight = cookieTray[row + 1, col + 1];
+
+            if (upLeft && up && upRight && left && right && center && downLeft && downRight)
+            {
+                return "cookie";
+            }
+
+            if (!upLeft && !up && !upRight && !left && !right && center && !downLeft && !downRight)
+            {
+                return "cookie crumb";
+            }
+
+            if (!upLeft && !up && !upRight && !left && !right && !center && !downLeft && !downRight)
+            {
+                return "smile";
+            }
+
+            return "broken cookie";
+        }
+
+        private static void FillCookieTray(int traySize, bool[,] cookieTray)
+        {
+            for (var row = 1; row < traySize + 1; row++)
+            {
+                var lineOfInput = Console.ReadLine();
+                for (var col = 1; col < traySize + 1; col++)
                 {
-                    case 0:
-                        currentRow = n0;
-                        upperRow = 0;
-                        lowerRow = n1;
-                        break;
-
-                    case 1:
-                        currentRow = n1;
-                        upperRow = n0;
-                        lowerRow = n2;
-                        break;
-
-                    case 2:
-                        currentRow = n2;
-                        upperRow = n1;
-                        lowerRow = n3;
-                        break;
-
-                    case 3:
-                        currentRow = n3;
-                        upperRow = n2;
-                        lowerRow = n4;
-                        break;
-
-                    case 4:
-                        currentRow = n4;
-                        upperRow = n3;
-                        lowerRow = n5;
-                        break;
-
-                    case 5:
-                        currentRow = n5;
-                        upperRow = n4;
-                        lowerRow = n6;
-                        break;
-
-                    case 6:
-                        currentRow = n6;
-                        upperRow = n5;
-                        lowerRow = n7;
-                        break;
-
-                    case 7:
-                        currentRow = n7;
-                        upperRow = n6;
-                        lowerRow = n8;
-                        break;
-
-                    case 8:
-                        currentRow = n8;
-                        upperRow = n7;
-                        lowerRow = n9;
-                        break;
-
-                    case 9:
-                        currentRow = n9;
-                        upperRow = n8;
-                        lowerRow = n10;
-                        break;
-
-                    case 10:
-                        currentRow = n10;
-                        upperRow = n9;
-                        lowerRow = n11;
-                        break;
-
-                    case 11:
-                        currentRow = n11;
-                        upperRow = n10;
-                        lowerRow = n12;
-                        break;
-
-                    case 12:
-                        currentRow = n12;
-                        upperRow = n11;
-                        lowerRow = n13;
-                        break;
-
-                    case 13:
-                        currentRow = n13;
-                        upperRow = n12;
-                        lowerRow = n14;
-                        break;
-
-                    case 14:
-                        currentRow = n14;
-                        upperRow = n13;
-                        lowerRow = n15;
-                        break;
-
-                    case 15:
-                        currentRow = n15;
-                        upperRow = n14;
-                        lowerRow = 0;
-                        break;
-
-                    default:
-                        break;
-                }
-
-                isCookie = ((currentRow & mask) > 0 &&
-                    (currentRow & (mask << 1)) > 0 &&
-                    (currentRow & (mask >> 1)) > 0 &&
-                    (lowerRow & mask) > 0 &&
-                    (lowerRow & (mask << 1)) > 0 &&
-                    (lowerRow & (mask >> 1)) > 0 &&
-                    (upperRow & mask) > 0 &&
-                    (upperRow & (mask << 1)) > 0 &&
-                    (upperRow & (mask >> 1)) > 0);
-
-                if (currentCommand == WHAT_CMD) // displays the current position
-                {
-                    if ((currentRow & mask) > 0)
+                    if (lineOfInput[col - 1] == '1')
                     {
-                        if (isCookie)
-                        {
-                            result.AppendLine(COOKIE);
-                        }
-                        else
-                        {
-                            if ((currentRow & (mask << 1)) == 0 &&
-                            (currentRow & (mask >> 1)) == 0 &&
-                            (upperRow & mask) == 0 &&
-                            (upperRow & (mask << 1)) == 0 &&
-                            (upperRow & (mask >> 1)) == 0 &&
-                            (lowerRow & mask) == 0 &&
-                            (lowerRow & (mask << 1)) == 0 &&
-                            (lowerRow & (mask >> 1)) == 0)
-                            {
-                                result.AppendLine(CRUMB);
-                            }
-                            else
-                            {
-                                result.AppendLine(BROKEN);
-                            }
-                        }
+                        cookieTray[row, col] = true;
                     }
-                    else
-                    {
-                        result.AppendLine(EMPTY);
-                    }
-                }
-                else // try to buy the cookie
-                {
-                    if (!isCookie)
-                    {
-                        result.AppendLine(PAGE);
-                        continue;
-                    }
-
-                    // Remove the cookie from the tray
-                    currentRow ^= mask;
-                    upperRow ^= mask;
-                    lowerRow ^= mask;
-
-                    mask = mask << 1;
-
-                    currentRow ^= mask;
-                    upperRow ^= mask;
-                    lowerRow ^= mask;
-
-                    mask = mask >> 2;
-
-                    currentRow ^= mask;
-                    upperRow ^= mask;
-                    lowerRow ^= mask;
-
-                    soldCookiesCount++;
-
-                    // Update the real rows with the temp values
-                    switch (currentY)
-                    {
-                        case 0:
-                            n0 = currentRow;
-                            n1 = lowerRow;
-                            break;
-
-                        case 1:
-                            n1 = currentRow;
-                            n0 = upperRow;
-                            n2 = lowerRow;
-                            break;
-
-                        case 2:
-                            n2 = currentRow;
-                            n1 = upperRow;
-                            n3 = lowerRow;
-                            break;
-
-                        case 3:
-                            n3 = currentRow;
-                            n2 = upperRow;
-                            n4 = lowerRow;
-                            break;
-
-                        case 4:
-                            n4 = currentRow;
-                            n3 = upperRow;
-                            n5 = lowerRow;
-                            break;
-
-                        case 5:
-                            n5 = currentRow;
-                            n4 = upperRow;
-                            n6 = lowerRow;
-                            break;
-
-                        case 6:
-                            n6 = currentRow;
-                            n5 = upperRow;
-                            n7 = lowerRow;
-                            break;
-
-                        case 7:
-                            n7 = currentRow;
-                            n6 = upperRow;
-                            n8 = lowerRow;
-                            break;
-
-                        case 8:
-                            n8 = currentRow;
-                            n7 = upperRow;
-                            n9 = lowerRow;
-                            break;
-
-                        case 9:
-                            n9 = currentRow;
-                            n8 = upperRow;
-                            n10 = lowerRow;
-                            break;
-
-                        case 10:
-                            n10 = currentRow;
-                            n9 = upperRow;
-                            n11 = lowerRow;
-                            break;
-
-                        case 11:
-                            n11 = currentRow;
-                            n10 = upperRow;
-                            n12 = lowerRow;
-                            break;
-
-                        case 12:
-                            n12 = currentRow;
-                            n11 = upperRow;
-                            n13 = lowerRow;
-                            break;
-
-                        case 13:
-                            n13 = currentRow;
-                            n12 = upperRow;
-                            n14 = lowerRow;
-                            break;
-
-                        case 14:
-                            n14 = currentRow;
-                            n13 = upperRow;
-                            n15 = lowerRow;
-                            break;
-
-                        case 15:
-                            n15 = currentRow;
-                            n14 = upperRow;
-                            break;
-
-                        default:
-                            break;
-                    }
-                    //PrintLines(n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15);
                 }
             }
         }
-        Console.Write(result);
     }
 }
