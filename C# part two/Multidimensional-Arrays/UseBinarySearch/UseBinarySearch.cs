@@ -1,76 +1,81 @@
 ﻿// Write a program, that reads from the console an array of N integers and an integer K,
 // sorts the array and using the method Array.BinSearch() finds the largest number in the array which is ≤ K. 
-
-
-using System;
-
-class UseBinarySearch
+namespace UseBinarySearch
 {
-    static void Main()
+    using System;
+    using System.Collections.Generic;
+
+    internal class UseBinarySearch
     {
-       GetUserInput();
-       // Test();
-    }
-
-    static void GetUserInput()
-    {
-        Console.Write("Please input an integer for N: ");
-        int n = int.Parse(Console.ReadLine());
-        Console.Write("Please input an integer for K: ");
-        int k = int.Parse(Console.ReadLine());
-        int kFoundAt = -1;
-
-        int[] theArray = FillArrayWithInput(n);
-
-        Array.Sort(theArray);
-
-        kFoundAt = (Array.BinarySearch(theArray, k));
-
-        PrintResult(kFoundAt, theArray);
-    }
-
-    private static void PrintResult(int kFoundAt, int[] theArray)
-    {
-        if (~kFoundAt >= theArray.Length && kFoundAt < 0)
+        private static void Main()
         {
-            Console.WriteLine("There's no number that fits the criteria.");
+            GetUserInput();
+
+            Test();
         }
-        else if (kFoundAt < 0)
-        {
-            Console.WriteLine("The largest number that is next number smaller than K is {1} and it's at position {0}! ", ~kFoundAt - 1, theArray[~kFoundAt - 1]);
-        }
-        else
-        {
-            Console.WriteLine("K is at position {0}.", kFoundAt);
-        }
-    }
 
-    private static int[] FillArrayWithInput(int n)
-    {
-        int[] theArray = new int[n];
-
-        for (int i = 0; i < n; i++)
+        private static void GetUserInput()
         {
-            Console.Write("Please input an integer for element <{0}> of the array: ", i);
-            bool resultInput = int.TryParse(Console.ReadLine(), out theArray[i]);
-            if (!resultInput)
+            Console.Write("Please input an integer for N: ");
+            var n = int.Parse(Console.ReadLine());
+            Console.Write("Please input an integer for K: ");
+            var k = int.Parse(Console.ReadLine());
+
+            var theArray = FillArrayWithInput(n);
+
+            Array.Sort(theArray);
+
+            var foundAt = Array.BinarySearch(theArray, k);
+
+            PrintResult(foundAt, theArray);
+        }
+
+        private static void PrintResult(int foundAt, IList<int> list)
+        {
+            if (~foundAt >= list.Count && foundAt < 0)
             {
-                i--;
+                Console.WriteLine("There's no number that fits the criteria.");
+            }
+            else if (foundAt < 0)
+            {
+                Console.WriteLine(
+                    "The largest number that is next number smaller than K is {1} and it's at position {0}! ",
+                    ~foundAt - 1,
+                    list[~foundAt - 1]);
+            }
+            else
+            {
+                Console.WriteLine("K is at position {0}.", foundAt);
             }
         }
-        return theArray;
-    }
 
-    static void Test()
-    {
-        int k = 5;
-        int kFoundAt = -1;
-        int[] testArray = { 0, 1, 3, 6, 3, 1, 6, 8, -3, 26 };
+        private static int[] FillArrayWithInput(int n)
+        {
+            var theArray = new int[n];
 
-        Array.Sort(testArray);
+            for (var i = 0; i < n; i++)
+            {
+                Console.Write("Please input an integer for element <{0}> of the array: ", i);
+                var resultInput = int.TryParse(Console.ReadLine(), out theArray[i]);
+                if (!resultInput)
+                {
+                    i--;
+                }
+            }
 
-            kFoundAt = (Array.BinarySearch(testArray, k));
+            return theArray;
+        }
 
-            PrintResult(kFoundAt, testArray);
+        private static void Test()
+        {
+            var k = 5;
+            int[] testArray = { 0, 1, 3, 6, 3, 1, 6, 8, -3, 26 };
+
+            Array.Sort(testArray);
+
+            var foundAt = Array.BinarySearch(testArray, k);
+
+            PrintResult(foundAt, testArray);
+        }
     }
 }

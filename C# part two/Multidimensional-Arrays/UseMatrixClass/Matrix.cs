@@ -1,96 +1,105 @@
-﻿using System;
-using System.Text;
-
-class Matrix
+﻿namespace UseMatrixClass
 {
-    private int[,] matrix;
+    using System;
+    using System.Text;
 
-    public Matrix(int rows, int cols)
+    internal class Matrix
     {
-        this.matrix = new int[rows, cols];
-    }
-    public int Rows
-    {
-        get
-        {
-            return this.matrix.GetLength(0);
-        }
-    }
+        private readonly int[,] matrix;
 
-    public int Columns
-    {
-        get
+        public Matrix(int rows, int cols)
         {
-            return this.matrix.GetLength(1);
-        }
-    }
-
-    public int this[int row, int col]
-    {
-        get
-        {
-            return this.matrix[row, col];
+            this.matrix = new int[rows, cols];
         }
 
-        set
+        public int Rows
         {
-            this.matrix[row, col] = value;
-        }
-    }
-
-    public static Matrix operator +(Matrix first, Matrix second)
-    {
-        Matrix result = new Matrix(first.Rows, first.Rows);
-
-        for (int row = 0; row < first.Rows; row++)
-        {
-            for (int col = 0; col < first.Columns; col++)
+            get
             {
-                result[row, col] = first[row, col] + second[row, col];
+                return this.matrix.GetLength(0);
             }
         }
-        return result;
-    }
 
-    public static Matrix operator *(Matrix first, Matrix second)
-    {
-        Matrix result = new Matrix(first.Rows, first.Rows);
-
-        for (int row = 0; row < first.Rows; row++)
+        public int Columns
         {
-            for (int col = 0; col < first.Columns; col++)
+            get
             {
-                result[row, col] = first[row, col] * second[row, col];
+                return this.matrix.GetLength(1);
             }
         }
-        return result;
-    }
 
-    public static Matrix operator -(Matrix first, Matrix second)
-    {
-        Matrix result = new Matrix(first.Rows, first.Rows);
-
-        for (int row = 0; row < first.Rows; row++)
+        public int this[int row, int col]
         {
-            for (int col = 0; col < first.Columns; col++)
+            get
             {
-                result[row, col] = first[row, col] - second[row, col];
+                return this.matrix[row, col];
+            }
+
+            set
+            {
+                this.matrix[row, col] = value;
             }
         }
-        return result;
-    }
 
-    public override string ToString()
-    {
-        StringBuilder result = new StringBuilder();
-        for (int row = 0; row < this.Rows; row++)
+        public static Matrix operator +(Matrix first, Matrix second)
         {
-            for (int col = 0; col < this.Columns; col++)
+            var result = new Matrix(first.Rows, first.Rows);
+
+            for (var row = 0; row < first.Rows; row++)
             {
-                result.Append(matrix[row,col] + " ");
+                for (var col = 0; col < first.Columns; col++)
+                {
+                    result[row, col] = first[row, col] + second[row, col];
+                }
             }
-            result.Append(Environment.NewLine);
+
+            return result;
         }
-        return result.ToString();
+
+        public static Matrix operator *(Matrix first, Matrix second)
+        {
+            var result = new Matrix(first.Rows, first.Rows);
+
+            for (var row = 0; row < first.Rows; row++)
+            {
+                for (var col = 0; col < first.Columns; col++)
+                {
+                    result[row, col] = first[row, col] * second[row, col];
+                }
+            }
+
+            return result;
+        }
+
+        public static Matrix operator -(Matrix first, Matrix second)
+        {
+            var result = new Matrix(first.Rows, first.Rows);
+
+            for (var row = 0; row < first.Rows; row++)
+            {
+                for (var col = 0; col < first.Columns; col++)
+                {
+                    result[row, col] = first[row, col] - second[row, col];
+                }
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            for (var row = 0; row < this.Rows; row++)
+            {
+                for (var col = 0; col < this.Columns; col++)
+                {
+                    result.Append(this.matrix[row, col] + " ");
+                }
+
+                result.Append(Environment.NewLine);
+            }
+
+            return result.ToString();
+        }
     }
 }
