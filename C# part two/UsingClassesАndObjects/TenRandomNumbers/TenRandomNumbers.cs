@@ -2,13 +2,13 @@
 
 using System;
 
-class TenRandomNumbers
+internal class TenRandomNumbers
 {
-    static void Main()
+    private static void Main()
     {
-        Random RandomGenerator = new Random();
+        var RandomGenerator = new Random();
 
-        for (int i = 1; i < 11; i++)
+        for (var i = 1; i < 11; i++)
         {
             Console.WriteLine("This is random number {0}: {1}", i, RandomGenerator.Next(100, 200));
         }

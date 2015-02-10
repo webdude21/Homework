@@ -1,20 +1,22 @@
 ﻿// Write a program that reads a year from the console and checks whether it is a leap. Use DateTime.
-
-using System;
-
-class CheckForLeapYear
+namespace CheckForLeapYear
 {
-    static void Main()
-    {
-        Console.Write("Please input year: ");
+    using System;
 
-        if (DateTime.IsLeapYear(int.Parse(Console.ReadLine())))
+    internal class CheckForLeapYear
+    {
+        private static void Main()
         {
-            Console.WriteLine("It's a leap year!");
-        }
-        else
-        {
-            Console.WriteLine("It's not a leap year!");
+            Console.Write("Please input year: ");
+
+            if (DateTime.IsLeapYear(int.Parse(Console.ReadLine())))
+            {
+                Console.WriteLine("It's a leap year!");
+            }
+            else
+            {
+                Console.WriteLine("It's not a leap year!");
+            }
         }
     }
 }

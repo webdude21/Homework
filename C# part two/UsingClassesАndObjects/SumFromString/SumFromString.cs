@@ -3,31 +3,31 @@
 // string = "43 68 9 23 318" >> result = 461
 
 using System;
-using System.Text;
 
-class SumFromString
+internal class SumFromString
 {
-    static void Main()
+    private static void Main()
     {
         GetUserInput();
-       // Test String 
-       // Console.WriteLine("The sum is: {0}", CalculateSumFromString("43 68 9 23 318"));
+
+        // Test String 
+        // Console.WriteLine("The sum is: {0}", CalculateSumFromString("43 68 9 23 318"));
     }
 
-    static void GetUserInput()
+    private static void GetUserInput()
     {
         Console.Write("Please input a string of integers with space between them: ");
         Console.WriteLine("The sum is: {0}", CalculateSumFromString(Console.ReadLine()));
     }
 
-    static int CalculateSumFromString(string input)
+    private static int CalculateSumFromString(string input)
     {
         // create an array of strings that is broken down from the initial string using
         // the the space as delimiter
-        string[] stringArray = input.Split(' ');
-        int sum = 0;
+        var stringArray = input.Split(' ');
+        var sum = 0;
 
-        foreach (string number in stringArray)
+        foreach (var number in stringArray)
         {
             sum = sum + int.Parse(number);
         }

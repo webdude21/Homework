@@ -2,9 +2,9 @@
 
 using System;
 
-class DayOfWeek
+internal class DayOfWeek
 {
-    static void Main()
+    private static void Main()
     {
         Console.WriteLine("Today is {0}", DateTime.Today.DayOfWeek);
     }
