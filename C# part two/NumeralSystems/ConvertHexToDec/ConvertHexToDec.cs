@@ -1,46 +1,50 @@
 ﻿// Write a program to convert hexadecimal numbers to their decimal representation.
-
-using System;
-
-class Program
+namespace ConvertHexToDec
 {
-    static void Main()
-    {
-        EasyWayToDec();
-        HarderWayToDec();
-    }
+    using System;
+    using System.Globalization;
 
-    static void EasyWayToDec()
+    internal class Program
     {
-        Console.Write("Enter number a hexadecimal number: ");
-        int num = int.Parse(Console.ReadLine(), System.Globalization.NumberStyles.HexNumber);
-        Console.Write("This is the result (the hard way): {0} ", num);
-    }
-
-    static void HarderWayToDec()
-    {
-        Console.Write("Please input a Hexadecimal number: ");
-        string binary = Console.ReadLine().ToUpper();
-        char[] chrArray = binary.ToCharArray();
-        int result = 0;
-        int position = 0;
-        int currentNumber = 0;
-
-        for (int i = chrArray.Length - 1; i >= 0; i--)
+        private static void Main()
         {
-            if (chrArray[i] >= 'A')
+            EasyWayToDec();
+            HarderWayToDec();
+        }
+
+        private static void EasyWayToDec()
+        {
+            Console.Write("Enter number a hexadecimal number: ");
+            var num = int.Parse(Console.ReadLine(), NumberStyles.HexNumber);
+            Console.Write("This is the result (the hard way): {0} ", num);
+        }
+
+        private static void HarderWayToDec()
+        {
+            Console.Write("Please input a Hexadecimal number: ");
+            var binary = Console.ReadLine().ToUpper();
+            var chrArray = binary.ToCharArray();
+            var result = 0;
+            var position = 0;
+            var currentNumber = 0;
+
+            for (var i = chrArray.Length - 1; i >= 0; i--)
             {
-                currentNumber = chrArray[i] - 'A' + 10;
-            }
-            else
-            {
-                currentNumber = chrArray[i] - '0';
+                if (chrArray[i] >= 'A')
+                {
+                    currentNumber = chrArray[i] - 'A' + 10;
+                }
+                else
+                {
+                    currentNumber = chrArray[i] - '0';
+                }
+
+                result = result + (currentNumber * (int)Math.Pow(16, position));
+                position++;
             }
 
-            result = result + (currentNumber * (int)Math.Pow(16, position));
-            position++;
+            Console.Write("This is the result (the hard way): {0}", result);
+            Console.WriteLine();
         }
-        Console.Write("This is the result (the hard way): {0}", result);
-        Console.WriteLine();
     }
 }

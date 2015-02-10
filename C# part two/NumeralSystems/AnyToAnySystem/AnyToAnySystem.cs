@@ -1,84 +1,90 @@
-﻿using System;
-using System.Text;
-
-class AnyToAnySystem
+﻿namespace AnyToAnySystem
 {
-    static void Main()
+    using System;
+    using System.Text;
+
+    internal class AnyToAnySystem
     {
-        Console.Write("Please input S (the base of the input numeral system): ");
-        int s = int.Parse(Console.ReadLine());
-        Console.Write("Please input the number itself: ");
-        string input = Console.ReadLine().ToUpper();
-        Console.Write("Please input D (the base of the output numeral system): ");
-        int d = int.Parse(Console.ReadLine());
-
-        ConvertSToD(input, s, d);
-    }
-
-    static void ConvertSToD(string input, int inputBase, int outputBase)
-    {
-        char[] chrArray = input.ToUpper().ToCharArray();
-        StringBuilder output = new StringBuilder();
-        int currentInputDigit = 0;
-        int position = 0;
-        int numberDec = 0; // this is the number converted to decimal
-
-        for (int i = chrArray.Length - 1; i >= 0; i--)
+        private static void Main()
         {
-            currentInputDigit = GetDigitFromChar(chrArray[i], currentInputDigit);
-            numberDec = numberDec + (currentInputDigit * (int)Math.Pow(inputBase, position));
-            position++;
+            Console.Write("Please input S (the base of the input numeral system): ");
+            var s = int.Parse(Console.ReadLine());
+            Console.Write("Please input the number itself: ");
+            var input = Console.ReadLine().ToUpper();
+            Console.Write("Please input D (the base of the output numeral system): ");
+            var d = int.Parse(Console.ReadLine());
+
+            ConvertSToD(input, s, d);
         }
 
-        while (numberDec != 0)
+        private static void ConvertSToD(string input, int inputBase, int outputBase)
         {
-            output.Append(OutputCurrentDigit(outputBase, ref numberDec));
-        }
-   
-        PrintResult(output);
-    }
+            var chrArray = input.ToUpper().ToCharArray();
+            var output = new StringBuilder();
+            var currentInputDigit = 0;
+            var position = 0;
+            var numberDec = 0; // this is the number converted to decimal
 
-    static char OutputCurrentDigit(int outputBase, ref int numberDec)
-    { 
-        // This method converts the decimal number to the output base "digit" 
-        // "Digit" means char (in numeral systems larger then the Decimal one)
-        char outputChar;
+            for (var i = chrArray.Length - 1; i >= 0; i--)
+            {
+                currentInputDigit = GetDigitFromChar(chrArray[i], currentInputDigit);
+                numberDec = numberDec + (currentInputDigit * (int)Math.Pow(inputBase, position));
+                position++;
+            }
 
-        if (numberDec % outputBase > 9)
-        {
-            outputChar = (char)((numberDec % outputBase) + 'A' - 10);
-            numberDec = numberDec / outputBase;
-        }
-        else
-        {
-            outputChar = (char)((numberDec % outputBase) + '0');
-            numberDec = numberDec / outputBase;
-        }
-        return outputChar;
-    }
+            while (numberDec != 0)
+            {
+                output.Append(OutputCurrentDigit(outputBase, ref numberDec));
+            }
 
-    static int GetDigitFromChar(char currentChar, int currentDigit)
-    {
-        // This converts a given char to a number
-        if (currentChar >= 'A')
-        {
-            currentDigit = currentChar - 'A' + 10;
+            PrintResult(output);
         }
-        else
-        {
-            currentDigit = currentChar - '0';
-        }
-        return currentDigit;
-    }
 
-    static void PrintResult(StringBuilder output)
-    {
-        // This is only to print the final result 
-        Console.Write("This is the result: ");
-        for (int i = output.Length - 1; i >= 0; i--)
+        private static char OutputCurrentDigit(int outputBase, ref int numberDec)
         {
-            Console.Write(output[i]);
+            // This method converts the decimal number to the output base "digit" 
+            // "Digit" means char (in numeral systems larger then the Decimal one)
+            char outputChar;
+
+            if (numberDec % outputBase > 9)
+            {
+                outputChar = (char)((numberDec % outputBase) + 'A' - 10);
+                numberDec = numberDec / outputBase;
+            }
+            else
+            {
+                outputChar = (char)((numberDec % outputBase) + '0');
+                numberDec = numberDec / outputBase;
+            }
+
+            return outputChar;
         }
-        Console.WriteLine();
+
+        private static int GetDigitFromChar(char currentChar, int currentDigit)
+        {
+            // This converts a given char to a number
+            if (currentChar >= 'A')
+            {
+                currentDigit = currentChar - 'A' + 10;
+            }
+            else
+            {
+                currentDigit = currentChar - '0';
+            }
+
+            return currentDigit;
+        }
+
+        private static void PrintResult(StringBuilder output)
+        {
+            // This is only to print the final result 
+            Console.Write("This is the result: ");
+            for (var i = output.Length - 1; i >= 0; i--)
+            {
+                Console.Write(output[i]);
+            }
+
+            Console.WriteLine();
+        }
     }
 }

@@ -1,37 +1,39 @@
 ﻿// Write a program to convert binary numbers to their decimal representation.
-
-using System;
-
-class BinaryToDecimal
+namespace BinaryToDecimal
 {
-    static void Main()
-    {
-        Console.Write("Please input a binary number: ");
-        string binary = Console.ReadLine();
-        char[] chrArray = binary.ToCharArray();
-        int result = 0;
-        int position = 0;
-        int currentNumber = 0;
+    using System;
 
-        for (int i = chrArray.Length - 1; i >= 0; i--)
+    internal class BinaryToDecimal
+    {
+        private static void Main()
         {
-            switch (chrArray[i])
+            Console.Write("Please input a binary number: ");
+            var binary = Console.ReadLine();
+            var chrArray = binary.ToCharArray();
+            var result = 0;
+            var position = 0;
+            var currentNumber = 0;
+
+            for (var i = chrArray.Length - 1; i >= 0; i--)
             {
-                case '0':
-                    currentNumber = 0;
-                    break;
-                case '1':
-                    currentNumber = 1;
-                    break;
-                default:
-                    Console.WriteLine("The input wasn't valid.");
-                    break;
+                switch (chrArray[i])
+                {
+                    case '0':
+                        currentNumber = 0;
+                        break;
+                    case '1':
+                        currentNumber = 1;
+                        break;
+                    default:
+                        Console.WriteLine("The input wasn't valid.");
+                        break;
+                }
+
+                result = result + (currentNumber << position);
+                position++;
             }
 
-            result = result + (currentNumber << position);
-            position++;
+            Console.WriteLine(result);
         }
-        Console.WriteLine(result);
     }
-
 }
