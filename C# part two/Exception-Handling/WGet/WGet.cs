@@ -1,25 +1,26 @@
-﻿using System;
-using System.Net;
-
-class Program
+﻿namespace WGet
 {
-    static void Main()
+    using System;
+    using System.Net;
+
+    internal class Program
     {
-        using (WebClient wc = new WebClient())
+        private static void Main()
         {
-            try
+            using (var wc = new WebClient())
             {
-                wc.DownloadFile("http://www.devbg.org/img/Logo-BASD.jpg", "../../logo.jpg");
-            }
-
-            catch (WebException)
-            {
-                Console.WriteLine("The url is invalid.");
-            }
-
-            catch (System.Exception se)
-            {
-                Console.WriteLine(se.Message);
+                try
+                {
+                    wc.DownloadFile("http://www.devbg.org/img/Logo-BASD.jpg", "../../logo.jpg");
+                }
+                catch (WebException)
+                {
+                    Console.WriteLine("The url is invalid.");
+                }
+                catch (Exception se)
+                {
+                    Console.WriteLine(se.Message);
+                }
             }
         }
     }

@@ -1,11 +1,13 @@
 ﻿// Write a program that prints to the console which day of the week is today. Use System.DateTime.
-
-using System;
-
-internal class DayOfWeek
+namespace DayOfWeek
 {
-    private static void Main()
+    using System;
+
+    internal class DayOfWeek
     {
-        Console.WriteLine("Today is {0}", DateTime.Today.DayOfWeek);
+        private static void Main()
+        {
+            Console.WriteLine("Today is {0}", DateTime.Today.DayOfWeek);
+        }
     }
 }

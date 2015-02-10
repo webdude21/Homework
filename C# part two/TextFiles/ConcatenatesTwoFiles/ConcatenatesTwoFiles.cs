@@ -1,27 +1,28 @@
 ﻿// Write a program that concatenates two text files into another text file.
-
-using System;
-using System.IO;
-using System.Text;
-
-class ConcatenatesTwoFiles
+namespace ConcatenatesTwoFiles
 {
-    static void Main()
-    {
-        StreamReader fileOne = new StreamReader(@"..\..\fileOne.txt");
-        StreamReader fileTwo = new StreamReader(@"..\..\fileTwo.txt");
-        StreamWriter outputFile = new StreamWriter(@"..\..\output.txt");
+    using System;
+    using System.IO;
 
-        using (fileOne)
+    internal class ConcatenatesTwoFiles
+    {
+        private static void Main()
         {
-            using (fileTwo)
+            var fileOne = new StreamReader(@"..\..\fileOne.txt");
+            var fileTwo = new StreamReader(@"..\..\fileTwo.txt");
+            var outputFile = new StreamWriter(@"..\..\output.txt");
+
+            using (fileOne)
             {
-                using (outputFile)
+                using (fileTwo)
                 {
-                    string fileOneText = fileOne.ReadToEnd();
-                    string fileTwoText = fileTwo.ReadToEnd();
-                    outputFile.Write("{0}\r\n{1}", fileOneText, fileTwoText);
-                    Console.WriteLine("The two files have been merged");
+                    using (outputFile)
+                    {
+                        var fileOneText = fileOne.ReadToEnd();
+                        var fileTwoText = fileTwo.ReadToEnd();
+                        outputFile.Write("{0}\r\n{1}", fileOneText, fileTwoText);
+                        Console.WriteLine("The two files have been merged");
+                    }
                 }
             }
         }

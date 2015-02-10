@@ -1,55 +1,59 @@
 ﻿// Write a program that extracts from given XML file all the text without the tags. Example:
-
-using System;
-using System.IO;
-using System.Text;
-
-class ExtractWordsFromXML
+namespace ExtractWordsFromXML
 {
-    static void Main()
-    {
-        ExtractTextToFile(GetInputFromFile());
-        Console.WriteLine("All of the text has been and saved to 'output.txt'");
-    }
+    using System;
+    using System.IO;
+    using System.Text;
 
-    static void ExtractTextToFile(string fileContent)
+    internal class ExtractWordsFromXML
     {
-        // Here I try to find text and put it in the output file
-        StreamWriter output = new StreamWriter("../../output.txt");
-        using (output)
+        private static void Main()
         {
-            StringBuilder currStr = new StringBuilder();
-            for (int currChar = 0; currChar < fileContent.Length - 2; currChar++)
+            ExtractTextToFile(GetInputFromFile());
+            Console.WriteLine("All of the text has been and saved to 'output.txt'");
+        }
+
+        private static void ExtractTextToFile(string fileContent)
+        {
+            // Here I try to find text and put it in the output file
+            var output = new StreamWriter("../../output.txt");
+            using (output)
             {
-                if (fileContent[currChar] == '>' && fileContent[currChar + 1] != '<')
+                var currStr = new StringBuilder();
+                for (var currChar = 0; currChar < fileContent.Length - 2; currChar++)
                 {
-                    currChar++;
-                    while (fileContent[currChar] != '<')
+                    if (fileContent[currChar] == '>' && fileContent[currChar + 1] != '<')
                     {
-                        currStr.Append(fileContent[currChar]);
                         currChar++;
+                        while (fileContent[currChar] != '<')
+                        {
+                            currStr.Append(fileContent[currChar]);
+                            currChar++;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(currStr.ToString()))
+                        {
+                            output.WriteLine(currStr);
+                        }
+
+                        currStr.Clear();
                     }
-                    if (!String.IsNullOrWhiteSpace(currStr.ToString()))
-                    {
-                        output.WriteLine(currStr);
-                    }
-                    currStr.Clear();
                 }
             }
         }
-    }
 
-    static string GetInputFromFile()
-    {
-        // Read the entire input and get rid of new lines
-        StreamReader input = new StreamReader("../../inputFile.xml");
-        string fileContent = null;
-        using (input)
+        private static string GetInputFromFile()
         {
-            fileContent = input.ReadToEnd();
-            fileContent = fileContent.Replace(System.Environment.NewLine, "");
-        }
+            // Read the entire input and get rid of new lines
+            var input = new StreamReader("../../inputFile.xml");
+            string fileContent = null;
+            using (input)
+            {
+                fileContent = input.ReadToEnd();
+                fileContent = fileContent.Replace(Environment.NewLine, string.Empty);
+            }
 
-        return fileContent;
+            return fileContent;
+        }
     }
 }

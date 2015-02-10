@@ -1,40 +1,41 @@
 ﻿// Write a program that reads a text file containing a list of strings, sorts them and saves them to another text file.
-
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
-
-class SortListOfString
+namespace SortListOfString
 {
-    static void Main()
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
+    internal class SortListOfString
     {
-        StreamReader inputFile = new StreamReader(@"..\..\inputFile.txt");
-        StreamWriter outputFile = new StreamWriter(@"..\..\output.txt");
-
-        using (inputFile)
+        private static void Main()
         {
-            string currentLine = inputFile.ReadLine();
-            List<string> listToSort = new List<string>();
+            var inputFile = new StreamReader(@"..\..\inputFile.txt");
+            var outputFile = new StreamWriter(@"..\..\output.txt");
 
-            while (currentLine != null)
+            using (inputFile)
             {
-                // This fills the list with the input
-                listToSort.Add(currentLine);
-                currentLine = inputFile.ReadLine();
-            }
+                var currentLine = inputFile.ReadLine();
+                var listToSort = new List<string>();
 
-            listToSort.Sort();
-
-            using (outputFile)
-            {
-                foreach (string word in listToSort)
+                while (currentLine != null)
                 {
-                    outputFile.WriteLine(word);
+                    // This fills the list with the input
+                    listToSort.Add(currentLine);
+                    currentLine = inputFile.ReadLine();
+                }
+
+                listToSort.Sort();
+
+                using (outputFile)
+                {
+                    foreach (var word in listToSort)
+                    {
+                        outputFile.WriteLine(word);
+                    }
                 }
             }
-        }
 
-        Console.WriteLine("The names list has been sorted and saved in the file 'output.txt'.");
+            Console.WriteLine("The names list has been sorted and saved in the file 'output.txt'.");
+        }
     }
 }

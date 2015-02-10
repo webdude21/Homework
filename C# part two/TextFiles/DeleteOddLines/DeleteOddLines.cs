@@ -1,40 +1,43 @@
 ﻿// Write a program that deletes from given text file all odd lines. The result should be in the same file.
-
-using System;
-using System.IO;
-
-class DeleteOddLines
+namespace DeleteOddLines
 {
-    static void Main()
+    using System;
+    using System.IO;
+
+    internal class DeleteOddLines
     {
-        StreamReader inputFile = new StreamReader(@"..\..\inputFile.txt");
-        StreamWriter outputFile = new StreamWriter(@"..\..\temp.txt");
-        bool flip = true;
-        using (inputFile)
+        private static void Main()
         {
-            using (outputFile)
+            var inputFile = new StreamReader(@"..\..\inputFile.txt");
+            var outputFile = new StreamWriter(@"..\..\temp.txt");
+            var flip = true;
+            using (inputFile)
             {
-                string line = inputFile.ReadLine();
-                while (line != null)
+                using (outputFile)
                 {
-                    if (!flip)
+                    var line = inputFile.ReadLine();
+                    while (line != null)
                     {
-                        outputFile.WriteLine(line);
-                        flip = !flip;
+                        if (!flip)
+                        {
+                            outputFile.WriteLine(line);
+                            flip = !flip;
+                        }
+                        else
+                        {
+                            flip = !flip;
+                        }
+
+                        line = inputFile.ReadLine();
                     }
-                    else
-                    {
-                        flip = !flip;
-                    }
-                    line = inputFile.ReadLine();
                 }
             }
+
+            // Overwrite the old file and delete the temporary one
+            File.Delete(@"..\..\inputFile.txt");
+            File.Move(@"..\..\temp.txt", @"..\..\inputFile.txt");
+
+            Console.WriteLine("Every odd line has been deleted in the file ");
         }
-
-        // Overwrite the old file and delete the temporary one
-        File.Delete(@"..\..\inputFile.txt");
-        File.Move(@"..\..\temp.txt", @"..\..\inputFile.txt");
-
-        Console.WriteLine("Every odd line has been deleted in the file ");
     }
 }

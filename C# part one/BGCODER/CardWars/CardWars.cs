@@ -1,135 +1,168 @@
-﻿using System;
-using System.Numerics;
-
-class CardWars
+﻿namespace CardWars
 {
-    static void Main()
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    internal class CardWars
     {
-        string[,] cardStrenght = new string[13, 2] { { "2", "10" }, { "3", "9" }, { "4", "8" },
-        { "5", "7" }, { "6", "6" }, { "7", "5" }, { "8", "4" }, { "9", "3" }, { "10", "2" }, { "A", "1" }, { "J", "11" },
-        { "Q", "12" }, { "K", "13" }};
-        string[] playerOne = new string[3];
-        string[] playerTwo = new string[3];
-        BigInteger playerOneScore = 0;
-        BigInteger playerTwoScore = 0;
-        bool playerOneXCard = false;
-        bool playerTwoXCard = false;
-        int playerOneGames = 0;
-        int playerTwoGames = 0;
+        private static int playerOneScore = 0;
 
-        int n = int.Parse(Console.ReadLine());
+        private static int playerTwoScore = 0;
 
-        for (int i = 0; i < n; i++) // Cycle trough the games
+        private static int playerOneGamesWon = 0;
+
+        private static int playerTwoGamesWon = 0;
+
+        private static void Main()
         {
-            int playerOneHand = 0;
-            int playerTwoHand = 0;
+            var numbersOfGames = int.Parse(Console.ReadLine());
+            var playerOneHands = new List<Hand>();
+            var playerTwoHands = new List<Hand>();
 
-            for (int j = 0; j < 3; j++) // Get first playerOne's hand
+            for (var game = 0; game < numbersOfGames; game++)
             {
-                playerOne[j] = Console.ReadLine(); // Check player's card
-
-
-                switch (playerOne[j])
-                {
-                    case "Z":
-                        playerOneScore = playerOneScore * 2;
-                        break;
-                    case "Y":
-                        playerOneScore = playerOneScore - 200;
-                        break;
-                    case "X":
-                        playerOneXCard = true;
-                        break;
-                }
-
-                for (int k = 0; k < 13; k++)
-                {
-                    if (playerOne[j] == cardStrenght[k, 0])
-                    {
-                        playerOneHand = playerOneHand + int.Parse(cardStrenght[k, 1]);
-                    }
-                }
-
+                playerOneHands.Add(ReadHand());
+                playerTwoHands.Add(ReadHand());
+                PlayGame(playerOneHands[game], playerTwoHands[game]);
             }
 
-            for (int j = 0; j < 3; j++) // Get playerTwo's hand
+            if (playerOneGamesWon > playerTwoGamesWon)
             {
-                playerTwo[j] = Console.ReadLine(); // Check player's card
-
-                switch (playerTwo[j])
-                {
-                    case "Z":
-                        playerTwoScore = playerTwoScore * 2;
-                        break;
-                    case "Y":
-                        playerTwoScore = playerTwoScore - 200;
-                        break;
-                    case "X":
-                        playerTwoXCard = true;
-                        break;
-                }
-                for (int k = 0; k < 13; k++)
-                {
-                    if (playerTwo[j] == cardStrenght[k, 0])
-                    {
-                        playerTwoHand = playerTwoHand + int.Parse(cardStrenght[k, 1]);
-                    }
-                }
+                Console.WriteLine("First player wins!");
+                Console.WriteLine("Score: {0}", playerOneScore);
+                Console.WriteLine("Games won: {0}", playerOneGamesWon);
             }
-
-            // Declare game winner
-
-            if (playerOneXCard && playerTwoXCard)
+            else if (playerOneGamesWon < playerTwoGamesWon)
             {
-                playerOneScore = playerOneScore + 50;
-                playerTwoScore = playerTwoScore + 50;
+                Console.WriteLine("Second player wins!");
+                Console.WriteLine("Score: {0}", playerTwoScore);
+                Console.WriteLine("Games won: {0}", playerTwoGamesWon);
             }
-            else if (playerOneXCard)
+            else
+            {
+                Console.WriteLine("It's a tie!");
+                Console.WriteLine("Score: {0}", playerTwoScore);
+            }
+        }
+
+        private static void PlayGame(Hand playerOneHand, Hand playerTwoHand)
+        {
+            if (playerOneHand.HasDrawnXCard && playerTwoHand.HasDrawnXCard)
+            {
+                playerOneScore += 50;
+                playerTwoScore += 50;
+            }
+            else if (playerOneHand.HasDrawnXCard)
             {
                 Console.WriteLine("X card drawn! Player one wins the match!");
-                break;
+                Environment.Exit(0);
             }
-            else if (playerTwoXCard)
+            else if (playerTwoHand.HasDrawnXCard)
             {
                 Console.WriteLine("X card drawn! Player two wins the match!");
-                break;
+                Environment.Exit(0);
             }
 
-            if (playerOneHand == playerTwoHand)
-            {
-            }
-            else if (playerOneHand > playerTwoHand)
-            {
-                playerOneGames++;
-                playerOneScore = playerOneScore + playerOneHand;
-            }
-            else if (playerTwoHand > playerOneHand)
-            {
-                playerTwoGames++;
-                playerTwoScore = playerTwoScore + playerTwoHand;
-            }
+            playerOneHand.CurrentScore = playerOneScore;
+            playerTwoHand.CurrentScore = playerTwoScore;
 
-            playerOneHand = 0;
-            playerTwoHand = 0;
-            playerOneXCard = false;
-            playerTwoXCard = false;
+            var playerOneMatch = playerOneHand.Score;
+            var playerTwoMatch = playerTwoHand.Score;
+
+            if (playerOneMatch > playerTwoMatch)
+            {
+                playerOneScore = playerOneMatch;
+                playerOneGamesWon++;
+            }
+            else if (playerOneMatch < playerTwoMatch)
+            {
+                playerTwoScore = playerTwoMatch;
+                playerTwoGamesWon++;
+            }
         }
 
-        // declare match winner
-        if (playerOneXCard ^ playerTwoXCard)
+        private static Hand ReadHand()
         {
+            var cards = new string[3];
+            for (var i = 0; i < 3; i++)
+            {
+                cards[i] = Console.ReadLine();
+            }
+
+            return new Hand(cards);
         }
-        else if (playerOneScore == playerTwoScore)
+    }
+
+    public class Hand : IComparable<Hand>
+    {
+        public static Dictionary<string, int> CardStrenght = new Dictionary<string, int>
+                                   {
+                                       { "2", 10 }, 
+                                       { "3", 9 }, 
+                                       { "4", 8 }, 
+                                       { "5", 7 }, 
+                                       { "6", 6 }, 
+                                       { "7", 5 }, 
+                                       { "8", 4 }, 
+                                       { "9", 3 }, 
+                                       { "10", 2 }, 
+                                       { "A", 1 }, 
+                                       { "J", 11 }, 
+                                       { "Q", 12 }, 
+                                       { "K", 13 }
+                                   };
+
+
+        public Hand(string[] cards, int currentScore = 0)
         {
-            Console.WriteLine("It's a tie!\r\nScore: {0}", playerOneScore);
+            this.Cards = cards;
+            this.CurrentScore = currentScore;
         }
-        else if (playerOneScore > playerTwoScore)
+
+        public string[] Cards { get; set; }
+
+        public int CurrentScore { get; set; }
+
+        public bool HasDrawnXCard
         {
-            Console.WriteLine("First player wins!\r\nScore: {0}\r\nGames won: {1}", playerOneScore, playerOneGames);
+            get
+            {
+                return this.Cards.Any(x => x == "X");
+            }
         }
-        else if (playerTwoScore > playerOneScore)
+
+        public int Score
         {
-            Console.WriteLine("Second player wins!\r\nScore: {0}\r\nGames won: {1}", playerTwoScore, playerTwoGames);
+            get
+            {
+                foreach (var t in this.Cards)
+                {
+                    if (CardStrenght.ContainsKey(t))
+                    {
+                        this.CurrentScore += CardStrenght[t];
+                    }
+                    else
+                    {
+                        switch (t)
+                        {
+                            case "Z":
+                                this.CurrentScore *= 2;
+                                break;
+                            case "Y":
+                                this.CurrentScore -= 200;
+                                break;
+                        }
+                    }
+                }
+
+                return this.CurrentScore;
+            }
+        }
+
+        public int CompareTo(Hand other)
+        {
+            return this.Score.CompareTo(other.Score);
         }
     }
 }

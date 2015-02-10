@@ -1,31 +1,34 @@
 ﻿// Write a program that extracts from a given text all palindromes, e.g. "ABBA", "lamal", "exe".
-
-using System;
-
-class CheckForPalindromes
+namespace CheckForPalindromes
 {
-    static void Main()
+    using System;
+
+    internal class CheckForPalindromes
     {
-        // The logic is simple, if a word is the same spelled backwords then it's a palindrome
-        string input = "Some of the words are ABBA, lamal, exe, anna, ana";
-        char[] delimiters = { '.', '-', ',', ';', '?', '!', ' ' };
-        string[] wordList = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-        Console.WriteLine("These are the palindromes in the text:");
-
-        foreach (string word in wordList)
+        private static void Main()
         {
-            if (word == ReverseString(word))
+            // The logic is simple, if a word is the same spelled backwords then it's a palindrome
+            var input = "Some of the words are ABBA, lamal, exe, anna, ana";
+            char[] delimiters = { '.', '-', ',', ';', '?', '!', ' ' };
+            var wordList = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.WriteLine("These are the palindromes in the text:");
+
+            foreach (var word in wordList)
             {
-                Console.WriteLine(word);
+                if (word == ReverseString(word))
+                {
+                    Console.WriteLine(word);
+                }
             }
         }
-    }
 
-    static string ReverseString(string str)
-    {   // This is the method from the task 2 of the homework
-        char[] stringAsChars = str.ToCharArray();
-        Array.Reverse(stringAsChars);
-        return new string(stringAsChars);
+        private static string ReverseString(string str)
+        {
+            // This is the method from the task 2 of the homework
+            var stringAsChars = str.ToCharArray();
+            Array.Reverse(stringAsChars);
+            return new string(stringAsChars);
+        }
     }
 }

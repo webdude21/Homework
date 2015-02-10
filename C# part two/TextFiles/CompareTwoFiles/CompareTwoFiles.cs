@@ -1,37 +1,43 @@
 ﻿// Write a program that compares two text files line by line and prints the number of lines that are the
 // same and the number of lines that are different. Assume the files have equal number of lines.
-
-using System;
-using System.IO;
-using System.Text;
-
-class CompareTwoFiles
+namespace CompareTwoFiles
 {
-    static void Main()
+    using System;
+    using System.IO;
+
+    internal class CompareTwoFiles
     {
-        StreamReader fileOne = new StreamReader(@"..\..\fileOne.txt");
-        StreamReader fileTwo = new StreamReader(@"..\..\fileTwo.txt");
-
-        using (fileOne)
+        private static void Main()
         {
-            using (fileTwo)
-            {
-                string fileOneLine = fileOne.ReadLine();
-                string fileTwoLine = fileTwo.ReadLine();
-                int currentLine = 0;
-                int matchingLines = 0;
+            var fileOne = new StreamReader(@"..\..\fileOne.txt");
+            var fileTwo = new StreamReader(@"..\..\fileTwo.txt");
 
-                while (fileOneLine != null || fileTwoLine != null)
+            using (fileOne)
+            {
+                using (fileTwo)
                 {
-                    currentLine++;
-                    if (fileTwoLine == fileOneLine)
+                    var fileOneLine = fileOne.ReadLine();
+                    var fileTwoLine = fileTwo.ReadLine();
+                    var currentLine = 0;
+                    var matchingLines = 0;
+
+                    while (fileOneLine != null || fileTwoLine != null)
                     {
-                        matchingLines++;
+                        currentLine++;
+                        if (fileTwoLine == fileOneLine)
+                        {
+                            matchingLines++;
+                        }
+
+                        fileOneLine = fileOne.ReadLine();
+                        fileTwoLine = fileTwo.ReadLine();
                     }
-                    fileOneLine = fileOne.ReadLine();
-                    fileTwoLine = fileTwo.ReadLine();
+
+                    Console.WriteLine(
+                        "There are {0} line(s) that are the same and {1} that are different", 
+                        matchingLines, 
+                        currentLine - matchingLines);
                 }
-                Console.WriteLine("There are {0} line(s) that are the same and {1} that are different", matchingLines, currentLine - matchingLines);
             }
         }
     }
