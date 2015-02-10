@@ -1,23 +1,26 @@
 ﻿// Write a method that reverses the digits of given decimal number. Example: 256 >> 652
-
-using System;
-
-class ReverseNumber
+namespace ReverseNumber
 {
-    static void Main()
-    {
-        Console.Write("Please input an integer: ");
-        int testNumber = int.Parse(Console.ReadLine());
-        Console.WriteLine("The number {0} is {1} when reversed.", testNumber, ReversedNumber(testNumber));
-    }
+    using System;
+    using System.Globalization;
 
-    static int ReversedNumber(int number)
+    internal class ReverseNumber
     {
-        // I convert the number to array of chars. Then I reverse the array.
-        // Then I convert the array of chars back to a number and return it to the caller.
-        char[] numberAsChars = number.ToString().ToCharArray();
-        Array.Reverse(numberAsChars);
-        string reversedNumberAsString = new string(numberAsChars);
-        return int.Parse(reversedNumberAsString);
+        private static void Main()
+        {
+            Console.Write("Please input an integer: ");
+            var testNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine("The number {0} is {1} when reversed.", testNumber, ReversedNumber(testNumber));
+        }
+
+        private static int ReversedNumber(int number)
+        {
+            // I convert the number to array of chars. Then I reverse the array.
+            // Then I convert the array of chars back to a number and return it to the caller.
+            var numberAsChars = number.ToString(CultureInfo.InvariantCulture).ToCharArray();
+            Array.Reverse(numberAsChars);
+            var reversedNumberAsString = new string(numberAsChars);
+            return int.Parse(reversedNumberAsString);
+        }
     }
 }

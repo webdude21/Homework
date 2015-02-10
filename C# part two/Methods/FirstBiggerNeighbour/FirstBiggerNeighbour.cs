@@ -1,45 +1,48 @@
-﻿// Write a method that returns the index of the first element in array that is bigger than its neighbours, or -1, 
+﻿// Write a method that returns the index of the first element in array that is bigger than its neighbors, or -1, 
 // if there’s no such element. Use the method from the previous exercise.
-
-using System;
-
-class FirstBiggerNeighbour
+namespace FirstBiggerNeighbour
 {
-    static void Main()
-    {
-        int[] testArray = { 1, 2, 6, 8, 10, 15, 42, 2, 4, 2, 2, 8, 9 };
-        Console.WriteLine("The first element that's bigger than its neighbours is: {0}", GetFirstLargerElement(testArray));
-    }
+    using System;
+    using System.Collections.Generic;
 
-    static int GetFirstLargerElement(int[] array)
+    internal class FirstBiggerNeighbour
     {
-        foreach (int position in array)
+        private static void Main()
         {
-            if (CheckIfNeighboursAreSmaller(array, position))
+            int[] testArray = { 1, 2, 6, 8, 10, 15, 42, 2, 4, 2, 2, 8, 9 };
+            Console.WriteLine(
+                "The first element that's bigger than its neighbors' is: {0}", 
+                GetFirstLargerElement(testArray));
+        }
+
+        private static int GetFirstLargerElement(int[] array)
+        {
+            foreach (var position in array)
             {
-                return position;
+                if (CheckIfNeighboursAreSmaller(array, position))
+                {
+                    return position;
+                }
             }
+
+            return -1;
         }
-        return -1;
-    }
 
-    static bool CheckIfNeighboursAreSmaller(int[] array, int number)
-    {
-        bool neighboursAreSmaller = false;
-
-        if (number < 0 || number >= array.Length)
+        private static bool CheckIfNeighboursAreSmaller(IList<int> array, int number)
         {
+            if (number < 0 || number >= array.Count)
+            {
+                return false;
+            }
+
+            if (number == 0 || number == array.Count - 1)
+            {
+                return false;
+            }
+
+            var neighboursAreSmaller = array[number] > array[number - 1] && array[number] > array[number + 1];
+
             return neighboursAreSmaller;
         }
-        else if (number == 0 || number == array.Length - 1)
-        {
-            return neighboursAreSmaller;
-        }
-        else
-        {
-            neighboursAreSmaller = (array[number] > array[number - 1] && array[number] > array[number + 1]);
-        }
-
-        return neighboursAreSmaller;
     }
 }
