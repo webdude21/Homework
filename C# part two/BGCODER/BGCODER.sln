@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrangeLandNumbers", "Stran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelevanceIndex", "RelevanceIndex\RelevanceIndex.csproj", "{FEB801A0-039E-45C1-B329-446420B36C0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyFactory", "BunnyFactory\BunnyFactory.csproj", "{0380B768-02A0-4810-A7B3-17A19C50DF4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,10 @@ Global
 		{FEB801A0-039E-45C1-B329-446420B36C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEB801A0-039E-45C1-B329-446420B36C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEB801A0-039E-45C1-B329-446420B36C0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
