@@ -73,6 +73,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelevanceIndex", "Relevance
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyFactory", "BunnyFactory\BunnyFactory.csproj", "{0380B768-02A0-4810-A7B3-17A19C50DF4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digits", "Digits\Digits.csproj", "{CDB21E53-2EC9-4076-94D0-4A678383E172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VariableLengthCodes", "VariableLengthCodes\VariableLengthCodes.csproj", "{6BB099A4-F372-458C-AC4E-50AFB49EEBBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +223,14 @@ Global
 		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0380B768-02A0-4810-A7B3-17A19C50DF4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB21E53-2EC9-4076-94D0-4A678383E172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB21E53-2EC9-4076-94D0-4A678383E172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB21E53-2EC9-4076-94D0-4A678383E172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB21E53-2EC9-4076-94D0-4A678383E172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB099A4-F372-458C-AC4E-50AFB49EEBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB099A4-F372-458C-AC4E-50AFB49EEBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB099A4-F372-458C-AC4E-50AFB49EEBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB099A4-F372-458C-AC4E-50AFB49EEBBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
