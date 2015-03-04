@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal class Digits
     {
@@ -34,7 +35,6 @@
                     }
                 }
             }
-
             return sum;
         }
 
@@ -65,166 +65,86 @@
             patterns = new List<bool[,]>();
 
             // ONE
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           false, false, true 
-                        }, {
-                              false, true, true 
-                           }, {
-                                 true, false, true 
-                              }, {
-                                    false, false, true 
-                                 }, 
-                        {
-                           false, false, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { false, false, true },
+            { false, true, true },
+            { true, false, true },
+            { false, false, true },
+            { false, false, true } 
+            });
 
             // TWO
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           false, true, false 
-                        }, {
-                              true, false, true 
-                           }, {
-                                 false, false, true 
-                              }, {
-                                    false, true, false 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { false, true, false },
+            { true, false, true },
+            { false, false, true },
+            { false, true, false },
+            { true, true, true } 
+            });
 
             // Three
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              false, false, true 
-                           }, {
-                                 false, true, true 
-                              }, {
-                                    false, false, true 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, true, true },
+            { false, false, true },
+            { false, true, true },
+            { false, false, true },
+            { true, true, true } 
+            });
 
             // Four
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, false, true 
-                        }, {
-                              true, false, true 
-                           }, {
-                                 true, true, true 
-                              }, {
-                                    false, false, true 
-                                 }, 
-                        {
-                           false, false, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, false, true },
+            { true, false, true },
+            { true, true, true },
+            { false, false, true },
+            { false, false, true } 
+            });
+
 
             // Five
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              true, false, false 
-                           }, {
-                                 true, true, true 
-                              }, {
-                                    false, false, true 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, true, true },
+            { true, false, false },
+            { true, true, true },
+            { false, false, true },
+            { true, true, true } 
+            });
 
             // Six
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              true, false, false 
-                           }, {
-                                 true, true, true 
-                              }, {
-                                    true, false, true 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] {
+            { true, true, true },
+            { true, false, false },
+            { true, true, true },
+            { true, false, true },
+            { true, true, true } 
+            });
 
             // Seven
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              false, false, true 
-                           }, {
-                                 false, true, false 
-                              }, {
-                                    false, true, false 
-                                 }, 
-                        {
-                           false, true, false 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, true, true },
+            { false, false, true },
+            { false, true, false },
+            { false, true, false },
+            { false, true, false } 
+            });
 
             // Eight
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              true, false, true 
-                           }, {
-                                 false, true, false 
-                              }, {
-                                    true, false, true 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, true, true },
+            { true, false, true },
+            { false, true, false },
+            { true, false, true },
+            { true, true, true } 
+            });
 
             // Nine
-            patterns.Add(
-                new[,]
-                    {
-                        {
-                           true, true, true 
-                        }, {
-                              true, false, true 
-                           }, {
-                                 false, true, true 
-                              }, {
-                                    false, false, true 
-                                 }, 
-                        {
-                           true, true, true 
-                        }
-                    });
+            patterns.Add(new[,] { 
+            { true, true, true },
+            { true, false, true },
+            { false, true, true },
+            { false, false, true },
+            { true, true, true } 
+            });
         }
 
         private static int ReadInput()
@@ -245,6 +165,7 @@
                     }
                 }
             }
+
 
             return n;
         }
