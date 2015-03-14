@@ -5,25 +5,18 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class GSM
+    public class Gsm
     {
-        // Fields
         private const string Validation = @"\A[\w]{3}[-\w]{0,17}";
 
-        // This is the regex that's used for many of the validations in the properties
-        private static readonly GSM iphone4S = new GSM(
-            "IPhone-4S", 
-            "Apple", 
-            "Pesho", 
-            new Display(4.5, Display.ColorDepth._32Bit), 
-            new Battery("sanyo-321r54D", 120, 14, Battery.Type.LiPol), 
-            900);
+        public static readonly Gsm iphone4S = new Gsm("IPhone-4S", "Apple", "Pesho", new Display(4.5, ColorDepth._32Bit),
+            new Battery("sanyo-321r54D", 120, 14, BatteryType.LiPol), 900);
 
         private readonly List<Call> callHistory = new List<Call>();
 
-        private Battery gsmBattery;
+        public Battery GsmBattery { get; private set; }
 
-        private Display gsmDisplay;
+        public Display GsmDisplay { get; private set; }
 
         private string manufacturer;
 
@@ -33,44 +26,33 @@
 
         private uint price;
 
-        // Constructors
-        public GSM(string Name, string Manufacturer)
-            : this(Name, Manufacturer, 0, null)
+        public Gsm(string name, string manufacturer) : this(name, manufacturer, 50, null)
         {
-            // This constructor accepts only name and manufacturer
         }
 
-        public GSM(string name, string manufacturer, uint price, string owner)
-            : this(name, manufacturer, owner, null, null, price)
+        public Gsm(string name, string manufacturer, uint price, string owner) : this(name, manufacturer, owner, null, null, price)
         {
-            // This everything except Battery and Display
         }
 
-        public GSM(
-            string name, 
-            string manufacturer, 
-            string owner, 
-            Display gsmDisplay, 
-            Battery gsmBattery, 
-            uint price = 100)
+        public Gsm(string name, string manufacturer, string owner, Display gsmDisplay, Battery gsmBattery, uint price = 100)
         {
             this.Name = name;
             this.Manufacturer = manufacturer;
             this.Price = price;
             this.Owner = owner;
-            this.gsmBattery = gsmBattery;
-            this.gsmDisplay = gsmDisplay;
+            this.GsmBattery = gsmBattery;
+            this.GsmDisplay = gsmDisplay;
         }
 
         public List<Call> CallHistory
         {
             get
             {
-                return this.callHistory;
+                return new List<Call>(this.callHistory);
             }
         }
 
-        public static GSM Iphone4S
+        public static Gsm Iphone4S
         {
             get
             {
@@ -129,7 +111,8 @@
             {
                 if (value < 10 || value > 10000)
                 {
-                    throw new ArgumentOutOfRangeException("The price of the phone should be between 10 and 10000");
+                    throw new ArgumentOutOfRangeException("The price of the" +
+                        " phone should be between 10 and 10000");
                 }
 
                 this.price = value;
@@ -159,11 +142,7 @@
         // Methods
         internal void ThrowArgumentExepttionNames(string input, string thrower)
         {
-            throw new ArgumentOutOfRangeException(
-                string.Format(
-                    "The entry \"{0}\" isn't valid. The {1} must consist of between 3 and 20 valid charachters!", 
-                    input, 
-                    thrower));
+            throw new ArgumentOutOfRangeException(string.Format("The entry \"{0}\" isn't valid. The {1} must consist of between 3 and 20 valid characters!", input, thrower));
         }
 
         internal void AddCall(string phoneNumber, int durationInSeconds)
@@ -193,13 +172,10 @@
 
         internal void RemoveCall(int callId)
         {
-            foreach (var call in this.callHistory)
+            foreach (var call in this.callHistory.Where(call => call.Id == callId))
             {
-                if (call.Id == callId)
-                {
-                    this.callHistory.Remove(call);
-                    return;
-                }
+                this.callHistory.Remove(call);
+                return;
             }
         }
 
@@ -210,20 +186,12 @@
 
         internal decimal CalculatePriceOfCalls(decimal pricePerMinute)
         {
-            decimal total = 0;
-            foreach (var call in this.callHistory)
-            {
-                total = total + ((decimal)call.Duration.TotalMinutes * pricePerMinute);
-            }
-
-            return total;
+            return this.callHistory.Sum(x => x.Duration.Minutes * pricePerMinute);
         }
 
-        // Properties
         public override string ToString()
         {
-            // To expand later on
-            return string.Format("{0}, {1}, {2}, {3}", this.name, this.manufacturer, this.price, this.owner);
+            return string.Format("GsmBattery: {0}, GsmDisplay: {1}, Manufacturer: {2}, Name: {3}, Price: {4}, Owner: {5}", this.GsmBattery, this.GsmDisplay, this.Manufacturer, this.Name, this.Price, this.Owner);
         }
     }
 }

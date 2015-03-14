@@ -1,25 +1,25 @@
-﻿
-public class Display
+﻿namespace DefiningClasses
 {
-    public enum ColorDepth
+    public class Display
     {
-        _8bit, _16Bit, _32Bit
-    }
+        public Display()
+            : this(0, 0)
+        {
+        }
 
-    private double size;
-    private ColorDepth colors;
+        public Display(double sizeInInches)
+            : this(sizeInInches, 0)
+        {
+        }
 
-    public Display() : this(0, 0)
-    {
+        public Display(double sizeInInches, ColorDepth colorDepth)
+        {
+            this.Size = sizeInInches;
+            this.Colors = colorDepth;
+        }
 
-    }
-    public Display(double sizeInInches) : this(sizeInInches, 0)
-    {
+        public double Size { get; private set; }
 
-    }
-    public Display(double sizeInInches, ColorDepth colorDepth)
-    {
-        this.size = sizeInInches;
-        this.colors = colorDepth;
+        public ColorDepth Colors { get; private set; }
     }
 }

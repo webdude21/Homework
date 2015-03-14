@@ -1,84 +1,99 @@
-﻿using System.Text.RegularExpressions;
-using System;
-
-public class Battery
+﻿namespace DefiningClasses
 {
-    public enum Type
-    {
-        LiIon, NiMH, NiCd, LiPol
-    }
+    using System;
+    using System.Text.RegularExpressions;
 
-    private const uint maxHoursIdle = 500;
-    private const uint maxHoursTalk = 30;
-    private string model;
-    private double hoursIdle;
-    private double hoursTalk;
-    private const string validation = @"[\w]{3}[-\w]{0,17}";
-    private Type battery;
-
-    public Battery(string model) : this(model , 0, 0, 0)
+    public class Battery
     {
-        // Constructor that allows init of battery with only it's name
-    }
+        private const uint MaxHoursIdle = 500;
 
-    public Battery(string model, uint hoursIdle, uint hoursTalk): this(model, hoursIdle, hoursTalk, 0)
-    {
-        // Constructor that allows init of battery with only it's name, hoursIdle, hoursTalk
-    }
+        private const uint MaxHoursTalk = 30;
 
-    public Battery(string model, uint hoursIdle, uint hoursTalk, Type battery)
-    {
-        this.model = model;
-        this.hoursIdle = hoursIdle;
-        this.hoursTalk = hoursTalk;
-        this.battery = battery;
-    }
+        private const string Validation = @"[\w]{3}[-\w]{0,17}";
 
-    public string Model
-    {
-        get { return this.model; }
-        set
+        private double hoursIdle;
+
+        private double hoursTalk;
+
+        private string model;
+
+        public Battery(string model)  : this(model, 0, 0, 0)
         {
-            if (Regex.IsMatch(value, validation))
+        }
+
+        public Battery(string model, uint hoursIdle, uint hoursTalk) : this(model, hoursIdle, hoursTalk, 0)
+        {
+        }
+
+        public Battery(string model, uint hoursIdle, uint hoursTalk, BatteryType batteryType)
+        {
+            this.model = model;
+            this.hoursIdle = hoursIdle;
+            this.hoursTalk = hoursTalk;
+            this.BatteryType = batteryType;
+        }
+
+        public BatteryType BatteryType { get; private set; }
+
+        public string Model
+        {
+            get
             {
-                this.model = value;
+                return this.model;
             }
-            else
+            set
             {
-                throw new ArgumentOutOfRangeException(string.Format("The entry \"{0}\" isn't valid. The battery name must consist of between 3 and 20 valid charachters!",
-            value));
+                if (Regex.IsMatch(value, Validation))
+                {
+                    this.model = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(
+                        string.Format(
+                            "The entry \"{0}\" isn't valid. The battery name must consist of between 3 and 20 valid characters!",
+                            value));
+                }
             }
         }
-    }
-    public double HoursIdle
-    {
-        get { return this.hoursIdle; }
-        set
+
+        public double HoursIdle
         {
-            if (this.hoursIdle > maxHoursIdle)
+            get
             {
-                throw new ArgumentOutOfRangeException(string.Format("The value you've entered \"{0}\" isn't valid. The maximum value is \"{1}\"",
-                     value, maxHoursIdle));
+                return this.hoursIdle;
             }
-            else
+            set
             {
+                if (this.hoursIdle > MaxHoursIdle)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        string.Format(
+                            "The value you've entered \"{0}\" isn't valid. The maximum value is \"{1}\"",
+                            value,
+                            MaxHoursIdle));
+                }
                 this.hoursIdle = value;
             }
         }
-    }
-    public double HoursTalk
-    {
-        get { return this.hoursTalk; }
-        set
+
+        public double HoursTalk
         {
-            if (this.hoursTalk > maxHoursTalk)
+            get
             {
-                throw new ArgumentOutOfRangeException(string.Format("The value you've entered \"{0}\" isn't valid. The maximum value is \"{1}\"",
-                     value, maxHoursTalk));
+                return this.hoursTalk;
             }
-            else
+            set
             {
-                this.HoursTalk = value;
+                if (this.hoursTalk > MaxHoursTalk)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        string.Format(
+                            "The value you've entered \"{0}\" isn't valid. The maximum value is \"{1}\"",
+                            value,
+                            MaxHoursTalk));
+                }
+                this.hoursTalk = value;
             }
         }
     }

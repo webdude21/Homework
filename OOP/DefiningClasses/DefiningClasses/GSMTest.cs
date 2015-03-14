@@ -1,0 +1,37 @@
+﻿using System;
+
+using DefiningClasses;
+
+internal class GSMTest
+{
+    private static void Main()
+    {
+        // Generate some test batteries and displays
+        var premiumDisplay = new Display(4.5, ColorDepth._32Bit);
+        var mediocreDisplay = new Display(3.5, ColorDepth._16Bit);
+        var poorDisplay = new Display(2.5, ColorDepth._8bit);
+        var premiumBattery = new Battery("Sanyo-SN532e", 120, 20, BatteryType.LiPol);
+        var mediocreBattery = new Battery("Shanzungmang-2341", 80, 15, BatteryType.LiIon);
+        var poorBattery = new Battery("Mistucura-1224fe", 40, 5, BatteryType.NiMh);
+
+        // initilize gsms in the array
+        var gsmArray = new Gsm[4];
+        gsmArray[0] = new Gsm("One", "HTC", "Kiro", premiumDisplay, premiumBattery, 200);
+        gsmArray[1] = new Gsm("Blade", "Zte");
+        gsmArray[2] = new Gsm("Galaxy S4", "Samsung", "Misho", premiumDisplay, mediocreBattery, 1000);
+        gsmArray[3] = new Gsm("Ascend G600", "Huawei",  "Mtel", premiumDisplay, 
+            new Battery("Toshiba-tbsae", 380, 6, BatteryType.LiPol), 600);
+
+        // print the gsms
+        foreach (var phone in gsmArray)
+        {
+            Console.WriteLine(phone);
+        }
+
+        // print the static property Iphone4S
+        Console.WriteLine(Gsm.Iphone4S);
+
+        // test GsmCallHistory
+        GsmCallHistoryTest.Test();
+    }
+}

@@ -1,50 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
-public class Call
+﻿namespace DefiningClasses
 {
-    private string dialedNumber;
-    private const string numberValidation = @"\A\+{0,2}[\d]{6,30}";
-    private static uint IdCount = 1;
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
 
-    public Call(string DialedNumber, int DurationInSeconds)
+    public class Call
     {
-        this.DialedNumber = DialedNumber;
-        this.Duration = new TimeSpan(0,0,DurationInSeconds);
-        this.DateAndTime = DateTime.Now;
-        this.Id = Call.IdCount++;
-    }
-    public string DialedNumber
-    {
-        get {return this.dialedNumber; }
-        private set
+        private const string NumberValidation = @"\A\+{0,2}[\d]{6,30}";
+
+        private static uint idCount = 1;
+
+        private string dialedNumber;
+
+        public Call(string dialedNumber, int durationInSeconds)
         {
-            if (Regex.IsMatch(value, numberValidation))
+            this.DialedNumber = dialedNumber;
+            this.Duration = new TimeSpan(0, 0, durationInSeconds);
+            this.DateAndTime = DateTime.Now;
+            this.Id = idCount++;
+        }
+
+        public string DialedNumber
+        {
+            get
             {
-                this.dialedNumber = value;
+                return this.dialedNumber;
             }
-            else
+            private set
             {
-                throw new ArgumentException("The phone number isn't valid, It should be between 6 and 30 digits");
+                if (Regex.IsMatch(value, NumberValidation))
+                {
+                    this.dialedNumber = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The phone number isn't valid, It should be between 6 and 30 digits");
+                }
             }
         }
-    }
 
-    public TimeSpan Duration { get; private set; }
-    public uint Id { get; private set; }
-    public DateTime DateAndTime { get; private set; }
+        public TimeSpan Duration { get; private set; }
 
-    public override string ToString()
-    {
-        List<string> callInfo = new List<string>();
+        public uint Id { get; private set; }
 
-        callInfo.Add("Call ID: " + this.Id);
-        callInfo.Add("Time: " + this.DateAndTime.ToShortTimeString());
-        callInfo.Add("Date: " + this.DateAndTime.ToShortDateString());
-        callInfo.Add("Dialed Number: " + this.dialedNumber);
-        callInfo.Add("Duration: " + this.Duration);
+        public DateTime DateAndTime { get; private set; }
 
-        return String.Join(", ", callInfo);
+        public override string ToString()
+        {
+            var callInfo = new List<string>
+                               {
+                                   "Call ID: " + this.Id,
+                                   "Time: " + this.DateAndTime.ToShortTimeString(),
+                                   "Date: " + this.DateAndTime.ToShortDateString(),
+                                   "Dialed Number: " + this.dialedNumber,
+                                   "Duration: " + this.Duration
+                               };
+
+            return String.Join(", ", callInfo);
+        }
     }
 }
