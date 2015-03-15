@@ -20,9 +20,9 @@
         public override string ToString()
         {
             return string.Format(
-                "Предметът {0} има {1} лекции и {2} упражнения.", 
-                this.Name, 
-                this.NumberOfLectures, 
+                "Предметът {0} има {1} лекции и {2} упражнения.",
+                this.Name,
+                this.NumberOfLectures,
                 this.NumberOfExercises);
         }
     }

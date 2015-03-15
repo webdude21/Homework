@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace StructurePoint3D
+﻿namespace StructurePoint3D
 {
-    static class DistanceIn3DSpace
+    using System;
+
+    internal static class DistanceIn3DSpace
     {
         public static double CalculateDistanceBetween(Point3D a, Point3D b)
         {

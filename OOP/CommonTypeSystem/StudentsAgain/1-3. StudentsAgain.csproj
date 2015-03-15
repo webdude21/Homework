@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Faculty.cs" />
-    <Compile Include="Specialties.cs" />
+    <Compile Include="Specialty.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentsAgain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

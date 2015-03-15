@@ -30,12 +30,7 @@
                 numberOfMonths -= 2;
             }
 
-            if (numberOfMonths > 0)
-            {
-                return base.CalculateInterest(numberOfMonths);
-            }
-
-            return 0;
+            return numberOfMonths > 0 ? base.CalculateInterest(numberOfMonths) : 0;
         }
     }
 }

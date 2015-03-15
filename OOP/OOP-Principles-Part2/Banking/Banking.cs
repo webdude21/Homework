@@ -12,6 +12,7 @@
  * Your task is to write a program to model the bank system by classes and interfaces.
  * You should identify the classes, interfaces, base classes and abstract actions and
  * implement the calculation of the interest functionality through overridden methods. */
+
 namespace Banking
 {
     using System;
@@ -30,9 +31,9 @@ namespace Banking
 
             Account[] someAccounts =
                 {
-                    new Loan(2400, 2, petar), new Deposit(10000, 6, divastoreEood), 
-                    new Loan(200, 5, divastoreEood), new Mortgage(60000, 5, georgi), 
-                    new Deposit(1200, 6, georgi), new Mortgage(1200000, 3, petkoEt), 
+                    new Loan(2400, 2, petar), new Deposit(10000, 6, divastoreEood),
+                    new Loan(200, 5, divastoreEood), new Mortgage(60000, 5, georgi),
+                    new Deposit(1200, 6, georgi), new Mortgage(1200000, 3, petkoEt),
                     new Deposit(800, 7, dimo), new Loan(200, 4, dimo)
                 };
 
@@ -43,8 +44,8 @@ namespace Banking
 
             // this prints the average interest for all of the accounts in the collection of accounts
             Console.WriteLine(
-                "The average interest for {0} months is {1}", 
-                MonthsOfInterest, 
+                "The average interest for {0} months is {1}",
+                MonthsOfInterest,
                 obb.AvarageInterestRate(MonthsOfInterest));
         }
     }

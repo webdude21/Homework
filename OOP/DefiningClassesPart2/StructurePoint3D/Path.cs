@@ -1,12 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System;
-
-namespace StructurePoint3D
+﻿namespace StructurePoint3D
 {
-    class Path
+    using System;
+    using System.Collections.Generic;
+
+    internal class Path
     {
-        private List<Point3D> pointList = new List<Point3D>();
+        private readonly List<Point3D> pointList = new List<Point3D>();
+
+        public int Count
+        {
+            get
+            {
+                return this.pointList.Count;
+            }
+        }
 
         public void AddPoint(Point3D point)
         {
@@ -22,8 +29,6 @@ namespace StructurePoint3D
         {
             this.pointList.Clear();
         }
-
-        public int Count { get { return this.pointList.Count; } }
 
         public override string ToString()
         {

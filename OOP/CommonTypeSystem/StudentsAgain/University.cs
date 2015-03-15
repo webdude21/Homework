@@ -2,6 +2,10 @@
 {
     public enum University
     {
-        TU, SofiaUniversity, NBU
+        TU,
+
+        SofiaUniversity,
+
+        NBU
     }
 }

@@ -2,6 +2,8 @@
 {
     public enum Faculty
     {
-        Informatics, InformaticsAndMath
+        Informatics,
+
+        InformaticsAndMath
     }
 }

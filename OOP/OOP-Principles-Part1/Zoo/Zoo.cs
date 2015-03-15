@@ -4,6 +4,7 @@
  * female and tomcats can be only male. Each animal produces a specific sound. Create arrays of
  * different kinds of animals and calculate the average age of each kind of animal
  * using a static method (you may use LINQ).    */
+
 namespace Zoo
 {
     using System;
@@ -14,15 +15,15 @@ namespace Zoo
         {
             Animal[] animals =
                 {
-                    new Tomcat("Tom", 5), new Frog("Toad", 3, Sex.Male), new Kitten("Mimi", 4), 
-                    new Dog("Lassie", 10, Sex.Female), new Cat("Emy", 2, Sex.Female), 
+                    new Tomcat("Tom", 5), new Frog("Toad", 3, Sex.Male), new Kitten("Mimi", 4),
+                    new Dog("Lassie", 10, Sex.Female), new Cat("Emy", 2, Sex.Female),
                     new Dog("Sharo", 20, Sex.Male)
                 };
 
             Dog[] doggies =
                 {
-                    new Dog("Lassie", 10, Sex.Female), new Dog("Sharo", 15, Sex.Male), 
-                    new Dog("Murdjo", 40, Sex.Male), new Dog("Bethoven", 20, Sex.Male), 
+                    new Dog("Lassie", 10, Sex.Female), new Dog("Sharo", 15, Sex.Male),
+                    new Dog("Murdjo", 40, Sex.Male), new Dog("Bethoven", 20, Sex.Male),
                     new Dog("Kiki", 2, Sex.Male)
                 };
 

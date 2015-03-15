@@ -4,6 +4,10 @@
 
     public class Mortgage : Account, IDeposit
     {
+        private const int FullYearMonths = 12;
+
+        private const int HalfYearMonths = 6;
+
         public Mortgage(decimal balance, decimal interestRate, Custumer custumer)
             : base(balance, interestRate, custumer)
         {
@@ -21,16 +25,16 @@
 
         public override decimal CalculateInterest(decimal numberOfMonths)
         {
-            if (this.Custumer is Individual && numberOfMonths > 6)
+            if (this.Custumer is Individual && numberOfMonths > HalfYearMonths)
             {
-                numberOfMonths -= 6;
+                numberOfMonths -= HalfYearMonths;
                 return base.CalculateInterest(numberOfMonths);
             }
 
-            if (this.Custumer is Company && numberOfMonths > 12)
+            if (this.Custumer is Company && numberOfMonths > FullYearMonths)
             {
-                numberOfMonths -= 12;
-                return (base.CalculateInterest(12) / 2) + base.CalculateInterest(numberOfMonths);
+                numberOfMonths -= FullYearMonths;
+                return (base.CalculateInterest(FullYearMonths) / 2) + base.CalculateInterest(numberOfMonths);
             }
 
             if (this.Custumer is Company)

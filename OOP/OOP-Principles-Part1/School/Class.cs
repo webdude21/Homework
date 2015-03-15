@@ -5,6 +5,7 @@
     public class Class : ICommentable
     {
         private readonly List<Student> students = new List<Student>();
+
         private readonly List<Teacher> teachers = new List<Teacher>();
 
         public Class(string name)

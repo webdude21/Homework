@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-4. StructurePoint3D", "StructurePoint3D\1-4. StructurePoint3D.csproj", "{F884DC37-63D5-406F-BB69-EB97408BC02F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-7. GenericList", "GenericList\5-7. GenericList.csproj", "{B5C19CEB-5E54-4642-8965-242EDC601E84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8-10. MatrixT", "MatrixT\8-10. MatrixT.csproj", "{63353D5B-D4B4-4806-8A14-640912BE147E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8-10. GenericMatrix", "MatrixT\8-10. GenericMatrix.csproj", "{63353D5B-D4B4-4806-8A14-640912BE147E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11. Attributes", "Attributes\11. Attributes.csproj", "{7B207045-472E-41FD-BAD2-121EA7F49CA2}"
 EndProject

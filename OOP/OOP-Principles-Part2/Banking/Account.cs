@@ -24,11 +24,11 @@
         {
             return
                 string.Format(
-                    "This is a {0} account, it belongs to the {1} '{2}'. It has a balance of {3} and an interst rate of {4}", 
-                    this.GetType().Name.ToLower(), 
-                    this.Custumer.GetType().Name.ToLower(), 
-                    this.Custumer.Name, 
-                    this.Balance, 
+                    "This is a {0} account, it belongs to the {1} '{2}'. It has a balance of {3} and an interest rate of {4}",
+                    this.GetType().Name.ToLower(),
+                    this.Custumer.GetType().Name.ToLower(),
+                    this.Custumer.Name,
+                    this.Balance,
                     this.InterestRate);
         }
     }

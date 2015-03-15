@@ -34,11 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
@@ -46,12 +41,12 @@
     <Compile Include="Banking.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Custumer.cs" />
-    <Compile Include="DepositAccount.cs" />
+    <Compile Include="Deposit.cs" />
     <Compile Include="IDeposit.cs" />
     <Compile Include="Individual.cs" />
     <Compile Include="IWithdraw.cs" />
-    <Compile Include="LoanAccount.cs" />
-    <Compile Include="MortgageAccount.cs" />
+    <Compile Include="Loan.cs" />
+    <Compile Include="Mortgage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

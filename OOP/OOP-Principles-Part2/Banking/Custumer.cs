@@ -2,7 +2,7 @@
 {
     public abstract class Custumer
     {
-        public Custumer(string name)
+        protected Custumer(string name)
         {
             this.Name = name;
         }

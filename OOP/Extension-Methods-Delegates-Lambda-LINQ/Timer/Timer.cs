@@ -1,22 +1,25 @@
 ﻿// Using delegates write a class Timer that has can execute certain method at each t seconds.
 
-using System;
-using System.Threading;
-
-class Timer
+namespace Timer
 {
-    static void Main()
-    {
-        int i = 0;
-        SetTimer(new Action(() => Console.WriteLine(i++)), 0.5);
-    }
+    using System;
+    using System.Threading;
 
-    static void SetTimer(Action doAction, dynamic t)
+    internal class Timer
     {
-        while (true)
+        private static void Main()
         {
-            Thread.Sleep((int)(t * 1000));
-            doAction();
+            var i = 0;
+            SetTimer(() => Console.WriteLine(i++), 0.5);
+        }
+
+        private static void SetTimer(Action doAction, dynamic t)
+        {
+            while (true)
+            {
+                Thread.Sleep((int)(t * 1000));
+                doAction();
+            }
         }
     }
 }

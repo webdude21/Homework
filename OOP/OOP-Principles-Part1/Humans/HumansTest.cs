@@ -5,6 +5,7 @@
  * Initialize a list of 10 students and sort them by grade in ascending order (use LINQ or 
  * OrderBy() extension method). Initialize a list of 10 workers and sort them by money per hour
  * in descending order. Merge the lists and sort them by first name and last name.          */
+
 namespace Humans
 {
     using System;
@@ -72,15 +73,15 @@ namespace Humans
         {
             return new List<Student>
                        {
-                           new Student("Stanislav", "Slavov", 4), 
-                           new Student("Georgi", "Gankov", 2), 
-                           new Student("Georgi", "Obretenov", 3), 
-                           new Student("Daniel", "Mandov", 5), 
-                           new Student("Georgi", "Mihailov", 5), 
-                           new Student("Iva", "Petrova", 6), 
-                           new Student("Dimo", "Petrova", 6), 
-                           new Student("Zornica", "Ivanova", 2), 
-                           new Student("Ivan", "Dinev", 5), 
+                           new Student("Stanislav", "Slavov", 4),
+                           new Student("Georgi", "Gankov", 2),
+                           new Student("Georgi", "Obretenov", 3),
+                           new Student("Daniel", "Mandov", 5),
+                           new Student("Georgi", "Mihailov", 5),
+                           new Student("Iva", "Petrova", 6),
+                           new Student("Dimo", "Petrova", 6),
+                           new Student("Zornica", "Ivanova", 2),
+                           new Student("Ivan", "Dinev", 5),
                            new Student("Dinko", "Farazov", 6)
                        };
         }
@@ -89,15 +90,15 @@ namespace Humans
         {
             return new List<Worker>
                        {
-                           new Worker("Dilliana", "Slavova", 1000, 8), 
-                           new Worker("Georgi", "Minchev", 700, 10), 
-                           new Worker("Plamen", "Georgiev", 1200, 12), 
-                           new Worker("Daniel", "Ivanov", 500, 4), 
-                           new Worker("Petya", "Milcheva", 1200, 9), 
-                           new Worker("Iva", "Zdravkova", 400, 2), 
-                           new Worker("Dinko", "Penev", 1000, 3), 
-                           new Worker("Kiril", "Petrov", 750, 8), 
-                           new Worker("Dinko", "Dimov", 800, 8), 
+                           new Worker("Dilliana", "Slavova", 1000, 8),
+                           new Worker("Georgi", "Minchev", 700, 10),
+                           new Worker("Plamen", "Georgiev", 1200, 12),
+                           new Worker("Daniel", "Ivanov", 500, 4),
+                           new Worker("Petya", "Milcheva", 1200, 9),
+                           new Worker("Iva", "Zdravkova", 400, 2),
+                           new Worker("Dinko", "Penev", 1000, 3),
+                           new Worker("Kiril", "Petrov", 750, 8),
+                           new Worker("Dinko", "Dimov", 800, 8),
                            new Worker("Ivan", "Farazov", 950, 9)
                        };
         }

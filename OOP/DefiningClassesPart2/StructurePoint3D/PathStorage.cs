@@ -1,22 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-
-namespace StructurePoint3D
+﻿namespace StructurePoint3D
 {
-    static class PathStorage
+    using System;
+    using System.IO;
+    using System.Linq;
+
+    internal static class PathStorage
     {
         public static Path LoadPath(string filePath)
         {
-            Path path = new Path();
-            StreamReader SR = new StreamReader(filePath);
+            var path = new Path();
+            var SR = new StreamReader(filePath);
             using (SR)
             {
-                string line = SR.ReadLine();
+                var line = SR.ReadLine();
 
                 while (line != null)
                 {
-                    double[] coordinates = line.Split(';').Select(x => Convert.ToDouble(x)).ToArray();
+                    var coordinates = line.Split(';').Select(Convert.ToDouble).ToArray();
                     path.AddPoint(new Point3D(coordinates[0], coordinates[1], coordinates[2]));
                     line = SR.ReadLine();
                 }
@@ -26,10 +26,10 @@ namespace StructurePoint3D
 
         public static void SavePath(Path pathToSave, string filePath)
         {
-            StreamWriter SW = new StreamWriter(filePath);
+            var SW = new StreamWriter(filePath);
             using (SW)
             {
-                SW.Write(pathToSave); 
+                SW.Write(pathToSave);
             }
         }
     }

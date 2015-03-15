@@ -1,13 +1,17 @@
-﻿using System.Text;
-
-public static class StringBuilderExtension
+﻿namespace StringBuilderSubString
 {
-    public static string SubString(this StringBuilder sb, int startindex)
+    using System.Text;
+
+    public static class StringBuilderExtension
     {
-        return sb.ToString().Substring(startindex);
-    }
-    public static string SubString(this StringBuilder sb, int startindex, int lenght)
-    {
-        return sb.ToString().Substring(startindex, lenght);
+        public static string SubString(this StringBuilder sb, int startindex)
+        {
+            return sb.ToString().Substring(startindex);
+        }
+
+        public static string SubString(this StringBuilder sb, int startindex, int lenght)
+        {
+            return sb.ToString().Substring(startindex, lenght);
+        }
     }
 }

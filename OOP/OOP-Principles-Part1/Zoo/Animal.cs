@@ -11,8 +11,6 @@
     {
         private int age;
 
-        private Sex sex;
-
         protected Animal(string name, int age, Sex sex)
         {
             // I've made the Animal constructor, because an Animal should not be created anyway.
@@ -22,18 +20,7 @@
             this.Sex = sex;
         }
 
-        public Sex Sex
-        {
-            get
-            {
-                return this.sex;
-            }
-
-            protected set
-            {
-                this.sex = value;
-            }
-        }
+        public Sex Sex { get; protected set; }
 
         public int Age
         {
@@ -63,10 +50,10 @@
         public override string ToString()
         {
             return string.Format(
-                "My name is {0}, I'm a {1}. I'm {2} and am {3} years old", 
-                this.Name, 
-                this.GetType().Name, 
-                this.sex, 
+                "My name is {0}, I'm a {1}. I'm {2} and am {3} years old",
+                this.Name,
+                this.GetType().Name,
+                this.Sex,
                 this.age);
         }
     }

@@ -17,8 +17,8 @@
         public override string ToString()
         {
             return string.Format(
-                "I'm a {0} and my surface area is {1:0.00}", 
-                this.GetType().Name, 
+                "I'm a {0} and my surface area is {1:0.00}",
+                this.GetType().Name,
                 this.CalculateSurface());
         }
     }

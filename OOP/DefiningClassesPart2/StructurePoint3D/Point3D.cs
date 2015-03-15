@@ -1,54 +1,33 @@
-﻿using System.Collections.Generic;
-
-namespace StructurePoint3D
+﻿namespace StructurePoint3D
 {
-    struct Point3D
+    internal struct Point3D
     {
-        private double x;
-        private double y;
-        private double z;
         private static readonly Point3D O = new Point3D();
 
-        public Point3D(double X, double Y, double Z)
+        public Point3D(double x, double y, double z) : this()
         {
-            this.x = X;
-            this.y = Y;
-            this.z = Z;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
         }
 
         public static Point3D GetPointO
         {
-            get { return O; }
+            get
+            {
+                return O;
+            }
         }
 
-        public double X
-        {
-            get { return this.x; }
-            set
-            {
-                this.x = value;
-            }
-        }
-        public double Y
-        {
-            get { return this.y; }
-            set
-            {
-                this.y = value;
-            }
-        }
-        public double Z
-        {
-            get { return this.z; }
-            set
-            {
-                this.z = value;
-            }
-        }
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public double Z { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{0};{1};{2}", x, y, z);
+            return string.Format("{0};{1};{2}", this.X, this.Y, this.Z);
         }
     }
 }

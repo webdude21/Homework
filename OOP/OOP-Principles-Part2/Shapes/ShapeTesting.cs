@@ -5,6 +5,7 @@
  * must be kept equal to width and implement the CalculateSurface() method. Write a program that
  * tests the behavior of  the CalculateSurface() method for different shapes (Circle, Rectangle, 
  * Triangle) stored in an array. */
+
 namespace Shapes
 {
     using System;

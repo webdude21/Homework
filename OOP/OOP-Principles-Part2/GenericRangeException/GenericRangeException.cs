@@ -3,6 +3,7 @@
  * Write a sample application that demonstrates the InvalidRangeException<int> and 
  * InvalidRangeException<DateTime> by entering numbers in the range [1..100] and dates in 
  * the range [1.1.1980 … 31.12.2013]. */
+
 namespace GenericRangeException
 {
     using System;
@@ -14,14 +15,14 @@ namespace GenericRangeException
             {
                 try
                 {
-                    var rangeStart = 10;
-                    var rangeEnd = 155;
+                    const int rangeStart = 10;
+                    const int RangeEnd = 155;
 
-                    var variableToCheck = 200;
+                    const int VariableToCheck = 200;
 
-                    if (!(rangeStart < variableToCheck && variableToCheck < rangeEnd))
+                    if (!(rangeStart < VariableToCheck && VariableToCheck < RangeEnd))
                     {
-                        throw new InvalidRangeException<int>(rangeStart, rangeEnd);
+                        throw new InvalidRangeException<int>(rangeStart, RangeEnd);
                     }
                 }
                 catch (InvalidRangeException<int> iRError)

@@ -1,12 +1,12 @@
-﻿using System;
-
-namespace GenericList
+﻿namespace GenericList
 {
-    class GenericListTest
+    using System;
+
+    internal class GenericListTest
     {
-        static void Main()
+        private static void Main()
         {
-            GenericList<int> testList = new GenericList<int>();
+            var testList = new GenericList<int>();
             testList.Add(5);
             testList.Add(6);
             testList.Add(7);
@@ -16,7 +16,7 @@ namespace GenericList
             Console.WriteLine("Min: {0}", testList.Min());
             Console.WriteLine("Max: {0}", testList.Max());
             Console.WriteLine(testList);
-            GenericList<String> stringList = new GenericList<string>();
+            var stringList = new GenericList<string>();
             stringList.Add("Pesho");
             stringList.Add("Gosho");
             stringList.Add("Gancho");

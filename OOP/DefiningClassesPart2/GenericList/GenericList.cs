@@ -6,41 +6,30 @@
 //  Create generic methods Min<T>() and Max<T>() for finding the minimal and maximal element in the  GenericList<T>.
 //  You may need to add a generic constraints for the type T.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace GenericList
 {
-    class GenericList<T> where T : IComparable<T>
+    using System;
+    using System.Text;
+
+    internal class GenericList<T> where T : IComparable<T>
     {
-        private T[] content;
-        private uint count;
         private uint capacity;
+
+        private T[] content;
 
         public GenericList(uint initialCapacity = 1)
         {
-            // Constructor
             this.content = new T[initialCapacity];
             this.capacity = initialCapacity;
         }
 
-        public uint Count
-        {
-            // This field holds the count of the actually accessible slots in the array
-            get
-            {
-                return this.count;
-            }
-        }
+        public uint Count { get; private set; }
 
         public T this[int index]
         {
-            // if the user tries to access slots that are reserved, but not 
-            // currently used an exception is thrown
             get
             {
-                if (index < 0 || index >= this.count)
+                if (index < 0 || index >= this.Count)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -48,7 +37,7 @@ namespace GenericList
             }
             set
             {
-                if (index < 0 || index >= this.count)
+                if (index < 0 || index >= this.Count)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -59,29 +48,29 @@ namespace GenericList
         private T[] AutoGrow()
         {
             // this doubles the capacity of the array
-            this.capacity = capacity * 2;
-            T[] doubleSizeArr = new T[this.capacity];
+            this.capacity = this.capacity * 2;
+            var doubleSizeArr = new T[this.capacity];
 
             for (uint index = 0; index < this.Count; index++)
             {
-                doubleSizeArr[index] = content[index];
+                doubleSizeArr[index] = this.content[index];
             }
 
             return doubleSizeArr;
         }
 
+        // This method adds adds a new element into the array (at the end)
         public void Add(T input)
         {
-            // This method adds adds a new element into the array (at the end)
-            GrowIfNeeded();
-            this.content[count] = input;
-            this.count++;
+            this.GrowIfNeeded();
+            this.content[this.Count] = input;
+            this.Count++;
         }
 
+        // This method checks if the list contains certain element
         public bool Contains(T input)
         {
-            // This method checks if the list contains certain element
-            for (uint index = 0; index < this.count; index++)
+            for (uint index = 0; index < this.Count; index++)
             {
                 if (this.content[index].Equals(input))
                 {
@@ -91,63 +80,63 @@ namespace GenericList
             return false;
         }
 
+        // This method checks if the array needs to grow and if so it calls the AutoGrow method
         private void GrowIfNeeded()
         {
-            // This method checks if the array needs to grow and if so it calls the AutoGrow method
             if (this.Count + 1 > this.capacity)
             {
-                this.content = AutoGrow();
+                this.content = this.AutoGrow();
             }
         }
 
+        // This method allows the user to insert an element at a precise position
         public void InsertAt(uint positionToInsert, T input)
         {
-            // This method allows the user to insert an element at a precise position
             if (positionToInsert > this.Count)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            GrowIfNeeded();
+            this.GrowIfNeeded();
 
-            for (uint i = this.count; i > positionToInsert; i--)
+            for (var i = this.Count; i > positionToInsert; i--)
             {
                 this.content[i] = this.content[i - 1];
             }
-            this.count++;
+            this.Count++;
             this.content[positionToInsert] = input;
         }
 
+        // This method allows the user to remove an element at a precise position
         public void RemoveAt(uint elementToRemove)
         {
-            // This method allows the user to remove an element at a precise position
             if (elementToRemove >= this.Count)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            for (uint i = elementToRemove; i < this.Count; i++)
+            for (var i = elementToRemove; i < this.Count; i++)
             {
                 this.content[i] = this.content[i + 1];
             }
-            this.count--;
+            this.Count--;
         }
 
+        // This method clears the array by giving each and every cell default 
+        // value for the type that's used
         public void Clear()
         {
-            // This method clears the array by giving each and every cell default 
-            // value for the type that's used 
             for (uint index = 0; index < this.capacity; index++)
             {
                 this.content[index] = default(T);
             }
-            this.count = 0;
+            this.Count = 0;
         }
 
         public T Min()
         {
-            T min = this.content[0];
-            for (int index = 1; index < this.count; index++)
+            var min = this.content[0];
+            for (var index = 1; index < this.Count; index++)
             {
                 if (min.CompareTo(this.content[index]) > 0)
                 {
@@ -159,8 +148,8 @@ namespace GenericList
 
         public T Max()
         {
-            T max = this.content[0];
-            for (int index = 1; index < this.count; index++)
+            var max = this.content[0];
+            for (var index = 1; index < this.Count; index++)
             {
                 if (max.CompareTo(this.content[index]) < 0)
                 {
@@ -170,12 +159,12 @@ namespace GenericList
             return max;
         }
 
+        // This is an override to the ToString() method to display the 
+        // contents of the list in a more readable manner
         public override string ToString()
         {
-            // This is an override to the ToString() method to display the 
-            // contents of the list in a more readable manner
-            StringBuilder sb = new StringBuilder();
-            for (int index = 0; index < this.Count; index++)
+            var sb = new StringBuilder();
+            for (var index = 0; index < this.Count; index++)
             {
                 sb.Append(string.Format("[{0}]", this.content[index]));
             }

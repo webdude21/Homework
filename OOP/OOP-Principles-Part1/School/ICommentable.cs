@@ -2,10 +2,6 @@
 {
     public interface ICommentable
     {
-        string Comments
-        {
-            get;
-            set;
-        }
+        string Comments { get; set; }
     }
 }
