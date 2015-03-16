@@ -27,6 +27,7 @@
             {
                  Console.SetIn(new StreamReader(@"../../../input.txt"));
             }
+
            
             return new ExtendedHoldingPen();
         }

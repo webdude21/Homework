@@ -49,6 +49,12 @@
                 case "AggressionCatalyst":
                     this.AddSupplementToUnit(commandWords[2], new AggressionCatalyst());
                     break;
+                case "PowerCatalyst":
+                    this.AddSupplementToUnit(commandWords[2], new PowerCatalyst());
+                    break;
+                case "HealthCatalyst":
+                    this.AddSupplementToUnit(commandWords[2], new HealthCatalyst());
+                    break;
                 case "Weapon":
                     this.AddSupplementToUnit(commandWords[2], new Weapon());
                     break;
