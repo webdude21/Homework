@@ -1,9 +1,9 @@
-﻿using System.Globalization;
-using System.Threading;
-
-namespace FurnitureManufacturer
+﻿namespace FurnitureManufacturer
 {
-    using Engine;
+    using System.Globalization;
+    using System.Threading;
+
+    using FurnitureManufacturer.Engine;
 
     public class FurnitureProgram
     {

@@ -1,8 +1,8 @@
 ﻿namespace FurnitureManufacturer.Engine.Factories
 {
-    using Interfaces;
-    using Interfaces.Engine;
-    using Models;
+    using FurnitureManufacturer.Interfaces;
+    using FurnitureManufacturer.Interfaces.Engine;
+    using FurnitureManufacturer.Models;
 
     public class CompanyFactory : ICompanyFactory
     {

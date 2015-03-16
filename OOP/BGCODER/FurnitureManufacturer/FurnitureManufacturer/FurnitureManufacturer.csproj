@@ -41,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\AdjustableChair.cs" />
-    <Compile Include="Models\Chair.cs" />
-    <Compile Include="Models\ConvertibleChair.cs" />
     <Compile Include="Engine\Command.cs" />
     <Compile Include="Engine\ConsoleRenderer.cs" />
     <Compile Include="Engine\EngineConstants.cs" />
+    <Compile Include="Models\AdjustableChair.cs" />
+    <Compile Include="Models\Chair.cs" />
     <Compile Include="Engine\Factories\CompanyFactory.cs" />
     <Compile Include="Engine\Factories\FurnitureFactory.cs" />
     <Compile Include="Engine\FurnitureManufacturerEngine.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ConvertibleChair.cs" />
     <Compile Include="Models\Furniture.cs" />
     <Compile Include="FurnitureProgram.cs" />
     <Compile Include="Interfaces\Engine\IRenderer.cs" />
@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="FurnitureClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@
     public class Command : ICommand
     {
         private const string NullOrEmptyNameErrorMessage = "Name cannot be null or empty";
-        private const string NullCollectionOfParameters = "Collection of parameteres cannot be null";
+        private const string NullCollectionOfParameters = "Collection of parameters cannot be null";
 
         private const char SplitCommandSymbol = ' ';
 
