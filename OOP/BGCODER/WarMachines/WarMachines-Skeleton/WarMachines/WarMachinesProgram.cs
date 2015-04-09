@@ -1,6 +1,6 @@
 ﻿namespace WarMachines
 {
-    using Engine;
+    using WarMachines.Engine;
 
     public class WarMachinesProgram
     {

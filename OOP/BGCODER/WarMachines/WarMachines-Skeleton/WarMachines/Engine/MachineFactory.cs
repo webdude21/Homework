@@ -1,8 +1,8 @@
-﻿using WarMachines.Interfaces;
-using WarMachines.Machines;
-
-namespace WarMachines.Engine
+﻿namespace WarMachines.Engine
 {
+    using WarMachines.Interfaces;
+    using WarMachines.Machines;
+
     public class MachineFactory : IMachineFactory
     {
         public IPilot HirePilot(string name)

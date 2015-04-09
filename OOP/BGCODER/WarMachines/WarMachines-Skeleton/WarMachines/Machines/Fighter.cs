@@ -1,20 +1,23 @@
-﻿using WarMachines.Interfaces;
-
-namespace WarMachines.Machines
+﻿namespace WarMachines.Machines
 {
-    class Fighter : Machine, IFighter
+    using WarMachines.Interfaces;
+
+    internal class Fighter : Machine, IFighter
     {
-        bool stealthMode;
+        private bool stealthMode;
 
         public Fighter(string name, double attackPoints, double defencePoints, bool stealthMode)
-            : base(name, 200d, attackPoints, defencePoints) 
+            : base(name, 200d, attackPoints, defencePoints)
         {
             this.stealthMode = stealthMode;
         }
 
         public bool StealthMode
         {
-            get { return this.stealthMode; }
+            get
+            {
+                return this.stealthMode;
+            }
         }
 
         public void ToggleStealthMode()

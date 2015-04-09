@@ -5,14 +5,18 @@
 
     internal sealed class Marine : Human
     {
-        public Marine(string id): base(id)
+        public Marine(string id)
+            : base(id)
         {
             this.AddSupplement(new WeaponrySkill());
         }
 
         public override Interaction DecideInteraction(IEnumerable<UnitInfo> units)
         {
-            var infestableUnit = units.Where(x => x.Id != this.Id && this.Aggression >= x.Power).OrderByDescending(x => x.Health).FirstOrDefault();
+            var infestableUnit =
+                units.Where(x => x.Id != this.Id && this.Aggression >= x.Power)
+                    .OrderByDescending(x => x.Health)
+                    .FirstOrDefault();
 
             if (infestableUnit.Id != null)
             {

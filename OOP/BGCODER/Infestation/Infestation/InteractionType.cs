@@ -4,6 +4,6 @@
     {
         Attack,
 
-        Infest,
+        Infest
     }
 }

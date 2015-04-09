@@ -1,6 +1,7 @@
-﻿using System;
-namespace SoftwareAcademy
+﻿namespace SoftwareAcademy
 {
+    using System;
+
     public class AcademyObject
     {
         private string name;
@@ -12,7 +13,10 @@ namespace SoftwareAcademy
 
         public string Name
         {
-            get { return name; }
+            get
+            {
+                return this.name;
+            }
             set
             {
                 if (string.IsNullOrEmpty(value))

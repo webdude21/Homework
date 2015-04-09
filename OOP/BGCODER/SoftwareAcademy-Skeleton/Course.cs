@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace SoftwareAcademy
+﻿namespace SoftwareAcademy
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     public abstract class Course : AcademyObject, ICourse
     {
         private readonly ICollection<string> courseTopics;
@@ -27,15 +27,15 @@ namespace SoftwareAcademy
 
             output.Append(base.ToString());
 
-            if (Teacher != null)
+            if (this.Teacher != null)
             {
                 output.Append("; Teacher=" + this.Teacher.Name);
             }
 
-            if (courseTopics.Count > 0)
+            if (this.courseTopics.Count > 0)
             {
                 output.Append("; Topics=");
-                output.Append(string.Format("[{0}]", string.Join(", ", courseTopics)));
+                output.Append(string.Format("[{0}]", string.Join(", ", this.courseTopics)));
             }
 
             return output.ToString();

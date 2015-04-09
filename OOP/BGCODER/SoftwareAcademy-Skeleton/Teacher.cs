@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace SoftwareAcademy
+﻿namespace SoftwareAcademy
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Teacher : AcademyObject, ITeacher
     {
         private readonly ICollection<ICourse> toughtCourses;
 
-        public Teacher(string name) : base(name) 
+        public Teacher(string name)
+            : base(name)
         {
             this.toughtCourses = new List<ICourse>();
         }
@@ -19,10 +20,10 @@ namespace SoftwareAcademy
 
         public override string ToString()
         {
-            if (toughtCourses.Count > 0)
+            if (this.toughtCourses.Count > 0)
             {
-                return base.ToString() + "; Courses=" + string.Format("[{0}]", string.Join(", ",
-                    this.toughtCourses.Select(course => course.Name)));
+                return base.ToString() + "; Courses="
+                       + string.Format("[{0}]", string.Join(", ", this.toughtCourses.Select(course => course.Name)));
             }
             return base.ToString();
         }

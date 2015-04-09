@@ -3,31 +3,48 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Interfaces;
+
+    using WarMachines.Interfaces;
 
     public sealed class WarMachineEngine : IWarMachineEngine
     {
         private const string InvalidCommand = "Invalid command name: {0}";
+
         private const string PilotHired = "Pilot {0} hired";
+
         private const string PilotExists = "Pilot {0} is hired already";
+
         private const string TankManufactured = "Tank {0} manufactured - attack: {1}; defense: {2}";
+
         private const string FighterManufactured = "Fighter {0} manufactured - attack: {1}; defense: {2}; stealth: {3}";
+
         private const string MachineExists = "Machine {0} is manufactured already";
+
         private const string MachineHasPilotAlready = "Machine {0} is already occupied";
+
         private const string PilotNotFound = "Pilot {0} could not be found";
+
         private const string MachineNotFound = "Machine {0} could not be found";
+
         private const string MachineEngaged = "Pilot {0} engaged machine {1}";
+
         private const string InvalidMachineOperation = "Machine {0} does not support this operation";
+
         private const string FighterOperationSuccessful = "Fighter {0} toggled stealth mode";
+
         private const string TankOperationSuccessful = "Tank {0} toggled defense mode";
+
         private const string InvalidAttackTarget = "Tank {0} cannot attack stealth fighter {1}";
+
         private const string AttackSuccessful = "Machine {0} was attacked by machine {1} - current health: {2}";
 
         private static readonly WarMachineEngine SingleInstance = new WarMachineEngine();
 
         private IMachineFactory factory;
-        private IDictionary<string, IPilot> pilots;
+
         private IDictionary<string, IMachine> machines;
+
+        private IDictionary<string, IPilot> pilots;
 
         private WarMachineEngine()
         {
@@ -109,7 +126,11 @@
                         var fighterAttackPoints = double.Parse(command.Parameters[1]);
                         var fighterDefensePoints = double.Parse(command.Parameters[2]);
                         var fighterStealthMode = command.Parameters[3] == "StealthON" ? true : false;
-                        commandResult = this.ManufactureFighter(fighterName, fighterAttackPoints, fighterDefensePoints, fighterStealthMode);
+                        commandResult = this.ManufactureFighter(
+                            fighterName,
+                            fighterAttackPoints,
+                            fighterDefensePoints,
+                            fighterStealthMode);
                         reports.Add(commandResult);
                         break;
 
@@ -258,7 +279,11 @@
                 defendingMachine.HealthPoints = newHeathPoints;
             }
 
-            return string.Format(AttackSuccessful, defendingMachineName, attackingMachineName, defendingMachine.HealthPoints);
+            return string.Format(
+                AttackSuccessful,
+                defendingMachineName,
+                attackingMachineName,
+                defendingMachine.HealthPoints);
         }
 
         private string PilotReport(string pilotReporting)

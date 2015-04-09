@@ -2,13 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-    using Interfaces;
+
+    using WarMachines.Interfaces;
 
     public class Command : ICommand
     {
         private const char SplitCommandSymbol = ' ';
 
         private string name;
+
         private IList<string> parameters;
 
         private Command(string input)
@@ -62,7 +64,8 @@
             var indexOfFirstSeparator = input.IndexOf(SplitCommandSymbol);
 
             this.Name = input.Substring(0, indexOfFirstSeparator);
-            this.Parameters = input.Substring(indexOfFirstSeparator + 1).Split(new[] { SplitCommandSymbol }, StringSplitOptions.RemoveEmptyEntries);
+            this.Parameters = input.Substring(indexOfFirstSeparator + 1)
+                .Split(new[] { SplitCommandSymbol }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

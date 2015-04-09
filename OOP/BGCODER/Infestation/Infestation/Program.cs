@@ -25,10 +25,9 @@
         {
             if (File.Exists(@"../../../input.txt"))
             {
-                 Console.SetIn(new StreamReader(@"../../../input.txt"));
+                Console.SetIn(new StreamReader(@"../../../input.txt"));
             }
 
-           
             return new ExtendedHoldingPen();
         }
     }

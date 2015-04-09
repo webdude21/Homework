@@ -1,10 +1,11 @@
-﻿using System;
-
-namespace SoftwareAcademy
+﻿namespace SoftwareAcademy
 {
+    using System;
+
     public class LocalCourse : Course, ILocalCourse
     {
         private string lab;
+
         public LocalCourse(string name, ITeacher teacher, string lab)
             : base(name, teacher)
         {

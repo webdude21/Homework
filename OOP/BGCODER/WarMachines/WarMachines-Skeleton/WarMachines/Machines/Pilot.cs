@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WarMachines.Interfaces;
-
-namespace WarMachines.Machines
+﻿namespace WarMachines.Machines
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using WarMachines.Interfaces;
 
     public class Pilot : Unit, IPilot
     {
         private readonly HashSet<IMachine> machines = new HashSet<IMachine>();
 
-        public Pilot(string name) : base(name) { }
+        public Pilot(string name)
+            : base(name)
+        {
+        }
+
         public void AddMachine(IMachine machine)
         {
             this.machines.Add(machine);
@@ -33,14 +37,14 @@ namespace WarMachines.Machines
                 pilotReport.Append(" - no machines");
             }
 
-            foreach (var machine in machines.OrderBy(machine => machine.HealthPoints).ThenBy(machine => machine.Name))
+            foreach (var machine in this.machines.OrderBy(machine => machine.HealthPoints).ThenBy(machine => machine.Name))
             {
                 pilotReport.Append("- ");
                 pilotReport.AppendLine(machine.Name);
                 pilotReport.Append(machine.ToString());
             }
 
-            return base.ToString() + pilotReport.ToString().TrimEnd();
+            return this + pilotReport.ToString().TrimEnd();
         }
     }
 }

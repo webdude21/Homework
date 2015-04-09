@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WarMachines.Interfaces;
-
-namespace WarMachines.Machines
+﻿namespace WarMachines.Machines
 {
-     public abstract class Machine : Unit, IMachine
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using WarMachines.Interfaces;
+
+    public abstract class Machine : Unit, IMachine
     {
-        private IPilot pilot;
-        private double healthPoints;
-        private double attackPoints;
-        private double defensePoints;
         private readonly IList<string> targets = new List<string>();
 
-         protected Machine(string name, double healthPoints, double attackPoints, double defensePoints)
-            : base(name) 
+        private double attackPoints;
+
+        private double defensePoints;
+
+        private IPilot pilot;
+
+        protected Machine(string name, double healthPoints, double attackPoints, double defensePoints) : base(name)
         {
-            this.healthPoints = healthPoints;
+            this.HealthPoints = healthPoints;
             this.attackPoints = attackPoints;
             this.defensePoints = defensePoints;
-        }
-
-        private bool CheckIfNull(object obj)
-        {
-            if (obj == null)
-            {
-                throw new NullReferenceException("This property cannot be null!");
-            }
-            return false;
         }
 
         public IPilot Pilot
@@ -38,57 +31,56 @@ namespace WarMachines.Machines
             }
             set
             {
-                if (!CheckIfNull(value))
+                if (!this.CheckIfNull(value))
                 {
                     this.pilot = value;
-                }   
+                }
             }
         }
 
-        public double HealthPoints
-        {
-            get
-            {
-                return this.healthPoints;
-            }
-            set
-            {
-                this.healthPoints = value;
-            }
-        }
+        public double HealthPoints { get; set; }
 
         public double AttackPoints
         {
-            get { return this.attackPoints; }
+            get
+            {
+                return this.attackPoints;
+            }
             protected set
             {
-                if (!CheckIfNull(value))
+                if (!this.CheckIfNull(value))
                 {
                     this.attackPoints = value;
-                }               
+                }
             }
         }
 
         public double DefensePoints
         {
-            get { return this.defensePoints; }
+            get
+            {
+                return this.defensePoints;
+            }
             protected set
             {
-                if (!CheckIfNull(value))
+                if (!this.CheckIfNull(value))
                 {
                     this.defensePoints = value;
-                }             
+                }
             }
         }
 
         public IList<string> Targets
         {
-            get { return this.targets; }
+            get
+            {
+                return this.targets;
+            }
         }
 
         public void Attack(string target)
         {
-            CheckIfNull(target);
+            this.CheckIfNull(target);
             this.targets.Add(target);
         }
 
@@ -101,10 +93,10 @@ namespace WarMachines.Machines
             {
                 targetString = string.Join(", ", this.targets);
             }
-            
-            machineString.Append(" *Type: " + GetType().Name);
+
+            machineString.Append(" *Type: " + this.GetType().Name);
             machineString.Append(Environment.NewLine);
-            machineString.Append(" *Health: " + this.healthPoints);
+            machineString.Append(" *Health: " + this.HealthPoints);
             machineString.Append(Environment.NewLine);
             machineString.Append(" *Attack: " + this.attackPoints);
             machineString.Append(Environment.NewLine);
@@ -113,6 +105,15 @@ namespace WarMachines.Machines
             machineString.Append(" *Targets: " + (targetString ?? "None"));
             machineString.Append(Environment.NewLine);
             return machineString.ToString();
+        }
+
+        private bool CheckIfNull(object obj)
+        {
+            if (obj == null)
+            {
+                throw new NullReferenceException("This property cannot be null!");
+            }
+            return false;
         }
     }
 }
