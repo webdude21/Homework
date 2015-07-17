@@ -36,7 +36,7 @@ function solve() {
                 }
             },
             validateString: function (val, propName) {
-                if (typeof val !== 'string' && !val.length) {
+                if (typeof val !== 'string' || !val.length) {
                     throw new Error(propName + ' must be a non empty string!')
                 }
             },
