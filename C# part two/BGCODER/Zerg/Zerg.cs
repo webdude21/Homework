@@ -37,7 +37,7 @@
                 var currentdigit = input.Substring(i, wordLenght);
                 if (codes.ContainsKey(currentdigit))
                 {
-                    decimalResult = decimalResult + (codes[currentdigit] * Math.Pow(nBase, digit));
+                    decimalResult = decimalResult + codes[currentdigit] * Math.Pow(nBase, digit);
                 }
 
                 digit--;
