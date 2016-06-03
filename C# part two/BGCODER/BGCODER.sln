@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BracketsAgain", "BracketsAg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{C12C6D2A-904C-4C38-BA56-C822380EB975}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingMoves", "DancingMoves\DancingMoves.csproj", "{225BE044-B15D-46E5-BD36-9F1BA777F6C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -267,6 +269,10 @@ Global
 		{C12C6D2A-904C-4C38-BA56-C822380EB975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C12C6D2A-904C-4C38-BA56-C822380EB975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C12C6D2A-904C-4C38-BA56-C822380EB975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
