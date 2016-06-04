@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DancingMoves", "DancingMoves\DancingMoves.csproj", "{225BE044-B15D-46E5-BD36-9F1BA777F6C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PenguinAirlines", "PenguinAirlines\PenguinAirlines.csproj", "{32B788DF-0FC9-4ECA-97C1-C7F533B93A70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -273,6 +275,10 @@ Global
 		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225BE044-B15D-46E5-BD36-9F1BA777F6C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B788DF-0FC9-4ECA-97C1-C7F533B93A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B788DF-0FC9-4ECA-97C1-C7F533B93A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B788DF-0FC9-4ECA-97C1-C7F533B93A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B788DF-0FC9-4ECA-97C1-C7F533B93A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
